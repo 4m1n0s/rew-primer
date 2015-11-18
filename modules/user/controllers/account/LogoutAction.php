@@ -1,0 +1,26 @@
+<?php
+
+namespace app\modules\user\controllers\account;
+
+use Yii;
+use yii\base\Action;
+
+/**
+ * Class LogOutAction
+ *
+ * @author Stableflow
+ */
+class LogoutAction extends Action {
+
+    public function run() {
+        if (!Yii::$app->user->isGuest) {
+             Yii::$app->authenticationManager->logout(Yii::$app->getUser());
+        }
+        if(null !== Yii::$app->request->get('accessToken')){
+            return;
+        }
+        
+        return $this->controller->redirect(\yii\helpers\Url::to(Yii::$app->getModule('user')->logoutSuccess));
+    }
+
+}

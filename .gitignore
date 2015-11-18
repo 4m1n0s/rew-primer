@@ -1,0 +1,6 @@
+/vendor/
+/runtime/
+/config/params.php
+/config/db.php
+/web/assets/
+/nbproject/private/
