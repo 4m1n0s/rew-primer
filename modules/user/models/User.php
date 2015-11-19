@@ -34,23 +34,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     const STATUS_PENDING    = 0;
     const STATUS_APPROVED   = 1;
     const STATUS_BLOCKED    = 2;
-    const STATUS_TRANSFER   = 3;
-    const STATUS_BLACKLIST  = 4;
     
     const CREATE_SCENARIO   = 'create';
     const UPDATE_SCENARIO   = 'update';
     const REGISTER_SCENARIO = 'register';
     const LOGIN_SCENARIO    = 'login';
     
-    const API_REGISTER_SCENARIO = 'api_register';
-
-    public $newPassword;
-    public $confirmPassword;
-    
-    protected $_oldStatus;
-
-
     protected $metaData;
+    public $newPassword;
 
     /** @inheritdoc */
     public static function tableName() {
@@ -65,20 +56,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             'role'              => Yii::t('app', 'Role'),
             'password'          => Yii::t('app', 'Password'),
             'create_date'       => Yii::t('app', 'Registration time'),
-            'referral_code'     => Yii::t('app', 'Referral Code'),
-            'newPassword'       => Yii::t('app', 'Password'),
-            'confirmPassword'   => Yii::t('app', 'Confirm Password'),
             'status'            => Yii::t('app', 'Status'),
-            
-            'last_name'         => Yii::t('app', 'Last Name'),
-            'first_name'        => Yii::t('app', 'First Name'),
-            'city'              => Yii::t('app', 'City'),
-            'state'             => Yii::t('app', 'State'),
-            'companyName'       => Yii::t('app', 'Company Name'),
-            'address'           => Yii::t('app', 'Address'),
-            'zip'               => Yii::t('app', 'Zip'),
-            'phone'             => Yii::t('app', 'Phone'),
-            'note'              => Yii::t('app', 'Note'),
         ];
     }
 
@@ -86,42 +64,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function scenarios() {
         return\yii\helpers\ArrayHelper::merge([
                 static::LOGIN_SCENARIO     => ['username', 'email'],
-                static::REGISTER_SCENARIO  => ['username', 'email', 'password'],
-                static::API_REGISTER_SCENARIO  => ['username', 'email', 'password', 'device_id', 'device_os'],
-                static::CREATE_SCENARIO    => [
-                    'username', 
-                    'email', 
-                    'newPassword', 
-                    'confirmPassword', 
-                    'status', 
-                    'role',
-                    'last_name',
-                    'first_name',
-                    'city',
-                    'state',
-                    'companyName',
-                    'address',
-                    'zip',
-                    'phone',
-                    'note',
-                ],
-                static::UPDATE_SCENARIO    => [
-                    'username', 
-                    'email', 
-                    'newPassword', 
-                    'confirmPassword', 
-                    'status', 
-                    'role',
-                    'last_name',
-                    'first_name',
-                    'city',
-                    'state',
-                    'companyName',
-                    'address',
-                    'zip',
-                    'phone',
-                    'note',
-                ],
             ], parent::scenarios());
     }
 
@@ -143,37 +85,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             // password rules
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
-            // new password rules
-            ['newPassword', 'required', 'on' => 'create'],
-            ['newPassword', 'string', 'min' => 6],
-            // confirm password rules
-            ['confirmPassword', 'required', 'on' => 'create'],
-            ['confirmPassword', 'string', 'min' => 6],
-            ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword'],
+            
             // status rules
             [['status'], 'integer'],
             // role rules
             [['role'], 'integer'],
-            // referral code
-            [['referral_code'], 'string', 'max' => 12],
-            
-            [['device_id'], 'required', 'on' => static::API_REGISTER_SCENARIO],
-            [['device_os'], 'required', 'on' => static::API_REGISTER_SCENARIO],
-            
-            [
-                [
-                    'last_name',
-                    'first_name',
-                    'city',
-                    'state',
-                    'companyName',
-                    'address',
-                    'zip',
-                    'phone',
-                    'note',
-                    
-                ], 'safe'
-            ]
         ];
     }
     
@@ -408,7 +324,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function getReturnUrl() {
         switch ($this->role) {
             case static::ROLE_ADMIN:
-                $url = '/dashboard/dashboard-backend/index';
+                $url = '/dashboard/index-backend/index';
                 break;
             case static::ROLE_USER:
             case static::ROLE_MOBILE_USER:

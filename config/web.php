@@ -14,8 +14,17 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\modules\user\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => $params['baseUrl'] . '/dashboard/login',
+            'identityCookie' => [
+                'name' => '_identity_http_', 
+                'httpOnly' => true
+            ]
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => ['admin', 'USER'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -40,6 +49,12 @@ $config = [
             'rules' => require(__DIR__ . '/routes.php'),
         ],
         'i18n' => require(__DIR__ . '/i18n.php'),
+        'eventManager' => [
+            'class' => 'app\modules\core\components\EventManager'
+        ],
+        'export' => [
+            'class' => 'app\modules\core\components\Export',
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

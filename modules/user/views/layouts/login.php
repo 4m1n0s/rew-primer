@@ -4,12 +4,12 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\BackAsset;
+use app\assets\BackendAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-BackAsset::register($this);
+BackendAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,19 +24,21 @@ BackAsset::register($this);
     <body class="login">
 
         <?php $this->beginBody() ?>
-
+        
+        <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <img src="/img/gifthulk_logo_dark.png" alt=""/>
+                <img src="/backend/pages/img/logo-big.png" alt="" /> 
             </a>
         </div>
-
+        <!-- END LOGO -->
+        <!-- BEGIN LOGIN -->
         <div class="content">
             <?= $content ?>
         </div>
 
         <div class="copyright">
-            <?= date('Y'); ?> &copy; Reward Rack
+            <?= date('Y'); ?> &copy; <?= Yii::$app->name ?>
         </div>
 
         <?php $this->endBody() ?>

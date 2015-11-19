@@ -10,7 +10,7 @@ return [
     'user' => [
         'class' => 'app\modules\user\Module',
     ],
-    'video' => [
-        'class' => 'app\modules\video\Module',
+    'subscriber' => [
+        'class' => 'app\modules\subscriber\Module',
     ],
 ];

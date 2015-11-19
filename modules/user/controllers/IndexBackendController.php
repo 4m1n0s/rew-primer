@@ -11,7 +11,7 @@ use app\modules\core\components\controllers\BackController;
 use app\modules\user\models\User;
 use app\modules\user\forms\ProfileForm;
 use app\modules\user\models\UserMeta;
-use app\modules\video\helpers\FileUploaderHelper;
+use app\modules\core\helpers\FileUploaderHelper;
 
 /**
  * Class IndexBackendController
@@ -28,7 +28,7 @@ class IndexBackendController extends BackController {
 
     public function actionProfile() {
 
-        if (($user = User::findOne(/* Yii::$app->user->id */ 1)) === null) {
+        if (($user = User::findOne(Yii::$app->user->id)) === null) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
@@ -53,6 +53,8 @@ class IndexBackendController extends BackController {
             if($model->validate()){
                 switch ($model->scenario){
                     case ProfileForm::SCENARIO_CHANGE_PASSWORD:
+                        $user->newPassword = $model->newPassword;
+                        $user->save();
                         break;
                     case ProfileForm::SCENARIO_CHANGE_PERSONAL_INFO:
                         UserMeta::updateUserMeta($user->id, 'phone', $model->phone);

@@ -27,39 +27,18 @@
                     'data-keep-expanded' => false,
                 ],
                 'items' => [
+                    
                     [
-                        'label' => '<h3 class="uppercase">' . Yii::t('app', 'Pages') . '</h3>',
-                        'linkTemplate' => '{label}',
+                        'label' => '<i class="icon-home"></i> <span class="title"> ' . Yii::t('app', 'Dashboard') . '</span>',
+                        'url' => ['/dashboard/index-backend/index'],
                         'options' => [
-                            'class' => 'heading start'
+                            'class' => 'start'
                         ],
                     ],
+                    
                     [
-                        'label' => '<i class="fa fa-newspaper-o"></i> <span class="title"> ' . Yii::t('app', 'Home Page') . '</span>',
-                        'url' => ['/page/index-backend/index'],
-                    ],
-                    [
-                        'label' => '<i class="fa fa-file"></i> <span class="title"> ' . Yii::t('app', 'Static Pages') . '</span>',
-                        'url' => ['/page/index-backend/index'],
-                    ],
-                    [
-                        'label' => '<h3 class="uppercase">Videos</h3>',
-                        'linkTemplate' => '{label}',
-                        'options' => [
-                            'class' => 'heading'
-                        ],
-                    ],
-                    [
-                        'label' => '<i class="fa fa-film"></i> <span class="title"> ' . Yii::t('app', 'Manage videos') . '</span>',
-                        'url' => ['/video/index-backend/index'],
-                    ],
-                    [
-                        'label' => '<i class="fa fa-sitemap"></i> <span class="title"> ' . Yii::t('app', 'Categories') . '</span>',
-                        'url' => ['/video/category-backend/index'],
-                    ],
-                    [
-                        'label' => '<i class="fa fa-sitemap"></i> <span class="title"> ' . Yii::t('app', 'Channels') . '</span>',
-                        'url' => ['/video/channel-backend/index'],
+                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Subscribers') . '</span>',
+                        'url' => ['/subscriber/index-backend/index'],
                     ],
                 ]
                 ]);

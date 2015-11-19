@@ -47,7 +47,7 @@ class LoginForm extends Model {
     public function validatePassword($attribute, $params) {
         $user = $this->getUser();
         if (!$this->hasErrors()) {
-            if (!$user || (!Password::validate($this->password, $user->password) && $user->status !== User::STATUS_TRANSFER)) {
+            if (!$user || (!Password::validate($this->password, $user->password))) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }

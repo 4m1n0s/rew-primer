@@ -18,9 +18,11 @@ class LoginAction extends Action {
 
     public function run() {
         if (Yii::$app->user->isGuest) {
-            $settings = SettingHelper::getOption(SettingHelper::APP_SIGNUP_SETTING);
+            
             $form = new LoginForm();
+            
             if ($form->load(Yii::$app->request->post())) {
+                
                 if ($form->validate() && Yii::$app->authenticationManager->login($form, Yii::$app->getUser(), Yii::$app->getRequest())) {
                     return $this->controller->redirect([Yii::$app->user->identity->returnUrl]);
                 } else {
@@ -29,13 +31,14 @@ class LoginAction extends Action {
                         Yii::$app->session->setFlash('error', $errors[0]);
                     }
                 }
+                
             }
             if (!empty($this->layout)) {
                 $this->controller->layout = $this->layout;
             }
+            
             return $this->controller->render($this->id, [
-                        'model' => $form,
-                        'settings' => $settings
+                        'model' => $form
             ]);
         }
         return $this->controller->redirect(Yii::$app->user->returnUrl);

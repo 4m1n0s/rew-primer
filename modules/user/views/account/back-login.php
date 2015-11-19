@@ -9,32 +9,29 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Admin Log In';
 
-$this->registerJsFile('/back/assets/scripts/custom/login.js', ['depends' => [app\assets\BackAsset::className()]]);
-$this->registerCssFile("/back/assets/css/pages/login.css", [
-    'depends' => [app\assets\BackAsset::className()],
-    ], 'login-page-css');
+$this->registerJsFile('/backend/global/plugins/jquery-validation/js/jquery.validate.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
+$this->registerJsFile('/backend/global/plugins/jquery-validation/js/additional-methods.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
+$this->registerJsFile('/backend/global/plugins/select2/js/select2.full.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
 
-$this->registerJs("
-            jQuery(document).ready(function() {
-                Login.init();
-            });", yii\web\View::POS_END, 'login-page-scripts');
+$this->registerJsFile('/backend/pages/scripts/login.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
+$this->registerCssFile("/backend/pages/css/login.min.css", ['depends' => [app\assets\BackendAsset::className()]]);
+
 ?>
-
 
 <?php
 $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['class' => 'login-form'],
         'fieldConfig' => [
-            'template' => "<div class=\"form-group\">{label}\n<div class=\"input-icon\">{input}</div>\n<div class=\"col-lg-8\">{error}</div></div>",
+            'template' => "{label}\n{input}",
             'labelOptions' => ['class' => 'control-label visible-ie8 visible-ie9'],
             'inputOptions' => [
-                'class' => 'form-control placeholder-no-fix',
+                'class' => 'form-control form-control-solid placeholder-no-fix',
             ]
         ],
     ]);
 ?>
-<h3 class="form-title"><?= Yii::t('user', 'Login to your account'); ?></h3>
+<h3 class="form-title"><?= Yii::t('admin', 'Sign In'); ?></h3>
 <?php if (Yii::$app->session->hasFlash('error')): ?>
     <div class="alert alert-danger">
         <button class="close" data-close="alert"></button>
@@ -43,45 +40,13 @@ $form = ActiveForm::begin([
         </span>
     </div>
 <?php endif; ?>
-<?=
-$form->field($model, 'username', [
-    'template' => "<div class=\"form-group\">{label}\n<div class=\"input-icon\"><i class=\"fa fa-user\"></i>{input}</div></div>",
-    'inputOptions' => [
-        'class' => 'form-control placeholder-no-fix',
-        'placeholder' => $model->getAttributeLabel('username'),
-        'autocomplete' => 'off',
-    ]
-])
-?>
-<?=
-$form->field($model, 'password', [
-    'template' => "<div class=\"form-group\">{label}\n<div class=\"input-icon\"><i class=\"fa fa-lock\"></i>{input}</div></div>",
-    'inputOptions' => [
-        'class' => 'form-control placeholder-no-fix',
-        'placeholder' => $model->getAttributeLabel('password'),
-        'autocomplete' => 'off',
-    ]
-])->passwordInput()
-?>
+
+<?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+<?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+
+
 <div class="form-actions">
-    <?=
-    $form->field($model, 'rememberMe', [
-        'checkboxTemplate' => "{beginLabel}\n{input}\n{labelTitle}\n{endLabel}\n{hint}",
-        'options' => [
-            'class' => 'checkbox'
-        ]
-    ])->checkbox([
-        'tag' => false
-    ]);
-    ?> 
-    <?= Html::submitButton(Yii::t('user', 'Login') . ' <i class="m-icon-swapright m-icon-white"></i>', ['class' => 'btn green pull-right']); ?>
-</div>
-<div class="forget-password">
-    <h4><?= Yii::t('user', 'Forgot your password ?'); ?></h4>
-    <p>
-        <?= Yii::t('user', 'no worries, click'); ?>
-        <?= Html::a(Yii::t('user', 'here'), ['/user/account/back-recovery-request']); ?>
-        <?= Yii::t('user', 'to reset your password.'); ?>
-    </p>
+    <?= Html::submitButton(Yii::t('admin', 'Login'), ['class' => 'btn green uppercase']); ?>
+    <?= Html::activeCheckbox($model, 'rememberMe') ?>
 </div>
 <?php ActiveForm::end(); ?>

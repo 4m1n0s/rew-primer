@@ -22,8 +22,8 @@ class BackendAsset extends AssetBundle {
         
         '/backend/global/plugins/datatables/datatables.min.css',
         '/backend/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css',
+        '/backend/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css',
         
-        '/backend/global/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css',
         '/backend/global/plugins/morris/morris.css',
         '/backend/global/plugins/fullcalendar/fullcalendar.min.css',
         '/backend/global/plugins/jqvmap/jqvmap/jqvmap.css',
@@ -49,10 +49,10 @@ class BackendAsset extends AssetBundle {
         '/backend/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js', 
         
         '/backend/global/plugins/morris/morris.min.js', 
+        '/backend/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
         
         '/backend/global/scripts/app.min.js',
-
-        '/backend/pages/scripts/dashboard.min.js',
+        
 
         '/backend/layouts/layout/scripts/layout.min.js',
         '/backend/layouts/layout/scripts/demo.min.js',

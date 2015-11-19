@@ -41,20 +41,7 @@ class AuthenticationManager extends \yii\base\Component {
                     $form->addError('email', Yii::t('user', 'Please activate your account.'));
                     return false;
                     break;
-                case User::STATUS_TRANSFER:
-                    Yii::$app->session->setFlash('info', 'We have updated RewardRack website. Now you have to reset your password in order to access the system. We apologize for any inconvenience.');
-                    $tokenStorage = Yii::createObject('app\modules\user\components\TokenStorage');
-                    if (($token = $tokenStorage->createPasswordRecoveryToken($identity)) !== false) {
-                        return Yii::$app->controller->redirect([
-                            '/user/account/recovery-reset',
-                            'code' => $token->code,
-                        ]);
-                    }
-                    $form->addError('email', Yii::t('user', 'System Auth error.'));
-                    return false;
-                    break;
                 case User::STATUS_APPROVED:
-                case User::STATUS_BLACKLIST:
                     Yii::$app->eventManager->fire(UserEvents::BEFORE_LOGIN, new UserLoginEvent($form, $user, $identity));
                     Yii::$app->getUser()->login($identity, $form->rememberMe ? strtotime('+ 1 year', time()) - time() : 0);
                     Yii::$app->eventManager->fire(UserEvents::SUCCESS_LOGIN, new UserLoginEvent($form, $user, $identity));
