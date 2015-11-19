@@ -47,16 +47,7 @@ class SiteController extends Controller {
 
     public function actionIndex() {
         
-        $videos = Yii::$app->cache->get('__VIDEOS__');
-
-        if ($videos === false) {
-            $videos = \app\modules\video\models\Videos::find()->all();
-            Yii::$app->cache->set('__VIDEOS__', $videos);
-        }
-        
-        return $this->render('index', [
-            'videos' => $videos
-        ]);
+        return $this->render('index');
     }
 
 }
