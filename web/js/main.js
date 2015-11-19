@@ -28,9 +28,7 @@ function handleProjector() {
 }
 
 function handleTriangleHeight() {
-    function screenResize() { console.log($(window).height());
-        $(".border-triangle").css( "height", $(window).height());
-    }
-    $(window).on("resize", screenResize);
-    screenResize();
+	$(window).on('resize', function(e) {
+		$('border-triangle')
+	})
 }

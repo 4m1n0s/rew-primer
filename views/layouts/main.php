@@ -65,7 +65,7 @@ AppAsset::register($this);
 						<h2 class="title-page">
 							Making Personalized Education Scalable
 						</h2>
-						<p>
+						<p class="text-home-min">
 							For the first time ever, educators in large-scale offline and online courses, 
 							can enjoy the power of machine learning and easily provide their students with personalized feedback.
 						</p>
