@@ -28,7 +28,7 @@ BackendAsset::register($this);
         <!-- BEGIN LOGO -->
         <div class="logo">
             <a href="index.html">
-                <img src="/backend/pages/img/logo-big.png" alt="" /> 
+                <img src="/backend/global/img/logo.png" alt="" /> 
             </a>
         </div>
         <!-- END LOGO -->
