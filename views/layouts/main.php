@@ -83,14 +83,14 @@ AppAsset::register($this);
 
 				<section class="container border-triangle border-triangle-gray" id="solution-page">
 					<div class="content">
-						<div id="team_container">
+						<!-- <div id="team_container">
 							<ul>
 								<li class="member" data-index="0" data-popup="team_popup" style="margin-left:30px;margin-top:-54px; z-index:2">
 								<div class="member_info border_left" style="left:167px; top:115px; width:240px; height:100px; text-align:left">
 								<div class="plus_sign bottom left"></div><p class="short_bio"></p></div>
 								</li>
 							</ul>
-						</div>
+						</div> -->
 					</div>
 				</section>
 				<section class="container border-triangle border-triangle-green" id="results-page">
