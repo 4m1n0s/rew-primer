@@ -25,10 +25,11 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 
-    
-    <?= app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>
-
+    <!--
+<?=  app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>
+-->
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>
