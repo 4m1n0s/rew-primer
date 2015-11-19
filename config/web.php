@@ -55,6 +55,23 @@ $config = [
         'export' => [
             'class' => 'app\modules\core\components\Export',
         ],
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'js'=>[]
+                ],
+                'yii\web\YiiAsset' => [
+                    'js'=>[]
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=>[]
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => [],
+                ],
+
+            ],
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),
