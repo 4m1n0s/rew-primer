@@ -40,8 +40,8 @@ use yii\widgets\Pjax;
                     ],
         ]);
         ?>
-        <?= $form->field($model, 'email')->textInput(['placeholder' => 'your.address@email.com']) ?>
-        <?= Html::submitInput(Yii::t('app', 'Subscribe')) ?>
+        <?= $form->field($model, 'email')->textInput(['placeholder' => 'Enter your email to get started']) ?>
+        <?= Html::submitInput(Yii::t('app', 'Subscribe'), ['class' => 'btn-subscribe']) ?>
         <?php $form->end(); ?>
     <?php Pjax::end(); ?>
 </div>

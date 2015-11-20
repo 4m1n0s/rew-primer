@@ -32,16 +32,11 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-
-    <!--
-<?=  app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>
--->
-
 <div style="opacity: 1;" id="site" class="home_page">
 
 	<header id="header" class="clearfix">
 		<div class="wrap clearfix">
-		<img class="logo left" src="images/logo.png" alt="logo Sense">
+		<a href="#home"><img class="logo left" src="images/logo.png" alt="logo Sense"></a>
 		<nav id="nav" class="right">
 			<ul class="nav">
 				<li class="active"><a class="home_page" data-page="home_page" href="#home">Welcome</a></li>
@@ -54,12 +49,12 @@ AppAsset::register($this);
 		</div>
 	</header>
 
-	<div id="main_container" class="clearfix">
+	<div id="main-container" class="clearfix">
 
 		<div class="pages_container" data-spy="scroll" data-target="#nav" data-offset="490">
 			<div style="width: 12021px;" class="paralax-slider pages clearfix">
 
-				<section class="container page_home blur" id="home">
+				<section class="container page-home blur" id="home">
 					<div class="projector"></div>
 					<div class="content">	  
 						<h2 class="title-page">
@@ -69,15 +64,40 @@ AppAsset::register($this);
 							For the first time ever, educators in large-scale offline and online courses, 
 							can enjoy the power of machine learning and easily provide their students with personalized feedback.
 						</p>
+						<?=  app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>			
 					</div>
-					<div class="mouse_icon">Scroll Down</div>
+					<div class="mouse-icon">Scroll Down</div>
 				</section>
 
-				<section class="container border-triangle border-triangle-blue-img" id="personalized-education">
+				<section class="container personalized-container border-triangle border-triangle-blue-img" id="personalized-education">
 					<div class="sheets-bg">
 						<img src="images/informal-bg-top.png" alt="">
 					</div>
 					<div class="content">
+						<div class="col-height">
+							<h3>What Educators like?</h3>
+							<p>Building amazing learning experiences where each student receives just the right feedback 
+							targeted specifically to his/her own needs.</p>
+						</div>
+						<div class="col-height">
+							<h3>What Educators dislike?</h3>
+							<p>Endlessly evaluating piles of open-ended assignments</p>
+						</div>
+						<div class="col-height">
+							<h3>Can artificial intelligence and auto-grading evaluate open-ended assignments as</h3>
+							<p>The simple answer is… No.</p>
+						</div>	
+						<div class="btn-block-popup">
+							<button class="btn btn-blue btn-learn-more" type="submit">Learn More</button>
+							<div class="txt-lear-more blue-bg">
+								<button aria-label="Close" data-dismiss="Learn More" class="close-popup" type="button">
+                    			</button>
+                    			<p>Open-ended assignments are the best, and many times the only, way of learning STEM 
+                    			(Science, Technology, Engineering and Math).</p>
+                    			<p>Today’s larger and larger offline and online courses are in desperate seek of a 
+                    			scalable solution to evaluate open-ended assignments and provide students with personalized feedback.</p>
+							</div>
+						</div>
 					</div>
 				</section>
 
@@ -126,9 +146,6 @@ AppAsset::register($this);
 
 		$('#home').parallax("50%", 0);
 		$('#personalized-education').parallax("50%", 0);
-
-		$('#personalized-education .sheets-bg img').parallax("50%", 0); // будет двигаться по скролу мыши до right: -30%;
-
 		$('#solution-page').parallax("50%", 0);
 		$('#results-page').parallax("50%", 0);
 		$('#company-page').parallax("50%", 0);
@@ -136,15 +153,7 @@ AppAsset::register($this);
 	})
 </script>
 
- <script src="js/vendor.js"></script><!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
- <script>
- (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-49908940-4');ga('send','pageview');
-</script>
+<script src="js/vendor.js"></script>
 <script src="js/main.js"></script>
 
 <?php $this->endBody() ?>
