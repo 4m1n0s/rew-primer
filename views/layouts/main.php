@@ -90,7 +90,7 @@ AppAsset::register($this);
 						<div class="btn-block-popup">
 							<button class="btn btn-blue btn-learn-more" type="submit">Learn More</button>
 							<div class="txt-lear-more blue-bg">
-								<button aria-label="Close" data-dismiss="Learn More" class="close-popup" type="button">
+								<button aria-label="close" data-dismiss="Learn More" class="close-popup" type="button">
                     			</button>
                     			<p>Open-ended assignments are the best, and many times the only, way of learning STEM 
                     			(Science, Technology, Engineering and Math).</p>

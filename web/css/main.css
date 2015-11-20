@@ -859,7 +859,7 @@ fieldset[disabled] .btn {
 }
 
 .close-popup {
-	background:url(../images/close.png) no-repeat;
+	background:url(../images/close.png) no-repeat center center;
     border: none;
     border-radius: 0;
     color: #fff;
@@ -870,7 +870,7 @@ fieldset[disabled] .btn {
     position:absolute;
     right:20px;
     top: 20px;
-     padding: 0;
+    padding: 15px;
 }
 .close {
 	background:none;
