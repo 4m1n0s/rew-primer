@@ -36,11 +36,11 @@ AppAsset::register($this);
 
 	<header id="header" class="clearfix">
 		<div class="wrap clearfix">
-		<a href="#home"><img class="logo left" src="images/logo.png" alt="logo Sense"></a>
+		<img class="logo left" src="images/logo.png" alt="logo Sense">
 		<nav id="nav" class="right">
 			<ul class="nav">
 				<li class="active"><a class="home_page" data-page="home_page" href="#home">Welcome</a></li>
-				<li class=""><a class="personalized-education" href="#personalized-education" data-page="personalized-education">Personalized Education</a></li>
+				<li class=""><a class="personalized-education" data-animatefall="true" data-direct="right" href="#personalized-education" data-page="personalized-education">Personalized Education</a></li>
 				<li class=""><a class="solution-page" href="#solution-page" data-page="solution-page">Solution</a></li>
 				<li class=""><a class="results-page" href="#results-page" data-page="results-page">Results</a></li>
 				<li><a class="company-page" href="#company-page" data-page="company-page">Company</a></li>
@@ -71,7 +71,7 @@ AppAsset::register($this);
 
 				<section class="container personalized-container border-triangle border-triangle-blue-img" id="personalized-education">
 					<div class="sheets-bg">
-						<img src="images/informal-bg-top.png" alt="">
+						<img data-endpos="left" src="images/informal-bg-top.png" alt="">
 					</div>
 					<div class="content">
 						<div class="col-height">
@@ -102,7 +102,58 @@ AppAsset::register($this);
 				</section>
 
 				<section class="container border-triangle border-triangle-gray" id="solution-page">
-					<div class="content">
+				
+					<div class="content left width-title-page">
+						<h2 class="title-page">
+							Sense’s Hybrid Solution
+						</h2>
+						<ol class="counter-reset">
+							<li>Computers detect the similarities that are naturally shared among students’ submissions.</li>
+							<li>Submissions are clustered into 5-10 major solution types. Sense then produces a summary on each solution type.</li>
+							<li>The educator evaluates and provides feedback to each solution type, rather than to each submission in separate.</li>
+						</ol>
+						<p class="text-home-min txt-blue">
+							The trick is to let computers do what computers do best, and let human educators do what humans do best.
+						</p>						
+					</div>
+					<div class="gif-container left">
+						<img class="img-responsive" src="images/gif/animation1-step1.gif" alt="">
+						<img class="img-responsive" src="images/gif/animation1-step2.gif" alt="">
+						<img class="img-responsive" src="images/gif/animation1-step3.gif" alt="">
+					</div>
+				</section>
+				<section class="container border-triangle border-triangle-green" id="results-page">
+					<div id="fullpage">
+						<div class="section" id="section0">
+							<div class="slide">
+								<div class="content width-title-page">
+									<h2 class="title-page">
+										Sense is making <br/> a mark everyday
+									</h2>
+								</div>
+							</div>
+							<div class="slide">
+								<div class="content width-title-page">
+									<h2 class="title-page">
+										Sense is making <br/> a mark everyday 2
+									</h2>
+								</div>
+							</div>
+							<div class="slide">
+								<div class="content width-title-page">
+									<h2 class="title-page">
+										Sense is making <br/> a mark everyday 3
+									</h2>
+								</div>
+							</div>
+						</div>
+					</div> <!-- //#fullpage -->
+				 </section>
+				 <section  class="container border-triangle border-triangle-gray" id="company-page">
+				 	<div class="content width-title-page">
+						<h2 class="title-page">
+							A Sense of making <br/> a change
+						</h2>
 						<!-- <div id="team_container">
 							<ul>
 								<li class="member" data-index="0" data-popup="team_popup" style="margin-left:30px;margin-top:-54px; z-index:2">
@@ -112,14 +163,7 @@ AppAsset::register($this);
 							</ul>
 						</div> -->
 					</div>
-				</section>
-				<section class="container border-triangle border-triangle-green" id="results-page">
-					<div class="content">
-					</div>
-				 </section>
-				 <section  class="container border-triangle border-triangle-gray" id="company-page">
-				 	<div class="content">
-					</div>
+					<a class="go-to-start" href="#home">Go to <br> Start</a> 
 				</section>
 			</div><!--end pages-->
 
@@ -139,22 +183,20 @@ AppAsset::register($this);
 
  </div> <!-- #site -->
 
-<script src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery.parallax-1.1.3.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="js/vendor.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<script type="text/javascript" src="js/full-page.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+	fullpage.initialize('#fullpage', {
+		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+		menu: '#menu',
+		css3:true
+	});
 
-		$('#home').parallax("50%", 0);
-		$('#personalized-education').parallax("50%", 0);
-		$('#solution-page').parallax("50%", 0);
-		$('#results-page').parallax("50%", 0);
-		$('#company-page').parallax("50%", 0);
-		
-	})
 </script>
-
-<script src="js/vendor.js"></script>
-<script src="js/main.js"></script>
 
 <?php $this->endBody() ?>
 
