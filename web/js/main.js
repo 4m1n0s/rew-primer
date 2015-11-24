@@ -4,7 +4,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
     var isAnimateFall = false, fallPaperAnimation = false;
 
     function b() {
-        var b = a(".pages_container"), c = 300;
+        var b = a(".pages-container"), c = 300;
         setTimeout(function () {
             if (!b.is(":animated")) {
                 var d = a(a("#nav li.active a").attr("href")), e = d.offset().left, f = parseInt(d.css("margin-left")), g = e - f;
@@ -25,7 +25,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                     fallPaperAnimation = true;
                     theList.stop().animate({
                         right: "+=15%"
-                    }, 5000, function() {
+                    }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
 
@@ -37,7 +37,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                     fallPaperAnimation = true;
                     theList.stop().animate({
                         right: "-=20%"
-                    }, 5000, function() {
+                    }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
                         theList.attr('data-endpos', "left");
@@ -49,12 +49,12 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
 
     function c() {
         var c = a(window).width(),
-            d = a(".pages_container"),
+            d = a(".pages-container"),
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
             console.log(isAnimateFall);
-            return a(".bottom_popup").hasClass("open") ? void 0 :
+            return a(".bottom-popup").hasClass("open") ? void 0 :
                 (
                     f.preventDefault(),
                     n.wheel = !0,
@@ -103,9 +103,9 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var b = p[s], c = document.createElement("img"), d = Math.floor(Math.random() * t.length), e = t[d];
         a(c).load(function () {
             var b = q.find("li").eq(e);
-            b.addClass("zoom_out").append('<div class="cover"></div>').find(".cover").animate({top: 0}, 150, function () {
+            b.addClass("zoom-out").append('<div class="cover"></div>').find(".cover").animate({top: 0}, 150, function () {
                 b.find("img").replaceWith(c), b.find(".cover").delay(0).animate({top: "-100%"}, 0, function () {
-                    a(this).remove(), b.removeClass("zoom_out")
+                    a(this).remove(), b.removeClass("zoom-out")
                 })
             }), s < p.length - 1 ? s++ : s = 0, t.splice(d, 1), 0 === t.length && (t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
         }), c.src = "images/stores/" + b + ".png"
@@ -136,7 +136,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
     }).on("load", function () {
         i(), e(), a('[data-spy="scroll"]').each(function () {
             a(this).scrollspy("refresh")
-        }), c(), a("#site").animate({opacity: 1}), a(".pages_container").stellar({
+        }), c(), a("#site").animate({opacity: 1}), a(".pages-container").stellar({
             horizontalScrolling: !0,
             verticalScrolling: !1
         })
@@ -150,16 +150,16 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         "" == a.trim(this.value) && (this.value = this.defaultValue ? this.defaultValue : "")
     });
 
-    var n = {left: 0, step: 80, duration: 1500, easing: "easeOutExpo", wheel: !1};
+    var n = {left: 0, step: 80, duration: 800, easing: "easeOutExpo", wheel: !1};
     d(), a("ul.nav li").on("activate", function (a) {
         f()
     });
     var o;
     a.fn.scrollView = function (b, c) {
-        return c = "undefined" == typeof c ? 1500 : c, this.each(function () {
-            var d = a(".pages_container"), e = -parseInt(a(b).css("margin-left"));
+        return c = "undefined" == typeof c ? 800 : c, this.each(function () {
+            var d = a(".pages-container"), e = -parseInt(a(b).css("margin-left"));
             d.stop().animate({scrollLeft: d.scrollLeft() + a(b).offset().left - d.offset().left + e}, c, function () {
-                n.left = a(".pages_container").scrollLeft()
+                n.left = a(".pages-container").scrollLeft()
             })
         })
     },
@@ -170,34 +170,34 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
     a("#nav a").on("click", function (b) {
         var c = a(this).attr("href");
         b.preventDefault(), a(c).scrollView(c)
-    }), g(), a(".tabs .tabs_nav").on("click", "li:not(.active)", function () {
+    }), g(), a(".tabs-nav").on("click", "li:not(.active)", function () {
         var b = a(this), c = b.addClass("active").siblings().removeClass("active").parents(".tabs").find(".tab").eq(b.index());
         c.addClass("active").fadeIn(150).siblings().hide().removeClass("active")
     }), function () {
         a("body").on("click", "[data-popup]", function (b) {
             n.wheel = !1;
             var c = a("#" + a(this).data("popup")), d = a("#site");
-            a(".bottom_popup.open").length > 0 ? (a(".bottom_popup").not(c).removeClass("open"), a(".bottom_popup.open").attr("id") == a(this).data("popup") && (d.removeClass("blur"), a("#overlay").fadeOut(200))) : (d.hasClass("blur") ? d.removeClass("blur") : setTimeout(function () {
+            a(".bottom-popup.open").length > 0 ? (a(".bottom-popup").not(c).removeClass("open"), a(".bottom-popup.open").attr("id") == a(this).data("popup") && (d.removeClass("blur"), a("#overlay").fadeOut(200))) : (d.hasClass("blur") ? d.removeClass("blur") : setTimeout(function () {
                 d.addClass("blur")
             }, 800), a("#overlay").fadeToggle(200)), c.toggleClass("open"), b.preventDefault()
-        }), a("#overlay, .popup_close").on("click", function () {
-            a("#overlay").fadeOut(200), a("#site").removeClass("blur"), a(".bottom_popup").removeClass("open")
+        }), a("#overlay, .close").on("click", function () {
+            a("#overlay").fadeOut(200), a("#site").removeClass("blur"), a(".bottom-popup").removeClass("open")
         })
     }();
     for (var p = ["bebe", "bed", "bodyshop", "br", "carters", "cb2", "chicos",
         "crate", "cwonder", "disney", "dkny", "gap", "kate", "levis", "loft",
-        "logos_aeropostale", "mac", "macys", "neiman", "nike", "nordstrom",
+        "logos-aeropostale", "mac", "macys", "neiman", "nike", "nordstrom",
         "oldnavy", "oshkosh", "pucsun", "puma", "ralph", "sephora", "stride",
-        "stuart", "tory", "urban"], q = a("#stores_panel ul"), r = "", s = 10, t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], u = 0; s > u; u++)r += '<li><img src="images/stores/' + p[u] + '.png"></li>';
+        "stuart", "tory", "urban"], q = a("#stores-panel ul"), r = "", s = 10, t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], u = 0; s > u; u++)r += '<li><img src="images/stores/' + p[u] + '.png"></li>';
     q.html(r),  a("#team").on("click", ".member", function () {
         var b = a(this).data("index");
-        a("#team_popup").find(".tabs_nav li").eq(b).trigger("click")
-    }), a("#hiring").on("click", ".jobs_list li", function () {
+        a("#team-popup").find(".tabs-nav li").eq(b).trigger("click")
+    }), a("#hiring").on("click", ".jobs-list li", function () {
         var b = a(this).data("index");
-        a("#jobs_popup").find(".tabs_nav li").eq(b).trigger("click")
-    }),  a("#join").on("click", ".jobs_list li", function () {
+        a("#jobs-popup").find(".tabs-nav li").eq(b).trigger("click")
+    }),  a("#join").on("click", ".jobs-list li", function () {
         var b = a(this).data("index");
-        jobsPopup.find(".tabs_nav li").eq(b).trigger("click")
+        jobsPopup.find(".tabs-nav li").eq(b).trigger("click")
     });
     var v = a.superscrollorama({triggerAtCenter: !1, isVertical: !1, reverse: !0});
     document.location.hash.length > 0 && window.setTimeout(function () {
