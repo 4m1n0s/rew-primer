@@ -7,8 +7,8 @@
                 delay: 5000,
                 itemstodisplay: 5,
                 autoscroll: false,
-                circular: false,
-                masked: true,
+                circular: true,
+                masked: false,
                 onthumbnailclick: null,
                 orientation: 'h'
             }, options);
