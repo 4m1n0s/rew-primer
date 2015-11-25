@@ -206,24 +206,11 @@ input[type=text]:focus {color:#fff;}
 .align-right {
 	text-align:right;
 }
-h1 {
-	font-size:37px;
+h2, h3 {
 	margin-bottom:10px;
-	line-height:1.2;
-}
-h2 {
-	font-size:80px;
-	margin-bottom:10px;
-	line-height:1.2;
 }
 h3 {
-	font-size:42px;
-	margin-bottom:10px;
-	line-height:1.2;
-}
-h4 {
-	font-size:18px;
-	margin-bottom:10px;
+	font-size:4.4vmin;
 	line-height:1.2;
 }
 
@@ -274,7 +261,7 @@ h4 {
 }
 .pages > .container .content, 
 .pages > .container .right-col {
-	padding-top: 200px;
+	padding-top: 22vmin;
 }
 
 @media screen and (min-width: 1100px) {
@@ -498,9 +485,6 @@ h4 {
 	#header {
 		padding:0;
 	}
-	.pages > .container .content, .pages > .container .right-col {
-		padding-top: 140px;
-	}
 	#nav ul {
 	    margin-top: 15px;
 	}
@@ -618,7 +602,7 @@ p.text-min {
 }
 
 .col-height {
-	margin-bottom:10%;
+	margin-bottom:6.7vmin;
 }
 .col-height:last-child {
 	margin-bottom:0;
@@ -646,15 +630,6 @@ p.text-min {
 	color:#fff;
 	text-align:center;
 
-}
-
-@media only screen and (max-width:1100px) {
-	h3 {
-		font-size:24px;
-	}
-	.col-height {
-		margin-bottom: 5%;
-	}
 }
 
 .gif-container {
@@ -791,19 +766,20 @@ p.text-min {
 }
 .txt-lear-more {
 	position:absolute;
-	bottom: 155px;
+	bottom: 15vmin;
 	left: 35px;
 	border:3px solid #fff;
-	padding:50px 37px;
-	max-width:650px;
+	padding:5.5vmin 3.5vmin;
+	max-width:300vmin;
 	z-index:5;
-	box-shadow: -12px 12px 0 1px rgba(0, 0, 0, 0.2);
+	box-shadow: -12px 11px 0 1px rgba(0, 0, 0, 0.2);
 	display:none;
     transition:all 0.5s ease-in-out 0s;
 	-moz-transition:all 0.5s ease-in-out 0s;
 	-ms-transition:all 0.5s ease-in-out 0s;
 	-o-transition: all 0.5s ease-in-out 0s;
 	-webkit-transition: all 0.5s ease-in-out 0s;
+	z-index:1001;
 }
 
 .txt-lear-more.active {
@@ -891,9 +867,9 @@ p.text-min {
   background-image: none;
   border: 0;
   white-space: nowrap;
-  padding: 12px 25px;
-  font-size: 28px;
-  line-height: 30px;
+  padding: 1.3vmin 2.5vmin;
+  font-size: 3vmin;
+  line-height: 3.2vmin;
   border-radius: 5px;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -949,13 +925,14 @@ fieldset[disabled] .btn {
     border-radius: 0;
     color: #fff;
     display: block;
-    height: 30px;
-    width: 30px;
     cursor:pointer;
     position:absolute;
-    right:20px;
-    top: 20px;
-    padding: 15px;
+    height: 1vmin;
+    padding: 3vmin;
+    position: absolute;
+    right: 2vmin;
+    top: 2vmin;
+    width: 1vmin;
 }
 .close {
 	background:none;
@@ -1301,9 +1278,6 @@ html.fp-enabled,
 	    margin-right: 30px;	    
 	    width: 300px;
 	}
-	.right-col h3 {
-	    font-size: 20px;
-	}
 	.jscarousal-vertical {
 	    width: 100px;
 	}
@@ -1329,9 +1303,6 @@ html.fp-enabled,
 	.left-col {
 	    margin-right: 20px;
 	    width: 210px;
-	}
-	.right-col h3 {
-	    font-size: 16px;
 	}
 	.jscarousal-vertical {
 	    width: 100px;
