@@ -547,7 +547,7 @@ h3 {
 @media screen and (max-width: 620px) {
 
 	.pages > .container {		
-		width:590px;
+		width:560px;
 	}
 	
 }
@@ -943,6 +943,18 @@ fieldset[disabled] .btn {
 	.right-col h3 {
 		font-size:2.4vmin;
 	}
+
+	.go-to-start {
+	    top:auto;
+	    bottom: 8vmin;
+	    box-shadow: 0 0 0 1vmin #333a43;
+	    font-size: 1.5vmin;
+	    margin-top: -8.5vmin;
+	    padding: 1.5vmin;
+	}
+	#solution-page .content {
+		max-width:48vmin;
+	}
 }
 
 /* /button */
@@ -1099,7 +1111,7 @@ html.fp-enabled,
 	height: 30px;
 	position: absolute;
 	left: 0;
-	bottom:0;
+	bottom:-1px;
 	content:'';
 	z-index: 1;
 
@@ -1185,6 +1197,10 @@ html.fp-enabled,
 	.content-carousel {
 	    font-size: 1.3vmin;
 	    line-height: 2.2vmin;
+	}
+
+	.carousel-col {
+	    margin: 0 0vmin;
 	}
 }
 
