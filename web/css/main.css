@@ -928,7 +928,21 @@ fieldset[disabled] .btn {
 
 		right:-297vmin;
 	}
-
+	.gif-container {
+		max-width: 45vmin;
+		margin-top: 14vmin;
+	}
+	.title-page {
+	    font-size: 5vmin;
+	    line-height: 6vmin;
+	}
+	.left-col {
+	    margin-right: 1vmin;
+	    width: 30vmin;
+	}
+	.right-col h3 {
+		font-size:2.4vmin;
+	}
 }
 
 /* /button */
@@ -1158,6 +1172,20 @@ html.fp-enabled,
 	font-size:3.5vmin;
 	line-height:4vmin;	
 	display:block;
+}
+
+@media only screen and (max-width:1100px){
+	.jscarousal-vertical {
+	    width: 18vmin;
+	}
+	.title-carousel {
+	    font-size: 2vmin;
+	    line-height: 2.2vmin;
+	}	
+	.content-carousel {
+	    font-size: 1.3vmin;
+	    line-height: 2.2vmin;
+	}
 }
 
 /* Vertical Orientation CSS Starts */

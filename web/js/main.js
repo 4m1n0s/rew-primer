@@ -79,7 +79,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
     function d() {
         a(".container").each(function () {
             var b = a(this), c = b.width();
-            m > c && b.css({padding: "0 " + (m - c) / 16 + "vmin"})
+            m > c && b.css({padding: "0 " + (m - c) / 2 + "px"})
         })
     }
 
