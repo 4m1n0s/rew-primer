@@ -261,7 +261,7 @@ h3 {
 }
 .pages > .container .content, 
 .pages > .container .right-col {
-	padding-top: 22vmin;
+	padding-top: 25vmin;
 }
 
 @media screen and (min-width: 1100px) {
@@ -399,7 +399,7 @@ h3 {
 }
 
 #header {
-	padding:38px 0 0;
+	padding:4vmin 0 0;
 	position:fixed;
 	left:0;
 	right:0;
@@ -409,7 +409,7 @@ h3 {
 }
 #header .logo {
 	width: 21vmin;
-	margin-left:100px;
+	margin-left:10vmin;
 	margin-top:16px;
 	position:relative;
 	left:0;
@@ -460,7 +460,7 @@ h3 {
 .pages > .container {
 	height:100%;
 	width:980px;
-	padding:0 20px;
+	padding:0 10vmin !important;
 	float:left;
 	position:relative;
 /*	overflow:hidden;*/
@@ -579,7 +579,7 @@ h3 {
 	line-height: 8vmin;
 }
 
-.content p {
+.content p, .tab-content p {
 	font-size:2.5vmin;
 	line-height: 2.7vmin;
 }
@@ -661,14 +661,14 @@ p.text-min {
 	cursor:pointer;
 }
 .tab-content {
-	padding:10% 0;
+	padding:7vmin 0 0;
 	border-bottom:1px solid #fff;
 }
 .tabs {
 	position:relative;
-	max-width:650px;
-	margin-top: 200px;
-	padding: 0 45px;
+	max-width:72vmin;
+	margin-top: 22vmin;
+	padding:0 5vmin;
 }
 .tabs-nav li {
 	display:none;
@@ -815,9 +815,9 @@ p.text-min {
 	display:table;
 }
 .left-col {
-	width: 480px;	
+	width: 48vmin;	
 	float:left;
-	margin-right: 60px;
+	margin-right: 7vmin;
 	display: inline-block;
 }
 .right-col {
@@ -1157,11 +1157,11 @@ html.fp-enabled,
 .carousel-col {
 	float:left;
 	text-align:center;
-	margin:0 15px;
+	margin:0 2vmin;
 }
 
 .jscarousal-vertical {
-	width: 250px;
+	width: 28vmin;
 	margin:0 auto;
 	height: auto;
 	padding: 0;
@@ -1202,7 +1202,7 @@ html.fp-enabled,
 }
 .jscarousal-contents-vertical {
 	overflow: hidden;
-	height: 670px;
+	height: 67vmin;
 }
 .jscarousal-contents-vertical > div  {
 	position: absolute;
@@ -1213,7 +1213,7 @@ html.fp-enabled,
 }
 .jscarousal-contents-vertical > div > div {
 	width: auto;
-	height: 210px;
+	height: 21vmin;
 	text-align: center;
 	background-color: #47505c;
 }
@@ -1221,17 +1221,17 @@ html.fp-enabled,
 	display: block;
 }
 .jscarousal-contents-vertical img {
-	width: 136px;
-	height: 136px;
+	width: 13vmin;
+	height: 13vmin;
 }
 .title-carousel {
-	font-size:28px;
-	line-height:30px;
-	margin: 5px 0;
+	font-size:3vmin;
+	line-height:3.2vmin;
+	margin: 0.5vmin 0;
 }
 .content-carousel {
-	font-size:16px;
-	line-height:22px;	
+	font-size:1.8vmin;
+	line-height:2.2vmin;	
 }
 .company-foto img {
 	border-radius:50%;
@@ -1239,75 +1239,27 @@ html.fp-enabled,
 	margin-right: 6%;
 }
 .company-foto .title-carousel {
-	font-size:42px;
-	line-height:46px;
-	margin:30px 0 10px;
+	font-size:6vmin;
+	line-height:6.3vmin;
+	margin:3vmin 0 2vmin;
 	display:block;
 }
 .company-foto .content-carousel {
-	font-size:26px;
-	line-height:32px;	
+	font-size:3.5vmin;
+	line-height:4vmin;	
 	display:block;
 }
 
 
 @media only screen and (max-width:1100px) { 
-	.jscarousal-contents-vertical img {
-		width: 80px;
-		height: 80px;
-	}
 	.title-carousel {
 		font-size:16px;
 		line-height:18px;
 		height:18px;
 		overflow:hidden;
 	}
-	.content-carousel {
-		font-size:13px;
-		line-height:20px;
-		height:20px;
-		overflow:hidden;	
-	}
-	.jscarousal-contents-vertical > div > div {
-	    height: 145px;
-	}
-	.jscarousal-contents-vertical {
-	    height: 455px;
-	}
-	.left-col {
-	    margin-right: 30px;	    
-	    width: 300px;
-	}
-	.jscarousal-vertical {
-	    width: 100px;
-	}
-	.company-foto .title-carousel,
-	.company-foto .content-carousel {
-		height:auto;
-	}
 }
-@media only screen and (max-width:767px) { 
-	.jscarousal-contents-vertical img {
-		width: 60px;
-		height: 60px;
-	}
-	.carousel-col {
-	    margin: 0 10px;
-	}
-	.jscarousal-contents-vertical > div > div {
-	    height: 120px;
-	}
-	.jscarousal-contents-vertical {
-	    height: 400px;
-	}
-	.left-col {
-	    margin-right: 20px;
-	    width: 210px;
-	}
-	.jscarousal-vertical {
-	    width: 100px;
-	}
-}
+
 /* Vertical Orientation CSS Starts */
 
 /*Common*/
