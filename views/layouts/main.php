@@ -204,7 +204,7 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">PhD, VP Marketing</span>
 	                                </div>
 	                            </div>
-	                            <div class="container-carousel member" data-index="5" data-popup="blue-popup">
+	                            <div class="container-carousel member" data-index="5" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-9.png" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Tom Zohar</span>
@@ -318,7 +318,7 @@ AppAsset::register($this);
 
 		</div><!--end pages-container-->
 		<div class="clear"></div>
-
+9
 
 	</div><!--end main-container-->
 
@@ -331,7 +331,7 @@ AppAsset::register($this);
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-8.png" />
 						<span class="title-carousel">Ronen Tal-Botzer</span>
-	                    <span class="content-carousel">PhD Founder, CEO</span>
+                                                <span class="content-carousel">PhD Founder, CEO</span>
 					</div>
 					<div class="tab-content">
 						<p>
@@ -346,6 +346,9 @@ AppAsset::register($this);
 				</li>
 				<li><img alt="" src="images/company-foto/foto-7.png" /></li>
 				<li><img alt="" src="images/company-foto/foto-9.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-8.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-7.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-9.png" /></li>
 			</ul>
 		</div>
 	</div>
@@ -356,6 +359,9 @@ AppAsset::register($this);
 				<li class="active"><img alt="" src="images/company-foto/foto-5.png" /></li>
 				<li><img alt="" src="images/company-foto/foto-6.png" /></li>
 				<li><img alt="" src="images/company-foto/foto-4.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-5.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-6.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-4.png" /></li>
 			</ul>
 		</div>
 	</div>
@@ -364,6 +370,9 @@ AppAsset::register($this);
 			<div class="close"></div>
 			<ul class="tabs-nav">
 				<li class="active"><img alt="" src="images/company-foto/foto-3.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-2.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-1.png" /></li>
+				<li><img alt="" src="images/company-foto/foto-3.png" /></li>
 				<li><img alt="" src="images/company-foto/foto-2.png" /></li>
 				<li><img alt="" src="images/company-foto/foto-1.png" /></li>
 			</ul>
@@ -393,7 +402,7 @@ AppAsset::register($this);
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ onthumbnailclick: function(src) { alert(src); }, autoscroll: true, masked: false, itemstodisplay: 3, orientation: 'v' });
+        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ /* onthumbnailclick: function(src) { alert(src); },*/ autoscroll: true, masked: false, itemstodisplay: 3, orientation: 'v' });
     });       
     
 </script>

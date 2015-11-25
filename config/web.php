@@ -6,6 +6,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name' => 'Sense',
     'components' => [
         'request' => [
             'cookieValidationKey' => '9s0UIbx1oPmzvYl34wuOQj385fjIDOGN',
