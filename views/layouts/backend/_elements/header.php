@@ -7,7 +7,7 @@ use yii\helpers\Html;
     <div class="page-header-inner ">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
+            <a href="/">
                 <img src="/backend/global/img/logo.png" alt="logo" class="logo-default" style="height: 25px" /> </a>
             <div class="menu-toggler sidebar-toggler"> </div>
         </div>

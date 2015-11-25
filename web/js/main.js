@@ -174,16 +174,20 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var b = a(this), c = b.addClass("active").siblings().removeClass("active").parents(".tabs").find(".tab").eq(b.index());
         c.addClass("active").fadeIn(150).siblings().hide().removeClass("active")
     }), function () {
+        /*
         a("body").on("click", "[data-popup]", function (b) {
             n.wheel = !1;
             var c = a("#" + a(this).data("popup")), d = a("#site");
             a(".bottom-popup.open").length > 0 ? (a(".bottom-popup").not(c).removeClass("open"), a(".bottom-popup.open").attr("id") == a(this).data("popup") && (d.removeClass("blur"), a("#overlay").fadeOut(200))) : (d.hasClass("blur") ? d.removeClass("blur") : setTimeout(function () {
                 d.addClass("blur")
             }, 800), a("#overlay").fadeToggle(200)), c.toggleClass("open"), b.preventDefault()
-        }), a("#overlay, .close").on("click", function () {
+        }),
+        */
+        a("#overlay, .close").on("click", function () {
             a("#overlay").fadeOut(200), a("#site").removeClass("blur"), a(".bottom-popup").removeClass("open")
         })
     }();
+    
     for (var p = ["bebe", "bed", "bodyshop", "br", "carters", "cb2", "chicos",
         "crate", "cwonder", "disney", "dkny", "gap", "kate", "levis", "loft",
         "logos-aeropostale", "mac", "macys", "neiman", "nike", "nordstrom",
@@ -202,6 +206,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var b = a(this).data("index");
         jobsPopup.find(".tabs-nav li").eq(b).trigger("click")
     });
+    
     var v = a.superscrollorama({triggerAtCenter: !1, isVertical: !1, reverse: !0});
     document.location.hash.length > 0 && window.setTimeout(function () {
         a('a[href="' + document.location.hash + '"]').click()
@@ -209,6 +214,20 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var e = screen.width / 2 - c / 2, f = screen.height / 2 - d / 2;
         return window.open(a, b, "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=" + c + ", height=" + d + ", top=" + f + ", left=" + e)
     }
+    
+    
+    
+    $('body').on('click', '[data-popup]', function(e){
+        var popup = $('#' + $(this).data('popup'));
+        var index = $(this).data('index');
+        if(typeof index != 'undefined'){
+            popup.find('.tabs-nav li').removeClass('active');
+            console.log(popup.find('.tabs-nav li').eq(index));
+            popup.find('.tabs-nav li').eq(index).addClass('active');
+            popup.addClass('open');
+        }
+    });
+    
 });
 
 $(document).ready(function () {
@@ -254,4 +273,6 @@ jQuery(".close").click(function () {
         jQuery(".txt-lear-more").removeClass("active");
     }
 })
+
+
 
