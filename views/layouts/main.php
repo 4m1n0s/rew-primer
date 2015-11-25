@@ -24,7 +24,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
 	<meta name="description" content="">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link rel="stylesheet" href="css/main.css">
 
     <?php $this->head() ?>
@@ -66,7 +66,10 @@ AppAsset::register($this);
 						</p>
 						<?=  app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>			
 					</div>
-					<div class="mouse-icon">Scroll Down</div>
+					<div class="mouse-container">
+						<span class="mouse-icon"></span>
+						<span class="txt-mouse">Scroll Down</span>
+					</div>
 				</section>
 
 				<section class="container personalized-container border-triangle border-triangle-blue-img" id="personalized-education">
@@ -167,7 +170,7 @@ AppAsset::register($this);
 							</h3>
 	                        <div id="carouselv">                        	
 	                            <div class="container-carousel member" data-index="0" data-popup="green-popup">
-	                                <img alt="" src="images/company-foto/foto-8.png" />
+	                                <img alt="" src="images/company-foto/foto-8.png" alt="Ronen Tal-Botzer" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Ronen Tal-Botzer</span>
 	                                	<span class="content-carousel">PhD Founder, CEO</span>
@@ -188,7 +191,7 @@ AppAsset::register($this);
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="3" data-popup="green-popup">
-	                                <img alt="" src="images/company-foto/foto-8.png" />
+	                                <img alt="" src="images/company-foto/foto-8.png" alt="Ronen Tal-Botzer" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Ronen Tal-Botzer</span>
 	                                	<span class="content-carousel">PhD Founder, CEO</span>

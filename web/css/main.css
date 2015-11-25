@@ -421,6 +421,7 @@ h4 {
 	z-index:1000;
 }
 #header .logo {
+	width: 21vmin;
 	margin-left:100px;
 	margin-top:16px;
 	position:relative;
@@ -441,10 +442,9 @@ h4 {
 }
 #nav ul li a {
 	display:block;
-	height:40px;
-	line-height:40px;
+	line-height:2vmin;
 	color:#fff;
-	font-size:16px;
+	font-size:1.7vmin;	
 }
 #header ul li a:hover,#header ul li.active a {
 	color:#fff;
@@ -497,13 +497,6 @@ h4 {
 @media screen and (max-width: 767px) { 
 	#header {
 		padding:0;
-	}	
-	#header .logo {
-		width: 150px;
-		margin-left: 10px;
-	}	
-	#nav ul li a {
-	    font-size: 14px;
 	}
 	.pages > .container .content, .pages > .container .right-col {
 		padding-top: 140px;
@@ -598,13 +591,13 @@ h4 {
 
 .title-page {
 	color:#fff;
-	font-size:80px;
-	line-height: 80px;
+	font-size:8vmin;
+	line-height: 8vmin;
 }
 
 .content p {
-	font-size:24px;
-	line-height: 26px;
+	font-size:2.5vmin;
+	line-height: 2.7vmin;
 }
 
 .page-home .content {
@@ -630,37 +623,34 @@ p.text-min {
 .col-height:last-child {
 	margin-bottom:0;
 }
-
-.mouse-icon {
-	background:url(../images/scrool-down.png) no-repeat center top;
+.mouse-container {
 	position:absolute;
 	left:33%;
-	bottom:38px;
-	font:18px/1.4 'dinroundweb-light',Arial,Helvetica,sans-serif;
+	bottom:4vmin;
+	cursor: default;
+}
+.mouse-icon {
+	background:url(../images/scrool-down.png) no-repeat center top;
+	 -moz-background-size:     contain;
+    -o-background-size:       contain;
+    -webkit-background-size:  contain;
+    -khtml-background-size:   contain;
+    background-size:          contain;
+    height:5vmin;
+    width:4vmin;    
+    margin:0 auto 1.6vmin auto;
+    display:block;
+}
+.txt-mouse {
+	font:1.8vmin/1.4 'dinroundweb-light',Arial,Helvetica,sans-serif;
 	color:#fff;
 	text-align:center;
-	padding-top: 73px;
-	cursor: default;
+
 }
 
 @media only screen and (max-width:1100px) {
-	.mouse-icon {
-		text-indent:-9999px;
-		height:55px;
-		width:34px;
-		padding-top: 0px;
-		bottom: 40px;
-	}
-	.title-page {
-		font-size:35px;
-		line-height: 40px;
-	}
 	h3 {
 		font-size:24px;
-	}
-	.content p {
-		font-size:19px;
-		line-height: 23px;
 	}
 	.col-height {
 		margin-bottom: 5%;
@@ -762,7 +752,7 @@ p.text-min {
 }
 .newsletter-signup {
     max-width: 320px;
-    margin-top: 15%;
+    margin-top: 10vmin;
 }
 
 .newsletter-signup .form-control {

@@ -191,11 +191,14 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         "stuart", "tory", "urban"], q = a("#stores-panel ul"), r = "", s = 10, t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], u = 0; s > u; u++)r += '<li><img src="images/stores/' + p[u] + '.png"></li>';
     q.html(r),  a("#team").on("click", ".member", function () {
         var b = a(this).data("index");
-        a("#team-popup").find(".tabs-nav li").eq(b).trigger("click")
+        a("#green-popup").find(".tabs-nav li").eq(b).trigger("click")
     }), a("#hiring").on("click", ".jobs-list li", function () {
         var b = a(this).data("index");
-        a("#jobs-popup").find(".tabs-nav li").eq(b).trigger("click")
-    }),  a("#join").on("click", ".jobs-list li", function () {
+        a("#blue-popup").find(".tabs-nav li").eq(b).trigger("click")
+    }), a("#hiring").on("click", ".jobs-list li", function () {
+        var b = a(this).data("index");
+        a("#red-popup").find(".tabs-nav li").eq(b).trigger("click")
+    }), a("#join").on("click", ".jobs-list li", function () {
         var b = a(this).data("index");
         jobsPopup.find(".tabs-nav li").eq(b).trigger("click")
     });
