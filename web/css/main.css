@@ -352,12 +352,13 @@ h3 {
     background-image: url(../images/informal-bg-bottom.png);
 	background-repeat: no-repeat;
 	background-position:0 0;
-    height: 112vmin;
-    width: 67vmin;
+    height: 1080px;
+    width: 664px;
     position:absolute;
     content:"";
-    left:-58.5vmin;
+	left: -54.2vmin;
     bottom: 0;
+    transform: rotate(-4grad);
 }
 .border-triangle-blue:before {
 	border-bottom-color: #3ea6ff;
