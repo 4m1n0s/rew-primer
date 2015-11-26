@@ -19,12 +19,14 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         if (!fallPaperAnimation && theList.length) {
 
             var endPosition = theList.attr('data-endpos');
-
+            
             if (0 > direct) {
                 if (endPosition == "left") {
                     fallPaperAnimation = true;
+                    
                     theList.stop().animate({
-                        right: "+=15%"
+                        right: "-75.75vmin"
+//                        right: "+=15%"
                     }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
@@ -36,7 +38,8 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                 if (endPosition == "right") {
                     fallPaperAnimation = true;
                     theList.stop().animate({
-                        right: "-=20%"
+//                        right: "-=20%"
+                        right: "-101vmin"
                     }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
@@ -53,7 +56,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
-            console.log(isAnimateFall);
+            console.log(g + "a115");
             return a(".bottom-popup").hasClass("open") ? void 0 :
                 (
                     f.preventDefault(),
@@ -188,24 +191,24 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         })
     }();
     
-    for (var p = ["bebe", "bed", "bodyshop", "br", "carters", "cb2", "chicos",
-        "crate", "cwonder", "disney", "dkny", "gap", "kate", "levis", "loft",
-        "logos-aeropostale", "mac", "macys", "neiman", "nike", "nordstrom",
-        "oldnavy", "oshkosh", "pucsun", "puma", "ralph", "sephora", "stride",
-        "stuart", "tory", "urban"], q = a("#stores-panel ul"), r = "", s = 10, t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], u = 0; s > u; u++)r += '<li><img src="images/stores/' + p[u] + '.png"></li>';
-    q.html(r),  a("#team").on("click", ".member", function () {
-        var b = a(this).data("index");
-        a("#green-popup").find(".tabs-nav li").eq(b).trigger("click")
-    }), a("#hiring").on("click", ".jobs-list li", function () {
-        var b = a(this).data("index");
-        a("#blue-popup").find(".tabs-nav li").eq(b).trigger("click")
-    }), a("#hiring").on("click", ".jobs-list li", function () {
-        var b = a(this).data("index");
-        a("#red-popup").find(".tabs-nav li").eq(b).trigger("click")
-    }), a("#join").on("click", ".jobs-list li", function () {
-        var b = a(this).data("index");
-        jobsPopup.find(".tabs-nav li").eq(b).trigger("click")
-    });
+//    for (var p = ["bebe", "bed", "bodyshop", "br", "carters", "cb2", "chicos",
+//        "crate", "cwonder", "disney", "dkny", "gap", "kate", "levis", "loft",
+//        "logos-aeropostale", "mac", "macys", "neiman", "nike", "nordstrom",
+//        "oldnavy", "oshkosh", "pucsun", "puma", "ralph", "sephora", "stride",
+//        "stuart", "tory", "urban"], q = a("#stores-panel ul"), r = "", s = 10, t = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], u = 0; s > u; u++)r += '<li><img src="images/stores/' + p[u] + '.png"></li>';
+//    q.html(r),  a("#team").on("click", ".member", function () {
+//        var b = a(this).data("index");
+//        a("#green-popup").find(".tabs-nav li").eq(b).trigger("click")
+//    }), a("#hiring").on("click", ".jobs-list li", function () {
+//        var b = a(this).data("index");
+//        a("#blue-popup").find(".tabs-nav li").eq(b).trigger("click")
+//    }), a("#hiring").on("click", ".jobs-list li", function () {
+//        var b = a(this).data("index");
+//        a("#red-popup").find(".tabs-nav li").eq(b).trigger("click")
+//    }), a("#join").on("click", ".jobs-list li", function () {
+//        var b = a(this).data("index");
+//        jobsPopup.find(".tabs-nav li").eq(b).trigger("click")
+//    });
     
     var v = a.superscrollorama({triggerAtCenter: !1, isVertical: !1, reverse: !0});
     document.location.hash.length > 0 && window.setTimeout(function () {
@@ -241,19 +244,21 @@ function handleProjector() {
         var posX, posY, projectorX, projectorY
         var halfWidth = $('.projector').width() / 2
         var halfHeight = $('.projector').height() / 2
+        
+        if($(window).width() >= 1100){
+            $(window).on('mousemove', function (e) {
+                posX = e.clientX;
+                posY = e.clientY;
 
-        $(window).on('mousemove', function (e) {
-            posX = e.clientX;
-            posY = e.clientY;
+                if (posY < ($(window).height() - halfHeight)) {
+                    projectorX = posX - halfWidth
+                    projectorY = posY - halfHeight
 
-            if (posY < ($(window).height() - halfHeight)) {
-                projectorX = posX - halfWidth
-                projectorY = posY - halfHeight
-
-                $('.projector').css('left', projectorX)
-                $('.projector').css('top', projectorY)
-            }
-        })
+                    $('.projector').css('left', projectorX)
+                    $('.projector').css('top', projectorY)
+                }
+            });
+        }
     }
 }
 
