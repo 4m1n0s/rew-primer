@@ -15,7 +15,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
 
     function fallPaper(direct) {
         var theList = a('.sheets-bg img');
-
+        
         if (!fallPaperAnimation && theList.length) {
 
             var endPosition = theList.attr('data-endpos');
@@ -273,7 +273,7 @@ jQuery(".btn-learn-more").click(function () {
         jQuery(".txt-lear-more").addClass("active");
     }
 })
-jQuery(".close").click(function () {
+jQuery(".close-popup").click(function () {
     if (jQuery(".txt-lear-more").hasClass('active')) {
         jQuery(".txt-lear-more").removeClass("active");
     }
