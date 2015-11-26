@@ -304,7 +304,6 @@ h3 {
 	position: absolute;
     border-radius:50%;
     overflow:hidden;
-    mask: url(../images/white-mask.svg);
 }
 
 .projector:before {
@@ -321,6 +320,7 @@ h3 {
 	position:absolute;
     background-attachment: fixed;
     background-image: url("../images/home-bg.png");
+    box-shadow:0 0 60px 0 rgba(256, 256, 256, 0.4) inset;
 	 -moz-background-size:     cover;
     -o-background-size:       cover;
     -webkit-background-size:  cover;
@@ -626,7 +626,7 @@ h3 {
 	cursor:pointer;
 }
 .tab-content {
-	padding:7vmin 0 0;
+	padding:7vmin 0;
 	border-bottom:1px solid #fff;
 }
 .tabs {
@@ -1120,24 +1120,29 @@ html.fp-enabled,
 
 }
 .jscarousal-vertical-back, .jscarousal-vertical-forward {
-	width: 30px;
-	height: 20px;	
+	width: 4vmin;
+	height: 2.3vmin;	
 	bottom:0px;	
 	position: absolute;
 	cursor: pointer;
 	z-index:100;
 	background-position: 0 0;
 	background-repeat: no-repeat;
+	 -moz-background-size:     cover;
+    -o-background-size:       cover;
+    -webkit-background-size:  cover;
+    -khtml-background-size:   cover;
+    background-size:          cover;	
 }
 .jscarousal-vertical-back {
 	background-image: url(../images/vertical-forward.png);
 	left: 50%;
-	margin-left:-40px;
+	margin-left:1vmin;
 }
 .jscarousal-vertical-forward {
 	background-image: url(../images/vertical-back.png);
 	right: 50%;
-	margin-right:-40px;
+	margin-right:1vmin;
 }
 .jscarousal-contents-vertical {
 	overflow: hidden;
