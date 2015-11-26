@@ -19,12 +19,14 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         if (!fallPaperAnimation && theList.length) {
 
             var endPosition = theList.attr('data-endpos');
-
+            
             if (0 > direct) {
                 if (endPosition == "left") {
                     fallPaperAnimation = true;
+                    
                     theList.stop().animate({
-                        right: "+=15%"
+                        right: "-75.75vmin"
+//                        right: "+=15%"
                     }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
@@ -36,7 +38,8 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                 if (endPosition == "right") {
                     fallPaperAnimation = true;
                     theList.stop().animate({
-                        right: "-=20%"
+//                        right: "-=20%"
+                        right: "-101vmin"
                     }, 1000, function() {
                         fallPaperAnimation = false;
                         isAnimateFall = false;
@@ -53,7 +56,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
-            console.log(isAnimateFall);
+            console.log(g + "a115");
             return a(".bottom-popup").hasClass("open") ? void 0 :
                 (
                     f.preventDefault(),
@@ -241,19 +244,21 @@ function handleProjector() {
         var posX, posY, projectorX, projectorY
         var halfWidth = $('.projector').width() / 2
         var halfHeight = $('.projector').height() / 2
+        
+        if($(window).width() >= 1100){
+            $(window).on('mousemove', function (e) {
+                posX = e.clientX;
+                posY = e.clientY;
 
-        $(window).on('mousemove', function (e) {
-            posX = e.clientX;
-            posY = e.clientY;
+                if (posY < ($(window).height() - halfHeight)) {
+                    projectorX = posX - halfWidth
+                    projectorY = posY - halfHeight
 
-            if (posY < ($(window).height() - halfHeight)) {
-                projectorX = posX - halfWidth
-                projectorY = posY - halfHeight
-
-                $('.projector').css('left', projectorX)
-                $('.projector').css('top', projectorY)
-            }
-        })
+                    $('.projector').css('left', projectorX)
+                    $('.projector').css('top', projectorY)
+                }
+            });
+        }
     }
 }
 
