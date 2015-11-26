@@ -304,7 +304,9 @@ h3 {
 	position: absolute;
     border-radius:50%;
     overflow:hidden;
+    mask: url(../images/white-mask.svg);
 }
+
 .projector:before {
   -webkit-transition: all 1s ease;
      -moz-transition: all 1s ease;
