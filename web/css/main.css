@@ -709,13 +709,15 @@ h3 {
 	z-index:500;
 	background:url(../images/close-popup.png) no-repeat center center;
 }
-.sheets-bg img {
+.sheets-bg {
 	position:absolute;
 	top:0;
-	right:-101vmin;
 	width:auto;
 	max-height:100%;
 	z-index:6;
+	background:url(../images/informal-bg-top.png) no-repeat 0 0;	
+	width:2294px;
+	height: 1080px;
 }
 .newsletter-signup {
     max-width: 320px;
@@ -974,7 +976,7 @@ fieldset[disabled] .btn {
 	    line-height: 6vmin;
 	}
 	.left-col {
-	    margin-right: 4vmin;
+	    margin-right: 6vmin;
 	    width: 30vmin;
 	}
 	.right-col h3 {
