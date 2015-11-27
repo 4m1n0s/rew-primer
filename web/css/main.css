@@ -227,6 +227,9 @@ h3 {
 	z-index:1;
 }
 #personalized-education {
+	background-image: url(../images/informal-bg-top.png);
+	background-repeat: no-repeat;
+	background-position:0 0;
 	background-color: #3ea6ff;
 	z-index:2;
 }
@@ -709,16 +712,6 @@ h3 {
 	z-index:500;
 	background:url(../images/close-popup.png) no-repeat center center;
 }
-.sheets-bg {
-	position:absolute;
-	top:0;
-	width:auto;
-	max-height:100%;
-	z-index:6;
-	background:url(../images/informal-bg-top.png) no-repeat 0 0;	
-	width:2294px;
-	height: 1080px;
-}
 .newsletter-signup {
     max-width: 320px;
     margin-top: 10vmin;
@@ -962,10 +955,6 @@ fieldset[disabled] .btn {
 
 	.border-bottom {
 		border-width: 1px; 
-	}
-	.sheets-bg img {
-
-		right:-297vmin;
 	}
 	.gif-container {
 		max-width: 45vmin;

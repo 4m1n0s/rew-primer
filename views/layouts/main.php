@@ -385,7 +385,6 @@ AppAsset::register($this);
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/vendor.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-
 <script type="text/javascript" src="js/full-page.min.js"></script>
 <script type="text/javascript">
 	fullpage.initialize('#fullpage', {
