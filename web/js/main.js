@@ -2,6 +2,7 @@
 window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html") && (window.location = "/mobile.html"), jQuery(function (a) {
 
     var fallPaperDefaultOffsetValue = parseInt($('.sheets-bg img').css("right"));
+    var defaultOffsetValue = parseInt($('.sheets-bg img').css("right"));
     
     function b() {
         var b = a(".pages-container"), c = 300;
@@ -22,7 +23,6 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             
             if($("#nav li.active a").attr("href") == '#personalized-education'){
                 var block = a(a("#nav li.active a").attr("href"));
-                
                 if(g < 0){
                     fallPaperDefaultOffsetValue = fallPaperDefaultOffsetValue + ((fallPaperDefaultOffsetValue * -1 / 100) * 2);
                 }else{
@@ -31,7 +31,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                 
                 $('.sheets-bg img').stop().animate({
                     right: fallPaperDefaultOffsetValue + "px"
-                }, 1000);
+                }, 500);
                 
             }
             
@@ -148,6 +148,11 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         b.preventDefault(), a(c).scrollView(c)
     }),
     a("#nav a").on("click", function (b) {
+        fallPaperDefaultOffsetValue = defaultOffsetValue;
+        $('.sheets-bg img').stop().animate({
+            right: defaultOffsetValue + "px"
+        }, 500);
+        
         var c = a(this).attr("href");
         b.preventDefault(), a(c).scrollView(c)
     }), g(), a(".tabs-nav").on("click", "li:not(.active)", function () {
