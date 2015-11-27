@@ -15,7 +15,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
 
     function fallPaper(direct) {
         var theList = a('.sheets-bg img');
-        
+
         if (!fallPaperAnimation && theList.length) {
 
             var endPosition = theList.attr('data-endpos');

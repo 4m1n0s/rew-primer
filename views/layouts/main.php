@@ -37,7 +37,7 @@ AppAsset::register($this);
 	<header id="header" class="clearfix">
 		<div class="wrap clearfix">
 		<img class="logo left" src="images/logo.png" alt="logo Sense">
-		<nav id="nav" class="right">
+		<nav id="nav" class="nav-left">
 			<ul class="nav">
 				<li class="active"><a class="home-page" data-page="home-page" href="#home">Welcome</a></li>
 				<li class=""><a class="personalized-education" data-animatefall="true" data-direct="right" href="#personalized-education" data-page="personalized-education">Personalized Education</a></li>
@@ -73,9 +73,7 @@ AppAsset::register($this);
 				</section>
 
 				<section class="container personalized-container border-triangle border-triangle-blue-img" id="personalized-education">
-					<div class="sheets-bg">
-						<img data-endpos="left" src="images/informal-bg-top.png" alt="">
-					</div>
+					<div class="sheets-bg"></div>
 					<div class="content">
 						<div class="col-height">
 							<h3>What Educators like?</h3>
@@ -391,7 +389,6 @@ AppAsset::register($this);
 <script type="text/javascript" src="js/full-page.min.js"></script>
 <script type="text/javascript">
 	fullpage.initialize('#fullpage', {
-		anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
 		menu: '#menu',
 		css3:true
 	});
@@ -402,7 +399,7 @@ AppAsset::register($this);
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ /* onthumbnailclick: function(src) { alert(src); },*/ autoscroll: true, masked: false, itemstodisplay: 3, orientation: 'v' });
+        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ autoscroll: true, masked: false, itemstodisplay: 3, orientation: 'v' });
     });       
     
 </script>
