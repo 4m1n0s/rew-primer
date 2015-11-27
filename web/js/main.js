@@ -1,7 +1,8 @@
 "use strict";
 window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html") && (window.location = "/mobile.html"), jQuery(function (a) {
 
-
+    var fallPaperDefaultOffsetValue = parseInt($('.sheets-bg img').css("right"));
+    
     function b() {
         var b = a(".pages-container"), c = 300;
         setTimeout(function () {
@@ -18,7 +19,22 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
-            console.log(g + "a115");
+            
+            if($("#nav li.active a").attr("href") == '#personalized-education'){
+                var block = a(a("#nav li.active a").attr("href"));
+                
+                if(g < 0){
+                    fallPaperDefaultOffsetValue = fallPaperDefaultOffsetValue + ((fallPaperDefaultOffsetValue * -1 / 100) * 2);
+                }else{
+                    fallPaperDefaultOffsetValue = fallPaperDefaultOffsetValue - ((fallPaperDefaultOffsetValue * -1 / 100) * 2);
+                }
+                
+                $('.sheets-bg img').stop().animate({
+                    right: fallPaperDefaultOffsetValue + "px"
+                }, 1000);
+                
+            }
+            
             return a(".bottom-popup").hasClass("open") ? void 0 :
                 (
                     f.preventDefault(),
@@ -186,7 +202,6 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var index = $(this).data('index');
         if(typeof index != 'undefined'){
             popup.find('.tabs-nav li').removeClass('active');
-            console.log(popup.find('.tabs-nav li').eq(index));
             popup.find('.tabs-nav li').eq(index).addClass('active');
             popup.addClass('open');
         }
