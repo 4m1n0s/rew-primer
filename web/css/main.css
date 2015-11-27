@@ -941,6 +941,7 @@ fieldset[disabled] .btn {
 	top: 50%;
 	margin-top: -2.5vmin;
 	text-transform: uppercase;
+	z-index:1;
 }
 
 @media only screen and (max-width:1100px) {
@@ -1117,11 +1118,11 @@ html.fp-enabled,
 .carousel-col {
 	float:left;
 	text-align:center;
-	margin:0 2vmin;
+	width: 33%;
 }
 
 .jscarousal-vertical {
-	width: 26vmin;
+	width: 100%;
 	margin:0 auto;
 	height: auto;
 	padding: 0;
@@ -1230,6 +1231,10 @@ html.fp-enabled,
 
 	.carousel-col {
 	    margin: 0 0vmin;
+	}
+	.jscarousal-contents-vertical img {
+		width: 13vmin;
+		height: 13vmin;
 	}
 }
 
