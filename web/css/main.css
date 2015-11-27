@@ -227,9 +227,6 @@ h3 {
 	z-index:1;
 }
 #personalized-education {
-	background-image: url(../images/informal-bg-top.png);
-	background-repeat: no-repeat;
-	background-position:0 0;
 	background-color: #3ea6ff;
 	z-index:2;
 }
@@ -711,6 +708,14 @@ h3 {
 	cursor:pointer;
 	z-index:500;
 	background:url(../images/close-popup.png) no-repeat center center;
+}
+.sheets-bg img {
+	position:absolute;
+	top:0;
+	right:-101vmin;
+	width:auto;
+	max-height:100%;
+	z-index:6;
 }
 .newsletter-signup {
     max-width: 320px;

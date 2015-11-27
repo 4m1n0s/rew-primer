@@ -73,7 +73,9 @@ AppAsset::register($this);
 				</section>
 
 				<section class="container personalized-container border-triangle border-triangle-blue-img" id="personalized-education">
-					<div class="sheets-bg"></div>
+					<div class="sheets-bg">
+						<img data-endpos="left" src="images/informal-bg-top.png" alt="">
+					</div>
 					<div class="content">
 						<div class="col-height">
 							<h3>What Educators like?</h3>
@@ -385,6 +387,7 @@ AppAsset::register($this);
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/vendor.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+
 <script type="text/javascript" src="js/full-page.min.js"></script>
 <script type="text/javascript">
 	fullpage.initialize('#fullpage', {
