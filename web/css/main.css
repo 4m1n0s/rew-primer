@@ -414,9 +414,21 @@ h3 {
 	.projector {
 		display:none;
 	}
+	.border-triangle-blue-img:after  {
+	    background-image: none;
+	}
 
 }
+@media screen and (max-height: 1280px) {
 
+	.projector {
+		display:none;
+	}
+	.border-triangle-blue-img:after  {
+	    background-image: none;
+	}
+
+}
 #header {
 	padding:4vmin 0 0;
 	position:fixed;
