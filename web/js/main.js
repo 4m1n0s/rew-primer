@@ -1,7 +1,6 @@
 "use strict";
 window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html") && (window.location = "/mobile.html"), jQuery(function (a) {
 
-    var isAnimateFall = false, fallPaperAnimation = false;
 
     function b() {
         var b = a(".pages-container"), c = 300;
@@ -12,44 +11,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             }
         }, 300)
     }
-
-    function fallPaper(direct) {
-        var theList = a('.sheets-bg img');
-
-        if (!fallPaperAnimation && theList.length) {
-
-            var endPosition = theList.attr('data-endpos');
-            
-            if (0 > direct) {
-                if (endPosition == "left") {
-                    fallPaperAnimation = true;
-                    
-                    theList.stop().animate({
-                        right: "-75.75vmin"
-//                        right: "+=15%"
-                    }, 1000, function() {
-                        fallPaperAnimation = false;
-                        isAnimateFall = false;
-
-                        theList.attr('data-endpos', "right");
-                    });
-                }
-            } else {
-                if (endPosition == "right") {
-                    fallPaperAnimation = true;
-                    theList.stop().animate({
-//                        right: "-=20%"
-                        right: "-101vmin"
-                    }, 1000, function() {
-                        fallPaperAnimation = false;
-                        isAnimateFall = false;
-                        theList.attr('data-endpos', "left");
-                    });
-                }
-            }
-        }
-    }
-
+    
     function c() {
         var c = a(window).width(),
             d = a(".pages-container"),
@@ -61,7 +23,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                 (
                     f.preventDefault(),
                     n.wheel = !0,
-                        isAnimateFall ? fallPaper(g) : (
+                         (
                             0 > g ? (
                                 n.left = n.left + c >= e.width() ? n.left : n.left += n.step,
                                     d.stop().animate({scrollLeft: n.left}, n.duration, n.easing, function () {
@@ -93,7 +55,6 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
 
     function f() {
         var b = a("#nav"), c = b.find("li.active a"), d = c.data("page"), e = c.attr("href"), dAnimated = c.attr('data-animatefall');
-        dAnimated ? isAnimateFall=true : isAnimateFall=false;
         a("#site").removeClass().addClass(d), "#stores" == e ? o = setInterval(h, 2e3) : window.clearInterval(o)
     }
 
