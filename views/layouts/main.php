@@ -37,7 +37,7 @@ AppAsset::register($this);
 	<header id="header" class="clearfix">
 		<div class="wrap clearfix">
 		<img class="logo left" src="images/logo.png" alt="logo Sense">
-		<nav id="nav" class="right">
+		<nav id="nav" class="nav-left">
 			<ul class="nav">
 				<li class="active"><a class="home-page" data-page="home-page" href="#home">Welcome</a></li>
 				<li class=""><a class="personalized-education" data-animatefall="true" data-direct="right" href="#personalized-education" data-page="personalized-education">Personalized Education</a></li>
