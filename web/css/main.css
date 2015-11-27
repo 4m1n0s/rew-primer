@@ -409,7 +409,13 @@ h3 {
 	}
 
 }
+@media screen and (max-height: 800px) {
 
+	.projector {
+		display:none;
+	}
+
+}
 
 #header {
 	padding:4vmin 0 0;
