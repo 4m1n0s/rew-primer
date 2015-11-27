@@ -432,17 +432,19 @@ h3 {
 #nav ul {
 	float:right;
 	position:relative;
+	text-align: center;
 }
 #nav ul li {
 	margin:0 3vmin;
-	float:left;
+	display:inline-block;
 }
 #nav ul li:first-child {
 	margin-left:0;
 }
 #nav ul li a {
 	display:block;
-	line-height:2vmin;
+    line-height: 3vmin;
+    margin-bottom: 1vmin;
 	color:#fff;
 	font-size:1.7vmin;	
 }
