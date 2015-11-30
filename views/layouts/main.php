@@ -331,7 +331,7 @@ AppAsset::register($this);
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-8.png" />
 						<span class="title-carousel">Ronen Tal-Botzer</span>
-                                                <span class="content-carousel">PhD Founder, CEO</span>
+                        <span class="content-carousel">PhD Founder, CEO</span>
 					</div>
 					<div class="tab-content">
 						<p>
@@ -344,11 +344,87 @@ AppAsset::register($this);
 						</p> 
 					</div>
 				</li>
-				<li><img alt="" src="images/company-foto/foto-7.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-9.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-8.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-7.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-9.png" /></li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-7.png" />
+                    	<span class="title-carousel">Yahav Dikshtein</span>
+                    	<span class="content-carousel">PhD, VP Marketing</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-9.png" />
+                    	<span class="title-carousel">Tom Zohar</span>
+                    	<span class="content-carousel">Biz Dev Manager</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-8.png" />
+						<span class="title-carousel">Ronen Tal-Botzer</span>
+                        <span class="content-carousel">PhD Founder, CEO</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Dr. Ronen Tal-Botzer has been a lecturer for data mining and programming 
+							at Bar-Ilan University for the last 15 years. Since 2013 he is also the 
+							director of the Biomedical Informatics study program at Bar-Ilan University 
+							w/ Sheba Medical Center. Ronen has previously founded Correlor - a web 
+							personalization company analyzing social networks, which raised a $4.2M 
+							investment and now sells to big telcos.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-7.png" />
+                    	<span class="title-carousel">Yahav Dikshtein</span>
+                    	<span class="content-carousel">PhD, VP Marketing</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-9.png" />
+                    	<span class="title-carousel">Tom Zohar</span>
+                    	<span class="content-carousel">Biz Dev Manager</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -356,12 +432,102 @@ AppAsset::register($this);
 		<div class="tabs">
 			<div class="close"></div>
 			<ul class="tabs-nav">
-				<li class="active"><img alt="" src="images/company-foto/foto-5.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-6.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-4.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-5.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-6.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-4.png" /></li>
+				<li class="active">
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-5.png" />
+                    	<span class="title-carousel">Shahar Ben David</span>
+                    	<span class="content-carousel">co-founders</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-6.png" />
+                    	<span class="title-carousel">Gil Kotton</span>
+                    	<span class="content-carousel">Senior Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-4.png" />
+                    	<span class="title-carousel">Reuven Elliassi</span>
+                    	<span class="content-carousel">Full Stack Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-5.png" />
+                    	<span class="title-carousel">Shahar Ben David</span>
+                    	<span class="content-carousel">co-founders</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-6.png" />
+                    	<span class="title-carousel">Gil Kotton</span>
+                    	<span class="content-carousel">Senior Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-4.png" />
+                    	<span class="title-carousel">Reuven Elliassi</span>
+                    	<span class="content-carousel">Full Stack Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -369,12 +535,102 @@ AppAsset::register($this);
 		<div class="tabs">
 			<div class="close"></div>
 			<ul class="tabs-nav">
-				<li class="active"><img alt="" src="images/company-foto/foto-3.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-2.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-1.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-3.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-2.png" /></li>
-				<li><img alt="" src="images/company-foto/foto-1.png" /></li>
+				<li class="active">
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-3.png" />
+                    	<span class="title-carousel">Lior Strauss</span>
+                    	<span class="content-carousel">PhD, co-founders</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-2.png" />
+                    	<span class="title-carousel">Yaron Gonen</span>
+                    	<span class="content-carousel">PhD, Data Mining Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-1.png" />
+                    	<span class="title-carousel">Ehud Hoze</span>
+                    	<span class="content-carousel">PhD, Predictions Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-3.png" />
+                    	<span class="title-carousel">Lior Strauss</span>
+                    	<span class="content-carousel">PhD, co-founders</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-2.png" />
+                    	<span class="title-carousel">Yaron Gonen</span>
+                    	<span class="content-carousel">PhD, Data Mining Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
+				<li>
+					<div class="company-foto clearfix">
+						<img class="left" alt="" src="images/company-foto/foto-1.png" />
+                    	<span class="title-carousel">Ehud Hoze</span>
+                    	<span class="content-carousel">PhD, Predictions Engineer</span>
+					</div>
+					<div class="tab-content">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+							fugiat nulla pariatur.
+						</p> 
+					</div>
+				</li>
 			</ul>
 		</div>
 	</div>
