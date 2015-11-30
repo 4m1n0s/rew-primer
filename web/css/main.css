@@ -406,6 +406,7 @@ h3 {
 	}
 	.border-triangle:before{
 		border-bottom-width:300vmin;
+		left: -48vmin;
 	}
 
 }
@@ -902,6 +903,11 @@ fieldset[disabled] .btn {
 
 @media only screen and (max-width:1100px) {
 
+	.txt-lear-more {
+		max-width: 45vmin;
+		left: 0;
+	}
+
 	.company-foto img {
 	    height: 80px;
 	    width: 80px;
@@ -956,6 +962,19 @@ fieldset[disabled] .btn {
 	}
 	#solution-page .content {
 		max-width:48vmin;
+	}
+}
+
+@media only screen and (max-height:800px) {
+	.gif-container {
+		max-width: 45vmin;
+		margin-top: 14vmin;
+	}
+	.img-responsive.mob-img {
+		display:block;
+	}
+	.img-responsive.gif-img {
+		display:none;
 	}
 }
 
