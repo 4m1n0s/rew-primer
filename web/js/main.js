@@ -143,6 +143,10 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             })
         })
     },
+    a(".header-logo").on("click", function (b) {
+        var c = a(this).attr("href");
+        b.preventDefault(), a(c).scrollView(c)
+    }),
     a(".go-to-start").on("click", function (b) {
         var c = a(this).attr("href");
         b.preventDefault(), a(c).scrollView(c)

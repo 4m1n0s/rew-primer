@@ -36,7 +36,7 @@ AppAsset::register($this);
 
 	<header id="header" class="clearfix">
 		<div class="wrap clearfix">
-		<img class="logo left" src="images/logo.png" alt="logo Sense">
+		<a href="#home" class="header-logo"><img class="logo left" src="images/logo.png" alt="logo Sense"></a>
 		<nav id="nav" class="nav-left">
 			<ul class="nav">
 				<li class="active"><a class="home-page" data-page="home-page" href="#home">Welcome</a></li>
