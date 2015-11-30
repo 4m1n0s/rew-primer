@@ -406,7 +406,6 @@ h3 {
 	}
 	.border-triangle:before{
 		border-bottom-width:300vmin;
-		left: -48vmin;
 	}
 
 }
@@ -904,7 +903,8 @@ fieldset[disabled] .btn {
 @media only screen and (max-width:1100px) {
 
 	.txt-lear-more {
-		max-width: 45vmin;
+		max-width: 37vmin;
+		padding: 6.2vmin 3.5vmin 2.2vmin;
 		left: 0;
 	}
 
