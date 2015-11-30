@@ -421,9 +421,6 @@ h3 {
 }
 @media screen and (max-height: 1280px) {
 
-	.projector {
-		display:none;
-	}
 	.border-triangle-blue-img:after  {
 	    background-image: none;
 	}
