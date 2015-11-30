@@ -340,7 +340,7 @@ h3 {
 	top: 0;
 	left:0;
 	position:absolute;
-    background-image: url("../images/1.png");
+    background-image: url("../images/box-shadow.png");
 	 -moz-background-size:     cover;
     -o-background-size:       cover;
     -webkit-background-size:  cover;
@@ -577,6 +577,9 @@ h3 {
 
 .gif-container {
 	max-width: 104vmin;
+}
+.img-responsive.mob-img {
+	display:none;
 }
 
 #solution-page .content {
@@ -922,6 +925,12 @@ fieldset[disabled] .btn {
 		max-width: 45vmin;
 		margin-top: 14vmin;
 	}
+	.img-responsive.mob-img {
+		display:block;
+	}
+	.img-responsive.gif-img {
+		display:none;
+	}
 	.title-page {
 	    font-size: 5vmin;
 	    line-height: 6vmin;
@@ -1054,7 +1063,7 @@ html.fp-enabled,
     z-index: 4;
     bottom: 8vmin;
     cursor: pointer;
-    height:7vmin;
+    height:7.2vmin;
     width:4vmin;
 	 -moz-background-size:     cover;
     -o-background-size:       cover;

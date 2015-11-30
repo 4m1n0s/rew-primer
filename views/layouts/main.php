@@ -120,9 +120,10 @@ AppAsset::register($this);
 						</p>						
 					</div>
 					<div class="gif-container left">
-						<img class="img-responsive" src="images/gif/animation1-step1.gif" alt="">
-						<img class="img-responsive" src="images/gif/animation1-step2.gif" alt="">
-						<img class="img-responsive" src="images/gif/animation1-step3.gif" alt="">
+						<img class="img-responsive gif-img" src="images/gif/animation1-step1.gif" alt="">
+						<img class="img-responsive gif-img" src="images/gif/animation1-step2.gif" alt="">
+						<img class="img-responsive gif-img" src="images/gif/animation1-step3.gif" alt="">
+						<img class="img-responsive mob-img" src="images/gif/img-gif.png" alt="">
 					</div>
 				</section>
 				<section class="container border-triangle border-triangle-green" id="results-page">
