@@ -297,10 +297,10 @@ h3 {
 
 }
 .projector {
-	width: 580px;
-	height: 580px;
-	left: -680px;
-	top: -680px;
+	width: 500px;
+	height: 500px;
+	left: -600px;
+	top: -600px;
 	position: absolute;
     border-radius:50%;
     overflow:hidden;
@@ -353,31 +353,30 @@ h3 {
 }
 
 .border-triangle:before {
-    border-left: 57vmin solid transparent;
-    border-bottom: 118vmin solid #3ea6ff;
+    border-left: 551px solid transparent;
+    border-bottom: 980px solid #3ea6ff;
     height: auto;
     padding: 0;
     width: 10px;
     position:absolute;
     content:"";
-    left:-57vmin;
+    left:-551px;
     top: 0;
 }
 .border-triangle-blue-img:before {
     border-bottom-color: #3ea6ff;
-    border-right: 57vmin solid transparent;
+    border-right: 551px solid transparent;
 }
 .border-triangle-blue-img:after  {
     background-image: url(../images/informal-bg-bottom.png);
 	background-repeat: no-repeat;
-	background-position:0 0;
-    height: 1080px;
+	background-position:bottom left;
+    height: 100%;
     width: 664px;
     position:absolute;
     content:"";
-	left: -54.2vmin;
+	left: -575px;
     bottom: 0;
-    transform: rotate(-4grad);
 }
 .border-triangle-blue:before {
 	border-bottom-color: #3ea6ff;
@@ -391,22 +390,25 @@ h3 {
 .border-triangle-red:before{
 	border-bottom-color: #ff6969;
 }
-@media screen and (max-height: 968px) {
-
-	.border-triangle-blue-img:after  {
-	    background-image: none;
-	}
-
-}
 
 @media screen and (max-width: 1100px) {
 
 	.projector {
 		display:none;
 	}
-	.border-triangle:before{
-		border-bottom-width:300vmin;
+	.border-triangle:before {
+	    border-bottom-width: 2400px;
+	}	
+	.border-triangle-blue-img:after  {
+	    background-image: none;
 	}
+
+}
+@media screen and (max-height: 1100px) {
+
+	.border-triangle:before {
+	    border-bottom-width: 2400px;
+	}	
 
 }
 @media screen and (max-height: 800px) {
@@ -414,13 +416,6 @@ h3 {
 	.projector {
 		display:none;
 	}
-	.border-triangle-blue-img:after  {
-	    background-image: none;
-	}
-
-}
-@media screen and (max-height: 1280px) {
-
 	.border-triangle-blue-img:after  {
 	    background-image: none;
 	}
@@ -903,7 +898,7 @@ fieldset[disabled] .btn {
 @media only screen and (max-width:1100px) {
 
 	.txt-lear-more {
-		max-width: 37vmin;
+		max-width: 25vmin;
 		padding: 6.2vmin 3.5vmin 2.2vmin;
 		left: 0;
 	}
