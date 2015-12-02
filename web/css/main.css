@@ -1152,11 +1152,15 @@ html.fp-enabled,
 	border-radius:50%;
 	width: 13vmin;
 	height: 13vmin;
+	cursor:pointer;
 }
 .title-carousel {
 	font-size:3vmin;
 	line-height:3.2vmin;
 	margin: 0.5vmin 0;
+}
+.container-carousel .content-carousel, .container-carousel .title-carousel {
+	cursor:pointer;
 }
 .content-carousel {
 	font-size:1.8vmin;

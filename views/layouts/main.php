@@ -656,7 +656,7 @@ AppAsset::register($this);
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ autoscroll: true, masked: false, itemstodisplay: 3, orientation: 'v' });
+        $('#carouselv, #carouselv1, #carouselv2').jsCarousel({ autoscroll: false, masked: false, itemstodisplay: 3, orientation: 'v' });
     });       
     
 </script>
