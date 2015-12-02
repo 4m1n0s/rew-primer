@@ -20,7 +20,6 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
-            
             if($("#nav li.active a").attr("href") == '#personalized-education'){
                 var block = a(a("#nav li.active a").attr("href"));
                 if(g < 0){
@@ -33,6 +32,12 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                     right: fallPaperDefaultOffsetValue + "px"
                 }, 500);
                 
+            }
+            
+            if($("#nav li.active a").attr("href") == '#home'){
+                handleProjector();
+            }else{
+                $(window).unbind('mousemove');
             }
             
             return a(".bottom-popup").hasClass("open") ? void 0 :
@@ -226,17 +231,19 @@ $(document).ready(function () {
 
 function handleProjector() {
     if ($('.projector').length) {
-        var posX, posY, projectorX, projectorY
+        var posX, posY, projectorX, projectorY;
         var halfWidth = $('.projector').width() / 2
         var halfHeight = $('.projector').height() / 2
+        var offset;
         
         if($(window).width() >= 1100){
             $(window).on('mousemove', function (e) {
                 posX = e.clientX;
                 posY = e.clientY;
-
+                offset = $('.container.page-home.blur').offset();
                 if (posY < ($(window).height() - halfHeight)) {
-                    projectorX = posX - halfWidth
+                    
+                    projectorX = (posX + (offset.left * -1) ) - halfWidth
                     projectorY = posY - halfHeight
 
                     $('.projector').css('left', projectorX)
