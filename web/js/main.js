@@ -43,9 +43,9 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                             0 > g ? (
                                 n.left = n.left + c >= e.width() ? n.left : n.left += n.step,
                                     d.stop().animate({scrollLeft: n.left}, n.duration, n.easing, function () {
-                                        n.wheel = !1, b()
+                                        n.wheel = !1
                                     })) : (n.left = n.left <= 0 ? 0 : n.left -= n.step, d.stop().animate({scrollLeft: n.left}, n.duration, n.easing, function () {
-                                    n.wheel = !1, b()
+                                    n.wheel = !1
                                 })
                             )
                         )
@@ -163,7 +163,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         var b = a(this), c = b.addClass("active").siblings().removeClass("active").parents(".tabs").find(".tab").eq(b.index());
         c.addClass("active").fadeIn(150).siblings().hide().removeClass("active")
     }), function () {
-        /*
+        
         a("body").on("click", "[data-popup]", function (b) {
             n.wheel = !1;
             var c = a("#" + a(this).data("popup")), d = a("#site");
@@ -171,7 +171,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
                 d.addClass("blur")
             }, 800), a("#overlay").fadeToggle(200)), c.toggleClass("open"), b.preventDefault()
         }),
-        */
+        
         a("#overlay, .close").on("click", function () {
             a("#overlay").fadeOut(200), a("#site").removeClass("blur"), a(".bottom-popup").removeClass("open")
         })

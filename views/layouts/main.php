@@ -319,7 +319,6 @@ AppAsset::register($this);
 
 		</div><!--end pages-container-->
 		<div class="clear"></div>
-9
 
 	</div><!--end main-container-->
 
@@ -641,7 +640,6 @@ AppAsset::register($this);
  </div> <!-- #site -->
 
 <script type="text/javascript" src="js/jquery.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/vendor.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 

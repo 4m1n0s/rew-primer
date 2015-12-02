@@ -3,9 +3,9 @@
     $.fn.extend({
         jsCarousel: function(options) {
             var settings = $.extend({
-                scrollspeed: 1500,
-                delay: 5000,
-                itemstodisplay: 5,
+                scrollspeed: 3500,
+                delay: 20000,
+                itemstodisplay: 3,
                 autoscroll: false,
                 circular: true,
                 masked: false,

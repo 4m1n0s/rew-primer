@@ -10,24 +10,6 @@ use yii\widgets\Pjax;
 
 <div class="newsletter-signup">
     <?php Pjax::begin(['id' => 'subscribe-form', 'enablePushState' => false]); ?>
-    
-        <?php if (Yii::$app->session->hasFlash('subscribe-success')): ?>
-            <div class="alert alert-success alert-dismissible fade in">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <span class="text-success"><?= Yii::$app->session->getFlash('subscribe-success') ?></span>
-            </div>
-        <?php endif; ?>
-
-        <?php if (Yii::$app->session->hasFlash('subscribe-error')): ?>
-            <div class="alert alert-danger alert-dismissible fade in">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <span class="text-danger"><?= Yii::$app->session->getFlash('subscribe-error') ?></span>
-            </div>
-        <?php endif; ?>
 
         <?php
         $form = ActiveForm::begin([
@@ -43,5 +25,18 @@ use yii\widgets\Pjax;
         <?= $form->field($model, 'email')->textInput(['placeholder' => 'Enter your email to get started']) ?>
         <?= Html::submitInput(Yii::t('app', 'Subscribe'), ['class' => 'btn-subscribe']) ?>
         <?php $form->end(); ?>
+    
+        <?php if (Yii::$app->session->hasFlash('subscribe-success')): ?>
+            <div class="alert alert-success alert-dismissible fade in">
+                <span class="text-success"><?= Yii::$app->session->getFlash('subscribe-success') ?></span>
+            </div>
+        <?php endif; ?>
+
+        <?php if (Yii::$app->session->hasFlash('subscribe-error')): ?>
+            <div class="alert alert-danger alert-dismissible fade in">
+                <span class="text-danger"><?= Yii::$app->session->getFlash('subscribe-error') ?></span>
+            </div>
+        <?php endif; ?>
+
     <?php Pjax::end(); ?>
 </div>

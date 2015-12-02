@@ -297,10 +297,10 @@ h3 {
 
 }
 .projector {
-	width: 500px;
-	height: 500px;
-	left: -600px;
-	top: -600px;
+	width: 250px;
+	height: 250px;
+	left: -300px;
+	top: -300px;
 	position: absolute;
     border-radius:50%;
     overflow:hidden;
@@ -320,7 +320,6 @@ h3 {
 	position:absolute;
     background-attachment: fixed;
     background-image: url("../images/home-bg.png");
-    /*box-shadow:0 0 60px 0 rgba(256, 256, 256, 0.4) inset;*/
 	 -moz-background-size:     cover;
     -o-background-size:       cover;
     -webkit-background-size:  cover;
@@ -625,11 +624,15 @@ h3 {
 	top:0;
 	z-index:2000;
 	margin-left:-345px;
-	-webkit-transition-delay:100ms;
-	transition:all 400ms ease-in 100ms;
 }
 
 .bottom-popup.open {
+
+    transition:all 0.1s ease 0.3s;
+	-moz-transition: all 0.1s ease 0.3s;
+	-ms-transition: all 0.1s ease 0.3s;
+	-o-transition: all 0.1s ease 0.3s;
+	-webkit-transition: all 0.1s ease 0.3s;
 	visibility:visible;
 }
 
@@ -667,7 +670,7 @@ h3 {
     border-radius: 0;
     color: #fff;
     display: block;
-    font-size:18px;
+    font-size:1.9vmin;
     height: 34px;
     padding: 0 30px 0 0;
     line-height: 34px;
@@ -1121,41 +1124,8 @@ html.fp-enabled,
 	overflow: hidden;
 
 }
-.jscarousal-vertical:before {
-	background-color:#47505c;
-	width: 100%;
-	height: 30px;
-	position: absolute;
-	left: 0;
-	bottom:-1px;
-	content:'';
-	z-index: 1;
-
-}
 .jscarousal-vertical-back, .jscarousal-vertical-forward {
-	width: 4vmin;
-	height: 2.3vmin;	
-	bottom:0px;	
-	position: absolute;
-	cursor: pointer;
-	z-index:100;
-	background-position: 0 0;
-	background-repeat: no-repeat;
-	 -moz-background-size:     cover;
-    -o-background-size:       cover;
-    -webkit-background-size:  cover;
-    -khtml-background-size:   cover;
-    background-size:          cover;	
-}
-.jscarousal-vertical-back {
-	background-image: url(../images/vertical-forward.png);
-	left: 50%;
-	margin-left:1vmin;
-}
-.jscarousal-vertical-forward {
-	background-image: url(../images/vertical-back.png);
-	right: 50%;
-	margin-right:1vmin;
+	display:none;	
 }
 .jscarousal-contents-vertical {
 	overflow: hidden;
@@ -1178,6 +1148,8 @@ html.fp-enabled,
 	display: block;
 }
 .jscarousal-contents-vertical img {
+	overflow:hidden;
+	border-radius:50%;
 	width: 13vmin;
 	height: 13vmin;
 }
@@ -1254,7 +1226,18 @@ html.fp-enabled,
 	display: block;
 	padding: 10px 2px 2px 0px;
 }
+.alert-success, .alert-danger {
+    font-size: 1.9vmin;
+    line-height: 2vmin;
+    margin-top: 0.7vmin;
+}
+.text-danger {
+	color: #ff6969;
+}
 
+.text-success {
+	color: #3cd894;	
+}
 
 @media screen and (min-width: 1840px) {
 
