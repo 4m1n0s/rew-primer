@@ -154,6 +154,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
     }),
     a(".go-to-start").on("click", function (b) {
         var c = a(this).attr("href");
+        handleProjector();
         b.preventDefault(), a(c).scrollView(c)
     }),
     a("#nav a").on("click", function (b) {
