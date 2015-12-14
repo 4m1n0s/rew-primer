@@ -135,7 +135,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
         "" == a.trim(this.value) && (this.value = this.defaultValue ? this.defaultValue : "")
     });
 
-    var n = {left: 0, step: 80, duration: 800, easing: "easeOutExpo", wheel: !1};
+    var n = {left: 0, step: 80, duration: 100, easing: "easeOutExpo", wheel: !1};
     d(), a("ul.nav li").on("activate", function (a) {
         f()
     });
