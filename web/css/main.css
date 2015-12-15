@@ -590,8 +590,9 @@ h3 {
 .col-height {
 	margin-bottom:6.7vmin;
 }
-.content .col-height:last-child {
-	margin-bottom:6vmin;
+
+.col-margin-bottom {
+	margin-bottom:5vmin;
 }
 .mouse-container {
 	position:absolute;

@@ -86,7 +86,7 @@ AppAsset::register($this);
 							<h3>What Educators dislike?</h3>
 							<p>Endlessly evaluating piles of open-ended assignments</p>
 						</div>
-						<div class="col-height">
+						<div class="col-height col-margin-bottom">
 							<h3>Can artificial intelligence and auto-grading evaluate open-ended assignments as</h3>
 							<p>The simple answer is… No.</p>
 						</div>	
