@@ -590,8 +590,8 @@ h3 {
 .col-height {
 	margin-bottom:6.7vmin;
 }
-.col-height:last-child {
-	margin-bottom:0;
+.content .col-height:last-child {
+	margin-bottom:6vmin;
 }
 .mouse-container {
 	position:absolute;
@@ -621,6 +621,15 @@ h3 {
 .gif-container {
 	max-width: 104vmin;
 }
+@media screen and (min-height: 1000px) {
+
+	.gif-container {
+		max-width: 70vmin;
+		margin-top: 7vmin;
+	}
+
+}
+
 .img-responsive.mob-img {
 	display:none;
 }
@@ -1036,8 +1045,8 @@ ol.counter-reset {
 }
 ol.counter-reset li {
   position:relative; 
-  margin:0 0 20px 0; 
-  padding:4px 8px;
+  margin:0 0 2vmin; 
+  padding:0.5vmin 1vmin;
   font-size: 2.5vmin;
   line-height:2.6vmin;
 }
