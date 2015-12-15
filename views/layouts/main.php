@@ -119,12 +119,12 @@ AppAsset::register($this);
 							The trick is to let computers do what computers do best, and let human educators do what humans do best.
 						</p>						
 					</div>
-					<div class="gif-container left">
-						<img class="img-responsive gif-img" src="images/gif/animation1-step1.gif" alt="">
+					<div class="gif-container">
+						<img class="img-responsive first-gif gif-img" src="images/gif/animation1-step1.gif" alt="">
 						<img class="img-responsive gif-img" src="images/gif/animation1-step2.gif" alt="">
 						<img class="img-responsive gif-img" src="images/gif/animation1-step3.gif" alt="">
 
-						<img class="img-responsive mob-img" src="images/gif/animation1-step1-mob.gif" alt="">
+						<img class="img-responsive first-gif mob-img" src="images/gif/animation1-step1-mob.gif" alt="">
 						<img class="img-responsive mob-img" src="images/gif/animation1-step2-mob.gif" alt="">
 						<img class="img-responsive mob-img" src="images/gif/animation1-step3-mob.gif" alt="">
 					</div>

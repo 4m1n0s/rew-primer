@@ -620,12 +620,19 @@ h3 {
 }
 
 .gif-container {
-	max-width: 104vmin;
+	margin-left: 53vmin;
 }
+.gif-container img {
+    width: 100vmin;
+    margin: auto;
+}
+.gif-container img.first-gif{
+	margin-top: 10vmin;
+}
+
 @media screen and (min-height: 1000px) {
 
 	.gif-container {
-		max-width: 70vmin;
 		margin-top: 7vmin;
 	}
 
@@ -633,7 +640,6 @@ h3 {
 @media (min-width: 1101px) and (max-width: 1200px) {
 
 	.gif-container {
-		max-width: 70vmin;
 		margin-top: 7vmin;
 	}
 
@@ -991,10 +997,6 @@ fieldset[disabled] .btn {
 	.border-bottom {
 		border-width: 1px; 
 	}
-	.gif-container {
-		max-width: 45vmin;
-		margin-top: 14vmin;
-	}
 	.img-responsive.mob-img {
 		display:block;
 	}
@@ -1027,13 +1029,12 @@ fieldset[disabled] .btn {
 	#solution-page .content {
 		max-width:48vmin;
 	}
+	.gif-container {
+		margin-left: 48vmin;
+	}
 }
 
 @media only screen and (max-height:800px) {
-	.gif-container {
-		max-width: 45vmin;
-		margin-top: 14vmin;
-	}
 	.img-responsive.mob-img {
 		display:block;
 	}
