@@ -123,7 +123,10 @@ AppAsset::register($this);
 						<img class="img-responsive gif-img" src="images/gif/animation1-step1.gif" alt="">
 						<img class="img-responsive gif-img" src="images/gif/animation1-step2.gif" alt="">
 						<img class="img-responsive gif-img" src="images/gif/animation1-step3.gif" alt="">
-						<img class="img-responsive mob-img" src="images/gif/img-gif.png" alt="">
+
+						<img class="img-responsive mob-img" src="images/gif/animation1-step1-mob.gif" alt="">
+						<img class="img-responsive mob-img" src="images/gif/animation1-step2-mob.gif" alt="">
+						<img class="img-responsive mob-img" src="images/gif/animation1-step3-mob.gif" alt="">
 					</div>
 				</section>
 				<section class="container border-triangle border-triangle-green" id="results-page">

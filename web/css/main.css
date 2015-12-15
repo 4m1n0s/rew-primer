@@ -630,7 +630,14 @@ h3 {
 	}
 
 }
+@media (min-width: 1101px) and (max-width: 1200px) {
 
+	.gif-container {
+		max-width: 70vmin;
+		margin-top: 7vmin;
+	}
+
+}
 .img-responsive.mob-img {
 	display:none;
 }
@@ -988,12 +995,12 @@ fieldset[disabled] .btn {
 		max-width: 45vmin;
 		margin-top: 14vmin;
 	}
-/*	.img-responsive.mob-img {
+	.img-responsive.mob-img {
 		display:block;
 	}
 	.img-responsive.gif-img {
 		display:none;
-	}*/
+	}
 	.title-page {
 	    font-size: 5vmin;
 	    line-height: 6vmin;
@@ -1027,12 +1034,12 @@ fieldset[disabled] .btn {
 		max-width: 45vmin;
 		margin-top: 14vmin;
 	}
-/*	.img-responsive.mob-img {
+	.img-responsive.mob-img {
 		display:block;
 	}
 	.img-responsive.gif-img {
 		display:none;
-	}*/
+	}
 }
 
 /* /button */
