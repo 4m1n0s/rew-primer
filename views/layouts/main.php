@@ -61,8 +61,8 @@ AppAsset::register($this);
 							Making Personalized Education Scalable
 						</h2>
 						<p class="text-min">
-							For the first time ever, educators in large-scale offline and online courses, 
-							can enjoy the power of machine learning and easily provide their students with personalized feedback.
+							Sense enables educators to evaluate hundreds of open-ended assignments in a matter of minutes and 
+							provide personalized feedback to students using a dedicated data science tool
 						</p>
 						<?=  app\modules\subscriber\widgets\subscribeform\SubscribeFormWidget::widget() ?>			
 					</div>
@@ -76,19 +76,23 @@ AppAsset::register($this);
 					<div class="sheets-bg">
 						<img data-endpos="left" src="images/informal-bg-top.png" alt="">
 					</div>
-					<div class="content">
-						<div class="col-height">
-							<h3>What Educators like?</h3>
-							<p>Building amazing learning experiences where each student receives just the right feedback 
-							targeted specifically to his/her own needs.</p>
-						</div>
-						<div class="col-height">
-							<h3>What Educators dislike?</h3>
-							<p>Endlessly evaluating piles of open-ended assignments</p>
+					<div class="content page2">
+						<div class="col-height">							
+							<div class="small">We believe good teaching is
+							spending <br/> 
+							<div class="smaller">&nbsp;</div>
+							LESS TIME doing the repetative work <br />
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							of grading papers and <br /> 
+							<div class="smaller">&nbsp;</div>
+							MORE TIME crafting high quality <br /> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							personalized feedbacks</div>
 						</div>
 						<div class="col-height col-margin-bottom">
-							<h3>Can artificial intelligence and auto-grading evaluate open-ended assignments as</h3>
-							<p>The simple answer is… No.</p>
+							<p class="small">Can artificial intelligence and auto-grading tools evaluate open-ended assignments as smartly as humans?</p>
+							<br />
+							<p class="small">THE SIMPLE ANSWER IS… NO.</p>
 						</div>	
 						<div class="btn-block-popup">
 							<button class="btn btn-blue btn-learn-more" type="submit">Learn More</button>
@@ -108,16 +112,20 @@ AppAsset::register($this);
 				
 					<div class="content left width-title-page">
 						<h2 class="title-page">
-							Sense’s Hybrid Solution
+							Sense’s Solution
 						</h2>
+						<h4>Hybrid Human-Machine Intelligence</h4>
+						<br />
+						<p class="text-min txt-blue">
+							The trick is to let computers do what only computers do best, and let human educators do what only humans do best.
+						</p>
+						<br />
 						<ol class="counter-reset">
-							<li>Computers detect the similarities that are naturally shared among students’ submissions.</li>
-							<li>Submissions are clustered into 5-10 major solution types. Sense then produces a summary on each solution type.</li>
+							<li>Computers detect the patterns that are naturally shared among students’ submissions.</li>
+							<li>Submissions are clustered into 5-10 major solution types. Sense then produces a summary of each solution type.</li>
 							<li>The educator evaluates and provides feedback to each solution type, rather than to each submission in separate.</li>
 						</ol>
-						<p class="text-min txt-blue">
-							The trick is to let computers do what computers do best, and let human educators do what humans do best.
-						</p>						
+												
 					</div>
 					<div class="gif-container">
 						<img class="img-responsive first-gif gif-img" src="images/gif/animation1-step1.gif" alt="">
@@ -135,58 +143,61 @@ AppAsset::register($this);
 							<div class="slide">
 								<div class="content width-title-page">
 									<h2 class="title-page">
-										Sense is making <br/> a mark everyday
+										Sense is making a mark everyday
+									</h2>
+								</div>
+							</div>
+							<!--
+							<div class="slide">
+								<div class="content width-title-page">
+									<h2 class="title-page">
+										Sense is making a mark everyday
 									</h2>
 								</div>
 							</div>
 							<div class="slide">
 								<div class="content width-title-page">
 									<h2 class="title-page">
-										Sense is making <br/> a mark everyday 2
+										Sense is making a mark everyday
 									</h2>
 								</div>
 							</div>
-							<div class="slide">
-								<div class="content width-title-page">
-									<h2 class="title-page">
-										Sense is making <br/> a mark everyday 3
-									</h2>
-								</div>
-							</div>
+							!>
 						</div>
 					</div> <!-- //#fullpage -->
 				 </section>
 				 <section  class="container border-triangle border-triangle-gray clearfix display-table" id="company-page">
 				 	<div class="content width-title-page left-col">
 						<h2 class="title-page border-bottom">
-							A Sense of making <br/> a change
+							The Team That Makes Sense
 						</h2>
-						<div class="txt-col">
+						<!-- <div class="txt-col">
 							<h2 class="title-page txt-green">Our Company</h2>
 							<p>Sense enables educators to evaluate open-ended assignments at scale and 
 							provide personalized feedback &amp; adaptive content to their students</p>
-						</div> 
+						</div>  -->
 					</div> <!--.left-col -->
 					<div class="right-col">
 						<div class="carousel-col">
-							<h3 class="title-company txt-green">
+							<!-- <h3 class="title-company txt-green">
 								Business
-							</h3>
+							</h3> -->
 	                        <div id="carouselv">                        	
 	                            <div class="container-carousel member" data-index="0" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-8.png" alt="Ronen Tal-Botzer" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Ronen Tal-Botzer</span>
-	                                	<span class="content-carousel">PhD Founder, CEO</span>
+	                                	<span class="title-carousel">Ronen Tal-Botzer, PhD</span>
+	                                	<span class="content-carousel">Founder and CEO</span>
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="1" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-7.png" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Yahav Dikshtein</span>
-	                                	<span class="content-carousel">PhD, VP Marketing</span>
+	                                	<span class="title-carousel">Yahav Dikshtein, PhD</span>
+	                                	<span class="content-carousel">VP Marketing</span>
 	                                </div>
 	                            </div>
+								<!--
 	                            <div class="container-carousel member" data-index="2" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-9.png" />
 	                                <div class="txt-carousel">
@@ -194,6 +205,7 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">Biz Dev Manager</span>
 	                                </div>
 	                            </div>
+								
 	                            <div class="container-carousel member" data-index="3" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-8.png" alt="Ronen Tal-Botzer" />
 	                                <div class="txt-carousel">
@@ -208,32 +220,33 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">PhD, VP Marketing</span>
 	                                </div>
 	                            </div>
-	                            <div class="container-carousel member" data-index="5" data-popup="green-popup">
+	                            
+								<div class="container-carousel member" data-index="5" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-9.png" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Tom Zohar</span>
 	                                	<span class="content-carousel">Biz Dev Manager</span>
 	                                </div>
-	                            </div>
+	                            </div> -->
 	                        </div> <!--#carouselv -->
 						</div>
 						<div class="carousel-col">
-							<h3 class="title-company txt-blue">
+							<!-- <h3 class="title-company txt-blue">
 								Technolog
-							</h3>
+							</h3> -->
 	                        <div id="carouselv1">
 	                            <div class="container-carousel member" data-index="0" data-popup="blue-popup">
 	                                <img alt="" src="images/company-foto/foto-5.png" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Shahar Ben David</span>
-	                                	<span class="content-carousel">co-founders</span>
+	                                	<span class="content-carousel">Founder and VP R&D</span>
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="1" data-popup="blue-popup">
 	                                <img alt="" src="images/company-foto/foto-6.png" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Gil Kotton</span>
-	                                	<span class="content-carousel">Senior Engineer</span>
+	                                	<span class="content-carousel">Data Mining Engineer</span>
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="2" data-popup="blue-popup">
@@ -247,7 +260,7 @@ AppAsset::register($this);
 	                                <img alt="" src="images/company-foto/foto-5.png" />
 	                                <div class="txt-carousel">
 	                                	<span class="title-carousel">Shahar Ben David</span>
-	                                	<span class="content-carousel">co-founders</span>
+	                                	<span class="content-carousel">Founder and VP R&D</span>
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="4" data-popup="blue-popup">
@@ -260,31 +273,32 @@ AppAsset::register($this);
 	                            <div class="container-carousel member" data-index="5" data-popup="blue-popup">
 	                                <img alt="" src="images/company-foto/foto-4.png" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Reuven Elliassi</span>
+	                                	<span class="title-carousel">Reuven Ei</span>
 	                                	<span class="content-carousel">Full Stack Engineer</span>
 	                                </div>
 	                            </div>
 	                        </div> <!--#carouselv1 -->
 						</div>
 						<div class="carousel-col">
-							<h3 class="title-company txt-red">
+							<!-- <h3 class="title-company txt-red">
 								Science
-							</h3>
+							</h3> -->
 	                        <div id="carouselv2">
 	                            <div class="container-carousel member" data-index="0" data-popup="red-popup">
 	                                <img alt="" src="images/company-foto/foto-3.png" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Lior Strauss</span>
-	                                	<span class="content-carousel">PhD, co-founders</span>
+	                                	<span class="title-carousel">Lior Strauss, PhD</span>
+	                                	<span class="content-carousel">CTO</span>
 	                                </div>
 	                            </div>
 	                            <div class="container-carousel member" data-index="1" data-popup="red-popup">
 	                                <img alt="" src="images/company-foto/foto-2.png" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Yaron Gonen</span>
-	                                	<span class="content-carousel">PhD, Data Mining Engineer</span>
+	                                	<span class="title-carousel">Yaron Gonen, PhD</span>
+	                                	<span class="content-carousel">Machine Learning Enginee</span>
 	                                </div>
 	                            </div>
+								<!--
 	                            <div class="container-carousel member" data-index="2" data-popup="red-popup">
 	                                <img alt="" src="images/company-foto/foto-1.png" />
 	                                <div class="txt-carousel">
@@ -313,6 +327,7 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">PhD, Predictions Engineer</span>
 	                                </div>
 	                            </div>
+								-->
 	                        </div> <!--#carouselv2 -->
 						</div>
 					</div> <!--.right-col -->
@@ -644,6 +659,7 @@ AppAsset::register($this);
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/vendor.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 
 <script type="text/javascript" src="js/full-page.min.js"></script>

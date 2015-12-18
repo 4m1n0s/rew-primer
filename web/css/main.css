@@ -620,7 +620,7 @@ h3 {
 }
 
 .gif-container {
-	margin-left: 53vmin;
+	margin-left: 59vmin;
 }
 .gif-container img {
     width: 100vmin;
@@ -649,7 +649,7 @@ h3 {
 }
 
 #solution-page .content {
-	max-width:53vmin;
+	max-width:59vmin;
 }
 
 #team-container .member {
@@ -1222,7 +1222,7 @@ html.fp-enabled,
 	cursor:pointer;
 }
 .title-carousel {
-	font-size:3vmin;
+	font-size:2.8vmin;
 	line-height:3.2vmin;
 	margin: 0.5vmin 0;
 }
@@ -1422,4 +1422,22 @@ html.fp-enabled,
 	}
 	
 }
+.page2 .smaller {
+	font-size: 1.6em;
+	line-height: 1.4vmin;
+}
 
+.page2 .small {
+	font-size: 3.8vmin;
+	line-height: 4vmin;
+}
+
+.page2 .big {
+	font-size: 5.2vmin;
+	line-height: 6vmin;
+}
+
+#solution-page .title-page {
+	font-size:6vmin;
+	line-height: 6vmin;
+}

@@ -20,6 +20,7 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
             e = a(".pages");
 
         a("html, body").mousewheel(function (f, g) {
+			
             if($("#nav li.active a").attr("href") == '#personalized-education'){
                 var block = a(a("#nav li.active a").attr("href"));
                 if(g < 0){
@@ -226,8 +227,18 @@ window.innerWidth <= 100 && -1 == window.location.pathname.indexOf("mobile.html"
 
 $(document).ready(function () {
 
-    handleProjector();
-    handleTriangleHeight();
+     // handleProjector();
+     // handleTriangleHeight();
+
+		$('html, body, *').scroll(function (e, delta) {
+			e.preventDefault();
+		});
+	
+		$('html, body, *').mousewheel(function(e, delta) {
+			console.log('mouse');
+			this.scrollLeft -= (delta * 25);
+			e.preventDefault();
+		});
 })
 
 function handleProjector() {
@@ -237,18 +248,25 @@ function handleProjector() {
         var halfHeight = $('.projector').height() / 2
         var offset;
         
+		var container = $('.container.page-home.blur');
+		var projector = $('.projector')[0];
         if($(window).width() >= 1100){
             $(window).on('mousemove', function (e) {
+				if (posX - e.clientX > -2 && posX - e.clientX < 2)
+					return;
+				if (posY - e.clientY > -2 && posY - e.clientY < 2)
+					return;				
+				
                 posX = e.clientX;
                 posY = e.clientY;
-                offset = $('.container.page-home.blur').offset();
-                if (posY < ($(window).height() - halfHeight)) {
+                offset = container.offset();
+                if (posY < (window.innerHeight - halfHeight)) {
                     
-                    projectorX = (posX + (offset.left * -1) ) - halfWidth
-                    projectorY = posY - halfHeight
+                    projectorX = (posX + (offset.left * -1) ) - halfWidth;
+                    projectorY = posY - halfHeight;
 
-                    $('.projector').css('left', projectorX)
-                    $('.projector').css('top', projectorY)
+                    projector.style.left = projectorX + 'px';
+                    projector.style.top = projectorY + 'px';
                 }
             });
         }
