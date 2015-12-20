@@ -197,7 +197,7 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">VP Marketing</span>
 	                                </div>
 	                            </div>
-								<!--
+								
 	                            <div class="container-carousel member" data-index="2" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-9.png" />
 	                                <div class="txt-carousel">
@@ -205,7 +205,7 @@ AppAsset::register($this);
 	                                	<span class="content-carousel">Biz Dev Manager</span>
 	                                </div>
 	                            </div>
-								
+								<!--
 	                            <div class="container-carousel member" data-index="3" data-popup="green-popup">
 	                                <img alt="" src="images/company-foto/foto-8.png" alt="Ronen Tal-Botzer" />
 	                                <div class="txt-carousel">
@@ -353,12 +353,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Dr. Ronen Tal-Botzer has been a lecturer for data mining and programming 
-							at Bar-Ilan University for the last 15 years. Since 2013 he is also the 
-							director of the Biomedical Informatics study program at Bar-Ilan University 
-							w/ Sheba Medical Center. Ronen has previously founded Correlor - a web 
-							personalization company analyzing social networks, which raised a $4.2M 
-							investment and now sells to big telcos.
+							Dr. Ronen Tal-Botzer has been a lecturer for data mining and programming at Bar-Ilan University for the last 15 years. 
+							Since 2013 he is also the director of the Biomedical Informatics study program at Bar-Ilan University w/ Sheba Medical 
+							Center. Ronen has previously founded Correlor - a web personalization company analyzing social networks.
 						</p> 
 					</div>
 				</li>
@@ -370,11 +367,12 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Dr. Yahav Dikshtein has a post-doctorate degree in Behavioral Neuroscience from Bar-Ilan University. Yahav has been a 
+							lecturer in the ‘Neurochemical basis of behavior’ at the Gonda Brain Research Center at Bar-Ilan University and is the 
+							recipient of the 2013 National Network of Excellence in Neuroscience Award Issued by TEVA. Yahav won the StandWithUs 
+							2015 fellowship and has led a team in charged of social marketing. Yahav has a B.sc in computer science was a JAVA 
+							Instructor in the ‘Hacker’ Software company in Israel
+
 						</p> 
 					</div>
 				</li>
@@ -382,15 +380,13 @@ AppAsset::register($this);
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-9.png" />
                     	<span class="title-carousel">Tom Zohar</span>
-                    	<span class="content-carousel">Biz Dev Manager</span>
+                    	<span class="content-carousel">Tom Zohar, Business Development Manager</span>
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Tom brings to Sense a combined experience from the education and business spaces. At 'Deloitte' Tom served as a strategic 
+							business consultant, analyzing strategic and management issues for firms at the Israeli market. At 'The Extra Mile', a 
+							private academic training vendor in Israel, Tom taught undergraduate courses in economics, math, statistics and computer science.							
 						</p> 
 					</div>
 				</li>
@@ -402,12 +398,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Dr. Ronen Tal-Botzer has been a lecturer for data mining and programming 
-							at Bar-Ilan University for the last 15 years. Since 2013 he is also the 
-							director of the Biomedical Informatics study program at Bar-Ilan University 
-							w/ Sheba Medical Center. Ronen has previously founded Correlor - a web 
-							personalization company analyzing social networks, which raised a $4.2M 
-							investment and now sells to big telcos.
+							Dr. Ronen Tal-Botzer has been a lecturer for data mining and programming at Bar-Ilan University for the last 15 years.
+							Since 2013 he is also the director of the Biomedical Informatics study program at Bar-Ilan University w/ Sheba Medical
+							Center. Ronen has previously founded Correlor - a web personalization company analyzing social networks.
 						</p> 
 					</div>
 				</li>
@@ -419,11 +412,11 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Dr. Yahav Dikshtein has a post-doctorate degree in Behavioral Neuroscience from Bar-Ilan University. Yahav has been a 
+							lecturer in the ‘Neurochemical basis of behavior’ at the Gonda Brain Research Center at Bar-Ilan University and is the 
+							recipient of the 2013 National Network of Excellence in Neuroscience Award Issued by TEVA. Yahav won the StandWithUs 
+							2015 fellowship and has led a team in charged of social marketing. Yahav has a B.sc in computer science was a JAVA 
+							Instructor in the ‘Hacker’ Software company in Israel
 						</p> 
 					</div>
 				</li>
@@ -431,15 +424,13 @@ AppAsset::register($this);
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-9.png" />
                     	<span class="title-carousel">Tom Zohar</span>
-                    	<span class="content-carousel">Biz Dev Manager</span>
+                    	<span class="content-carousel">Tom Zohar, Business Development Manager</span>
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Tom brings to Sense a combined experience from the education and business spaces. At 'Deloitte' Tom served as a strategic 
+							business consultant, analyzing strategic and management issues for firms at the Israeli market. At 'The Extra Mile', a 
+							private academic training vendor in Israel, Tom taught undergraduate courses in economics, math, statistics and computer science.
 						</p> 
 					</div>
 				</li>
@@ -458,11 +449,10 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Shahar is the head of Research and Development at Sense. He has more than 10 years of experience in  building 
+							and leading software development teams and is an expert in algorithms & system architecture. Shahr has Co-founded 
+							’comeet.co’, a successful recruiting management platform. Shahar holds a B.Sc in Computer Science from the Hebrew 
+							University in Jerusalem
 						</p> 
 					</div>
 				</li>
@@ -474,11 +464,12 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Gil has Vast experience in the simulator field from training needs analysis, specifcations, technical requirements,
+							project management and control, acceptance, life cycle activities, maintenance, upgrades and 'end of service'.
+							Gil is also the Co-founder and technical director of SimPortal.Org - a web site dedicated to news, updates and 
+							forums for the simulator and visualization professionals. Gil’s Specialties include Competitive analysis, Feasibility 
+							Studies, Technical Reports, Proposal Preparation, Documentation, Simulator Maintenance, Simulator Upgrades, Simulator Procurement.
+
 						</p> 
 					</div>
 				</li>
@@ -490,11 +481,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Reuven has a B.A. in Information Systems Management from the Israel Academic College. He is a Microsoft Certified IT
+							Professional (MCITP) Enterprise Administrator. Reuven is an expert in IT Architecture and solution designing in both
+							Linux and Microsoft and has a vast experience in multiple programming languages.
 						</p> 
 					</div>
 				</li>
@@ -506,11 +495,10 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Shahar is the head of Research and Development at Sense. He has more than 10 years of experience in  building 
+							and leading software development teams and is an expert in algorithms & system architecture. Shahr has Co-founded 
+							’comeet.co’, a successful recruiting management platform. Shahar holds a B.Sc in Computer Science from the Hebrew 
+							University in Jerusalem
 						</p> 
 					</div>
 				</li>
@@ -522,11 +510,11 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Gil has Vast experience in the simulator field from training needs analysis, specifcations, technical requirements,
+							project management and control, acceptance, life cycle activities, maintenance, upgrades and 'end of service'.
+							Gil is also the Co-founder and technical director of SimPortal.Org - a web site dedicated to news, updates and 
+							forums for the simulator and visualization professionals. Gil’s Specialties include Competitive analysis, Feasibility 
+							Studies, Technical Reports, Proposal Preparation, Documentation, Simulator Maintenance, Simulator Upgrades, Simulator Procurement.
 						</p> 
 					</div>
 				</li>
@@ -538,11 +526,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Reuven has a B.A. in Information Systems Management from the Israel Academic College. He is a Microsoft Certified IT
+							Professional (MCITP) Enterprise Administrator. Reuven is an expert in IT Architecture and solution designing in both
+							Linux and Microsoft and has a vast experience in multiple programming languages.
 						</p> 
 					</div>
 				</li>
@@ -561,11 +547,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Lior gained his PhD in the field of biomathematics while developing a new growth model for the HCV virus. He is an expert 
+							in machine learning,  in genomics data mining and in Neuro-linguistic programming. Lior has a vast experience in algorithms,
+							and has been a team leader in the field for the last 4 years.
 						</p> 
 					</div>
 				</li>
@@ -577,27 +561,10 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
-						</p> 
-					</div>
-				</li>
-				<li>
-					<div class="company-foto clearfix">
-						<img class="left" alt="" src="images/company-foto/foto-1.png" />
-                    	<span class="title-carousel">Ehud Hoze</span>
-                    	<span class="content-carousel">PhD, Predictions Engineer</span>
-					</div>
-					<div class="tab-content">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Yaron is one of Sense’s Data Mining Engineers and is currently in the final stages of his PhD. Yaron’s research is 
+							focuses on analyzing queries over distributed probabilistic databases and on data mining, especially in the field of
+							mining frequent item sets and sequential patterns in large databases. Yaron hasvast experience in Java programming 
+							and in dbms such as Oracle and MySQL.
 						</p> 
 					</div>
 				</li>
@@ -609,11 +576,9 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Lior gained his PhD in the field of biomathematics while developing a new growth model for the HCV virus. He is an expert 
+							in machine learning,  in genomics data mining and in Neuro-linguistic programming. Lior has a vast experience in algorithms,
+							and has been a team leader in the field for the last 4 years.
 						</p> 
 					</div>
 				</li>
@@ -625,27 +590,10 @@ AppAsset::register($this);
 					</div>
 					<div class="tab-content">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
-						</p> 
-					</div>
-				</li>
-				<li>
-					<div class="company-foto clearfix">
-						<img class="left" alt="" src="images/company-foto/foto-1.png" />
-                    	<span class="title-carousel">Ehud Hoze</span>
-                    	<span class="content-carousel">PhD, Predictions Engineer</span>
-					</div>
-					<div class="tab-content">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
-							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-							quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-							Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
-							fugiat nulla pariatur.
+							Yaron is one of Sense’s Data Mining Engineers and is currently in the final stages of his PhD. Yaron’s research is 
+							focuses on analyzing queries over distributed probabilistic databases and on data mining, especially in the field of
+							mining frequent item sets and sequential patterns in large databases. Yaron hasvast experience in Java programming 
+							and in dbms such as Oracle and MySQL.
 						</p> 
 					</div>
 				</li>
