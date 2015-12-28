@@ -252,7 +252,7 @@ AppAsset::register($this);
 	                            <div class="container-carousel member" data-index="2" data-popup="blue-popup">
 	                                <img alt="" src="images/company-foto/foto-4.png" />
 	                                <div class="txt-carousel">
-	                                	<span class="title-carousel">Reuven Elliassi</span>
+	                                	<span class="title-carousel">Reuven Ei</span>
 	                                	<span class="content-carousel">Full Stack Engineer</span>
 	                                </div>
 	                            </div>
@@ -476,7 +476,7 @@ AppAsset::register($this);
 				<li>
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-4.png" />
-                    	<span class="title-carousel">Reuven Elliassi</span>
+                    	<span class="title-carousel">Reuven Ei</span>
                     	<span class="content-carousel">Full Stack Engineer</span>
 					</div>
 					<div class="tab-content">
@@ -521,7 +521,7 @@ AppAsset::register($this);
 				<li>
 					<div class="company-foto clearfix">
 						<img class="left" alt="" src="images/company-foto/foto-4.png" />
-                    	<span class="title-carousel">Reuven Elliassi</span>
+                    	<span class="title-carousel">Reuven Ei</span>
                     	<span class="content-carousel">Full Stack Engineer</span>
 					</div>
 					<div class="tab-content">
