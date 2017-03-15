@@ -11,6 +11,8 @@ class BackendAsset extends AssetBundle {
     
     public $basePath = '@webroot';
     public $baseUrl = '@web';
+
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     
     public $css = [
         '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all',
@@ -53,14 +55,14 @@ class BackendAsset extends AssetBundle {
         '/backend/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
         
         '/backend/global/scripts/app.min.js',
-        
 
         '/backend/layouts/layout/scripts/layout.min.js',
         '/backend/layouts/layout/scripts/demo.min.js',
         '/backend/layouts/global/scripts/quick-sidebar.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'app\assets\YiiAssets',
+        'yii\bootstrap\BootstrapAsset'
     ];
 }
 

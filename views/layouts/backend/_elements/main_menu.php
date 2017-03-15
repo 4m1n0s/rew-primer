@@ -40,6 +40,11 @@
                         'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Subscribers') . '</span>',
                         'url' => ['/subscriber/index-backend/index'],
                     ],
+
+                    [
+                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Pages') . '</span>',
+                        'url' => ['/pages/index-backend/index'],
+                    ],
                 ]
                 ]);
         ?>

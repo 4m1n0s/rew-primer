@@ -8,7 +8,9 @@ use yii\helpers\Html;
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="/">
-                <img src="/backend/global/img/logo.png" alt="logo" class="logo-default" style="height: 25px" /> </a>
+<!--                <img src="/backend/global/img/logo.png" alt="logo" class="logo-default" style="height: 25px" /> -->
+                <h4>Home</h4>
+            </a>
             <div class="menu-toggler sidebar-toggler"> </div>
         </div>
         <!-- END LOGO -->
