@@ -48,7 +48,7 @@ class PagesMetaForm extends Model {
     }
 
     public function validateHeaderImage($attribute, $params){
-        if(empty()){}
+//        if(empty()){}
     }
 
     public static function columnName($attributeName){
