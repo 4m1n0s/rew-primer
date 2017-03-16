@@ -15,7 +15,8 @@ use kartik\file\FileInput;
 $form = ActiveForm::begin([
     'options' => [
         'enctype' => 'multipart/form-data'
-    ]
+    ],
+//    'enableAjaxValidation' => true,
 ]);
 ?>
 
@@ -24,10 +25,9 @@ $form = ActiveForm::begin([
     <div class="portlet-title">
         <div class="caption">
             <?php
-            echo $form->field($pagesMetaForm, 'image')->widget(FileInput::className(), [
+            echo $form->field($pagesMetaForm, 'imageHeaderFile')->widget(FileInput::className(), [
                 'options' => [
                     'accept' => 'image/*',
-//                    'multiple' => true
                 ],
                 'pluginOptions' => [
                     'initialPreview' => [
@@ -37,8 +37,11 @@ $form = ActiveForm::begin([
                     'showPreview' => true,
                     'showUpload' => false,
                     'maxFileCount' => 1,
-                    'allowedFileExtensions'=>['jpg', 'png']
-                ]
+                    'allowedFileExtensions'=>['jpg', 'png'],
+                    'showRemove' => false,
+                    'showCancel' => false,
+                    'showClose' => false
+                ],
             ]);
             ?>
         </div>
@@ -48,8 +51,11 @@ $form = ActiveForm::begin([
     <div class="portlet-title">
         <div class="caption">
             <?=
-            $form->field($pagesMetaForm, 'text')->textarea(['width' => '100%', 'autocomplete' => 'off', 'placeholder' => $pagesMetaForm->getAttributeLabel('text')])
-                ->widget(Redactor::className(), [
+            $form->field($pagesMetaForm, 'text')->textarea([
+                    'width' => '100%',
+                    'autocomplete' => 'off',
+                    'placeholder' => $pagesMetaForm->getAttributeLabel('text')
+                ])->widget(Redactor::className(), [
                     'clientOptions' => [
                         'buttonsHide' => ['image', 'file']
                     ]

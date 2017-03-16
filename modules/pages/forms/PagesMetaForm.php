@@ -20,7 +20,7 @@ class PagesMetaForm extends Model {
     public $headerImage;
     public $text;
 
-    public $image;
+    public $imageHeaderFile;
 
     const DEFAULT_FOLDER = DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
 
@@ -38,17 +38,19 @@ class PagesMetaForm extends Model {
      */
     public function rules() {
         return [
-            [['text', 'headerImage'], 'required'],
-//            [['headerImage', 'text'], 'required'],
-            [['image'], 'safe'],
-            [['image'], 'file', 'extensions'=>'jpg, png'],
+//            ['text', 'validateHeaderImage', 'skipOnEmpty' => false],
+            [['text', 'imageHeaderFile'], 'required'],
+            [['imageHeaderFile'], 'file', 'extensions'=>'jpg, png'],
             ['headerImage', 'string'],
-            ['headerImage', 'validateHeaderImage']
+            ['headerImage', 'validateHeaderImage', 'skipOnEmpty' => false],
+
         ];
     }
 
     public function validateHeaderImage($attribute, $params){
-//        if(empty()){}
+        if($this->$attribute == null && $_FILES[$this->formName()]['name']['imageHeaderFile']){
+            $this->addError('imageHeaderFile', $this->getAttributeLabel($attribute) . ' cannot be blank.');
+        }
     }
 
     public static function columnName($attributeName){
@@ -70,7 +72,8 @@ class PagesMetaForm extends Model {
     public function attributeLabels() {
         return[
             'headerImage' => 'Header Image',
-            'text' => 'Text'
+            'text' => 'Text',
+            'imageHeaderFile' => 'Header Image'
         ];
     }
 
@@ -79,7 +82,7 @@ class PagesMetaForm extends Model {
     }
 
     public function uploadHeaderImage(Pages $Page, $folder){
-        $image = UploadedFile::getInstance($this, 'image');
+        $image = UploadedFile::getInstance($this, 'imageHeaderFile');
 
         if ($image instanceof UploadedFile) {
             $basePath = Yii::getAlias('@webroot');

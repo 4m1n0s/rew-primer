@@ -2,105 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b75f98d0-ce9e-4067-9251-8431f7678f89" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/backend/global/img/logo.png" afterPath="$PROJECT_DIR$/web/backend/global/img/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.eot" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.ttf" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.woff" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.woff2" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-light.eot" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-light.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-light.ttf" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-light.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-light.woff" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-light.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-light.woff2" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-light.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb.eot" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb.ttf" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb.woff" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb.woff2" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb.woff2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/box-shadow.png" afterPath="$PROJECT_DIR$/web/images/box-shadow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/close-popup.png" afterPath="$PROJECT_DIR$/web/images/close-popup.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/close.png" afterPath="$PROJECT_DIR$/web/images/close.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/Ohad.png" afterPath="$PROJECT_DIR$/web/images/company-foto/Ohad.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-1.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-2.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-3.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-4.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-5.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-5.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-6.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-7.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-8.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto-9.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto-9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/foto.png" afterPath="$PROJECT_DIR$/web/images/company-foto/foto.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/company-foto/reuven.png" afterPath="$PROJECT_DIR$/web/images/company-foto/reuven.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/email-bg.png" afterPath="$PROJECT_DIR$/web/images/email-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/fp-next.png" afterPath="$PROJECT_DIR$/web/images/fp-next.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/fp-prev.png" afterPath="$PROJECT_DIR$/web/images/fp-prev.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step1-mob.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step1-mob.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step1.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step2-mob.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step2-mob.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step2.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step2.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step3-mob.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step3-mob.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/gif/animation1-step3.gif" afterPath="$PROJECT_DIR$/web/images/gif/animation1-step3.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/home-bg.png" afterPath="$PROJECT_DIR$/web/images/home-bg.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/informal-bg-bottom.png" afterPath="$PROJECT_DIR$/web/images/informal-bg-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/informal-bg-top.png" afterPath="$PROJECT_DIR$/web/images/informal-bg-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/logo.png" afterPath="$PROJECT_DIR$/web/images/logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/scrool-down.png" afterPath="$PROJECT_DIR$/web/images/scrool-down.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/triangle-bottom.png" afterPath="$PROJECT_DIR$/web/images/triangle-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/vertical-back.png" afterPath="$PROJECT_DIR$/web/images/vertical-back.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/images/vertical-forward.png" afterPath="$PROJECT_DIR$/web/images/vertical-forward.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/avatar/4d/27/4d27e63a74b0c990f4a9cd48dbdc9f72.jpg" afterPath="$PROJECT_DIR$/web/uploads/avatar/4d/27/4d27e63a74b0c990f4a9cd48dbdc9f72.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/channel/11/4e/114e070e60ab98a78cf20fa261089c98.jpg" afterPath="$PROJECT_DIR$/web/uploads/channel/11/4e/114e070e60ab98a78cf20fa261089c98.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/channel/38/23/3823953576bb75426f4c741726988036.jpg" afterPath="$PROJECT_DIR$/web/uploads/channel/38/23/3823953576bb75426f4c741726988036.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/channel/5c/06/5c06d6426cb3cf061d36da8eac631945.jpg" afterPath="$PROJECT_DIR$/web/uploads/channel/5c/06/5c06d6426cb3cf061d36da8eac631945.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/main/45/34/4534b68824e20459faf88945d2d353d6.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/main/45/34/4534b68824e20459faf88945d2d353d6.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/main/d8/8c/d88cdae6b00c368115046514fdd896f7.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/main/d8/8c/d88cdae6b00c368115046514fdd896f7.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/main/e9/b1/e9b140fcc597a09949eb870b7d7d6e91.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/main/e9/b1/e9b140fcc597a09949eb870b7d7d6e91.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/slider/72/79/727939fa8932612211143912619b8e06.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/slider/72/79/727939fa8932612211143912619b8e06.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/slider/dc/ed/dced922241fc04adfc57e9c491cf0204.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/slider/dc/ed/dced922241fc04adfc57e9c491cf0204.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/uploads/video/slider/e9/b1/e9b140fcc597a09949eb870b7d7d6e91.jpg" afterPath="$PROJECT_DIR$/web/uploads/video/slider/e9/b1/e9b140fcc597a09949eb870b7d7d6e91.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/BackendAsset.php" afterPath="$PROJECT_DIR$/assets/BackendAsset.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/modules.php" afterPath="$PROJECT_DIR$/config/modules.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/SiteController.php" afterPath="$PROJECT_DIR$/controllers/SiteController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/helpers/DateHelper.php" afterPath="$PROJECT_DIR$/helpers/DateHelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/migrations/m150325_075803_create_users_table.php" afterPath="$PROJECT_DIR$/migrations/m150325_075803_create_users_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/migrations/m150327_130517_create_token_table.php" afterPath="$PROJECT_DIR$/migrations/m150327_130517_create_token_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/migrations/m150419_171554_create_user_meta_table.php" afterPath="$PROJECT_DIR$/migrations/m150419_171554_create_user_meta_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/migrations/m150718_130029_base_subscriber.php" afterPath="$PROJECT_DIR$/migrations/m150718_130029_base_subscriber.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/core/components/EventManager.php" afterPath="$PROJECT_DIR$/modules/core/components/EventManager.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/core/components/Export.php" afterPath="$PROJECT_DIR$/modules/core/components/Export.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/core/helpers/FileUploaderHelper.php" afterPath="$PROJECT_DIR$/modules/core/helpers/FileUploaderHelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/core/helpers/ViewHelper.php" afterPath="$PROJECT_DIR$/modules/core/helpers/ViewHelper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/dashboard/controllers/IndexBackendController.php" afterPath="$PROJECT_DIR$/modules/dashboard/controllers/IndexBackendController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/Module.php" afterPath="$PROJECT_DIR$/modules/subscriber/Module.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/controllers/AjaxController.php" afterPath="$PROJECT_DIR$/modules/subscriber/controllers/AjaxController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/controllers/IndexBackendController.php" afterPath="$PROJECT_DIR$/modules/subscriber/controllers/IndexBackendController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/models/Subscribers.php" afterPath="$PROJECT_DIR$/modules/subscriber/models/Subscribers.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/models/SubscribersQuery.php" afterPath="$PROJECT_DIR$/modules/subscriber/models/SubscribersQuery.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/models/SubscribersSearch.php" afterPath="$PROJECT_DIR$/modules/subscriber/models/SubscribersSearch.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/views/index-backend/index.php" afterPath="$PROJECT_DIR$/modules/subscriber/views/index-backend/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/SubscribeFormAssets.php" afterPath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/SubscribeFormAssets.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/SubscribeFormWidget.php" afterPath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/SubscribeFormWidget.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/assets/js/main.js" afterPath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/assets/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/views/form.php" afterPath="$PROJECT_DIR$/modules/subscriber/widgets/subscribeform/views/form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/user/views/index-backend/profile.php" afterPath="$PROJECT_DIR$/modules/user/views/index-backend/profile.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rbac/UserGroupRule.php" afterPath="$PROJECT_DIR$/rbac/UserGroupRule.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rbac/items.php" afterPath="$PROJECT_DIR$/rbac/items.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rbac/rules.php" afterPath="$PROJECT_DIR$/rbac/rules.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layouts/backend/_elements/header.php" afterPath="$PROJECT_DIR$/views/layouts/backend/_elements/header.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layouts/backend/_elements/main_menu.php" afterPath="$PROJECT_DIR$/views/layouts/backend/_elements/main_menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layouts/main.php" afterPath="$PROJECT_DIR$/views/layouts/main.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/site/index.php" afterPath="$PROJECT_DIR$/views/site/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/main.css" afterPath="$PROJECT_DIR$/web/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.svg" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-bold.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb-light.svg" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb-light.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/fonts/dinroundweb.svg" afterPath="$PROJECT_DIR$/web/fonts/dinroundweb.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/full-page.min.js" afterPath="$PROJECT_DIR$/web/js/full-page.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery.js" afterPath="$PROJECT_DIR$/web/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jquery.mousewheel.min.js" afterPath="$PROJECT_DIR$/web/js/jquery.mousewheel.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/jsCarousel-2.0.0.js" afterPath="$PROJECT_DIR$/web/js/jsCarousel-2.0.0.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/main.js" afterPath="$PROJECT_DIR$/web/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/vendor.js" afterPath="$PROJECT_DIR$/web/js/vendor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/pages/controllers/IndexBackendController.php" afterPath="$PROJECT_DIR$/modules/pages/controllers/IndexBackendController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/pages/forms/PagesMetaForm.php" afterPath="$PROJECT_DIR$/modules/pages/forms/PagesMetaForm.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/modules/pages/views/index-backend/update.php" afterPath="$PROJECT_DIR$/modules/pages/views/index-backend/update.php" />
     </list>
     <ignored path="sense.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -124,8 +29,8 @@
       <file leaf-file-name="IndexBackendController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/pages/controllers/IndexBackendController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+            <state relative-caret-position="504">
+              <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#49#84#0#PHP" expanded="true" />
               </folding>
@@ -136,8 +41,8 @@
       <file leaf-file-name="PagesMetaForm.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/pages/forms/PagesMetaForm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="596">
+              <caret line="50" column="93" selection-start-line="50" selection-start-column="93" selection-end-line="50" selection-end-column="93" />
               <folding>
                 <element signature="e#43#78#0#PHP" expanded="true" />
               </folding>
@@ -145,20 +50,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Validator.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/Validator.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="FileValidator.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/FileValidator.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
+            <state relative-caret-position="18">
               <caret line="89" column="36" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="36" />
               <folding />
             </state>
@@ -168,7 +63,7 @@
       <file leaf-file-name="PagesMeta.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/pages/models/PagesMeta.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1303">
+            <state relative-caret-position="835">
               <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
               <folding>
                 <element signature="e#44#52#0#PHP" expanded="true" />
@@ -190,8 +85,8 @@
       <file leaf-file-name="update.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/pages/views/index-backend/update.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
+            <state relative-caret-position="259">
+              <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
               <folding>
                 <element signature="e#7#28#0#PHP" expanded="true" />
               </folding>
@@ -199,10 +94,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FileInput.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/kartik-v/yii2-widget-fileinput/FileInput.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1703">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ProfileForm.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/user/forms/ProfileForm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-205">
+            <state relative-caret-position="756">
               <caret line="45" column="81" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="81" />
               <folding />
             </state>
@@ -212,7 +117,7 @@
       <file leaf-file-name="UserMeta.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/user/models/UserMeta.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
+            <state relative-caret-position="1044">
               <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
               <folding />
             </state>
@@ -228,7 +133,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/config/db.php" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/migrations/m170303_133950_add_assets_folder.php" />
         <option value="$PROJECT_DIR$/config/params.php" />
         <option value="$PROJECT_DIR$/modules/core/components/controllers/BackController.php" />
@@ -255,6 +159,7 @@
         <option value="$PROJECT_DIR$/modules/pages/models/Pages.php" />
         <option value="$PROJECT_DIR$/modules/user/controllers/IndexBackendController.php" />
         <option value="$PROJECT_DIR$/modules/user/views/index-backend/profile.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/modules/pages/views/index-backend/update.php" />
         <option value="$PROJECT_DIR$/modules/pages/controllers/IndexBackendController.php" />
         <option value="$PROJECT_DIR$/modules/pages/forms/PagesMetaForm.php" />
@@ -562,7 +467,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../trustalio" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KarenKollins" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
@@ -646,12 +551,13 @@
       <workItem from="1489137003455" duration="18923000" />
       <workItem from="1489394612422" duration="20260000" />
       <workItem from="1489479642406" duration="21037000" />
-      <workItem from="1489564695144" duration="22313000" />
+      <workItem from="1489564695144" duration="22442000" />
+      <workItem from="1489652382845" duration="11195000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100052000" />
+    <option name="totallyTimeSpent" value="111376000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -667,7 +573,7 @@
     <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32950923" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19630338" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19885278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -702,37 +608,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/layouts/backend/_elements/main_menu.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="45" column="64" selection-start-line="45" selection-start-column="64" selection-end-line="45" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/m150718_130029_base_subscriber.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/m150419_171554_create_user_meta_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/m150325_075803_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -760,7 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6354">
           <caret line="358" column="4" selection-start-line="358" selection-start-column="4" selection-end-line="361" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -907,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -923,7 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -964,19 +836,8 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/avatar/de/9b/de9ba39a393ff5aef5b9ea988d65dd65.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/uploads/home_page/e8/1f/e81f60ac691dce6e3ae84365365570f3.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/uploads/avatar/de/9b/de9ba39a393ff5aef5b9ea988d65dd65.svg" />
+    <entry file="file://$PROJECT_DIR$/web/uploads/home_page/e8/1f/e81f60ac691dce6e3ae84365365570f3.jpg" />
     <entry file="file://$PROJECT_DIR$/modules/core/helpers/FileUploaderHelper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -989,41 +850,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
-          <folding>
-            <element signature="e#48#56#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/user/models/UserMeta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/uploads/home_page/header_image.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/pages/models/Pages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="86" column="34" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/pages/views/index-backend/update.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
-          <folding>
-            <element signature="e#7#28#0#PHP" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/user/views/index-backend/profile.php">
@@ -1036,14 +868,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/user/forms/ProfileForm.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-205">
-          <caret line="45" column="81" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="81" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/web/UploadedFile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1818">
@@ -1052,19 +876,105 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/Validator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="846">
+          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/user/forms/ProfileForm.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="45" column="81" selection-start-line="45" selection-start-column="71" selection-end-line="45" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/user/models/UserMeta.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1044">
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kartik-v/yii2-krajee-base/InputWidget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5389">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+          <folding>
+            <marker date="1487743133000" expanded="true" signature="1277:1283" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kartik-v/yii2-krajee-base/TranslationTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="e#220#228#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/pages/models/Pages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="86" column="34" selection-start-line="86" selection-start-column="23" selection-end-line="86" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kartik-v/yii2-widget-fileinput/FileInput.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1703">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/pages/views/index-backend/update.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+          <folding>
+            <element signature="e#7#28#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/pages/controllers/IndexBackendController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+        <state relative-caret-position="504">
+          <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="52" selection-end-column="0" />
           <folding>
             <element signature="e#49#84#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/FileValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="89" column="36" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/modules/pages/models/PagesMeta.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1303">
+        <state relative-caret-position="835">
           <caret line="75" column="9" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
           <folding>
             <element signature="e#44#52#0#PHP" expanded="true" />
@@ -1072,26 +982,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/FileValidator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="89" column="36" selection-start-line="89" selection-start-column="25" selection-end-line="89" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/yiisoft/yii2/validators/Validator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/pages/forms/PagesMetaForm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="596">
+          <caret line="50" column="93" selection-start-line="50" selection-start-column="93" selection-end-line="50" selection-end-column="93" />
           <folding>
             <element signature="e#43#78#0#PHP" expanded="true" />
           </folding>

@@ -44,9 +44,20 @@ class IndexBackendController extends BackController
 
         $post = Yii::$app->request->post();
 
-        if($post !== null && $pagesMetaForm->validate() && $pagesMetaForm->load($post)){
-            if($pagesMetaForm->updatePage($Page)) {
-                $this->redirect(['/pages/index-backend/index']);
+        if ($post !== null && $pagesMetaForm->load($post)) {
+
+//            echo '<pre>';
+//            print_r($_FILES[$pagesMetaForm->formName()]['name']['imageHeaderFile']);
+//            echo '</pre>';
+//            die();
+
+            if ($pagesMetaForm->validate()) {
+                if ($pagesMetaForm->updatePage($Page)) {
+                    echo '<pre>';
+                    var_dump($pagesMetaForm);
+                    die();
+//                $this->redirect(['/pages/index-backend/index']);
+                }
             }
         }
 
