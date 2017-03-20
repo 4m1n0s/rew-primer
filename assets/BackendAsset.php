@@ -44,7 +44,8 @@ class BackendAsset extends AssetBundle {
     public $js = [
         '/backend/global/plugins/jquery.min.js',
         '/backend/global/plugins/bootstrap/js/bootstrap.min.js', 
-        '/backend/global/plugins/js.cookie.min.js', 
+        '/backend/global/plugins/js.cookie.min.js',
+
         '/backend/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js', 
         '/backend/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js', 
         '/backend/global/plugins/jquery.blockui.min.js', 
