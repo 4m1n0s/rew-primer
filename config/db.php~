@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=metronic_ui',
+    'dsn' => 'mysql:host=localhost;dbname=rewardbucks',
     'username' => 'root',
-    'password' => 'root',
+    'password' => '123132',
     'charset' => 'utf8',
 ];

@@ -13,10 +13,7 @@ return [
     'subscriber' => [
         'class' => 'app\modules\subscriber\Module',
     ],
-    'pages' => [
-        'class' => 'app\modules\pages\Module',
-    ],
-    'redactor' => [
-        'class' => 'yii\redactor\RedactorModule',
-    ],
+//    'pages' => [
+//        'class' => 'app\modules\pages\Module',
+//    ],
 ];
