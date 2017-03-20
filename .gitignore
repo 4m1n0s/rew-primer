@@ -4,3 +4,5 @@
 /config/db.php
 /web/assets/
 /nbproject/private/
+/.idea
+/web/uploads
