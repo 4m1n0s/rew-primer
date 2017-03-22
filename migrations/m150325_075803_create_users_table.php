@@ -13,7 +13,7 @@ class m150325_075803_create_users_table extends Migration {
             'email' => Schema::TYPE_STRING . '(100) NOT NULL',
             'role' => 'TINYINT(1) NOT NULL',
             'password' => Schema::TYPE_STRING . '(64) NOT NULL',
-            'referral_code' => Schema::TYPE_STRING . '(12) NOT NULL',
+            'referral_code' => Schema::TYPE_STRING . '(12) NULL',
             'create_date' => 'DATETIME NOT NULL',
             'status' => 'TINYINT(1) NOT NULL'
         ]);

@@ -15,7 +15,7 @@ class ProfileForm extends Model {
     const SCENARIO_CHANGE_PERSONAL_INFO = 'scenario_change_personal_info';
     const SCENARIO_CHANGE_AVATAR = 'scenario_change_avatar';
     const SCENARIO_CHANGE_PASSWORD = 'scenario_change_password';
-    
+
     public $firstName;
     public $lastName;
     public $phone;

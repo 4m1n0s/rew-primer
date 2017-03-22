@@ -52,7 +52,7 @@ BackendAsset::register($this);
                             $this->params['breadcrumbs'] = [[
                             'label' => 'Home',
                             'url' => '/admin',
-                            'template' => '<li> {link}</li>',
+                            'template' => '<li> {link} </li>',
                             ]];
                         }
 

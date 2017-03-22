@@ -26,27 +26,20 @@ use yii\widgets\ActiveForm;
         <h3 class="form-section"><?= Yii::t('user', 'General details'); ?></h3>
         <?= $form->field($model, 'username')->textInput(['maxlength' => 60, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('username')]) ?>
         <?= $form->field($model, 'email')->textInput(['maxlength' => 100, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('email')]) ?>
-        <?= $form->field($model, 'newPassword')->passwordInput(['maxlength' => 64, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('newPassword')]) ?>
-        <?= $form->field($model, 'confirmPassword')->passwordInput(['maxlength' => 64, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('confirmPassword')]) ?>
         <?= $form->field($model, 'status')->dropDownList($statusList); ?>
         <?= $form->field($model, 'role')->dropDownList($roleList); ?>
-        <?= $form->field($model, 'note')->textarea(['autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('note')]) ?>
 
         <h3 class="form-section"><?= Yii::t('user', 'Billing details'); ?></h3>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('last_name')]) ?>
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('first_name')]) ?>
-        <?= $form->field($model, 'companyName')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('companyName')]) ?>
-        <?= $form->field($model, 'address')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('address')]) ?>
-        <?= $form->field($model, 'city')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('city')]) ?>
-        <?=
-        $form->field($model, 'state')->dropDownList($stateList, [
-            'id' => 'jsf_select_state',
-        ])->label($model->getAttributeLabel('state'));
-        ;
-        ?>
-        <?= $form->field($model, 'zip')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('zip')]) ?>
-        <?= $form->field($model, 'phone')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('phone')]) ?>
 
+        <?php
+        if ($model->isNewRecord) {
+            echo '<h3 class="form-section">' . Yii::t('user', 'Password') . '</h3>';
+            echo $form->field($model, 'newPassword')->passwordInput(['maxlength' => 64, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('newPassword')]);
+            echo $form->field($model, 'confirmPassword')->passwordInput(['maxlength' => 64, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('confirmPassword')]);
+        }
+        ?>
     </div>
     <div class="form-actions fluid">
         <div class="col-md-offset-3 col-md-9">

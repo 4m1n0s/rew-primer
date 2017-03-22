@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Users */
+/* @var $model app\modules\user\models\User */
 
 $this->title = Yii::t('user', 'Update {modelClass}: ', [
         'modelClass' => 'User',
@@ -27,9 +27,9 @@ $this->params['breadcrumbs'][] = Yii::t('user', 'Update');
         <?=
         $this->render('_form', [
             'model' => $model,
-            'roleList' => $roleList,
-            'statusList' => $statusList,
-            'stateList' => $stateList,
+            'roleList' => $model->getRoleList(),
+            'statusList' => $model->getStatusList(),
+//            'stateList' => $stateList,
         ])
         ?>
     </div>

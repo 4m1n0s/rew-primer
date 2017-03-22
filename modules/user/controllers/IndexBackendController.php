@@ -2,6 +2,8 @@
 
 namespace app\modules\user\controllers;
 
+use app\modules\user\forms\BackUsersForm;
+use app\modules\user\models\UsersSearch;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
@@ -12,6 +14,8 @@ use app\modules\user\models\User;
 use app\modules\user\forms\ProfileForm;
 use app\modules\user\models\UserMeta;
 use app\modules\core\helpers\FileUploaderHelper;
+use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class IndexBackendController
@@ -22,7 +26,13 @@ use app\modules\core\helpers\FileUploaderHelper;
 class IndexBackendController extends BackController {
 
     public function behaviors() {
-        return \yii\helpers\ArrayHelper::merge(parent::behaviors(), [
+        return ArrayHelper::merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'user-to-blacklist' => ['POST'],
+                ],
+            ],
         ]);
     }
 
@@ -86,6 +96,84 @@ class IndexBackendController extends BackController {
         return $this->render('profile', [
                     'model' => $model,
                     'user' => $user
+        ]);
+    }
+
+    public function actionIndex() {
+
+        $searchModel = new UsersSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->get());
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'statusList' => $searchModel->getStatusList(),
+            'roleList' => $searchModel->getRoleList()
+        ]);
+    }
+
+    public function actionUserToBlacklist() {
+        if (Yii::$app->request->isAjax) {
+
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            $id = Yii::$app->request->post('id');
+
+            if (null === $user = User::findOne($id)) {
+                return false;
+            }
+
+            if ($user->status != User::STATUS_BLACKLIST) {
+                $status = User::STATUS_BLACKLIST;
+            } else {
+                $status = User::STATUS_APPROVED;
+            }
+
+            $user->status = $status;
+            $user->update();
+
+            return true;
+        }
+        return false;
+    }
+
+    public function actionEdit($id) {
+
+        if (($model = BackUsersForm::findOne($id)) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        $model->scenario = BackUsersForm::EDIT_SCENARIO;
+
+        $post = Yii::$app->request->post();
+
+        if ($post != null && $model->load($post) && $model->validate()) {
+            if ($model->update()) {
+                $this->redirect('index');
+            }
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+
+    }
+
+    public function actionCreate(){
+        $model = new BackUsersForm();
+
+        $model->scenario = BackUsersForm::SIGNUP_SCENARIO;
+
+        $post = Yii::$app->request->post();
+
+        if ($post != null && $model->load($post) && $model->validate()) {
+            if ($model->save()) {
+                $this->redirect('index');
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model
         ]);
     }
 

@@ -68,11 +68,11 @@ class UsersSearch extends User {
 
 
         if (!empty($this->dateFrom)) {
-            $query->andWhere('create_date >= :dateFrom', [':dateFrom' => DateHelper::convertDateToGTM($this->dateFrom, Yii::$app->formatter->timeZone)]);
+            $query->andWhere('create_date >= :dateFrom', [':dateFrom' => DateHelper::getGTMDatetime($this->dateFrom, Yii::$app->formatter->timeZone)]);
         }
 
         if (!empty($this->dateTo)) {
-            $query->andWhere('create_date <= :dateTo', [':dateTo' => DateHelper::convertDateToGTM($this->dateTo, Yii::$app->formatter->timeZone)]);
+            $query->andWhere('create_date <= :dateTo', [':dateTo' => DateHelper::getGTMDatetime($this->dateTo, Yii::$app->formatter->timeZone)]);
         }
 
         $query->andFilterWhere(['like', 'email', $this->email])

@@ -23,6 +23,8 @@ use app\helpers\MandrillEmailHelper;
  * @property string  $create_date
  * @property string  $referral_code
  * @property integer $status
+ * @property string  $first_name
+ * @property string  $last_name
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface {
 
@@ -34,6 +36,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     const STATUS_PENDING    = 0;
     const STATUS_APPROVED   = 1;
     const STATUS_BLOCKED    = 2;
+    const STATUS_TRANSFER   = 3;
+    const STATUS_BLACKLIST  = 4;
     
     const CREATE_SCENARIO   = 'create';
     const UPDATE_SCENARIO   = 'update';
@@ -90,6 +94,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             [['status'], 'integer'],
             // role rules
             [['role'], 'integer'],
+
+            [['last_name', 'first_name'], 'string', 'max' => 255]
         ];
     }
     
@@ -367,22 +373,22 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function getAvatar() {
         return isset($this->metaData->avatar) ? $this->metaData->avatar : null;
     }
-    
-    public function getLastName() {
-        return isset($this->metaData->last_name) ? $this->metaData->last_name : null;
-    }
-    
-    public function getFirstName() {
-        return isset($this->metaData->first_name) ? $this->metaData->first_name : null;
-    }
+//
+//    public function getLastName() {
+//        return isset($this->metaData->last_name) ? $this->metaData->last_name : null;
+//    }
+//
+//    public function getFirstName() {
+//        return isset($this->metaData->first_name) ? $this->metaData->first_name : null;
+//    }
     
     public function getAbout() {
         return isset($this->metaData->about) ? $this->metaData->about : null;
     }
     
-    public function getName() {
-        return isset($this->metaData->last_name, $this->metaData->first_name) ? "{$this->metaData->last_name}  {$this->metaData->first_name}" : null;
-    }
+//    public function getName() {
+//        return isset($this->metaData->last_name, $this->metaData->first_name) ? "{$this->metaData->last_name}  {$this->metaData->first_name}" : null;
+//    }
     
     public function getPhone() {
         return isset($this->metaData->phone) ? $this->metaData->phone : null;

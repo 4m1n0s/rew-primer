@@ -12,7 +12,7 @@ class BackendAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
-//    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
+    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
     
     public $css = [
         '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all',
@@ -62,8 +62,8 @@ class BackendAsset extends AssetBundle {
         '/backend/layouts/global/scripts/quick-sidebar.min.js',
     ];
     public $depends = [
-//        'app\assets\YiiAssets',
-//        'yii\bootstrap\BootstrapAsset'
+        'app\assets\YiiAssets',
+        'yii\bootstrap\BootstrapAsset'
     ];
 }
 

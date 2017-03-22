@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\user\models\UsersSearch */
@@ -26,7 +27,7 @@ $this->registerJs("
                     });
                 });
                 
-                UserList.init();
+//                UserList.init();
              });", yii\web\View::POS_END, 'date-picker-init');
 
 $this->title = Yii::t('user/admin', 'Users');
@@ -47,7 +48,7 @@ $this->params['breadcrumbs'] = [
                 </div>
                 <div class="actions">
                     <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-                    <?= Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
+                    <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
                 </div>
                 </div>
             </div>
@@ -68,7 +69,7 @@ $this->params['breadcrumbs'] = [
                                 </div>
                             </div>
                         </div>";
-                    Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => false]);
+                    Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]);
                     ?>
 
                     <?=
@@ -100,32 +101,32 @@ $this->params['breadcrumbs'] = [
                                 ],
                             ],
                             'email:email',
-                            [
-                                'attribute' => 'create_date',
-                                'headerOptions' => [
-                                    'width' => '150',
-                                ],
-                                'filter' => app\helpers\FilterHelper::dateRange($searchModel, 'dateFrom', 'dateTo'),
-                                'value' => function($model){
-                                    return Yii::$app->formatter->asDatetime($model->create_date);;
-                                }
-                            ],
+//                            [
+//                                'attribute' => 'create_date',
+//                                'headerOptions' => [
+//                                    'width' => '150',
+//                                ],
+////                                'filter' => app\helpers\FilterHelper::dateRange($searchModel, 'dateFrom', 'dateTo'),
+//                                'value' => function($model){
+//                                    return Yii::$app->formatter->asDatetime($model->create_date);;
+//                                }
+//                            ],
                             [
                                 'attribute' => 'status',
                                 'filter' => $statusList,
                                 'headerOptions' => ['width' => '150'],
                                 'format' => 'raw',
                                 'value' => function($model) {
-                                return $model->getStatus(true);
-                            }
+                                    return $model->getStatus(true);
+                                }
                             ],
                             [
                                 'attribute' => 'role',
                                 'filter' => $roleList,
                                 'headerOptions' => ['width' => '150'],
                                 'value' => function($model) {
-                                return $model->getRole();
-                            }
+                                    return $model->getRoles();
+                                }
                             ],
                             [
                                 'attribute' => 'referral_code',
@@ -179,7 +180,7 @@ $this->params['breadcrumbs'] = [
                                         ]);
                                     },
                                     'edit' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/update', 'id' => $model->id]);
+                                        $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
 
                                         return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('user/admin', 'Edit'), $url, [
                                                 'class' => 'btn default btn-xs green',
@@ -188,26 +189,32 @@ $this->params['breadcrumbs'] = [
                                         ]);
                                     },
                                     'toBlackList' => function($url, $model){
+
+                                        $url = Url::to(['/user/index-backend/user-to-blacklist']);
                                         if($model->status != app\modules\user\models\User::STATUS_BLACKLIST){
-                                            return Html::a('<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'To Blacklist'), '#', [
+                                            return Html::a(
+                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'To Blacklist'),
+                                                Url::to(),
+                                                [
                                                     'class' => 'btn default btn-xs red',
-                                                    'id' => 'jsf_btn_backlist',
-                                                    'data-id' => $model->id,
-                                                    'title' => Yii::t('user/admin', 'To Blacklist'),
-                                                    'data-pjax' => 0
-                                            ]);
-                                        }else{
-                                            return Html::a('<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Remove From Blacklist'), ['/user/user-backend/remove-from-blacklist', 'id' => $model->id], [
-                                                    'class' => 'btn default btn-xs blue',
-                                                    'data-id' => $model->id,
-                                                    'data-method' => 'post',
-                                                    'title' => Yii::t('user/admin', 'Remove From Blacklist'),
+                                                    'onclick'=> "blacklist('$url', '$model->id')",
                                                     'data-pjax' => 1
-                                            ]);
+                                                ]
+                                            );
+                                        }else{
+                                            return Html::a(
+                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Remove From Blacklist'),
+                                                Url::to(),
+                                                [
+                                                    'class' => 'btn default btn-xs blue',
+                                                    'onclick'=> "blacklist('$url', '$model->id')",
+                                                    'data-pjax' => 1
+                                                ]
+                                            );
                                         }
                                     }
                                 ],
-                                'template' => '{toBlackList} {referrals} {edit}',
+                                'template' => '{toBlackList} {edit}',
                             ],
                         ],
                     ]);
@@ -217,7 +224,7 @@ $this->params['breadcrumbs'] = [
             </div>
         </div>
     </div>
-</div>
+
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal">
     <div class="modal-dialog" role="document">
@@ -233,3 +240,26 @@ $this->params['breadcrumbs'] = [
     </div>
 </div>
 
+<?php
+
+$token = Yii::$app->request->getCsrfToken();
+
+$script = <<< JS
+    function blacklist(url, id) {
+        $.ajax({
+            url: url,
+            type: "POST",
+            data: {
+                id: id,
+                _csrf: "$token"
+            },
+            success: function(data) {
+                if (data == true) {
+                    $.pjax.reload({container:'#invitation-grid'});                    
+                }
+            }
+        });
+        return false;
+    }
+JS;
+$this->registerJs($script, yii\web\View::POS_END);
