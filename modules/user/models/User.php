@@ -386,9 +386,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
         return isset($this->metaData->about) ? $this->metaData->about : null;
     }
     
-//    public function getName() {
-//        return isset($this->metaData->last_name, $this->metaData->first_name) ? "{$this->metaData->last_name}  {$this->metaData->first_name}" : null;
-//    }
+    public function getName() {
+        return isset($this->last_name, $this->first_name) ? "{$this->last_name}  {$this->first_name}" : $this->username;
+    }
     
     public function getPhone() {
         return isset($this->metaData->phone) ? $this->metaData->phone : null;

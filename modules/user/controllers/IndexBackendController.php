@@ -44,8 +44,8 @@ class IndexBackendController extends BackController {
 
         $model = new ProfileForm([
             'phone' => $user->phone,
-            'lastName' => $user->lastName,
-            'firstName' => $user->firstName,
+            'lastName' => $user->last_name,
+            'firstName' => $user->first_name,
             'about' => $user->about,
             'interests' => $user->interests,
         ]);
@@ -68,8 +68,11 @@ class IndexBackendController extends BackController {
                         break;
                     case ProfileForm::SCENARIO_CHANGE_PERSONAL_INFO:
                         UserMeta::updateUserMeta($user->id, 'phone', $model->phone);
-                        UserMeta::updateUserMeta($user->id, 'last_name', $model->lastName);
-                        UserMeta::updateUserMeta($user->id, 'first_name', $model->firstName);
+                        $user->last_name = $model->lastName;
+                        $user->first_name = $model->firstName;
+                        $user->update();
+//                        UserMeta::updateUserMeta($user->id, 'last_name', $model->lastName);
+//                        UserMeta::updateUserMeta($user->id, 'first_name', $model->firstName);
                         UserMeta::updateUserMeta($user->id, 'about', $model->about);
                         UserMeta::updateUserMeta($user->id, 'interests', $model->interests);
                         break;
