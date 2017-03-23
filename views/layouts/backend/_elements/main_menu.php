@@ -36,15 +36,21 @@
                         ],
                     ],
                     
+//                    [
+//                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Subscribers') . '</span>',
+//                        'url' => ['/subscriber/index-backend/index'],
+//                    ],
+
                     [
-                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Subscribers') . '</span>',
-                        'url' => ['/subscriber/index-backend/index'],
+                        'label' => '<i class="fa fa-users"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span>',
+                        'url' => ['/user/index-backend/index'],
                     ],
 
                     [
-                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span>',
-                        'url' => ['/user/index-backend/index'],
+                        'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span>',
+                        'url' => ['/settings/index-backend/index'],
                     ],
+
                 ]
                 ]);
         ?>

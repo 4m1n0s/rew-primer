@@ -4,6 +4,7 @@ namespace app\modules\user\controllers\account;
 
 use Yii;
 use yii\base\Action;
+use yii\helpers\Url;
 
 /**
  * Class LogOutAction
@@ -20,7 +21,7 @@ class LogoutAction extends Action {
             return;
         }
         
-        return $this->controller->redirect(\yii\helpers\Url::to(Yii::$app->getModule('user')->logoutSuccess));
+        return $this->controller->redirect(Url::to([Yii::$app->getModule('user')->logoutSuccess]));
     }
 
 }

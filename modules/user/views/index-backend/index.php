@@ -193,9 +193,10 @@ $this->params['breadcrumbs'] = [
                                         $url = Url::to(['/user/index-backend/user-to-blacklist']);
                                         if($model->status != app\modules\user\models\User::STATUS_BLACKLIST){
                                             return Html::a(
-                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'To Blacklist'),
+                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Delete'),
                                                 Url::to(),
                                                 [
+                                                    'title' => 'Move to black list',
                                                     'class' => 'btn default btn-xs red',
                                                     'onclick'=> "blacklist('$url', '$model->id')",
                                                     'data-pjax' => 1
@@ -203,9 +204,10 @@ $this->params['breadcrumbs'] = [
                                             );
                                         }else{
                                             return Html::a(
-                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Remove From Blacklist'),
+                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Restore'),
                                                 Url::to(),
                                                 [
+                                                    'title' => 'Activate user',
                                                     'class' => 'btn default btn-xs blue',
                                                     'onclick'=> "blacklist('$url', '$model->id')",
                                                     'data-pjax' => 1

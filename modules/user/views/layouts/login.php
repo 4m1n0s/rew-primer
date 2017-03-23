@@ -27,8 +27,8 @@ BackendAsset::register($this);
         
         <!-- BEGIN LOGO -->
         <div class="logo">
-            <a href="index.html">
-                <img src="/backend/global/img/logo.png" alt="" /> 
+            <a href="#">
+                <h1>RewardBucks</h1>
             </a>
         </div>
         <!-- END LOGO -->
@@ -38,7 +38,7 @@ BackendAsset::register($this);
         </div>
 
         <div class="copyright">
-            <?= date('Y'); ?> &copy; <?= Yii::$app->name ?>
+            <?= date('Y'); ?> &copy; <?= 'RewardBucks' ?>
         </div>
 
         <?php $this->endBody() ?>
