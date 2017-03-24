@@ -31,7 +31,6 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'footer_scripts')->textarea(['autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('footer_scripts')]) ?>
         <?= $form->field($model, 'mandrill_api_key')->textInput(['maxlength' => 100, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('mandrill_api_key')]) ?>
         <?= $form->field($model, 'invite_only_signup', [
-            'template' => "<div class=\"form-group\">{label}<div class=\"col-md-4\">{input}<span>{hint}<span></div></div>",
 
         ])->checkbox([
             'id' => 'checkbox_invite',
@@ -54,26 +53,6 @@ use yii\widgets\ActiveForm;
 <?php
 
 $script = <<<JS
-    // $('#_label_checkbox_invite').on('click', function() {
-    //     console.log($(this));
-       
-        // var ccexists = false;
-        // $('#member-options input:checked').each(function() {
-        //     if ($(this).attr('value') == 'CC') {
-        //         ccexists = true;
-        //     }
-        // });
-        // if (ccexists == true) {
-        //     $('#otherfieldlbl').show();
-        //     $('#otherfield').show();
-        // } else {
-        //     $('#otherfieldlbl').hide();
-        //     $('#otherfield').hide();
-        // };
-    // });
-    $("#uniform-checkbox_invite>span").bind('cssClassChanged', function(){ 
-        console.log($(this));
-    });
     $('#checkbox_invite').on('change', function() {
         if($(this).is(':checked')){
             $('#label_checkbox').text('On');

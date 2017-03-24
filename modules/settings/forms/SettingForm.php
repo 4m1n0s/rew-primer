@@ -26,10 +26,10 @@ class SettingForm extends Model
     public function attributeLabels() {
         return[
             'email'                 => Yii::t('app', 'Email'),
-            'site_key'              => Yii::t('app', 'Site Key'),
-            'secret_key'            => Yii::t('app', 'Secret Key'),
-            'header_scripts'        => Yii::t('app', 'Header'),
-            'footer_scripts'        => Yii::t('app', 'Footer'),
+            'site_key'              => Yii::t('app', 'reCaptcha Site Key'),
+            'secret_key'            => Yii::t('app', 'reCaptcha Secret Key'),
+            'header_scripts'        => Yii::t('app', 'Header Scripts'),
+            'footer_scripts'        => Yii::t('app', 'Footer Scripts'),
             'mandrill_api_key'      => Yii::t('app', 'Mandrill API Key'),
             'invite_only_signup'    => Yii::t('app', 'Invite Only Signup'),
         ];
