@@ -9,7 +9,7 @@ use yii\helpers\Html;
         <div class="page-logo">
             <a href="/">
 <!--                <img src="/backend/global/img/logo.png" alt="logo" class="logo-default" style="height: 25px" /> -->
-                <h4>Home</h4>
+                <h4><?= Yii::$app->name ?></h4>
             </a>
             <div class="menu-toggler sidebar-toggler"> </div>
         </div>
