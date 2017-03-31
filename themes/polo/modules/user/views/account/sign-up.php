@@ -42,7 +42,8 @@ DatePickerAsset::register($this);
                         'enctype' => 'multipart/form-data'
                     ],
                     'fieldConfig' => [
-                        'template' => '<div class="col-md-6"><label class="sr-only">{label}</label>{input}{error}</div>',
+                        'template' => '<div class="col-md-12"><label class="sr-only">{label}</label>{input}{error}</div>',
+                        'options' => ['class' => 'col-md-6']
                     ],
 //                    'enableClientValidation' => true,
 //                    'enableClientScript' => true,
@@ -53,7 +54,7 @@ DatePickerAsset::register($this);
                     <?=
                     $form->field($model, 'first_name')->textInput([
                         'placeholder' => Yii::t('app', 'First Name'),
-                        'class' => 'form-control input-lg'
+                        'class' => ' form-control input-lg'
                     ]);
                     ?>
                     <?=
@@ -80,8 +81,9 @@ DatePickerAsset::register($this);
                     ?>
 
                 </div>
+                <div class="row">
 
-                    <?php
+                <?php
                     echo $form->field($model, 'password')->passwordInput([
                         'placeholder' => Yii::t('app', 'Password'),
                         'type' => 'password',
@@ -96,12 +98,13 @@ DatePickerAsset::register($this);
                     ]);
                     ?>
 
-
+                </div>
+                <div class="row">
 
                     <?=
                     $form->field($model, 'birthday', [
                         'template' => '
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-12 form-group">
                             {input}
                         </div>'
                     ])->textInput([
@@ -117,6 +120,7 @@ DatePickerAsset::register($this);
                         'class' => 'form-control input-lg'
                     ]);
                     ?>
+                    </div>
                 <div class="row">
 
                     <div class="col-md-12 form-group">
