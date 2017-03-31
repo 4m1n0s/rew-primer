@@ -2,8 +2,10 @@
 
 namespace app\modules\user\listeners;
 
+use app\modules\user\models\QueueMail;
 use Yii;
 use \yii\helpers\Url;
+use app\modules\user\events\UserRegistrationEvent;
 
 /**
  * Class UserListener
@@ -84,8 +86,13 @@ class UserListener {
      * Success registration event handler
      * @param \app\modules\user\events\UserRegistrationEvent $event Description
      */
-    public static function onSuccessRegistration(\app\modules\user\events\UserRegistrationEvent $event) {
-        
+    public static function onSuccessRegistration(UserRegistrationEvent $event) {
+        $model = new QueueMail();
+        $model->mail_id = QueueMail::USER_SIGNS_UP_WITH_GENERAL_SIGN_UP_FORM;
+        $user_id = $event->getUser()->id;
+        $model->user_id = $user_id;
+        $model->status = QueueMail::STATUS_WAIT;
+        $model->save();
     }
 
     /**

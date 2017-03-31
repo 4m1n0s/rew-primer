@@ -12,7 +12,23 @@ $config = [
             'cookieValidationKey' => '9s0UIbx1oPmzvYl34wuOQj385fjIDOGN',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\DummyCache',
+        ],
+        'view' => [
+            'theme' => [
+                'basePath' => '@app/themes/polo',
+                'baseUrl' => '@web/themes/polo',
+                'pathMap' => [
+                    '@app/views' => '@app/themes/polo',
+                    '@app/modules' => '@app/themes/polo/modules',
+                ],
+            ],
+        ],
+        'reCaptcha' => [
+            'name' => 'reCaptcha',
+            'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
+            'siteKey' => $params['reCaptchaSiteKey'],
+            'secret' => $params['reCaptchaSecretKey'],
         ],
         'user' => [
             'identityClass' => 'app\modules\user\models\User',
@@ -57,20 +73,25 @@ $config = [
             'class' => 'app\modules\core\components\Export',
         ],
         'assetManager' => [
+            'appendTimestamp' => true,
+            'linkAssets' => true,
+            'class' => 'yii\web\AssetManager',
             'bundles' => [
                 'yii\web\JqueryAsset' => [
-                    'js'=>[]
-                ],
-                'yii\web\YiiAsset' => [
-                    'js'=>[]
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                    'js'=>[]
+                    'js' => [
+                        YII_ENV_DEV ? 'jquery.js' : 'jquery.min.js'
+                    ]
                 ],
                 'yii\bootstrap\BootstrapAsset' => [
-                    'css' => [],
+                    'css' => [
+                        YII_ENV_DEV ? 'css/bootstrap.css' : 'css/bootstrap.min.css',
+                    ]
                 ],
-
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js' => [
+                        YII_ENV_DEV ? 'js/bootstrap.js' : 'js/bootstrap.min.js',
+                    ]
+                ]
             ],
         ],
     ],

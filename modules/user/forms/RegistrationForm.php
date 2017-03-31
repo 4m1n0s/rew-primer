@@ -7,6 +7,7 @@ use yii\base\Model;
 use app\modules\user\models\User;
 use app\modules\user\helpers\Password;
 use app\modules\invitation\models\Invitation;
+use yii\helpers\ArrayHelper;
 
 /**
  * RegisterForm is the model behind the register form.
@@ -23,14 +24,21 @@ class RegistrationForm extends Model {
     public $confirmPassword;
     public $invitationCode;
     public $referralCode;
+
+    public $first_name;
+    public $last_name;
+    public $birthday;
+    public $gender;
+    public $reCaptcha;
+
     protected $referralUser;
 
     public function scenarios() {
-        return [
-            'signup' => ['username', 'email', 'password', 'confirmPassword', 'invitationCode', 'referralCode'],
-            'inviteOnly' => ['invitationCode'],
-            'invitationRequest' => ['email']
-        ];
+        return ArrayHelper::merge([
+            static::SIGNUP_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'invitationCode', 'referralCode', 'first_name', 'last_name', 'reCaptcha'],
+            static::INVITATION_SCENARIO => ['invitationCode'],
+            static::INVITATION_REQUEST_SCENARIO => ['email']
+        ], parent::scenarios());
     }
 
     /**
@@ -38,6 +46,9 @@ class RegistrationForm extends Model {
      */
     public function rules() {
         return [
+
+            [['gender', 'first_name', 'last_name'], 'required'],
+
             // username rules
             ['username', 'required'],
             ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
@@ -58,15 +69,16 @@ class RegistrationForm extends Model {
             ['confirmPassword', 'string', 'min' => 6],
             ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
             //invite code rules
-            ['invitationCode', 'required', 'when' => function($model) {
-            if ((null !== $data = \app\modules\setting\helpers\SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-                return true;
-            }
-            return false;
-        }],
+//            ['invitationCode', 'required', 'when' => function($model) {
+//                if ((null !== $data = \app\modules\setting\helpers\SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
+//                    return true;
+//                }
+//                return false;
+//            }],
             ['invitationCode', 'validateInvitationCode'],
             //referral code rules
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
         ];
     }
 
@@ -105,6 +117,10 @@ class RegistrationForm extends Model {
                 }
             }
         }
+    }
+
+    public function getGender () {
+        return User::getGender();
     }
 
 }

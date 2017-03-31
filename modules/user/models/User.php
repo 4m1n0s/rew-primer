@@ -47,6 +47,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     protected $metaData;
     public $newPassword;
 
+    const MALE = 1;
+    const FEMALE = 0;
+
+
     /** @inheritdoc */
     public static function tableName() {
         return '{{%users}}';
@@ -68,6 +72,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function scenarios() {
         return\yii\helpers\ArrayHelper::merge([
                 static::LOGIN_SCENARIO     => ['username', 'email'],
+                static::REGISTER_SCENARIO  => ['username', 'email', 'last_name', 'first_name', 'role', 'password', 'create_date', 'status', 'gender', 'birthday']
             ], parent::scenarios());
     }
 
@@ -95,7 +100,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             // role rules
             [['role'], 'integer'],
 
-            [['last_name', 'first_name'], 'string', 'max' => 255]
+            [['last_name', 'first_name'], 'string', 'max' => 255],
+            [['birthday', 'gender'], 'safe']
         ];
     }
     
@@ -128,6 +134,16 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
         }
 
         return parent::beforeSave($insert);
+    }
+
+    public function getQueueMail()
+    {
+        return $this->hasOne(QueueMail::className(), ['user_id' => 'id']);
+    }
+
+    public function getToken()
+    {
+        return $this->hasOne(Token::className(), ['user_id' => 'id']);
     }
 
     /** @inheritdoc */
@@ -373,14 +389,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function getAvatar() {
         return isset($this->metaData->avatar) ? $this->metaData->avatar : null;
     }
-//
-//    public function getLastName() {
-//        return isset($this->metaData->last_name) ? $this->metaData->last_name : null;
-//    }
-//
-//    public function getFirstName() {
-//        return isset($this->metaData->first_name) ? $this->metaData->first_name : null;
-//    }
     
     public function getAbout() {
         return isset($this->metaData->about) ? $this->metaData->about : null;
@@ -396,6 +404,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     
     public function getInterests() {
         return isset($this->metaData->interests) ? $this->metaData->interests : null;
+    }
+
+    public static function getGender(){
+        return [
+            static::MALE => Yii::t('app', 'Male'),
+            static::FEMALE => Yii::t('app', 'Female')
+        ];
     }
     
 }

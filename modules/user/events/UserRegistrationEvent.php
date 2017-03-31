@@ -3,6 +3,9 @@
 namespace app\modules\user\events;
 
 use yii\base\Event;
+use app\modules\user\forms\RegistrationForm;
+use app\modules\user\models\User;
+use app\modules\user\models\Token;
 
 /**
  * Class UserRegistrationEvent
@@ -26,7 +29,7 @@ class UserRegistrationEvent extends Event {
      */
     protected $token;
 
-    public function __construct(\app\modules\user\forms\RegistrationForm $form, \app\modules\user\models\User $user, \app\modules\user\models\Token $token = null) {
+    public function __construct(RegistrationForm $form, User $user, Token $token = null) {
         $this->form = $form;
         $this->user = $user;
         $this->token = $token;

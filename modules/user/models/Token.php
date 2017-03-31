@@ -12,6 +12,9 @@ use app\modules\user\models\User;
  * @property string $code
  * @property integer $create_date
  * @property integer $type
+ * @property string $ip
+ * @property integer $status
+ * @property datetime $expire
  *
  * @property User $user
  */
@@ -45,7 +48,7 @@ class Token extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['user_id', 'code', 'create_date', 'type'], 'required'],
+            [['user_id', 'code', 'create_date', 'type', 'expire', 'status', 'ip'], 'required'],
             [['user_id', 'type'], 'integer'],
             [['code'], 'string', 'max' => 32],
             [['user_id', 'code', 'type'], 'unique', 'targetAttribute' => ['user_id', 'code', 'type'], 'message' => 'The combination of User ID, Code and Type has already been taken.']

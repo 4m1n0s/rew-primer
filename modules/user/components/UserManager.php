@@ -15,6 +15,7 @@ use \app\modules\user\models\Token;
 use \app\modules\setting\helpers\SettingHelper;
 use \app\modules\user\models\Referral;
 use \app\modules\user\events\UserActivateEvent;
+use yii\base\Exception;
 
 /**
  * Class UserManager
@@ -48,17 +49,17 @@ class UserManager extends \yii\base\Component {
             $data = $form->getAttributes();
             $user->setAttributes($data);
             $user->role = User::ROLE_USER;
-            if ((null !== $data = SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-                $user->status = User::STATUS_APPROVED;
-            } else {
+//            if ((null !== $data = SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
+//                $user->status = User::STATUS_APPROVED;
+//            } else {
                 $user->status = User::STATUS_PENDING;
-            }
+//            }
             if ($user->save() && ($token = $this->tokenStorage->createAccountActivationToken($user)) !== false) {
-                if (!empty($form->referralCode)) {
-                    if (null !== $referral = User::getUserByReferralCode($form->referralCode)) {
-                        Referral::linkReferral($referral->id, $user->id);
-                    }
-                }
+//                if (!empty($form->referralCode)) {
+//                    if (null !== $referral = User::getUserByReferralCode($form->referralCode)) {
+//                        Referral::linkReferral($referral->id, $user->id);
+//                    }
+//                }
                 Yii::$app->eventManager->fire(
                         UserEvents::SUCCESS_REGISTRATION, new UserRegistrationEvent($form, $user, $token)
                 );

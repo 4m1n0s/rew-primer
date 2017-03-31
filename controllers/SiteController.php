@@ -6,8 +6,9 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\modules\core\components\controllers\FrontController;
 
-class SiteController extends Controller {
+class SiteController extends FrontController {
 
     public function behaviors() {
         return [
@@ -43,9 +44,14 @@ class SiteController extends Controller {
         ];
     }
 
-    public function actionIndex() {
-        
+    public function actionIndex()
+    {
         return $this->render('index');
+    }
+
+    public function actionContactUs()
+    {
+        return $this->render('contact-us');
     }
 
 }

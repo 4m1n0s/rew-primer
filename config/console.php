@@ -25,6 +25,13 @@ return [
                 ],
             ],
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => require(__DIR__ . '/routes.php'),
+            'baseUrl' => '/',
+            'hostInfo' => $params['baseUrl']
+        ],
         'db' => $db,
     ],
     'params' => $params,

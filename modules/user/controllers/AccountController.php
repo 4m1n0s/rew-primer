@@ -6,6 +6,7 @@ use app\modules\core\components\controllers\FrontController;
 use app\modules\user\controllers\account\LoginAction;
 use app\modules\user\controllers\account\LogoutAction;
 use yii\filters\AccessControl;
+use app\modules\user\controllers\account\RegisterAction;
 
 class AccountController extends FrontController {
 
@@ -33,6 +34,9 @@ class AccountController extends FrontController {
             ],
             'logout' => [
                 'class' => LogoutAction::className(),
+            ],
+            'sign-up' => [
+                'class' => RegisterAction::className(),
             ]
         ];
     }
