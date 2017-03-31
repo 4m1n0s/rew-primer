@@ -5,9 +5,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="footer-logo float-left">
-                        <img alt="" src="images/logo-sm-dark.png">
-                    </div>
+<!--                    <div class="footer-logo float-left">-->
+<!--                        <img alt="" src="images/logo-sm-dark.png">-->
+<!--                    </div>-->
                     <p style="margin-top: 12px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci. Pellentesque ipsum erat, facilisis ut venenatis eu, sodales vel dolor.
                     </p>
 
