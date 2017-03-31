@@ -3,14 +3,7 @@
     <div class="container">
         <div class="page-title col-md-8">
             <h1>Contact Us</h1>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span> </div>
-        <div class="breadcrumb col-md-4">
-            <ul>
-                <li><a href="#"><i class="fa fa-home"></i></a> </li>
-                <li><a href="#">Home</a> </li>
-                <li><a href="#">Pages</a> </li>
-                <li class="active"><a href="#">Contact Us</a> </li>
-            </ul>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
         </div>
     </div>
 </section>
@@ -55,18 +48,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <address>
-                            <strong>Polo, Inc.</strong><br>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
+<!--                            <strong>Polo, Inc.</strong><br>-->
+<!--                            795 Folsom Ave, Suite 600<br>-->
+<!--                            San Francisco, CA 94107<br>-->
+<!--                            <abbr title="Phone">P:</abbr> (123) 456-7890-->
                         </address>
                     </div>
                     <div class="col-md-6">
                         <address>
-                            <strong>Polo Office</strong><br>
-                            795 Folsom Ave, Suite 600<br>
-                            San Francisco, CA 94107<br>
-                            <abbr title="Phone">P:</abbr> (123) 456-7890
+<!--                            <strong>Polo Office</strong><br>-->
+<!--                            795 Folsom Ave, Suite 600<br>-->
+<!--                            San Francisco, CA 94107<br>-->
+<!--                            <abbr title="Phone">P:</abbr> (123) 456-7890-->
                         </address>
                     </div>
                 </div>

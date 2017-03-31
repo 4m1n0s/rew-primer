@@ -37,6 +37,7 @@ use yii\widgets\Menu;
                             'items' => [
                                 ['label' => '<i class="fa fa-home"></i>', 'url' => ['/site/index']],
                                 ['label' => Yii::t('app', 'Contact Us') , 'url' => ['/site/contact-us']],
+                                ['label' => Yii::t('app', 'FAQ') , 'url' => ['/site/faq']],
                                 ['label' => Yii::t('app', 'Sign Up') , 'url' => ['/user/account/sign-up']],
                             ],
                         ]);

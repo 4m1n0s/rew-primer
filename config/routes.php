@@ -9,5 +9,7 @@ return [
     'dashboard' => 'dashboard/index-backend/index',
 
     'sign-up' => 'user/account/sign-up',
+    'contact-us' => 'site/contact-us',
+    'faq' => 'site/faq',
     '/' => 'site/index'
 ];

@@ -21,15 +21,15 @@
                     <div class="widget clearfix widget-contact-us" style="background-image: url('images/world-map.png'); background-position: 50% 55px; background-repeat: no-repeat">
                         <h4 class="widget-title">Contact us</h4>
                         <ul class="list-large list-icons">
-                            <li><i class="fa fa-map-marker"></i>
-                                <strong>Address:</strong> 795 Folsom Ave, Suite 600
-                                <br>San Francisco, CA 94107</li>
-                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890 </li>
-                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">first.last@example.com</a>
-                            </li>
-                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>
-                                <br>Saturday, Sunday: <strong>Closed</strong>
-                            </li>
+<!--                            <li><i class="fa fa-map-marker"></i>-->
+<!--                                <strong>Address:</strong> 795 Folsom Ave, Suite 600-->
+<!--                                <br>San Francisco, CA 94107</li>-->
+<!--                            <li><i class="fa fa-phone"></i><strong>Phone:</strong> (123) 456-7890 </li>-->
+<!--                            <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:first.last@example.com">first.last@example.com</a>-->
+<!--                            </li>-->
+<!--                            <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 22:00</strong>-->
+<!--                                <br>Saturday, Sunday: <strong>Closed</strong>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>

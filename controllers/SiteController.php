@@ -54,4 +54,9 @@ class SiteController extends FrontController {
         return $this->render('contact-us');
     }
 
+    public function actionFaq()
+    {
+        return $this->render('faq');
+    }
+
 }
