@@ -1,72 +1,409 @@
+<?php
+
+    $url = '/images/portfolio/';
+
+?>
+
 <!-- PAGE TITLE -->
-<section id="page-title">
+<section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url(images/parallax/page-title-parallax.jpg);">
     <div class="container">
         <div class="page-title col-md-8">
-            <h1>User Register</h1>
-            <span>User register page</span>
+            <h1>Portfolio</h1>
+            <span>Portfolio Columns - One columns version</span>
         </div>
     </div>
 </section>
 <!-- END: PAGE TITLE -->
+
+
 <!-- SECTION -->
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 center no-padding">
-                <div class="col-md-12">
-                    <h3>Register New Account</h3>
-                    <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p></div>
+    <div class="container portfolio">
 
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">First Name</label>
-                    <input type="text" class="form-control input-lg" placeholder="First Name" value="">
-                </div><div class="col-md-6 form-group">
-                    <label class="sr-only">Last Name</label>
-                    <input type="text" class="form-control input-lg" placeholder="Last Name" value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Username</label>
-                    <input type="text" class="form-control input-lg" placeholder="Username" value="">
-                </div><div class="col-md-6 form-group">
-                    <label class="sr-only">Password</label>
-                    <input type="password" class="form-control input-lg" placeholder="Password" value="">
+        <!--Portfolio Filter-->
+        <div class="filter-active-title">Show All</div>
+        <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
+            <li class="ptf-active" data-filter="*">Show All</li>
+            <li data-filter=".artwork">Artwork</li>
+            <li data-filter=".banner">Banner</li>
+            <li data-filter=".beauty">Beauty</li>
+            <li data-filter=".marketing">Marketing</li>
+            <li data-filter=".design">Design</li>
+        </ul>
+        <!-- END: Portfolio Filter -->
 
+        <!-- Portfolio Items -->
+        <div id="isotope" class="isotope portfolio-items" data-isotope-col="1" data-isotope-item=".portfolio-item">
+            <div class="portfolio-item design">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>1.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
                 </div>
-
-                <div class="col-md-12 form-group">
-                    <label class="sr-only">Address</label>
-                    <input type="text" class="form-control input-lg" placeholder="Address" value="">
+                <div class="portfolio-description">
+                    <h4 class="title">Fast Skateboard</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
                 </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Apartment, suite, unit etc.</label>
-                    <input type="text" class="form-control input-lg" placeholder="Apartment, suite, unit etc." value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Town / City</label>
-                    <input type="text" class="form-control input-lg" placeholder="Town / City" value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">State / County</label>
-                    <input type="text" class="form-control input-lg" placeholder="State / County" value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Postcode / Zip</label>
-                    <input type="text" class="form-control input-lg" placeholder="Postcode / Zip" value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Email</label>
-                    <input type="text" class="form-control input-lg" placeholder="Email" value="">
-                </div>
-                <div class="col-md-6 form-group">
-                    <label class="sr-only">Phone</label>
-                    <input type="text" class="form-control input-lg" placeholder="Phone" value="">
-                </div><div class="col-md-12 form-group">
-                    <button type="button" class="btn btn-primary">Register New Account </button><button class="btn btn-danger m-l-10" type="button">Cancel</button>
-
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
                 </div>
 
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design beauty">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>2.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Working hard</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design beauty">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>3.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">The feather man</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>4.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">The long line</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item banner beauty">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>5.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Backwards</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>6.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Disappointed horse</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>7.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Wire's</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design marketing">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>8.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Forcing</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design marketing banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>9.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">No words</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design marketing banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>10.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="portfolio-description">
+                    <h4 class="title">Baloon</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>11.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Hidden girl</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>12.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Yellow box</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+
+
+            <div class="portfolio-item design marketing banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>13.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Traveling</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork banner">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>14.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Free bird</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
+            </div>
+
+            <div class="portfolio-item design artwork">
+                <div class="portfolio-image effect social-links">
+                    <img src="<?= $url ?>15.jpg" alt="">
+                    <div class="image-box-content">
+                        <p>
+                            <a href="<?= $url ?>1.jpg" data-lightbox-type="image" title="Your image title here!"><i class="fa fa-expand"></i></a>
+                            <a href="portfolio-page-basic.html"><i class="fa fa-link"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="portfolio-description">
+                    <h4 class="title">Kameleon</h4>
+                    <p><i class="fa fa-tag"></i>Design / Artwork</p>
+                </div>
+                <div class="portfolio-date">
+                    <p class="small"><i class="fa fa-calendar-o"></i>April 26, 2015</p>
+                </div>
+                <div class="portfolio-details">
+                    <p>Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam, non ornare orci ipsum dolor sit amet, consectetur adipiscing elit. Morbi sagittis, sem quis lacinia faucibus, orci ipsum gravida tortor, vel interdum mi sapien ut justo. Nulla varius consequat magna, id molestie ipsum volutpat quis. Suspendisse consectetur fringilla luctus. Fusce id mi diam.</p>
+                    <br />
+                    <a href="#" class="button color rounded button-3d effect icon-top"><span><i class="fa fa-external-link"></i>More details</span></a>
+                </div>
             </div>
 
         </div>
+        <!-- END: Portfolio Items -->
+
+
     </div>
+
+    <hr class="space">
+
 </section>
