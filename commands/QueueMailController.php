@@ -37,13 +37,13 @@ class QueueMailController extends Controller {
                 $view = 'invitation_signup_success';
                 $subject = 'Activate account';
 //                $this->sendEmail($view, $mail_params->user->email, $params, $subject);
-                if($this->sendEmail($view, $mail_params->user->email, $params, $subject)){
-                    $model = QueueMail::findOne($mail_params->id);
-                    $model->status = QueueMail::STATUS_SUCCESS;
-                    $model->update();
-                    echo 'success';
-                }
-                $modelMail = new \Mandrill(Yii::$app->params['a446d1edead7f850d2dbc5331fcdf6bf-us15']);
+//                if($this->sendEmail($view, $mail_params->user->email, $params, $subject)){
+//                    $model = QueueMail::findOne($mail_params->id);
+//                    $model->status = QueueMail::STATUS_SUCCESS;
+//                    $model->update();
+//                    echo 'success';
+//                }
+                $this->sendEmail($view, $mail_params->user, $params, $subject);
 //                $mail = $this->render('@app/mail/')
                 break;
             case QueueMail::USER_FOLLOWS_CONFIRMATION_LINK_AND_CONFIRMS_HIS_EMAIL :
@@ -62,15 +62,44 @@ class QueueMailController extends Controller {
                 break;
         }
     }
-
-    public function sendEmail($name_email, $send_to, $params, $subject)
-    {
-        $mail = Yii::$app->mailer
-            ->compose($name_email, $params)
-            ->setTo($send_to)
-            ->setSubject($subject)
-            ->send();
-        return $mail;
+    public function sendEmail($name_email, $user_to, $params, $subject) {
+        $modelMail = new \Mandrill(Yii::$app->params['mandrillApiKey']);
+        $message = [
+            'subject' => $subject,
+            'from_email' => Yii::$app->params['adminEmail'],
+            'to' => [['email' => 'rudslawa@yandex.ua', 'name' => $user_to->username]],
+            'merge_vars' => [[
+                'rcpt' => 'rudslawa@yandex.ua',
+                'vars' => [
+//                    array(
+//                        'name' => 'FIRSTNAME',
+//                        'content' => 'Recipient 1 first name'),
+//                    array(
+//                        'name' => 'LASTNAME',
+//                        'content' => 'Last name')
+                ]
+            ]],
+        ];
+        $template_name = 'main_template';
+        $template_content = [
+//            [
+//                'name' => 'main',
+//                'content' => 'Hi, thanks for signing up.'
+//            ]
+        ];
+        $response = $modelMail->messages->sendTemplate($template_name, $template_content, $message);
+        print_r($response);
+        return true;
     }
+//
+//    public function sendEmail($name_email, $send_to, $params, $subject)
+//    {
+//        $mail = Yii::$app->mailer
+//            ->compose($name_email, $params)
+//            ->setTo($send_to)
+//            ->setSubject($subject)
+//            ->send();
+//        return $mail;
+//    }
 
 }
