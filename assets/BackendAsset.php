@@ -12,13 +12,10 @@ class BackendAsset extends AssetBundle {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
-    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
-    
     public $css = [
         '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all',
         '/backend/global/plugins/font-awesome/css/font-awesome.min.css',
         '/backend/global/plugins/simple-line-icons/simple-line-icons.min.css',
-        '/backend/global/plugins/bootstrap/css/bootstrap.min.css',
         '/backend/global/plugins/uniform/css/uniform.default.css',
         '/backend/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css',
         
@@ -42,8 +39,6 @@ class BackendAsset extends AssetBundle {
     
             
     public $js = [
-        '/backend/global/plugins/jquery.min.js',
-        '/backend/global/plugins/bootstrap/js/bootstrap.min.js', 
         '/backend/global/plugins/js.cookie.min.js',
 
         '/backend/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js', 
@@ -62,8 +57,9 @@ class BackendAsset extends AssetBundle {
         '/backend/layouts/global/scripts/quick-sidebar.min.js',
     ];
     public $depends = [
-        'app\assets\YiiAssets',
-        'yii\bootstrap\BootstrapAsset'
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+        'yii\jui\JuiAsset',
     ];
 }
 
