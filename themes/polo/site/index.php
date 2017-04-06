@@ -54,7 +54,7 @@
 <section>
     <div class="container">
         <div class="text-left">
-            <h2>Join RewardBucks - Make Money Now.</h2>
+            <h2>Join RewardBucks - Make Points Now.</h2>
         </div>
         <br>
         <div class="row">
@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a class="button red-dark button-3d effect fill" href="/sign-up"><span>Sign up & get money today</span></a>
+            <a class="button red-dark button-3d effect fill" href="/sign-up"><span>Sign up & get points today</span></a>
         </div>
     </div>
 </section>
