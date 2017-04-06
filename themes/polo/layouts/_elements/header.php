@@ -3,14 +3,14 @@
 use yii\helpers\Url;
 use yii\widgets\Menu;
 ?>
-<header id="header" class="">
+<header id="header" class="header-light">
     <div id="header-wrap">
         <div class="container">
 
             <!--LOGO-->
             <div id="logo">
-                <a href="index.html" class="logo" data-dark-logo="images/logo-dark.png">
-
+                <a href="/" class="logo" data-dark-logo="images/logo-dark.png">
+                    <img src="images/logo.png" alt="Polo Logo">
                 </a>
             </div>
             <!--END: LOGO-->
@@ -22,6 +22,7 @@ use yii\widgets\Menu;
                 </button>
             </div>
             <!--END: MOBILE MENU -->
+
 
             <!--NAVIGATION-->
             <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
@@ -45,12 +46,10 @@ use yii\widgets\Menu;
                     </nav>
                 </div>
             </div>
-
             <!--END: NAVIGATION-->
         </div>
     </div>
 </header>
-
 <div class="row">
     <?php
     if (Yii::$app->session->getFlash('success')) {

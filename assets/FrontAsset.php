@@ -11,37 +11,43 @@ class FrontAsset extends AssetBundle {
 
     public $sourcePath = '@app/themes/polo/assets';
 
-    public $jsOptions = ['position' => \yii\web\View::POS_HEAD];
-
     public $css = [
-//        Bootstrap Core CSS
-        'vendor/animateit/animate.min.css',
-        'vendor/bootstrap/css/bootstrap.min.css',
+        // Bootstrap Core CSS
         'vendor/fontawesome/css/font-awesome.min.css',
+        'vendor/animateit/animate.min.css',
 
-//        Vendor css
+        // Vendor css
         'vendor/owlcarousel/owl.carousel.css',
         'vendor/magnific-popup/magnific-popup.css',
-//        Template base
-	    "css/theme-base.css",
 
-//	    Template elements
-        "css/theme-elements.css",	
-    
-    
-//	    Responsive classes
-	    "css/responsive.css",
+        // Template base
+        "css/theme-base.css",
 
-//	    Template color
-	    "css/color-variations/blue.css",
+        // Template elements
+        "css/theme-elements.css",
 
-//	    CSS CUSTOM STYLE
-        "css/custom.css"
+        // Responsive classes
+        "css/responsive.css",
 
+        // Template color
+        "css/color-variations/custom.css",
+
+        // CSS CUSTOM STYLE
+        "css/custom.css",
     ];
 
     public $js = [
+        // VENDOR SCRIPT
+        'vendor/plugins-compressed.js',
 
+        // Theme Base, Components and Settings
+        "js/theme-functions.js",
+
+        // Custom js file
+        "js/custom.js",
+
+        "vendor/jRespond.min.js",
+        "vendor/animsition/js/animsition.js",
     ];
     public $depends = [
         'yii\web\YiiAsset',

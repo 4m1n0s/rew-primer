@@ -1812,7 +1812,7 @@ var INSPIRO = {};
         INSPIRO.resposniveVideos(),
         INSPIRO.tooltip(),
         INSPIRO.popover(),
-        INSPIRO.widget_twitter(),
+        // INSPIRO.widget_twitter(),
         INSPIRO.flickr_widget(),
         INSPIRO.goToTop(),
         INSPIRO.topBar(),

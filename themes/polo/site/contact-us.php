@@ -43,33 +43,6 @@
                     </form>
                 </div>
             </div>
-            <div class="col-md-6">
-                <h3 class="text-uppercase">Address & Map</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <address>
-<!--                            <strong>Polo, Inc.</strong><br>-->
-<!--                            795 Folsom Ave, Suite 600<br>-->
-<!--                            San Francisco, CA 94107<br>-->
-<!--                            <abbr title="Phone">P:</abbr> (123) 456-7890-->
-                        </address>
-                    </div>
-                    <div class="col-md-6">
-                        <address>
-<!--                            <strong>Polo Office</strong><br>-->
-<!--                            795 Folsom Ave, Suite 600<br>-->
-<!--                            San Francisco, CA 94107<br>-->
-<!--                            <abbr title="Phone">P:</abbr> (123) 456-7890-->
-                        </address>
-                    </div>
-                </div>
-
-                <!-- Google map sensor -->
-                <script type="text/javascript" src="//maps.google.com/maps/api/js?sensor=false"></script>
-                <div class="map m-t-30" data-map-address="Melburne, Australia" data-map-zoom="10" data-map-icon="images/markers/marker2.png" data-map-type="ROADMAP"></div>
-                <!-- Google map sensor -->
-
-            </div>
         </div>
     </div>
 </section>
