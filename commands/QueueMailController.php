@@ -62,31 +62,33 @@ class QueueMailController extends Controller {
                 break;
         }
     }
-    public function sendEmail($name_email, $user_to, $params, $subject) {
+    public function actionSendEmail($email_template = 'main_template', $user_to = '21denis1991@mail.ru', $subject = 'test subj') {
         $modelMail = new \Mandrill(Yii::$app->params['mandrillApiKey']);
         $message = [
+            'html' => '<p>Example HTML content</p>',
+            'text' => 'Example text content',
             'subject' => $subject,
             'from_email' => Yii::$app->params['adminEmail'],
-            'to' => [['email' => 'rudslawa@yandex.ua', 'name' => $user_to->username]],
-            'merge_vars' => [[
-                'rcpt' => 'rudslawa@yandex.ua',
-                'vars' => [
-//                    array(
-//                        'name' => 'FIRSTNAME',
-//                        'content' => 'Recipient 1 first name'),
-//                    array(
-//                        'name' => 'LASTNAME',
-//                        'content' => 'Last name')
-                ]
-            ]],
+            'to' => array(
+                array(
+                    'email' => $user_to,
+                    'name' => 'Recipient Name',
+                    'type' => 'to'
+                )
+            ),
+            'merge' => true,
+            'merge_language' => 'mailchimp',
         ];
-        $template_name = 'main_template';
-        $template_content = [
-//            [
-//                'name' => 'main',
-//                'content' => 'Hi, thanks for signing up.'
-//            ]
-        ];
+        $template_name = $email_template;
+        $template_content = array(
+            array(
+                'name' => 'body',
+                'content' => 'Hi Recipient, thanks for signing up.'),
+            array(
+                'name' => 'footer',
+                'content' => 'Copyright 2017.')
+
+        );
         $response = $modelMail->messages->sendTemplate($template_name, $template_content, $message);
         print_r($response);
         return true;
