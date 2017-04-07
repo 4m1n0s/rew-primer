@@ -21,6 +21,6 @@ class DatePickerAsset extends AssetBundle
         "vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js",
     ];
     public $depends = [
-
+        FrontAsset::class,
     ];
 }
