@@ -74,6 +74,7 @@ BackendAsset::register($this);
                     </h3>
                     <!-- END PAGE TITLE-->
                     <!-- END PAGE HEADER-->
+                    <?= \app\modules\dashboard\widgets\Alert::widget() ?>
                     <?= $content ?>
                 </div> 
                 <!-- END CONTENT BODY -->
