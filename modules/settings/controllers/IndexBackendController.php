@@ -4,6 +4,7 @@ namespace app\modules\settings\controllers;
 
 use app\modules\core\components\controllers\BackController;
 use app\modules\settings\forms\FormModel;
+use kartik\switchinput\SwitchInput;
 use \Yii;
 
 /**
@@ -55,7 +56,16 @@ class IndexBackendController extends BackController
                 ],
                 'invite_only_signup' => [
                     'label' => 'Invite Only Signup',
-                    'type' => FormModel::TYPE_CHECKBOX,
+                    'type' => FormModel::TYPE_WIDGET,
+                    'widget' => SwitchInput::class,
+                    'options' => [
+                        'name' => 'inv_only_signup',
+                        'inlineLabel' => false,
+                        'pluginOptions' => [
+                            'handleWidth'=>30,
+                        ],
+                        'class' => 'self-class'
+                    ],
                 ],
             ]
         ]);
