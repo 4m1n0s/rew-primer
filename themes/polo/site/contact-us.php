@@ -39,7 +39,7 @@
                             <textarea type="text" name="widget-contact-form-message" rows="5" class="form-control required" placeholder="Enter your Message"></textarea>
                         </div>
                         <input type="text" class="hidden" id="widget-contact-form-antispam" name="widget-contact-form-antispam" value="" />
-                        <button class="btn btn-primary" type="submit" id="form-submit"><i class="fa fa-paper-plane"></i>&nbsp;Send message</button>
+                        <button class="btn btn-primary" type="submit" id="form-submit" disabled><i class="fa fa-paper-plane"></i>&nbsp;Send message</button>
                     </form>
                 </div>
             </div>
