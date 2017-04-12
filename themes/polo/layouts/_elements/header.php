@@ -1,5 +1,8 @@
 <?php
 
+/* @var \yii\web\View $this */
+
+
 use yii\helpers\Url;
 use yii\widgets\Menu;
 ?>
@@ -29,6 +32,10 @@ use yii\widgets\Menu;
                 <div class="container">
                     <nav id="mainMenu" class="main-menu mega-menu">
                         <?php
+                        $module = Yii::$app->controller->module->id;
+                        $controller = Yii::$app->controller->id;
+                        $action = Yii::$app->controller->action->id;
+
                         echo Menu::widget([
                             'options' => [
                                 'class' => 'main-menu nav nav-pills',
@@ -42,7 +49,7 @@ use yii\widgets\Menu;
                                 [
                                     'label' => Yii::t('app', 'Sign Up'),
                                     'url' => ['/user/account/sign-up'],
-                                    'active' => ['/user/account/sign-up'] || ['/user/account/invitation-request']
+                                    'active' => $module == 'user' && $controller == 'account' && ($action == 'invitation-request' || $action == 'sign-up'),
                                 ],
                             ],
                         ]);
