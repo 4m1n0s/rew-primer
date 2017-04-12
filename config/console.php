@@ -33,6 +33,12 @@ return [
             'hostInfo' => $params['baseUrl']
         ],
         'db' => $db,
+        'mandrillMailer' => [
+            'class' => 'app\components\MandrillMailer'
+        ],
+        'keyStorage' => [
+            'class' => '\app\modules\settings\components\KeyStorage'
+        ],
     ],
     'params' => $params,
 ];

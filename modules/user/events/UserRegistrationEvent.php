@@ -25,7 +25,7 @@ class UserRegistrationEvent extends Event {
     protected $form;
 
     /**
-     * @var
+     * @var Token
      */
     protected $token;
 
@@ -36,28 +36,28 @@ class UserRegistrationEvent extends Event {
     }
 
     /**
-     * @param \RegistrationForm $form
+     * @param RegistrationForm $form
      */
     public function setForm($form) {
         $this->form = $form;
     }
 
     /**
-     * @return \RegistrationForm
+     * @return RegistrationForm
      */
     public function getForm() {
         return $this->form;
     }
 
     /**
-     * @param \User $user
+     * @param User $user
      */
     public function setUser($user) {
         $this->user = $user;
     }
 
     /**
-     * @return \User
+     * @return User
      */
     public function getUser() {
         return $this->user;

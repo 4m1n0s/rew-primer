@@ -35,8 +35,8 @@ class RegistrationForm extends Model {
 
     public function scenarios() {
         return ArrayHelper::merge([
-            static::SIGNUP_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'invitationCode', 'referralCode', 'first_name', 'last_name', 'reCaptcha'],
-            static::INVITATION_SCENARIO => ['invitationCode'],
+            static::SIGNUP_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha'],
+            static::INVITATION_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'invitationCode', 'first_name', 'last_name', 'reCaptcha'],
             static::INVITATION_REQUEST_SCENARIO => ['email']
         ], parent::scenarios());
     }
@@ -60,6 +60,7 @@ class RegistrationForm extends Model {
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => User::className()],
+            ['email', 'unique', 'targetClass' => Invitation::className(), 'on' => self::INVITATION_REQUEST_SCENARIO],
             ['email', 'trim'],
             // password rules
             ['password', 'required'],
@@ -75,10 +76,12 @@ class RegistrationForm extends Model {
 //                }
 //                return false;
 //            }],
-            ['invitationCode', 'validateInvitationCode'],
+            ['invitationCode', 'required'],
+            ['email', 'validateInvitationCode', 'on' => self::INVITATION_SCENARIO],
             //referral code rules
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
+            // captcha
+//            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
         ];
     }
 
@@ -98,7 +101,7 @@ class RegistrationForm extends Model {
      */
     public function validateReferralCode($attribute, $params) {
         if (null === $this->referralUser = User::getUserByReferralCode($this->{$attribute})) {
-            $this->addError($attribute, Yii::t('app', 'Incorect referral code'));
+            $this->addError($attribute, Yii::t('app', 'Incorrect referral code'));
         }
     }
 
@@ -106,16 +109,8 @@ class RegistrationForm extends Model {
      * Invite code validation
      */
     public function validateInvitationCode($attribute, $params) {
-        if (!$this->hasErrors('email')) {
-            if (!empty($this->email)) {
-                if (false === Invitation::checkInvite($this->email, $this->{$attribute})) {
-                    $this->addError($attribute, Yii::t('app', 'Incorrect invitation code'));
-                }
-            } else {
-                if (false === Invitation::find()->where('code = :code', [':code' => $this->{$attribute}])->exists()) {
-                    $this->addError($attribute, Yii::t('app', 'Incorrect invitation code'));
-                }
-            }
+        if (false === Invitation::checkInvite($this->{$attribute}, $this->invitationCode)) {
+            $this->addError($attribute, Yii::t('app', 'Incorrect email for specified code'));
         }
     }
 

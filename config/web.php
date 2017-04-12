@@ -94,6 +94,9 @@ $config = [
                 ]
             ],
         ],
+        'mandrillMailer' => [
+            'class' => 'app\components\MandrillMailer'
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

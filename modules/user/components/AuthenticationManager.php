@@ -14,9 +14,10 @@ use \app\modules\user\events\UserLogoutEvent;
  *
  * @author Stableflow
  */
-class AuthenticationManager extends \yii\base\Component {
-
-    public function logout(\yii\web\User $user) {
+class AuthenticationManager extends \yii\base\Component
+{
+    public function logout(\yii\web\User $user)
+    {
         \Yii::$app->eventManager->fire(UserEvents::BEFORE_LOGOUT, new UserLogoutEvent($user));
         $user->logout();
         \Yii::$app->eventManager->fire(UserEvents::AFTER_LOGOUT, new UserLogoutEvent($user));
@@ -24,7 +25,8 @@ class AuthenticationManager extends \yii\base\Component {
         return true;
     }
 
-    public function login(LoginForm $form, \yii\web\User $user, $request = null) {
+    public function login(LoginForm $form, \yii\web\User $user, $request = null)
+    {
         if ($form->hasErrors()) {
             Yii::$app->eventManager->fire(UserEvents::FAILURE_LOGIN, new UserLoginEvent($form, $user));
             return false;

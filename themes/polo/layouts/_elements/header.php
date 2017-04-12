@@ -9,8 +9,8 @@ use yii\widgets\Menu;
 
             <!--LOGO-->
             <div id="logo">
-                <a href="/" class="logo" data-dark-logo="images/logo-dark.png">
-                    <img src="images/logo.png" alt="Polo Logo">
+                <a href="/" class="logo" data-dark-logo="/images/logo-dark.png">
+                    <img src="/images/logo.png" alt="Polo Logo">
                 </a>
             </div>
             <!--END: LOGO-->
@@ -37,9 +37,13 @@ use yii\widgets\Menu;
                             'activeCssClass' => 'active',
                             'items' => [
                                 ['label' => '<i class="fa fa-home"></i>', 'url' => ['/site/index']],
-                                ['label' => Yii::t('app', 'Contact Us') , 'url' => ['/site/contact-us']],
+                                ['label' => Yii::t('app', 'Contact Us'), 'url' => ['/site/contact-us']],
                                 ['label' => Yii::t('app', 'FAQ') , 'url' => ['/site/faq']],
-                                ['label' => Yii::t('app', 'Sign Up') , 'url' => ['/user/account/sign-up']],
+                                [
+                                    'label' => Yii::t('app', 'Sign Up'),
+                                    'url' => ['/user/account/sign-up'],
+                                    'active' => ['/user/account/sign-up'] || ['/user/account/invitation-request']
+                                ],
                             ],
                         ]);
                         ?>

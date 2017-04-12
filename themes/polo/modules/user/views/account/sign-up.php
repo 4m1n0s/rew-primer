@@ -120,14 +120,24 @@ DatePickerAsset::register($this);
                         'class' => 'form-control input-lg'
                     ]);
                     ?>
-                    </div>
+                </div>
+                <div class="row">
+                    <?php if ($inviteSignup): ?>
+                        <?=
+                        $form->field($model, 'invitationCode')->textInput([
+                            'placeholder' => Yii::t('app', 'Invite Code'),
+                            'readonly' => true
+                        ]);
+                        ?>
+                    <?php endif; ?>
+                </div>
                 <div class="row">
 
                     <div class="col-md-12 form-group">
-                        <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
-
-                        </div>
+<!--                        --><?//= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
                     </div>
+
+                </div>
 
 
 

@@ -2,8 +2,11 @@
 
 namespace app\modules\user\listeners;
 
-use app\modules\user\models\QueueMail;
+use app\components\MandrillMailer;
+use app\models\EmailTemplate;
+use app\modules\user\models\User;
 use Yii;
+use yii\helpers\Html;
 use \yii\helpers\Url;
 use app\modules\user\events\UserRegistrationEvent;
 
@@ -84,15 +87,30 @@ class UserListener {
 
     /**
      * Success registration event handler
-     * @param \app\modules\user\events\UserRegistrationEvent $event Description
+     *
+     * @param UserRegistrationEvent $event
+     * @return bool
+     * @throws \yii\base\InvalidConfigException
      */
     public static function onSuccessRegistration(UserRegistrationEvent $event) {
-        $model = new QueueMail();
-        $model->mail_id = QueueMail::USER_SIGNS_UP_WITH_GENERAL_SIGN_UP_FORM;
-        $user_id = $event->getUser()->id;
-        $model->user_id = $user_id;
-        $model->status = QueueMail::STATUS_WAIT;
-        $model->save();
+        $user = $event->getUser();
+        $token = $event->getToken();
+        $mandrillMailer = \Yii::$app->get('mandrillMailer');
+        /* @var MandrillMailer $mandrillMailer */
+
+        if ($user->status !== User::STATUS_PENDING) {
+            return false;
+        }
+
+        $mandrillMailer->addToQueue(
+            $user->email,
+            EmailTemplate::TEMPLATE_SIGN_UP_CONFIRMATION, [
+            'username' => $user->username,
+            'confirmation_link' => Html::a('Confirmation link', Url::toRoute(['/user/account/activate', 'token' => $token->code], true), [
+                'target' => '_blank',
+                'style' => 'word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #2A9AE7;font-weight: bold;text-decoration: none;',
+            ]),
+        ]);
     }
 
     /**

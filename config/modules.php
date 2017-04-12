@@ -16,4 +16,7 @@ return [
     'settings' => [
         'class' => 'app\modules\settings\Module',
     ],
+    'invitation' => [
+        'class' => 'app\modules\invitation\Module',
+    ],
 ];

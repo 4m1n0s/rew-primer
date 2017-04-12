@@ -2,67 +2,59 @@
 
 namespace app\modules\user\controllers\account;
 
+use app\modules\invitation\models\Invitation;
 use Yii;
 use yii\base\Action;
-//use app\modules\setting\helpers\SettingHelper;
 use app\modules\user\forms\RegistrationForm;
+use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
 
 /**
  * Class RegisterAction
  *
  * @author Stableflow
  */
-class RegisterAction extends Action {
-
+class RegisterAction extends Action
+{
     public $layout;
     public $returnUrl;
 
-    public function run($code = null) {
+    public function run($code = null)
+    {
+        $keyStorage = Yii::$app->get('keyStorage');
+        $inviteSignup = $keyStorage->get('invite_only_signup');
+
+        if ($inviteSignup && is_null($code)) {
+            $this->controller->redirect(['invitation-request']);
+        }
+
+        if (!is_null($code) && (!$inviteSignup || !Invitation::find()->code($code)->exists())) {
+            throw new NotFoundHttpException();
+        }
 
         $form = new RegistrationForm([
-            'scenario' => RegistrationForm::SIGNUP_SCENARIO
+            'scenario' => ($inviteSignup && !is_null($code)) ? RegistrationForm::INVITATION_SCENARIO : RegistrationForm::SIGNUP_SCENARIO
         ]);
-//
-//        if ((null !== $data = SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-//            $form->invitationCode = $code;
-//        }
-//        $className = explode('\\', $form::className());
-//        $className = end($className);
-        $post = Yii::$app->request->post();
-//
-//        if ((null !== $data = SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-//            if (!isset($post[$className]['email'])) {
-//                $form->scenario = RegistrationForm::INVITATION_SCENARIO;
-//                if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-//                    $form->scenario = RegistrationForm::SIGNUP_SCENARIO;
-//                    $isValidInvite = true;
-//                } else {
-//                    return $this->controller->render('invite', [
-//                                'model' => $form
-//                    ]);
-//                }
-//            }
-//        }
 
-//        $post = Yii::$app->request->post();
-        
-        $cookies = Yii::$app->request->cookies;
-        $form->referralCode = $cookies->getValue('referralCode', null);
-        
+        if ($inviteSignup) {
+            $form->invitationCode = $code;
+        }
+
+        $post = Yii::$app->request->post();
+
         if ($form->load($post) && $form->validate()) {
 
             if ($user = Yii::$app->userManager->createUser($form)) {
-
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
-
-                return $this->controller->goBack();
+                return Url::toRoute(['/']);
             }
 
             Yii::$app->session->setFlash('error', Yii::t('user', 'Error creating account!'));
         }
 
-        return $this->controller->render($this->id, [
-            'model' => $form
+        return $this->controller->render('sign-up', [
+            'model' => $form,
+            'inviteSignup' => $inviteSignup
         ]);
 
     }

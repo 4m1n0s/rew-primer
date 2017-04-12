@@ -51,6 +51,10 @@
                         'url' => ['/settings/index-backend/index'],
                     ],
 
+                    [
+                        'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span>',
+                        'url' => ['/invitation/invitation/index'],
+                    ],
                 ]
                 ]);
         ?>

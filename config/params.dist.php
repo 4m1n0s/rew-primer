@@ -6,5 +6,6 @@ return [
     'reCaptchaSiteKey' => 'hash',
     'reCaptchaSecretKey' => 'hash',
     'adminEmail' => '',
-    'mandrillApiKey' => 'hash'
+    'mandrillApiKey' => 'hash',
+    'emailLimit' => 20,
 ];
