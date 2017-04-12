@@ -34,11 +34,11 @@ class RegistrationForm extends Model {
     protected $referralUser;
 
     public function scenarios() {
-        return ArrayHelper::merge([
+        return [
             static::SIGNUP_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha'],
             static::INVITATION_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'invitationCode', 'first_name', 'last_name', 'reCaptcha'],
             static::INVITATION_REQUEST_SCENARIO => ['email']
-        ], parent::scenarios());
+        ];
     }
 
     /**
