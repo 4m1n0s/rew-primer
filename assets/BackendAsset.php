@@ -34,6 +34,8 @@ class BackendAsset extends AssetBundle {
         '/backend/layouts/layout/css/layout.min.css',
         '/backend/layouts/layout/css/themes/darkblue.min.css',
         '/backend/layouts/layout/css/custom.min.css',
+
+        '/css/backend.css'
     ];
     
     
