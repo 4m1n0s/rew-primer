@@ -134,7 +134,7 @@ DatePickerAsset::register($this);
                 <div class="row">
 
                     <div class="col-md-12 form-group">
-<!--                        --><?//= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                        <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
                     </div>
 
                 </div>
