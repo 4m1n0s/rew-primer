@@ -10,8 +10,6 @@ use yii\console\Controller;
 use yii\helpers\Json;
 
 /**
- * Description of RbacController
- *
  * @author Stableflow
  */
 class MailController extends Controller
@@ -54,7 +52,7 @@ class MailController extends Controller
      */
     protected function checkProcessStatus() {
         $result = array();
-        $isProccessExist = exec('ps aux | grep -v "/bin/sh"| grep queue-mail/send', $result);
+        $isProccessExist = exec('ps aux | grep -v "/bin/sh"| grep mail/send', $result);
         if (count($result) > 2) {
             return true;
         }
