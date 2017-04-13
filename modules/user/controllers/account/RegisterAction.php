@@ -28,6 +28,7 @@ class RegisterAction extends Action
             $this->controller->redirect(['invitation-request']);
         }
 
+        // TODO handle repeated form sending with same inv code
         if (!is_null($code) && (!$inviteSignup || !Invitation::find()->code($code)->exists())) {
             throw new NotFoundHttpException();
         }
@@ -46,7 +47,7 @@ class RegisterAction extends Action
 
             if ($user = Yii::$app->userManager->createUser($form)) {
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
-                return Url::toRoute(['/']);
+                return $this->controller->redirect('/');
             }
 
             Yii::$app->session->setFlash('error', Yii::t('user', 'Error creating account!'));
