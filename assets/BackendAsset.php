@@ -16,7 +16,7 @@ class BackendAsset extends AssetBundle {
         '//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all',
         '/backend/global/plugins/font-awesome/css/font-awesome.min.css',
         '/backend/global/plugins/simple-line-icons/simple-line-icons.min.css',
-        '/backend/global/plugins/uniform/css/uniform.default.css',
+//        '/backend/global/plugins/uniform/css/uniform.default.css',
         '/backend/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css',
         
         '/backend/global/plugins/datatables/datatables.min.css',
@@ -46,7 +46,7 @@ class BackendAsset extends AssetBundle {
         '/backend/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js', 
         '/backend/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js', 
         '/backend/global/plugins/jquery.blockui.min.js', 
-        '/backend/global/plugins/uniform/jquery.uniform.min.js', 
+//        '/backend/global/plugins/uniform/jquery.uniform.min.js',
         '/backend/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js', 
         
         '/backend/global/plugins/morris/morris.min.js', 

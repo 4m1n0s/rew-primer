@@ -136,7 +136,6 @@ class InvitationController extends BackController
             throw new ForbiddenHttpException();
         }
         $model = $this->findModel(\Yii::$app->request->post('id'));
-        $model->scenario = Invitation::STATUS_SCENARIO;
         return $model->approve();
     }
 
@@ -151,8 +150,38 @@ class InvitationController extends BackController
         if (!Yii::$app->request->isAjax) {
             throw new ForbiddenHttpException();
         }
+
         $model = $this->findModel(\Yii::$app->request->post('id'));
-        $model->scenario = Invitation::STATUS_SCENARIO;
         return $model->deny();
+    }
+
+    public function actionApproveAll()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        $collection = Invitation::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
+
+        foreach ($collection as $invitation) {
+            $invitation->approve();
+        }
+
+        return true;
+    }
+
+    public function actionDenyAll()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        $collection = Invitation::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
+
+        foreach ($collection as $invitation) {
+            $invitation->deny();
+        }
+
+        return true;
     }
 }

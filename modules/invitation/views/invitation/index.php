@@ -26,6 +26,24 @@ $this->params['breadcrumbs'] = [
                 <div class="caption">
                     <i class="fa fa-table"></i>Invitations
                 </div>
+                <div class="actions">
+                    <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Approve Selected').'</span>',
+                        [
+                            'id' => 'approve-all',
+                            'class' => 'btn blue',
+                            'data-confirm' => 'Are you sure?',
+                            'data-link' => Url::toRoute(['/invitation/invitation/approve-all'])
+                        ]
+                    ) ?>
+                    <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Decline Selected').'</span>',
+                        [
+                            'id' => 'decline-all',
+                            'class' => 'btn red',
+                            'data-confirm' => 'Are you sure?',
+                            'data-link' => Url::toRoute(['/invitation/invitation/deny-all'])
+                        ]
+                    ) ?>
+                </div>
             </div>
         </div>
         <div class="portlet-body">
@@ -47,12 +65,17 @@ $this->params['breadcrumbs'] = [
                         </div>";
                 ?>
 
-                <?php Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]); ?>
+                <?php Pjax::begin(['id' => 'invitation-grid-pjax', 'enablePushState' => true]); ?>
                 <?= GridView::widget([
+                    'id' => 'invitation-grid',
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
+                        [
+                            'class' => 'yii\grid\CheckboxColumn',
+                            'cssClass' => 'invitation-selection',
+                        ],
 
                         'email:email',
                         'code',
@@ -99,7 +122,7 @@ $this->params['breadcrumbs'] = [
                                         [
                                             'title' => 'Approve',
                                             'class' => 'btn default btn-xs blue',
-                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_APPROVED ? "return;" : "status('$url', '$model->id')",
+                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_APPROVED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
                                             'data-pjax' => 1,
                                         ]
                                     );
@@ -107,12 +130,12 @@ $this->params['breadcrumbs'] = [
                                 'deny' => function($url, $model) {
                                     $url = Url::to(['/invitation/invitation/deny']);
                                     return Html::a(
-                                        '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Deny'),
+                                        '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Decline'),
                                         Url::to(),
                                         [
                                             'title' => 'Deny',
                                             'class' => 'btn default btn-xs red',
-                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_DENIED ? "return;" : "status('$url', '$model->id')",
+                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_DENIED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
                                             'data-pjax' => 1
                                         ]
                                     );
@@ -129,26 +152,6 @@ $this->params['breadcrumbs'] = [
 </div>
 
 <?php
-
-$token = Yii::$app->request->getCsrfToken();
-
-$script = <<< JS
-    function status(url, id) {
-        $.ajax({
-            url: url,
-            type: "POST",
-            data: {
-                id: id,
-                _csrf: "$token"
-            },
-            success: function(data) {
-                if (data == true) {
-                    $.pjax.reload({container:'#invitation-grid'});                    
-                }
-            }
-        });
-        return false;
-    }
-JS;
-$this->registerJs($script, yii\web\View::POS_END);
-
+$this->registerJsFile('/backend/js/invitation_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);
+$this->registerJs('invitation_grid_module.init()');
+?>

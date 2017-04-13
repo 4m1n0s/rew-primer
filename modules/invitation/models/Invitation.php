@@ -7,6 +7,7 @@ use app\helpers\DateHelper;
 use app\models\EmailTemplate;
 use app\modules\user\models\User;
 use Yii;
+use yii\base\Security;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -130,7 +131,12 @@ class Invitation extends \yii\db\ActiveRecord
      * @return boolean
      */
     public function approve() {
-        $security = new \yii\base\Security();
+        if ($this->status == static::STATUS_APPROVED) {
+            return false;
+        }
+
+        $security = new Security();
+        $this->scenario = Invitation::STATUS_SCENARIO;
         $this->status = static::STATUS_APPROVED;
         $this->code = $security->generateRandomString(rand(8, 12));
         return $this->save();
@@ -141,7 +147,9 @@ class Invitation extends \yii\db\ActiveRecord
      * @return boolean
      */
     public function deny() {
+        $this->scenario = Invitation::STATUS_SCENARIO;
         $this->status = static::STATUS_DENIED;
+        $this->code = null;
         return $this->save();
     }
 
