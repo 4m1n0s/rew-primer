@@ -9,19 +9,19 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<section class="m-t-80 p-b-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="page-error-404">404</div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-left">
+                    <h1 class="text-medium">Ooops, This Page Could Not Be Found!</h1>
+                    <p class="lead">The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+                    <div class="seperator m-t-20 m-b-20"></div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+</section>
