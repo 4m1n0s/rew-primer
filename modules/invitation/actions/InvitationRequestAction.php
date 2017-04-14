@@ -32,7 +32,7 @@ class InvitationRequestAction extends Action {
             $invitation->status = Invitation::STATUS_NEW;
 
             if (!$invitation->save()) {
-                Yii::$app->session->setFlash('error', 'Error!');
+                Yii::$app->session->setFlash('error', 'Unexpected error occurred');
             }
 
             $mandrill = Yii::$app->get('mandrillMailer');
@@ -42,7 +42,7 @@ class InvitationRequestAction extends Action {
                 EmailTemplate::TEMPLATE_INVITATION_REQUEST_RECEIVED
             );
 
-            Yii::$app->session->setFlash('success', 'Success!');
+            Yii::$app->session->setFlash('success', 'Invitation code has been sent to your email!');
             return $this->controller->refresh();
         }
 
