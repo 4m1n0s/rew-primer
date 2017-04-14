@@ -79,7 +79,7 @@ use yii\widgets\Menu;
     if (Yii::$app->session->getFlash('error')) {
         ?>
         <div class="alert alert-danger" role="alert">
-            <button class="close" data-close="alert"></button>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <p class="text-center"><?= Yii::$app->session->getFlash('error') ?></p>
         </div>
         <?php
