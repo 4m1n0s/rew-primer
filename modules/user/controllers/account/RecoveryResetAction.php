@@ -22,27 +22,30 @@ class RecoveryResetAction extends Action {
         if (null === $tokenModel) {
             throw new \yii\web\NotFoundHttpException();
         }
-        $form = Yii::createObject([
-                    'class' => RecoveryForm::className(),
-                    'scenario' => RecoveryForm::RESET_SCENARIO,
+
+        $form = new RecoveryForm([
+            'scenario' => RecoveryForm::RESET_SCENARIO
         ]);
+
         if ($form->load(Yii::$app->request->post()) && $form->validate()) {
             if (Yii::$app->userManager->resetPassword($code, $form->password)) {
                 Yii::$app->session->setFlash(
-                        'success', Yii::t('user', 'Password recover successfully')
+                    'success', Yii::t('user', 'Password recover successfully')
                 );
-                $this->controller->redirect(['/user/account/login']);
+                return $this->controller->redirect(['/user/account/login']);
             } else {
                 Yii::$app->session->setFlash(
-                        'error', Yii::t('user', 'Error when changing password!')
+                    'error', Yii::t('user', 'Error when changing password!')
                 );
             }
         }
+
         if (!empty($this->layout)) {
             $this->controller->layout = $this->layout;
         }
+
         return $this->controller->render($this->id, [
-                    'model' => $form
+            'model' => $form
         ]);
     }
 

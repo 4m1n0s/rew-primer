@@ -71,8 +71,16 @@ use yii\widgets\Menu;
     if (Yii::$app->session->getFlash('success')) {
         ?>
         <div class="alert alert-success" role="alert">
-            <strong><?= Yii::t('app', 'Well done!')?></strong>
-            <?= Yii::$app->session->getFlash('success') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <p class="text-center"><?= Yii::$app->session->getFlash('success') ?></p>
+        </div>
+        <?php
+    }
+    if (Yii::$app->session->getFlash('error')) {
+        ?>
+        <div class="alert alert-danger" role="alert">
+            <button class="close" data-close="alert"></button>
+            <p class="text-center"><?= Yii::$app->session->getFlash('error') ?></p>
         </div>
         <?php
     }

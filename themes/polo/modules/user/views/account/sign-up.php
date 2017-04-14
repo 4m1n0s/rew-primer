@@ -93,7 +93,7 @@ DatePickerAsset::register($this);
 
                     <?php
                     echo $form->field($model, 'confirmPassword')->passwordInput([
-                        'placeholder' => Yii::t('app', 'Confirm password'),
+                        'placeholder' => Yii::t('app', 'Confirm Password'),
                         'class' => 'form-control input-lg'
                     ]);
                     ?>

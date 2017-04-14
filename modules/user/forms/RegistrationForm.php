@@ -64,18 +64,12 @@ class RegistrationForm extends Model {
             ['email', 'trim'],
             // password rules
             ['password', 'required'],
-            ['password', 'string', 'min' => 6, 'max' => 60],
+            ['password', 'string', 'min' => 6, 'max' => 64],
             // confirm password rules
             ['confirmPassword', 'required'],
             ['confirmPassword', 'string', 'min' => 6],
             ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
             //invite code rules
-//            ['invitationCode', 'required', 'when' => function($model) {
-//                if ((null !== $data = \app\modules\setting\helpers\SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-//                    return true;
-//                }
-//                return false;
-//            }],
             ['invitationCode', 'required'],
             ['email', 'validateInvitationCode', 'on' => self::INVITATION_SCENARIO],
             //referral code rules

@@ -93,7 +93,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             ['email', 'trim'],
             // password rules
             ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'string', 'min' => 6, 'max' => 64],
             
             // status rules
             [['status'], 'integer'],

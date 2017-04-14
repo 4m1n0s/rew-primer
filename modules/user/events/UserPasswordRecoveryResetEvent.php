@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\user\events;
+use app\modules\user\models\User;
 
 /**
  * Class UserPasswordRecoveryEvent
@@ -50,14 +51,14 @@ class UserPasswordRecoveryResetEvent extends \yii\base\Event {
     }
 
     /**
-     * @param \User $user
+     * @param User $user
      */
     public function setUser($user) {
         $this->user = $user;
     }
 
     /**
-     * @return \User
+     * @return User
      */
     public function getUser() {
         return $this->user;

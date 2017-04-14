@@ -7,6 +7,8 @@ use app\modules\invitation\actions\InvitationRequestAction;
 use app\modules\user\controllers\account\ActivateAction;
 use app\modules\user\controllers\account\LoginAction;
 use app\modules\user\controllers\account\LogoutAction;
+use app\modules\user\controllers\account\RecoveryRequestAction;
+use app\modules\user\controllers\account\RecoveryResetAction;
 use yii\filters\AccessControl;
 use app\modules\user\controllers\account\RegisterAction;
 
@@ -49,6 +51,14 @@ class AccountController extends FrontController {
             ],
             'invitation-request' => [
                 'class' => InvitationRequestAction::className(),
+            ],
+            'recovery-request' => [
+                'class' => RecoveryRequestAction::className(),
+                'layout' => '/frontend/main'
+            ],
+            'recovery-reset' => [
+                'class' => RecoveryResetAction::className(),
+                'layout' => '/frontend/main'
             ],
         ];
     }

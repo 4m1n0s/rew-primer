@@ -16,27 +16,31 @@ class RecoveryRequestAction extends Action {
     public $layout;
 
     public function run() {
-        if (Yii::$app->user->isGuest) {
-            $form = Yii::createObject([
-                        'class' => RecoveryForm::className(),
-                        'scenario' => RecoveryForm::REQUEST_SCENARIO,
-            ]);
-            if ($form->load(Yii::$app->request->post()) && $form->validate()) {
-                if (Yii::$app->userManager->passwordRecovery($form->email)) {
-                    return $this->controller->redirect(['/user/account/login']);
-                }
-                Yii::$app->session->setFlash('error', Yii::t('user', 'Password recovery error.'));
-                $this->getController()->redirect(['/user/account/recovery']);
-            } else {
-                if (!empty($this->layout)) {
-                    $this->controller->layout = $this->layout;
-                }
-                return $this->controller->render($this->id, [
-                            'model' => $form
-                ]);
-            }
+        if (!Yii::$app->user->isGuest) {
+            return $this->controller->redirect(Yii::$app->user->returnUrl);
         }
-        return $this->controller->redirect(Yii::$app->user->returnUrl);
+
+        $form = new RecoveryForm([
+            'scenario' => RecoveryForm::REQUEST_SCENARIO
+        ]);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            if (Yii::$app->userManager->passwordRecovery($form->email)) {
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Check out your email to continue!'));
+                return $this->controller->redirect(['/user/account/login']);
+            }
+
+            Yii::$app->session->setFlash('error', Yii::t('user', 'Password recovery error.'));
+            return $this->controller->redirect(['/user/account/recovery-request']);
+        }
+
+        if (!empty($this->layout)) {
+            $this->controller->layout = $this->layout;
+        }
+
+        return $this->controller->render($this->id, [
+            'model' => $form
+        ]);
     }
 
 }

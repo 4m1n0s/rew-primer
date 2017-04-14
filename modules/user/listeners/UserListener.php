@@ -5,6 +5,7 @@ namespace app\modules\user\listeners;
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
 use app\modules\invitation\models\search\Invitation;
+use app\modules\user\events\UserPasswordRecoveryEvent;
 use app\modules\user\models\User;
 use Yii;
 use yii\helpers\Html;
@@ -67,10 +68,26 @@ class UserListener {
     }
 
     public static function onSuccessPasswordRecovery(\app\modules\user\events\UserPasswordRecoveryEvent $event) {
-        
+        $user = $event->getUser();
+        $token = $event->getToken();
+        $mandrillMailer = \Yii::$app->get('mandrillMailer');
+        /* @var MandrillMailer $mandrillMailer */
+
+        $mandrillMailer->addToQueue(
+            $user->email,
+            EmailTemplate::TEMPLATE_USER_PASSWORD_RECOVERY, [
+            'link' => Html::a('Link', Url::toRoute([
+                $event->getUser()->role == User::ROLE_ADMIN ? '/user/account/back-recovery-reset' : '/user/account/recovery-reset',
+                'code' => $event->getToken()->code
+            ], true), [
+                'target' => '_blank',
+                'style' => 'word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #2A9AE7;font-weight: bold;text-decoration: none;',
+            ]),
+            'username' => $event->getUser()->username
+        ]);
     }
 
-    public static function onFailurePasswordRecovery(\app\modules\user\events\UserLogoutEvent $event) {
+    public static function onFailurePasswordRecovery(UserPasswordRecoveryEvent $event) {
         
     }
 
@@ -83,7 +100,7 @@ class UserListener {
     }
 
     public static function onFailurePasswordRecoveryReset(\app\modules\user\events\UserPasswordRecoveryResetEvent $event) {
-        
+
     }
 
     /**

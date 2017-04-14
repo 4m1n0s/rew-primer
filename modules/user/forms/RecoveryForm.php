@@ -37,8 +37,7 @@ class RecoveryForm extends Model {
         return [
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'exist',
-                'targetClass' => User::className(),
+            ['email', 'exist',                'targetClass' => User::className(),
                 'message' => Yii::t('user', 'There is no user with this email address')
             ],
             ['email', function ($attribute) {

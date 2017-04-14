@@ -52,7 +52,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign Up');
                                         </span>
                                     </div>
                                 <?php endif; ?>
-                                
+
                                 <?php if (Yii::$app->session->hasFlash('success')): ?>
                                     <div class="alert alert-success">
                                         <button class="close" data-close="alert"></button>

@@ -21,6 +21,9 @@ class EmailTemplate extends \yii\db\ActiveRecord
     const TEMPLATE_SIGN_UP_CONFIRMATION = 3;
     const TEMPLATE_SIGN_UP_SUCCESS = 4;
 
+    const TEMPLATE_USER_PASSWORD_RECOVERY = 5;
+    const TEMPLATE_ADMIN_PASSWORD_RECOVERY = 6;
+
     /**
      * @inheritdoc
      */

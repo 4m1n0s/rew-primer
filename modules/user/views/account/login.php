@@ -33,7 +33,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign In');
                             'placeholder' => Yii::t('app', 'Password'),
                             'class' => ' form-control input-lg',
                         ])->label(false); ?>
-                        <p><?= Html::a('Lost your Password?', '#') ?></p>
+                        <p><?= Html::a('Lost your Password?', ['/user/account/recovery-request']) ?></p>
                         <div class="text-left form-group">
                             <?= Html::submitButton(Yii::t('app', 'Log In'), ['class' => 'btn btn-primary']); ?>
                             <p class="text-left">Don't have an account yet?<br><?= Html::a(Yii::t('app', 'Register New Account'), ['/user/account/sign-up']); ?></p>
