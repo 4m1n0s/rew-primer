@@ -29,7 +29,7 @@ class RegisterAction extends Action
         }
 
         // TODO handle repeated form sending with same inv code
-        if (!is_null($code) && (!$inviteSignup || !Invitation::find()->code($code)->exists())) {
+        if (!is_null($code) && (!$inviteSignup || !Invitation::find()->code($code)->status(Invitation::STATUS_APPROVED)->exists())) {
             throw new NotFoundHttpException();
         }
 

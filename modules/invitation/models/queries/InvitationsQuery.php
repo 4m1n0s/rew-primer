@@ -39,12 +39,24 @@ class InvitationsQuery extends \yii\db\ActiveQuery
      */
     public function code($code)
     {
-        return $this->andWhere(['code' => $code, 'status' => Invitation::STATUS_APPROVED]);
+        return $this->andWhere(['code' => $code]);
     }
 
+    /**
+     * @param $status
+     * @return $this
+     */
     public function status($status)
     {
         return $this->andWhere(['status' => $status]);
+    }
 
+    /**
+     * @param $email
+     * @return $this
+     */
+    public function email($email)
+    {
+        return $this->andWhere(['email' => $email]);
     }
 }

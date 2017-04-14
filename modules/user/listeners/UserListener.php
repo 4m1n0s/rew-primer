@@ -4,6 +4,7 @@ namespace app\modules\user\listeners;
 
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
+use app\modules\invitation\models\search\Invitation;
 use app\modules\user\models\User;
 use Yii;
 use yii\helpers\Html;
@@ -78,7 +79,7 @@ class UserListener {
     }
 
     public static function onSuccessPasswordRecoveryReset(\app\modules\user\events\UserPasswordRecoveryResetEvent $event) {
-        
+
     }
 
     public static function onFailurePasswordRecoveryReset(\app\modules\user\events\UserPasswordRecoveryResetEvent $event) {
@@ -127,7 +128,13 @@ class UserListener {
      */
     public static function onSuccessActivateAccount(\app\modules\user\events\UserActivateEvent $event) {
         $token = $event->getToken();
-        $token->delete();
+        $user = $event->getUser();
+
+        if ($inv = Invitation::find()->email($user->email)->status(Invitation::STATUS_APPROVED)->one()) {
+            $inv->delete();
+        }
+
+//        $token->delete();
     }
 
     /**
