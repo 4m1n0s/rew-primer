@@ -53,6 +53,7 @@ class MandrillMailer
     {
         $message = [
             'from_email' => $sender,
+            'subject' => $template->subject,
             'to' => array(
                 array(
                     'email' => $recipient,

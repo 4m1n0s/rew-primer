@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property string $content
+ * @property string $subject
  *
  * @property EmailQueue[] $emailQueues
  */
@@ -40,7 +41,7 @@ class EmailTemplate extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['content'], 'string'],
-            [['name'], 'string', 'max' => 64],
+            [['name', 'subject'], 'string', 'max' => 64],
         ];
     }
 
