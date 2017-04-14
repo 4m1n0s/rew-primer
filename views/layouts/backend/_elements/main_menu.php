@@ -47,14 +47,15 @@
                     ],
 
                     [
+                        'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
+                        'url' => ['/invitation/invitation/index'],
+                    ],
+
+                    [
                         'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span>',
                         'url' => ['/settings/index-backend/index'],
                     ],
 
-                    [
-                        'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span>',
-                        'url' => ['/invitation/invitation/index'],
-                    ],
                 ]
                 ]);
         ?>

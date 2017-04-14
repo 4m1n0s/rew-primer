@@ -29,17 +29,19 @@ $this->params['breadcrumbs'] = [
                 <div class="actions">
                     <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Approve Selected').'</span>',
                         [
+                            'title' => 'All selected emails will be approved.',
                             'id' => 'approve-all',
                             'class' => 'btn blue',
-                            'data-confirm' => 'Are you sure?',
+                            'data-confirm' => 'Confirm the action',
                             'data-link' => Url::toRoute(['/invitation/invitation/approve-all'])
                         ]
                     ) ?>
                     <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Decline Selected').'</span>',
                         [
+                            'title' => 'All selected emails will be declined.',
                             'id' => 'decline-all',
                             'class' => 'btn red',
-                            'data-confirm' => 'Are you sure?',
+                            'data-confirm' => 'Confirm the action',
                             'data-link' => Url::toRoute(['/invitation/invitation/deny-all'])
                         ]
                     ) ?>
@@ -120,7 +122,6 @@ $this->params['breadcrumbs'] = [
                                         '<i class="fa fa-check-square-o"></i> ' . Yii::t('admin', 'Approve'),
                                         Url::to(),
                                         [
-                                            'title' => 'Approve',
                                             'class' => 'btn default btn-xs blue',
                                             'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_APPROVED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
                                             'data-pjax' => 1,
@@ -133,7 +134,6 @@ $this->params['breadcrumbs'] = [
                                         '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Decline'),
                                         Url::to(),
                                         [
-                                            'title' => 'Deny',
                                             'class' => 'btn default btn-xs red',
                                             'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_DENIED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
                                             'data-pjax' => 1
