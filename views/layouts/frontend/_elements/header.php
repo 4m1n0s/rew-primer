@@ -42,7 +42,6 @@ use yii\widgets\Menu;
                             ],
                             'encodeLabels' => false,
                             'activeCssClass' => 'active',
-                            'submenuTemplate' => "<ul class=\"dropdown-menu\">{items}</ul>",
                             'items' => [
                                 ['label' => '<i class="fa fa-home"></i>', 'url' => ['/site/index']],
                                 ['label' => Yii::t('app', 'Contact Us'), 'url' => ['/site/contact-us']],
@@ -51,33 +50,12 @@ use yii\widgets\Menu;
                                     'label' => Yii::t('app', 'Sign Up'),
                                     'url' => ['/user/account/sign-up'],
                                     'active' => $module == 'user' && $controller == 'account' && ($action == 'invitation-request' || $action == 'sign-up'),
-                                    'visible' => Yii::$app->user->isGuest,
                                 ],
-                                Yii::$app->user->isGuest ?
-                                    [
-                                        'label' => Yii::t('app', 'Sign In'),
-                                        'url' => ['/user/account/login'],
-                                        'active' => $module == 'user' && $controller == 'account' && $action == 'login',
-                                        'visible' => Yii::$app->user->isGuest,
-                                    ] :
-                                    [
-                                        'label' => Yii::$app->getUser()->getIdentity()->email,
-                                        'url' => '#',
-                                        'options' => [
-                                            'class' => 'dropdown'
-                                        ],
-                                        'items' => [
-                                            [
-                                                'label' => \Yii::t('app', 'My Account'),
-                                                'url' => ['/profile/index/account'],
-                                            ],
-                                            [
-                                                'label' => \Yii::t('app', 'Log Out'),
-                                                'url' => ['/user/account/logout'],
-                                            ],
-                                        ],
-                                        'visible' => !Yii::$app->user->isGuest,
-                                    ],
+                                [
+                                    'label' => Yii::t('app', 'Sign In'),
+                                    'url' => ['/user/account/login'],
+                                    'active' => $module == 'user' && $controller == 'account' && ($action == 'login' || $action == 'login'),
+                                ],
                             ],
                         ]);
                         ?>

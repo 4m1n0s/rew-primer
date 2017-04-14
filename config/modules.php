@@ -19,4 +19,7 @@ return [
     'invitation' => [
         'class' => 'app\modules\invitation\Module',
     ],
+    'profile' => [
+        'class' => 'app\modules\profile\Module',
+    ],
 ];

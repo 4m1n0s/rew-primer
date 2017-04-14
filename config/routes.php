@@ -10,6 +10,7 @@ return [
 
     'sign-up/<code:[a-zA-Z0-9_-]+>' => 'user/account/sign-up',
     'sign-up/' => 'user/account/sign-up',
+    'profile' => 'profile/index/account',
 
     'contact-us' => 'site/contact-us',
     'faq' => 'site/faq',

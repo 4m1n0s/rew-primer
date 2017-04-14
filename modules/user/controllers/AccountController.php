@@ -32,7 +32,7 @@ class AccountController extends FrontController {
         return [
             'login' => [
                 'class' => LoginAction::className(),
-                'layout' => '/frontend'
+                'layout' => '/frontend/main'
             ],
             'back-login' => [
                 'class' => LoginAction::className(),

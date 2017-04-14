@@ -8,7 +8,7 @@ class Module extends \yii\base\Module {
 
     public $controllerNamespace = 'app\modules\user\controllers';
     public $loginSuccess = '/';
-    public $logoutSuccess = '/user/account/back-login';
+    public $logoutSuccess = '/';
     
     public function init() {
         \Yii::$app->get('i18n')->translations['user*'] = [

@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Action;
 use app\modules\user\forms\LoginForm;
 use app\modules\setting\helpers\SettingHelper;
+use yii\base\ErrorException;
 
 /**
  * Description of LoginAction
