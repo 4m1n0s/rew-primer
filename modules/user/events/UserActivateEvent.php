@@ -2,6 +2,7 @@
 
 namespace app\modules\user\events;
 
+use app\modules\user\models\Token;
 use yii\base\Event;
 
 /**
@@ -11,11 +12,12 @@ use yii\base\Event;
  */
 class UserActivateEvent extends Event {
 
+    /* @var Token */
     protected $token;
     protected $user;
 
     /**
-     * @param mixed $token
+     * @param Token $token
      */
     public function setToken($token) {
         $this->token = $token;
@@ -36,13 +38,18 @@ class UserActivateEvent extends Event {
     }
 
     /**
-     * @return mixed
+     * @return Token|null
      */
     public function getToken() {
         return $this->token;
     }
 
-    public function __construct($token, \app\modules\user\models\User $user = null) {
+    /**
+     * UserActivateEvent constructor.
+     * @param Token $token
+     * @param \app\modules\user\models\User|null $user
+     */
+    public function __construct(Token $token, \app\modules\user\models\User $user = null) {
         $this->token = $token;
         $this->user = $user;
     }

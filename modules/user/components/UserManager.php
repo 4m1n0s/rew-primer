@@ -116,14 +116,14 @@ class UserManager extends \yii\base\Component
             $userModel = User::findOne($tokenModel->user_id);
 
             if (null === $userModel) {
-                Yii::$app->eventManager->fire(UserEvents::FAILURE_ACTIVATE_ACCOUNT, new UserActivateEvent($token));
+                Yii::$app->eventManager->fire(UserEvents::FAILURE_ACTIVATE_ACCOUNT, new UserActivateEvent($tokenModel));
                 return false;
             }
 
             $userModel->status = User::STATUS_APPROVED;
 
             if ($this->tokenStorage->activate($tokenModel) && $userModel->save()) {
-                Yii::$app->eventManager->fire(UserEvents::SUCCESS_ACTIVATE_ACCOUNT, new UserActivateEvent($token, $userModel));
+                Yii::$app->eventManager->fire(UserEvents::SUCCESS_ACTIVATE_ACCOUNT, new UserActivateEvent($tokenModel, $userModel));
                 $transaction->commit();
                 return true;
             }

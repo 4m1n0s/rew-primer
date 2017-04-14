@@ -126,7 +126,8 @@ class UserListener {
      * @param \app\modules\user\events\UserRegistrationEvent $event Description
      */
     public static function onSuccessActivateAccount(\app\modules\user\events\UserActivateEvent $event) {
-        
+        $token = $event->getToken();
+        $token->delete();
     }
 
     /**
