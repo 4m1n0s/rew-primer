@@ -12,19 +12,23 @@
                     <div class="float-left">
                         <a href="/contact-us" class="button black button-3d rounded icon-left"><span>Contact Us</span></a>
                         <a href="/faq" class="button black button-3d rounded icon-left"><span>FAQ</span></a>
-                        <a href="/sign-up" class="button black button-3d rounded icon-left"><span>SIGN UP</span></a>
+                        <?php if (Yii::$app->user->isGuest): ?>
+                            <?php echo \yii\helpers\Html::a('SIGN UP', ['/user/account/sign-up'], ['class' => 'button black button-3d rounded icon-left']) ?>
+                        <?php endif; ?>
+                        <?php if (Yii::$app->user->isGuest): ?>
+                            <?php echo \yii\helpers\Html::a('SIGN IN', ['/user/account/login'], ['class' => 'button black button-3d rounded icon-left']) ?>
+                        <?php endif; ?>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
     <div class="copyright-content">
         <div class="container">
             <div class="row">
-                <div class="copyright-text col-md-6"> © 2017 RewardBucks.
-                </div>
-                <div class="col-md-6"><div class="social-icons">
+                <div class="copyright-text col-md-6"> © 2017 RewardBucks.</div>
+                <div class="col-md-6">
+                    <div class="social-icons">
                         <ul>
                             <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -36,7 +40,8 @@
                             <li class="social-youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
                             <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
                         </ul>
-                    </div></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

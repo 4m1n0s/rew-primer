@@ -10,5 +10,5 @@ use app\modules\core\components\controllers\Controller;
  * @author Stableflow
  */
 class FrontController extends Controller {
-    
+    public $layout = '//frontend/main';
 }

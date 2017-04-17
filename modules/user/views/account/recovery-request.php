@@ -15,7 +15,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Forgot password');
 
 
 <!-- PAGE TITLE -->
-<section id="page-title">
+<section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url(/images/page-title-parallax.jpg);">
     <div class="container">
         <div class="page-title col-md-8">
             <h1>Password Recover</h1>
@@ -28,7 +28,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Forgot password');
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-                <h2 class="text-center">Forgot Password?</h2>
+                <h2>Forgot Password?</h2>
                 <?php $form = ActiveForm::begin([
                     'id' => 'forgot-password-form',
                     'options' => ['class' => 'forget-form'],
@@ -46,9 +46,12 @@ $this->params['pageTitle'] = Yii::t('app', 'Forgot password');
                 <?= $form->field($model, 'email')->textInput([
                     'placeholder' => 'Email'
                 ]) ?>
-                <div class="text-center">
-                    <?= Html::submitButton(Yii::t('app', 'Recover your Password'), ['class' => 'btn btn-primary']); ?>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <?= Html::submitButton(Yii::t('app', 'Recover your Password'), ['class' => 'btn btn-primary']); ?>
+                    </div>
                 </div>
+
                 <?php ActiveForm::end(); ?>
             </div>
         </div>

@@ -15,14 +15,14 @@ $config = [
             'class' => 'yii\caching\DummyCache',
         ],
         'view' => [
-            'theme' => [
+            /*'theme' => [
                 'basePath' => '@app/themes/polo',
                 'baseUrl' => '@web/themes/polo',
                 'pathMap' => [
                     '@app/views' => '@app/themes/polo',
                     '@app/modules' => '@app/themes/polo/modules',
                 ],
-            ],
+            ],*/
         ],
         'reCaptcha' => [
             'name' => 'reCaptcha',

@@ -21,6 +21,10 @@ class RegisterAction extends Action
 
     public function run($code = null)
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->controller->redirect(Yii::$app->user->returnUrl);
+        }
+
         $keyStorage = Yii::$app->get('keyStorage');
         $inviteSignup = $keyStorage->get('invite_only_signup');
 
