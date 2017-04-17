@@ -17,6 +17,13 @@ use app\modules\invitation\models\Invitation;
 class InvitationRequestAction extends Action {
 
     public function run() {
+        $keyStorage = Yii::$app->get('keyStorage');
+        $inviteSignup = $keyStorage->get('invite_only_signup');
+
+        if (!$inviteSignup) {
+            return $this->controller->redirect(['/user/account/sign-up']);
+        }
+
         $invitation = new Invitation([
             'scenario' => Invitation::INVITATION_REQUEST_SCENARIO
         ]);
