@@ -4,7 +4,7 @@ namespace app\modules\user\listeners;
 
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
-use app\modules\invitation\models\search\Invitation;
+use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
 use app\modules\user\models\User;
 use Yii;
