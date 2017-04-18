@@ -2,7 +2,10 @@
 
 namespace app\modules\profile\controllers;
 
+use app\modules\user\models\User;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
 use yii\web\NotFoundHttpException;
 use \Yii;
 
@@ -17,10 +20,21 @@ class ReferralController extends ProfileController
      */
     public function actionIndex()
     {
-        $referralLink = Url::toRoute(['/profile/default/referral-request', 'code' => Yii::$app->user->identity->referral_code], true);
+        /* @var User $currentUser */
+        $currentUser = Yii::$app->user->identity;
+        $referralCode = $currentUser->referral_code;
+        $referralLink = Url::toRoute(['/profile/default/referral-request', 'code' => $referralCode], true);
+        $dataProvider = new ActiveDataProvider([
+            'query' => $currentUser->getReferrals(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
 
         return $this->render('index', [
-            'referralLink' => $referralLink
+            'referralLink' => $referralLink,
+            'referralCode' => $referralCode,
+            'dataProvider' => $dataProvider
         ]);
     }
 }

@@ -8,6 +8,7 @@ use app\modules\user\helpers\Password;
 use app\modules\user\models\UserMeta;
 use app\modules\user\models\UserGroupRelations;
 use app\helpers\MandrillEmailHelper;
+use yii\helpers\Url;
 
 /**
  * Description of User
@@ -25,6 +26,8 @@ use app\helpers\MandrillEmailHelper;
  * @property integer $status
  * @property string  $first_name
  * @property string  $last_name
+ *
+ * @property User $referrals
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface {
 
@@ -343,18 +346,20 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     }
 
     /**
+     * @return string
      */
     public function getReturnUrl() {
         switch ($this->role) {
             case static::ROLE_ADMIN:
-                $url = '/dashboard/index-backend/index';
+                $url = Url::toRoute(['/dashboard/index-backend/index']);
                 break;
             case static::ROLE_USER:
             case static::ROLE_MOBILE_USER:
             default :
-                $url = Yii::$app->getModule('user')->loginSuccess;
+                $url = Url::toRoute(['/profile/index/account']);
                 break;
         }
+
         return $url;
     }
 
@@ -374,9 +379,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /** @inheritdoc */
     public function afterFind() {
         $this->metaData = new \stdClass();
-        foreach ($this->meta as $key => $value){
-            $this->metaData->{$value->meta_key} = $value->meta_value;
-        }
+//        foreach ($this->meta as $key => $value){
+//            $this->metaData->{$value->meta_key} = $value->meta_value;
+//        }
     }
     
     /**
@@ -413,5 +418,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             static::FEMALE => Yii::t('app', 'Female')
         ];
     }
-    
+
+    public function getReferrals() {
+        return $this->hasMany(User::className(), ['id' => 'target_user_id'])
+            ->viaTable(Referral::tableName(), ['source_user_id' => 'id']);
+    }
 }
