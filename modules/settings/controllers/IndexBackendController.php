@@ -54,6 +54,12 @@ class IndexBackendController extends BackController
                     'type' => FormModel::TYPE_TEXTINPUT,
                     'options' => ['placeholder' => 'Mandrill API Key'],
                 ],
+                'referral_percents' => [
+                    'label' => 'Referral Percents',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Referral Percents'],
+                    'rules' => [['number']]
+                ],
                 'invite_only_signup' => [
                     'label' => 'Invite Only Signup',
                     'type' => FormModel::TYPE_WIDGET,

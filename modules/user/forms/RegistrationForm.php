@@ -35,9 +35,9 @@ class RegistrationForm extends Model {
 
     public function scenarios() {
         return [
-            static::SIGNUP_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha'],
-            static::INVITATION_SCENARIO => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'invitationCode', 'first_name', 'last_name', 'reCaptcha'],
-            static::INVITATION_REQUEST_SCENARIO => ['email']
+            static::SIGNUP_SCENARIO                 => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode'],
+            static::INVITATION_SCENARIO             => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode', 'invitationCode'],
+            static::INVITATION_REQUEST_SCENARIO     => ['email']
         ];
     }
 
@@ -75,7 +75,7 @@ class RegistrationForm extends Model {
             //referral code rules
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
             // captcha
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
+//            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
         ];
     }
 

@@ -3,6 +3,7 @@
 namespace app\modules\user\controllers\account;
 
 use app\modules\invitation\models\Invitation;
+use app\modules\user\models\Referral;
 use Yii;
 use yii\base\Action;
 use app\modules\user\forms\RegistrationForm;
@@ -46,6 +47,8 @@ class RegisterAction extends Action
         }
 
         $post = Yii::$app->request->post();
+        $cookies = Yii::$app->request->cookies;
+        $form->referralCode = $cookies->getValue(Referral::COOKIES_REQUEST_ID, null);
 
         if ($form->load($post) && $form->validate()) {
 

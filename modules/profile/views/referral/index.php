@@ -7,7 +7,10 @@
                 <!-- Post item-->
                 <div class="post-item">
                     <div class="post-content-details">
-                        <div class="seperator"><span>Login</span></div>
+                        <div class="seperator"><span>Referral Link</span></div>
+                        <blockquote>
+                            <p><?php echo $referralLink ?></p>
+                        </blockquote>
                     </div>
                 </div>
 

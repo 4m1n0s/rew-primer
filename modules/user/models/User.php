@@ -121,7 +121,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             } else {
                 $this->password = Password::hash($this->password);
             }
-            
+
+            $this->referral_code = Yii::$app->security->generateRandomString(rand(8, 12));
             $this->create_date = \app\helpers\DateHelper::getCurrentDateTime();
         } else {
             if (!empty($this->newPassword)) {
@@ -196,7 +197,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
      * Finds a user by the given username or email.
      *
      * @param  string      $usernameOrEmail Username or email to be used on search.
-     * @return models\User
+     * @return User
      */
     public function findUserByUsernameOrEmail($usernameOrEmail) {
         if (filter_var($usernameOrEmail, FILTER_VALIDATE_EMAIL)) {
@@ -209,7 +210,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
      * Finds a user by the given email.
      *
      * @param  string      $email Email to be used on search.
-     * @return models\User
+     * @return User
      */
     public function findUserByEmail($email) {
         return self::findOne(['email' => $email]);
@@ -219,7 +220,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
      * Finds a user by the given username.
      *
      * @param  string      $username Username to be used on search.
-     * @return models\User
+     * @return User
      */
     public function findUserByUsername($username) {
         return self::findOne(['username' => $username]);
@@ -317,7 +318,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /**
      * Get user by referral code
      * @param string $code 
-     * @return models/User 
+     * @return User
      */
     public static function getUserByReferralCode($code) {
         return self::findOne(['referral_code' => $code]);

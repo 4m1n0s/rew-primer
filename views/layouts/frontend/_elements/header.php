@@ -72,6 +72,10 @@ use yii\widgets\Menu;
                                                 'url' => ['/profile/index/account'],
                                             ],
                                             [
+                                                'label' => \Yii::t('app', 'Referral Program'),
+                                                'url' => ['/profile/referral/index'],
+                                            ],
+                                            [
                                                 'label' => \Yii::t('app', 'Log Out'),
                                                 'url' => ['/user/account/logout'],
                                             ],

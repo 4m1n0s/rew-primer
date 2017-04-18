@@ -113,8 +113,10 @@ class UserListener {
     public static function onSuccessRegistration(UserRegistrationEvent $event) {
         $user = $event->getUser();
         $token = $event->getToken();
+        $form = $event->getForm();
         $mandrillMailer = \Yii::$app->get('mandrillMailer');
         /* @var MandrillMailer $mandrillMailer */
+        $keyStorage = \Yii::$app->get('keyStorage');
 
         if ($user->status !== User::STATUS_PENDING) {
             return false;
@@ -129,6 +131,19 @@ class UserListener {
                 'style' => 'word-wrap: break-word;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #2A9AE7;font-weight: bold;text-decoration: none;',
             ]),
         ]);
+
+        $referralCode = $form->referralCode;
+        $referralPercents = $keyStorage->get('referral_percents');
+
+        if (!empty($referralCode) && (($sourceUser = User::getUserByReferralCode($referralCode)) !== null) && (int)$referralPercents > 0) {
+            $mandrillMailer->addToQueue(
+                $user->email,
+                EmailTemplate::TEMPLATE_SIGN_UP_CONFIRMATION, [
+                'source_username' => $sourceUser->username,
+                'target_username' => $user->username,
+                'referral_percents' => $referralPercents
+            ]);
+        }
     }
 
     /**

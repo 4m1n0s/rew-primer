@@ -73,11 +73,11 @@ class UserManager extends \yii\base\Component
             $user->status = User::STATUS_PENDING;
 
             if ($user->save() && ($token = $this->tokenStorage->createAccountActivationToken($user)) !== false) {
-//                if (!empty($form->referralCode)) {
-//                    if (null !== $referral = User::getUserByReferralCode($form->referralCode)) {
-//                        Referral::linkReferral($referral->id, $user->id);
-//                    }
-//                }
+                if (!empty($form->referralCode)) {
+                    if (null !== $sourceUser = User::getUserByReferralCode($form->referralCode)) {
+                        Referral::linkReferral($sourceUser, $user);
+                    }
+                }
                 Yii::$app->eventManager->fire(
                     UserEvents::SUCCESS_REGISTRATION, new UserRegistrationEvent($form, $user, $token)
                 );

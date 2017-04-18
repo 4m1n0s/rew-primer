@@ -30,13 +30,11 @@ DatePickerAsset::register($this);
                 <div class="col-md-8 center no-padding">
                     <div class="col-md-12">
                         <h3>Register New Account</h3>
-                        <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p></div>
+                        <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+                    </div>
                     <?php yii\widgets\Pjax::begin(['id' => 'register', 'enablePushState' => false]) ?>
-
-                    <?php
-                    $form = ActiveForm::begin([
+                    <?php $form = ActiveForm::begin([
                         'options' => [
-//                        'data-pjax' => 1,
                             'id' => 'sign-form',
                             'enctype' => 'multipart/form-data'
                         ],
@@ -44,64 +42,47 @@ DatePickerAsset::register($this);
                             'template' => '<div class="col-md-12"><label class="sr-only">{label}</label>{input}{error}</div>',
                             'options' => ['class' => 'col-md-6']
                         ],
-//                    'enableClientValidation' => true,
-//                    'enableClientScript' => true,
-//                    'enableAjaxValidation' => true,
-                    ]);
-                    ?>
+                    ]); ?>
                     <div class="row">
-                        <?=
-                        $form->field($model, 'first_name')->textInput([
+                        <?= $form->field($model, 'first_name')->textInput([
                             'placeholder' => Yii::t('app', 'First Name'),
                             'class' => ' form-control input-lg'
-                        ]);
-                        ?>
-                        <?=
-                        $form->field($model, 'last_name')->textInput([
+                        ]); ?>
+                        <?= $form->field($model, 'last_name')->textInput([
                             'placeholder' => Yii::t('app', 'Last Name'),
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
+                        ]); ?>
                     </div>
                     <div class="row">
 
-                        <?=
-                        $form->field($model, 'username')->textInput([
+                        <?= $form->field($model, 'username')->textInput([
                             'placeholder' => Yii::t('app', 'Username'),
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
-                        <?=
-                        $form->field($model, 'email')->textInput([
+                        ]); ?>
+                        <?= $form->field($model, 'email')->textInput([
                             'placeholder' => Yii::t('app', 'E-mail'),
                             'type' => 'email',
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
+                        ]); ?>
 
                     </div>
                     <div class="row">
 
-                        <?php
-                        echo $form->field($model, 'password')->passwordInput([
+                        <?php echo $form->field($model, 'password')->passwordInput([
                             'placeholder' => Yii::t('app', 'Password'),
                             'type' => 'password',
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
+                        ]); ?>
 
-                        <?php
-                        echo $form->field($model, 'confirmPassword')->passwordInput([
+                        <?php echo $form->field($model, 'confirmPassword')->passwordInput([
                             'placeholder' => Yii::t('app', 'Confirm Password'),
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
+                        ]); ?>
 
                     </div>
                     <div class="row">
 
-                        <?=
-                        $form->field($model, 'birthday', [
+                        <?= $form->field($model, 'birthday', [
                             'template' => '
                         <div class="col-md-12 form-group">
                             {input}
@@ -110,20 +91,20 @@ DatePickerAsset::register($this);
                             'placeholder' => Yii::t('app', 'Birthday'),
                             'class' => 'form-control',
                             'id' => 'datePickerBirthday'
-                        ]);
-                        ?>
+                        ]); ?>
 
-                        <?=
-                        $form->field($model, 'gender')->dropDownList($model->getGender(), [
+                        <?= $form->field($model, 'gender')->dropDownList($model->getGender(), [
                             'prompt' => Yii::t('app', 'Gender'),
                             'class' => 'form-control input-lg'
-                        ]);
-                        ?>
+                        ]); ?>
                     </div>
                     <div class="row">
+                        <?php echo $form->field($model, 'referralCode')->textInput([
+                            'placeholder' => Yii::t('app', 'Referral Code'),
+                        ]); ?>
+
                         <?php if ($inviteSignup): ?>
-                            <?=
-                            $form->field($model, 'invitationCode')->textInput([
+                            <?= $form->field($model, 'invitationCode')->textInput([
                                 'placeholder' => Yii::t('app', 'Invite Code'),
                                 'readonly' => true
                             ]);

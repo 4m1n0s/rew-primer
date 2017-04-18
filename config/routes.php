@@ -14,6 +14,7 @@ return [
     'activate/<token:[a-zA-Z0-9_-]+>' => 'user/account/activate',
     'recovery/reset/<code:[a-zA-Z0-9_-]+>' => 'user/account/recovery-reset',
     'profile' => 'profile/index/account',
+    'referral/<code>' => 'profile/default/referral-request',
     '/' => 'site/index',
 
     // backend
