@@ -13,23 +13,8 @@ use yii\filters\VerbFilter;
 /**
  * InvitationController implements the CRUD actions for Invitation model.
  */
-class InvitationController extends BackController
+class IndexBackendController extends BackController
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Invitation models.
      * @return mixed
@@ -43,69 +28,6 @@ class InvitationController extends BackController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
-
-    /**
-     * Displays a single Invitation model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Invitation model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Invitation();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Updates an existing Invitation model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $model->scenario = Invitation::UPDATE_SCENARIO;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Invitation model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**
@@ -155,6 +77,12 @@ class InvitationController extends BackController
         return $model->deny();
     }
 
+    /**
+     * Request for bulk approve
+     *
+     * @return bool
+     * @throws ForbiddenHttpException
+     */
     public function actionApproveAll()
     {
         if (!Yii::$app->request->isAjax) {
@@ -170,6 +98,12 @@ class InvitationController extends BackController
         return true;
     }
 
+    /**
+     *  Request for bulk deny
+     *
+     * @return bool
+     * @throws ForbiddenHttpException
+     */
     public function actionDenyAll()
     {
         if (!Yii::$app->request->isAjax) {

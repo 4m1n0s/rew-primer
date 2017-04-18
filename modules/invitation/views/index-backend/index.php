@@ -33,7 +33,7 @@ $this->params['breadcrumbs'] = [
                             'id' => 'approve-all',
                             'class' => 'btn blue',
                             'data-confirm' => 'Confirm the action',
-                            'data-link' => Url::toRoute(['/invitation/invitation/approve-all'])
+                            'data-link' => Url::toRoute(['/invitation/index-backend/approve-all'])
                         ]
                     ) ?>
                     <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Decline Selected').'</span>',
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'] = [
                             'id' => 'decline-all',
                             'class' => 'btn red',
                             'data-confirm' => 'Confirm the action',
-                            'data-link' => Url::toRoute(['/invitation/invitation/deny-all'])
+                            'data-link' => Url::toRoute(['/invitation/index-backend/deny-all'])
                         ]
                     ) ?>
                 </div>
@@ -117,7 +117,7 @@ $this->params['breadcrumbs'] = [
                                     ]);
                                 },
                                 'approve' => function($url, $model) {
-                                    $url = Url::to(['/invitation/invitation/approve']);
+                                    $url = Url::to(['/invitation/index-backend/approve']);
                                     return Html::a(
                                         '<i class="fa fa-check-square-o"></i> ' . Yii::t('admin', 'Approve'),
                                         Url::to(),
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'] = [
                                     );
                                 },
                                 'deny' => function($url, $model) {
-                                    $url = Url::to(['/invitation/invitation/deny']);
+                                    $url = Url::to(['/invitation/index-backend/deny']);
                                     return Html::a(
                                         '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Decline'),
                                         Url::to(),
