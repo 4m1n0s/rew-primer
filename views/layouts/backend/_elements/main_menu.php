@@ -35,11 +35,6 @@
                             'class' => 'start'
                         ],
                     ],
-                    
-//                    [
-//                        'label' => '<i class="fa fa-rss"></i> <span class="title"> ' . Yii::t('app', 'Subscribers') . '</span>',
-//                        'url' => ['/subscriber/index-backend/index'],
-//                    ],
 
                     [
                         'label' => '<i class="fa fa-users"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span>',
@@ -48,7 +43,7 @@
 
                     [
                         'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
-                        'url' => ['/invitation/invitation/index'],
+                        'url' => ['/invitation/index-backend/index'],
                     ],
 
                     [
