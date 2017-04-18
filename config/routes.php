@@ -19,6 +19,7 @@ return [
     // backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
     'dashboard/settings/index' => 'settings/index-backend/index',
+    'dashboard/user/<action>' => 'user/index-backend/<action>',
     'dashboard/profile' => 'user/index-backend/profile',
     'dashboard/login' => 'user/account/back-login',
     'dashboard' => 'dashboard/index-backend/index',
