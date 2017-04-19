@@ -3,6 +3,7 @@
 namespace app\modules\user\models;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use app\modules\user\helpers\Password;
 use app\modules\user\models\UserMeta;
@@ -26,6 +27,8 @@ use yii\helpers\Url;
  * @property integer $status
  * @property string  $first_name
  * @property string  $last_name
+ * @property string  $birthday
+ * @property string  $gender
  *
  * @property User $referrals
  */
@@ -128,13 +131,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             $this->referral_code = Yii::$app->security->generateRandomString(rand(8, 12));
             $this->create_date = \app\helpers\DateHelper::getCurrentDateTime();
         } else {
-            if (!empty($this->newPassword)) {
-                $this->password = Password::hash($this->newPassword);
-            }
+//            if (!empty($this->newPassword)) {
+//                $this->password = Password::hash($this->newPassword);
+//            }
             
-            if($this->status === static::STATUS_BLOCKED){
-                $this->auth_key = Yii::$app->security->generateRandomString();
-            }
+//            if ($this->status === static::STATUS_BLOCKED) {
+//                $this->auth_key = Yii::$app->security->generateRandomString();
+//            }
         }
 
         return parent::beforeSave($insert);

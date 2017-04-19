@@ -1,4 +1,5 @@
 <?php
+/* @var \yii\web\View $this */
 /* @var \app\modules\user\models\User $currentUser */
 
 use yii\helpers\Html;
@@ -12,29 +13,22 @@ use yii\helpers\Html;
                 <!-- Post item-->
                 <div class="post-item">
                     <div class="post-content-details">
-                        <div class="seperator"><span>Login Information</span></div>
                         <div class="col-md-12">
-                            <dl class="dl-horizontal">
-                                <dt>Username</dt>
-                                <dd><?php echo Html::a($currentUser->username, '#') ?></dd>
-                                <dt>Email</dt>
-                                <dd><?php echo Html::a($currentUser->email, '#') ?></dd>
-                                <dt>Password</dt>
-                                <dd><?php echo Html::a('******', '#') ?></dd>
-                            </dl>
+                            <div class="seperator"><span>Login Information</span></div>
+                            <?php \yii\widgets\Pjax::begin(['id' => 'login-info-pjax', 'enablePushState' => true]); ?>
+                            <?php echo $this->render('_login-info', [
+                                'currentUser' => $currentUser
+                            ]); ?>
+                            <?php \yii\widgets\Pjax::end(); ?>
                         </div>
+
                         <div class="seperator"><span>Personal Information</span></div>
                         <div class="col-md-12">
-                            <dl class="dl-horizontal">
-                                <dt>First Name</dt>
-                                <dd><?php echo Html::a($currentUser->first_name, '#')?></dd>
-                                <dt>Last Name</dt>
-                                <dd><?php echo Html::a($currentUser->last_name, '#')?></dd>
-                                <dt>Birthday</dt>
-                                <dd><?php echo Html::a($currentUser->birthday, '#')?></dd>
-                                <dt>Gender</dt>
-                                <dd><?php echo Html::a($currentUser->gender ? 'Male' : 'Female', '#')?></dd>
-                            </dl>
+                            <?php \yii\widgets\Pjax::begin(['id' => 'personal-info-pjax', 'enablePushState' => true]); ?>
+                            <?php echo $this->render('_personal-info', [
+                                'currentUser' => $currentUser
+                            ]); ?>
+                            <?php \yii\widgets\Pjax::end(); ?>
                         </div>
                     </div>
                 </div>
