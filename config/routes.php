@@ -5,6 +5,7 @@ return [
     // frontend
     'contact-us' => 'site/contact-us',
     'faq' => 'site/faq',
+    'about' => 'site/about',
     'invite' => '/user/account/invitation-request',
 
     'sign-up/<code:[a-zA-Z0-9_-]+>' => 'user/account/sign-up',

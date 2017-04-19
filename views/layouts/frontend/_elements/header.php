@@ -61,7 +61,7 @@ use yii\widgets\Menu;
                                         'visible' => Yii::$app->user->isGuest,
                                     ] :
                                     [
-                                        'label' => Yii::$app->getUser()->getIdentity()->email,
+                                        'label' => Yii::$app->getUser()->getIdentity()->username,
                                         'url' => '#',
                                         'options' => [
                                             'class' => 'dropdown'

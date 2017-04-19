@@ -59,4 +59,9 @@ class SiteController extends FrontController {
         return $this->render('faq');
     }
 
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
+
 }

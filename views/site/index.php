@@ -27,21 +27,21 @@ $urlMockup = '/images/mockup/';
             <br>
             <div class="col-md-4 col-sm-12">
                 <div class="icon-box effect medium center border">
-                    <div class="icon"> <a href="#"><i class="fa fa-check-square"></i></a> </div>
+                    <div class="icon"> <a href="/about#section-1"><i class="fa fa-check-square"></i></a> </div>
                     <h3>Completing surveys</h3>
                     <p>Lorem ipsum dolor sit amet, consecte adipiscing elit.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="icon-box effect medium center border">
-                    <div class="icon"> <a href="#"><i class="fa fa-video-camera"></i></a> </div>
+                    <div class="icon"> <a href="/about#section-2"><i class="fa fa-video-camera"></i></a> </div>
                     <h3>Watching videos</h3>
                     <p>Suspendisse condimentum porttitor cursumus. Lorem ipsum dolor sit amet, consecte.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="icon-box effect medium center border">
-                    <div class="icon"> <a href="#"><i class="fa fa-search"></i></a> </div>
+                    <div class="icon"> <a href="/about#section-3"><i class="fa fa-search"></i></a> </div>
                     <h3>Searching the web</h3>
                     <p>Lorem ipsum dolor sit amet, consecte adipiscing elit.</p>
                 </div>

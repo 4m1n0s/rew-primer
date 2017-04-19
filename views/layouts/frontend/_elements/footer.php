@@ -12,6 +12,7 @@
                     <div class="float-left">
                         <a href="/contact-us" class="button black button-3d rounded icon-left"><span>Contact Us</span></a>
                         <a href="/faq" class="button black button-3d rounded icon-left"><span>FAQ</span></a>
+                        <?php echo \yii\helpers\Html::a('<span>How it works</span>', ['/site/about'], ['class' => 'button black button-3d rounded icon-left'])?>
                         <?php if (Yii::$app->user->isGuest): ?>
                             <?php echo \yii\helpers\Html::a('SIGN UP', ['/user/account/sign-up'], ['class' => 'button black button-3d rounded icon-left']) ?>
                         <?php endif; ?>
