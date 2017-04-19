@@ -21,6 +21,11 @@ use yii\helpers\Html;
         <?php echo $form->field($model, 'last_name'); ?>
     </div>
     <div class="row">
+        <?php echo $form->field($model, 'birthday')->textInput([
+            'id' => 'datePickerBirthday'
+        ]) ?>
+    </div>
+    <div class="row">
         <?php echo $form->field($model, 'gender')->dropDownList(\app\modules\user\models\User::getGender()); ?>
     </div>
     <div class="col-md-offset-2">
@@ -31,3 +36,17 @@ use yii\helpers\Html;
     </div>
     <?php $form->end(); ?>
 </div>
+
+<?php
+$this->registerAssetBundle(\app\assets\DatePickerAsset::class);
+
+$js = <<<JS
+$(function () {
+    $('#datePickerBirthday').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+});
+JS;
+$this->registerJs($js, $this::POS_READY);

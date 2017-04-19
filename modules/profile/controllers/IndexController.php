@@ -103,12 +103,14 @@ class IndexController extends ProfileController
             'scenario' => ProfileForm::SCENARIO_CHANGE_PERSONAL_INFO,
             'first_name' => $currentUser->first_name,
             'last_name' => $currentUser->last_name,
+            'birthday' => $currentUser->birthday,
             'gender' => $currentUser->gender
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $currentUser->first_name = $model->first_name;
             $currentUser->last_name = $model->last_name;
+            $currentUser->birthday = $model->birthday;
             $currentUser->gender = $model->gender;
 
             if ($currentUser->save()) {
