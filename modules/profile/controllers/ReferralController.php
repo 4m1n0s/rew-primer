@@ -5,7 +5,6 @@ namespace app\modules\profile\controllers;
 use app\modules\user\models\User;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
-use yii\helpers\VarDumper;
 use yii\web\NotFoundHttpException;
 use \Yii;
 

@@ -3,10 +3,8 @@
 namespace app\modules\profile\controllers;
 
 use app\modules\core\components\controllers\FrontController;
-use app\modules\user\models\User;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-use yii\web\NotFoundHttpException;
 use \Yii;
 
 /**
@@ -25,21 +23,6 @@ class ProfileController extends FrontController
                     ],
                 ],
             ],
-        ]);
-    }
-
-    /**
-     * @return string|\yii\web\Response
-     * @throws NotFoundHttpException
-     */
-    public function actionAccount()
-    {
-        if (null === $userData = User::findOne(Yii::$app->user->id)) {
-            throw new NotFoundHttpException('The requested page does not exist.');
-        }
-
-        return $this->render('account', [
-
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace app\modules\profile\controllers;
 
+use app\modules\user\models\User;
 use \Yii;
 
 /**
@@ -10,13 +11,15 @@ use \Yii;
 class IndexController extends ProfileController
 {
     /**
-     * @return string|\yii\web\Response
+     * @return string
      */
     public function actionAccount()
     {
+        /* @var User $currentUser */
+        $currentUser = Yii::$app->user->identity;
 
         return $this->render('account', [
-
+            'currentUser' => $currentUser
         ]);
     }
 }
