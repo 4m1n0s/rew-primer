@@ -17,6 +17,7 @@ class RecoveryForm extends Model {
     const REQUEST_SCENARIO = 'request';
     const RESET_SCENARIO = 'reset';
 
+    public $reCaptcha;
     public $email;
     public $password;
     public $confirmPassword;
@@ -25,8 +26,8 @@ class RecoveryForm extends Model {
     /** @inheritdoc */
     public function scenarios() {
         return [
-            'request' => ['email'],
-            'reset' => ['password', 'confirmPassword']
+            static::REQUEST_SCENARIO => ['email', 'reCaptcha'],
+            static::RESET_SCENARIO => ['password', 'confirmPassword']
         ];
     }
 
@@ -53,6 +54,7 @@ class RecoveryForm extends Model {
             ['confirmPassword', 'required'],
             ['confirmPassword', 'string', 'min' => 6, 'max' => 64],
             ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
         ];
     }
 

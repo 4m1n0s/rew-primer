@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\modules\invitation\models\Invitation */
+/* @var $model \app\modules\user\forms\RegistrationForm */
 
 $this->title = Yii::t('app', 'Sign Up');
 $this->params['breadcrumbs'][] = $this->title;
@@ -51,6 +51,12 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign Up');
                         'placeholder' => Yii::t('app', 'Email')
                     ]);
                     ?>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                    </div>
                 </div>
 
                 <div class="col-md-12 form-group">

@@ -5,7 +5,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\modules\invitation\models\Invitation */
+/* @var $model \app\modules\user\forms\RecoveryForm */
 
 
 $this->title = Yii::t('app', 'Forgot password');
@@ -46,6 +46,9 @@ $this->params['pageTitle'] = Yii::t('app', 'Forgot password');
                 <?= $form->field($model, 'email')->textInput([
                     'placeholder' => 'Email'
                 ]) ?>
+                <div class="form-group">
+                    <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                </div>
                 <div class="row">
                     <div class="col-md-12 form-group">
                         <?= Html::submitButton(Yii::t('app', 'Recover your Password'), ['class' => 'btn btn-primary']); ?>

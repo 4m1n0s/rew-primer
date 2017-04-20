@@ -37,7 +37,7 @@ class RegistrationForm extends Model {
         return [
             static::SIGNUP_SCENARIO                 => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode'],
             static::INVITATION_SCENARIO             => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode', 'invitationCode'],
-            static::INVITATION_REQUEST_SCENARIO     => ['email']
+            static::INVITATION_REQUEST_SCENARIO     => ['email', 'reCaptcha']
         ];
     }
 

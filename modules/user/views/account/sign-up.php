@@ -83,10 +83,7 @@ DatePickerAsset::register($this);
                     <div class="row">
 
                         <?= $form->field($model, 'birthday', [
-                            'template' => '
-                        <div class="col-md-12 form-group">
-                            {input}
-                        </div>'
+                            'template' => '<div class="col-md-12 form-group">{input}</div>'
                         ])->textInput([
                             'placeholder' => Yii::t('app', 'Birthday'),
                             'class' => 'form-control',
@@ -113,7 +110,7 @@ DatePickerAsset::register($this);
                     </div>
 
                     <div class="row">
-                        <div class="col-md-12 form-group">
+                        <div class="form-group">
                             <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
                         </div>
                     </div>
