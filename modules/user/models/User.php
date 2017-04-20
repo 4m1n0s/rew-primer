@@ -382,9 +382,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /** @inheritdoc */
     public function afterFind() {
         $this->metaData = new \stdClass();
-//        foreach ($this->meta as $key => $value){
-//            $this->metaData->{$value->meta_key} = $value->meta_value;
-//        }
+        foreach ($this->meta as $key => $value){
+            $this->metaData->{$value->meta_key} = $value->meta_value;
+        }
     }
     
     /**
