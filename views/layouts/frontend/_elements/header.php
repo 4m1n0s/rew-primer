@@ -69,7 +69,7 @@ use yii\widgets\Menu;
                                         'items' => [
                                             [
                                                 'label' => \Yii::t('app', 'My Account'),
-                                                'url' => ['/profile/index/account'],
+                                                'url' => Yii::$app->getUser()->getIdentity()->role == 1 ? ['/user/index-backend/profile'] : ['/profile/index/account'],
                                             ],
                                             [
                                                 'label' => \Yii::t('app', 'Referral Program'),
