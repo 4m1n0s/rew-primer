@@ -10,6 +10,7 @@ class IndexBackendController extends BackController {
     public function actionIndex() {
 
         $countUsers = User::find()->count();
+        $countUsers = (int)$countUsers - 1;
 
         return $this->render('index', [
             'countUsers' => $countUsers
