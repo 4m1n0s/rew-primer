@@ -67,6 +67,9 @@ class ProfileForm extends Model {
             ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword'],
             [['currentPassword'], 'validateCurrentPassword'],
             [['newPassword'], 'validateNewPassword'],
+
+            // Birthday
+            ['birthday', 'date', 'format' => 'php:Y-m-d', 'message' => 'Invalid date format']
         ];
     }
 
