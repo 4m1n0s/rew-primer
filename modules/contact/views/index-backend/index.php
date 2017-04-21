@@ -10,6 +10,8 @@ use yii\helpers\Url;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Contacts';
+$this->params['pageTitle'] = Yii::t('admin', 'Contacts');
+$this->params['pageSmallTitle'] = Yii::t('admin', 'manage');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="contact-index">
@@ -18,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="portlet">
                 <div class="portlet-title">
                     <div class="caption">
-                        <i class="fa fa-table"></i>Invitations
+                        <i class="fa fa-table"></i>Contacts
                     </div>
                     <div class="actions">
                         <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Read Selected').'</span>',
