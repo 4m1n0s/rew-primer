@@ -7,6 +7,7 @@ use app\models\EmailTemplate;
 use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
 use app\modules\user\models\User;
+use app\modules\user\models\UserIpLog;
 use Yii;
 use yii\helpers\Html;
 use \yii\helpers\Url;
@@ -52,7 +53,14 @@ class UserListener {
     }
     
     public static function onSuccessAutoLogin(\yii\web\UserEvent $event) {
-        
+        if(null === $ipLog = UserIpLog::find()->where(['user_id' => Yii::$app->user->id, 'ip' => Yii::$app->request->getUserIP()])->one()) {
+            $ipLog = new UserIpLog([
+                'user_id' => Yii::$app->user->id,
+                'ip' => Yii::$app->request->getUserIP()
+            ]);
+
+            $ipLog->save();
+        }
     }
 
     /**

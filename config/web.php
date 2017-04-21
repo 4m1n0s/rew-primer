@@ -37,7 +37,8 @@ $config = [
             'identityCookie' => [
                 'name' => '_identity_http_', 
                 'httpOnly' => true
-            ]
+            ],
+            'on afterLogin' => ['app\modules\user\listeners\UserListener', 'onSuccessAutoLogin']
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
