@@ -16,6 +16,8 @@ use Yii;
  */
 class EmailTemplate extends \yii\db\ActiveRecord
 {
+    const TEMPLATE_CONTACT_US = 1000;
+
     const TEMPLATE_INVITATION_REQUEST_RECEIVED = 1;
     const TEMPLATE_INVITATION_REQUEST_APPROVED = 2;
 

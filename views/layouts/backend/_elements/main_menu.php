@@ -15,6 +15,10 @@
         
         
         <?php
+        $module = Yii::$app->controller->module->id;
+        $controller = Yii::$app->controller->id;
+        $action = Yii::$app->controller->action->id;
+
             echo yii\widgets\Menu::widget([
                 'encodeLabels' => false,
                 'activateParents' => true,
@@ -44,6 +48,12 @@
                     [
                         'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
                         'url' => ['/invitation/index-backend/index'],
+                    ],
+
+                    [
+                        'label' => '<i class="fa fa-envelope-o"></i> <span class="title"> ' . Yii::t('app', 'Contact Messages') . '</span><span class="badge badge-info">' . \app\modules\contact\widgets\CountWidget::widget(['status' => \app\modules\contact\models\Contact::STATUS_NEW]) . '</span>',
+                        'url' => ['/contact/index-backend/index'],
+                        'active' => $module == 'contact' && $controller == 'index-backend'
                     ],
 
                     [

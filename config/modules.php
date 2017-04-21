@@ -22,4 +22,7 @@ return [
     'profile' => [
         'class' => 'app\modules\profile\Module',
     ],
+    'contact' => [
+        'class' => 'app\modules\contact\Module',
+    ],
 ];

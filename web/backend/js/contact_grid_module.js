@@ -1,9 +1,9 @@
-var invitation_grid_module = function($) {
+var contact_grid_module = function($) {
 
-    var gridPjaxContainer = $('#invitation-grid-pjax');
+    var gridPjaxContainer = $('#contact-grid-pjax');
 
-    var initApproveAllControl = function() {
-        var btnElement = $('#approve-all');
+    var initReadAllControl = function() {
+        var btnElement = $('#read-all');
         var link = btnElement.data('link');
 
         btnElement.click(function (e) {
@@ -11,8 +11,8 @@ var invitation_grid_module = function($) {
         })
     };
 
-    var initDeclineAllControl = function() {
-        var btnElement = $('#decline-all');
+    var initDeleteAllControl = function() {
+        var btnElement = $('#delete-all');
         var link = btnElement.data('link');
 
         btnElement.click(function (e) {
@@ -21,7 +21,7 @@ var invitation_grid_module = function($) {
     };
 
     var processBulkAction = function (link) {
-        var selectedIds = $('#invitation-grid').yiiGridView('getSelectedRows');
+        var selectedIds = $('#contact-grid').yiiGridView('getSelectedRows');
         $.ajax({
             url: link,
             type: "POST",
@@ -46,25 +46,8 @@ var invitation_grid_module = function($) {
                 return;
             }
 
-            initApproveAllControl();
-            initDeclineAllControl();
-        },
-
-        status: function(url, id) {
-            $.ajax({
-                url: url,
-                type: "POST",
-                dataType: 'json',
-                data: {
-                    id: id
-                },
-                success: function(data) {
-                    if (data == true) {
-                        $.pjax.reload({container: gridPjaxContainer});
-                    }
-                }
-            });
-            return false;
+            initReadAllControl();
+            initDeleteAllControl();
         }
     }
 }(jQuery);
