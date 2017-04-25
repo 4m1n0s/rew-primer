@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="text-center">
-            <a class="button red-dark button-3d effect fill" href="/sign-up"><span>Sign up & get "Bucks" today</span></a>
+            <a class="button btn-primary button-3d effect fill" href="/sign-up"><span>Sign up & get "Bucks" today</span></a>
         </div>
     </div>
 </section>
