@@ -359,8 +359,8 @@
 
 .anchor{
     display:block;
-    height:100px; /* this is the height of your header */
-    margin-top:-100px; /* this is again negative value of the height of your header */
+    height:85px; /* this is the height of your header */
+    margin-top:-85px; /* this is again negative value of the height of your header */
     visibility:hidden;
 }
 
