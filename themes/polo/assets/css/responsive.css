@@ -418,7 +418,7 @@ Desktops (≥992px)
     .page-title-parallax {
         background-attachment: none !important;
         background-position: 50% 0;
-        background-size: inherit !important;
+        /*background-size: inherit !important;*/
     }
     #page-title {
         padding: 40px 0 !important;
