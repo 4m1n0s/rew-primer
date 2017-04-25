@@ -363,3 +363,11 @@
     margin-top:-100px; /* this is again negative value of the height of your header */
     visibility:hidden;
 }
+
+#header #logo img {
+    padding: 25px 0;
+}
+
+#header.header-sticky:not(.header-static) #logo img {
+    padding: 15px 0;
+}
