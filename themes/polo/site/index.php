@@ -7,7 +7,7 @@
 
 
 <!-- PAGE TITLE -->
-<section id="page-title" class="page-title-parallax page-title-center" style="height: 300px; background-image:url(/images/large-phone-bg.jpg);">
+<section id="page-title" class="page-title-parallax page-title-center" style="height: 500px; background-image:url(/images/large-phone-bg.jpg);">
     <div class="container">
         <div class="page-title col-md-8">
 <!--            <h1>Left page title version</h1>-->

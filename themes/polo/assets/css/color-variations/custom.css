@@ -333,9 +333,23 @@ ul.icon-list li i {
 }
 
 /* ----------------------------------------------------------------
-    custom btn color
+    custom color
 -----------------------------------------------------------------*/
 
-.social-icons li a:hover i {
+.social-icons li a:hover i, .icon-box.border:hover > .icon i {
 	color: #1c9355 !important;
+}
+#page-title {
+	min-height: 250px;
+}
+
+.footer-content {
+	box-shadow:0 -2px 0 4px #1c9355; 
+}
+#footer {
+	background-color: #1a1a1a;
+}
+
+#header {
+	box-shadow: 0 0 0 2px  #1c9355; 
 }
