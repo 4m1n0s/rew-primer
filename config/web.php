@@ -75,7 +75,8 @@ $config = [
         ],
         'assetManager' => [
             'appendTimestamp' => true,
-            'linkAssets' => true,
+            'linkAssets' => false,
+'forceCopy' => true, 
             'class' => 'yii\web\AssetManager',
             'bundles' => [
                 'yii\web\JqueryAsset' => [
