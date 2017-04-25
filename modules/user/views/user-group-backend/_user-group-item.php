@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var \app\modules\user\models\User $user */
 ?>
 
-<div class="user-group-item">
-    <span class="list-group-item col-md-4">
+<div class="user-group-item col-md-4" style="margin: 5px 0 5px 0">
+    <span class="list-group-item">
         <?= $user->email ?>
         <?= Html::a('<span class="fa fa-minus"></span>', '#', [
             'class' => 'remove-user',
