@@ -21,6 +21,7 @@ return [
     // backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
     'dashboard/settings/index' => 'settings/index-backend/index',
+    'dashboard/user-group/<action>' => 'user/user-group-backend/<action>',
     'dashboard/contact/<action>' => 'contact/index-backend/<action>',
     'dashboard/user/<action>' => 'user/index-backend/<action>',
     'dashboard/profile' => 'user/index-backend/profile',
