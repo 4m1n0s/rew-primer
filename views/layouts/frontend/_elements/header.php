@@ -13,7 +13,7 @@ use yii\widgets\Menu;
             <!--LOGO-->
             <div id="logo">
                 <a href="/" class="logo" data-dark-logo="/images/logo-dark.png">
-                    <img src="/images/logo.png" alt="Polo Logo">
+                    <img src="/images/rewardbuckslogo.png" alt="Polo Logo" >
                 </a>
             </div>
             <!--END: LOGO-->
