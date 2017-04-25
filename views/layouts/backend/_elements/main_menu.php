@@ -41,28 +41,46 @@
                     ],
 
                     [
-                        'label' => '<i class="fa fa-users"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span>',
-                        'url' => ['/user/index-backend/index'],
-                    ],
-
-                    [
-                        'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
-                        'url' => ['/invitation/index-backend/index'],
-                    ],
-
-                    [
                         'label' => '<i class="fa fa-envelope-o"></i> <span class="title"> ' . Yii::t('app', 'Contact Messages') . '</span><span class="badge badge-info">' . \app\modules\contact\widgets\CountWidget::widget(['status' => \app\modules\contact\models\Contact::STATUS_NEW]) . '</span>',
                         'url' => ['/contact/index-backend/index'],
                         'active' => $module == 'contact' && $controller == 'index-backend'
                     ],
 
                     [
+                        'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
+                        'url' => ['/invitation/index-backend/index'],
+                    ],
+                    
+                    [
+                        'label' => '<i class="fa fa-users"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span></span><span class="arrow"></span>',
+                        'url' => 'javascript:;',
+                        'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
+                        'options' => [
+                            'class' => 'nav-item'
+                        ],
+                        'items' => [
+                            'options' => [
+                                'class' => 'sub-menu'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Manage Users'),
+                                'url' => ['/user/index-backend/index'],
+                                'active' => $module == 'user' && $controller == 'index-backend'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Manage Groups'),
+                                'url' => ['/user/user-group-backend/index'],
+                                'active' => $module == 'user' && $controller == 'user-group-backend'
+                            ],
+                        ]
+                    ],
+
+                    [
                         'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span>',
                         'url' => ['/settings/index-backend/index'],
                     ],
-
                 ]
-                ]);
+            ]);
         ?>
         
         <!-- END SIDEBAR MENU -->
