@@ -5,7 +5,7 @@ $params = require(__DIR__ . '/params.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'settings'],
+    'bootstrap' => ['log'],
     'name' => 'RewardBucks',
     'components' => [
         'request' => [
@@ -76,7 +76,7 @@ $config = [
         'assetManager' => [
             'appendTimestamp' => true,
             'linkAssets' => false,
-'forceCopy' => true, 
+            'forceCopy' => true,
             'class' => 'yii\web\AssetManager',
             'bundles' => [
                 'yii\web\JqueryAsset' => [
@@ -98,6 +98,9 @@ $config = [
         ],
         'mandrillMailer' => [
             'class' => 'app\components\MandrillMailer'
+        ],
+        'keyStorage' => [
+            'class' => '\app\modules\settings\components\KeyStorage'
         ],
     ],
     'params' => $params,
