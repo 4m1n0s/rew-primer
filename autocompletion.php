@@ -19,6 +19,7 @@ class Yii extends \yii\BaseYii
  * @property \app\components\MandrillMailer $mandrillMailer
  * @property \app\modules\settings\components\KeyStorage $keyStorage
  * @property \himiklab\yii2\recaptcha\ReCaptcha $reCaptcha
+ * @property \app\modules\core\components\geolocation\Location $geoLocation
  */
 abstract class BaseApplication extends yii\base\Application
 {

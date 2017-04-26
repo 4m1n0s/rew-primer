@@ -102,6 +102,10 @@ $config = [
         'keyStorage' => [
             'class' => '\app\modules\settings\components\KeyStorage'
         ],
+        'geoLocation' => [
+            'class' => '\app\modules\core\components\geolocation\Location',
+            'clientClassName' => '\app\modules\core\components\geolocation\ClientIPInfo'
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

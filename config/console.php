@@ -12,6 +12,9 @@ return [
     'controllerNamespace' => 'app\commands',
     'modules' => [
         'gii' => 'yii\gii\Module',
+        'core' => [
+            'class' => 'app\modules\core\Module',
+        ],
     ],
     'components' => [
         'cache' => [
@@ -38,6 +41,10 @@ return [
         ],
         'keyStorage' => [
             'class' => '\app\modules\settings\components\KeyStorage'
+        ],
+        'geoLocation' => [
+            'class' => '\app\modules\core\components\geolocation\Location',
+            'clientClassName' => '\app\modules\core\components\geolocation\ClientIPInfo'
         ],
     ],
     'params' => $params,
