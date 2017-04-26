@@ -353,3 +353,48 @@ ul.icon-list li i {
 #header {
 	box-shadow: 0 0 0 2px  #1c9355; 
 }
+
+.panel-primary {
+    border-color: #1c9355;
+    border-radius: 0;
+	-webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, .05);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, .05);
+	border-color: transparent;
+}
+
+
+.panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #1c9355;
+    border-color: #1c9355;
+    border-radius: 0;
+}
+
+.seperator, .separator {
+	font-weight: 600;
+	color: #000;
+	font-size: 18px;
+}
+
+.panel-primary .panel-body {
+    line-height: 20px;
+}
+
+.panel-primary .list-medium li {
+    margin: 5px 0;
+    line-height: 20px;
+}
+
+
+.seperator::before, .seperator::after, .separator::before, .separator::after {
+    border-bottom: 1px solid #1c9355;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	    filter: alpha(opacity=30);
+	    -khtml-opacity: 0.3;
+	    -moz-opacity: 0.3;
+	    opacity:0.3;
+}
+
+.post-item {
+	border-color: #b7d8c7;
+}

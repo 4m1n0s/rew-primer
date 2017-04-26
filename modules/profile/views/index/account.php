@@ -22,8 +22,8 @@ use yii\helpers\Html;
                             <?php \yii\widgets\Pjax::end(); ?>
                         </div>
 
-                        <div class="seperator"><span>Personal Information</span></div>
                         <div class="col-md-12">
+                            <div class="seperator"><span>Personal Information</span></div>
                             <?php \yii\widgets\Pjax::begin(['id' => 'personal-info-pjax', 'enablePushState' => true]); ?>
                             <?php echo $this->render('_personal-info', [
                                 'currentUser' => $currentUser
@@ -39,7 +39,7 @@ use yii\helpers\Html;
             <!-- Sidebar-->
             <div class="sidebar col-md-3">
 
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Panel title</h3>
                     </div>
@@ -48,7 +48,7 @@ use yii\helpers\Html;
                     </div>
                 </div>
 
-                <div class="panel panel-default">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Panel title</h3>
                     </div>
