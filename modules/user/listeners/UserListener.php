@@ -4,6 +4,7 @@ namespace app\modules\user\listeners;
 
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
+use app\modules\core\components\IPNormalizer;
 use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
 use app\modules\user\models\User;
@@ -53,10 +54,19 @@ class UserListener {
     }
     
     public static function onSuccessAutoLogin(\yii\web\UserEvent $event) {
-        if(null === $ipLog = UserIpLog::find()->where(['user_id' => Yii::$app->user->id, 'ip' => Yii::$app->request->getUserIP()])->one()) {
+        $userIP = Yii::$app->request->getUserIP();
+        $userID = Yii::$app->user->id;
+
+        if (null === UserIpLog::find()->where(['user_id' => $userID, 'ip' => $userIP])->one()) {
+            $IPNormalizer = new IPNormalizer($userIP);
+
+            if (!$ip = $IPNormalizer->process()) {
+                // TODO Handle wrong ip
+            }
+
             $ipLog = new UserIpLog([
-                'user_id' => Yii::$app->user->id,
-                'ip' => Yii::$app->request->getUserIP()
+                'user_id' => $userID,
+                'ip' => $ip
             ]);
 
             $ipLog->save();

@@ -59,7 +59,6 @@ class UserIpLog extends \yii\db\ActiveRecord
 
     public function setIp($ip)
     {
-        $ips = explode(',', $ip);
-        $this->ip = explode(',', $ips[0]);
+        $this->ip = $ip;
     }
 }
