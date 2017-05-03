@@ -7,8 +7,6 @@ use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
 use app\modules\user\helpers\Password;
 use app\modules\user\models\UserMeta;
-use app\modules\user\models\UserGroupRelations;
-use app\helpers\MandrillEmailHelper;
 use yii\helpers\Url;
 
 /**
@@ -54,7 +52,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public $newPassword;
 
     const MALE = 1;
-    const FEMALE = 0;
+    const FEMALE = 2;
 
 
     /** @inheritdoc */
@@ -420,6 +418,20 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             static::MALE => Yii::t('app', 'Male'),
             static::FEMALE => Yii::t('app', 'Female')
         ];
+    }
+
+    public function getGenderName()
+    {
+        $list = static::getGender();
+
+        switch ($this->gender) {
+            case static::MALE:
+                return $list[static::MALE];
+            case static::FEMALE:
+                return $list[static::FEMALE];
+            default:
+                return 'unknown';
+        }
     }
 
     public function getReferrals() {
