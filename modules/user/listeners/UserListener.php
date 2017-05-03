@@ -54,22 +54,12 @@ class UserListener {
     }
     
     public static function onSuccessAutoLogin(\yii\web\UserEvent $event) {
-        $userIP = Yii::$app->request->getUserIP();
         $userID = Yii::$app->user->id;
 
-        if (null === UserIpLog::find()->where(['user_id' => $userID, 'ip' => $userIP])->one()) {
-            $IPNormalizer = new IPNormalizer($userIP);
+        $ip = (new IPNormalizer())->getIP();
 
-            if (!$ip = $IPNormalizer->process()) {
-                // TODO Handle wrong ip
-            }
-
-            $ipLog = new UserIpLog([
-                'user_id' => $userID,
-                'ip' => $ip
-            ]);
-
-            $ipLog->save();
+        if ($ip) {
+            UserIpLog::add($userID, $ip);
         }
     }
 

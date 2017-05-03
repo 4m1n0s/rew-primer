@@ -61,4 +61,23 @@ class UserIpLog extends \yii\db\ActiveRecord
     {
         $this->ip = $ip;
     }
+
+    /**
+     * @param $userID
+     * @param $userIP
+     * @return bool
+     */
+    public static function add($userID, $userIP)
+    {
+        if (self::find()->where(['user_id' => $userID, 'ip' => $userIP])->exists()) {
+            return false;
+        }
+
+        $ipLog = new static([
+            'user_id' => $userID,
+            'ip' => $userIP
+        ]);
+
+        return $ipLog->save();
+    }
 }

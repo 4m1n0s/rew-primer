@@ -20,44 +20,40 @@ class IPNormalizer
 
     /**
      * IPNormalizer constructor.
-     * @param null $ip
      */
-    public function __construct($ip = null)
+    public function __construct()
     {
-        $this->setIP($ip);
+        $this->ip = \Yii::$app->request->getUserIP();
     }
-
+    
     /**
-     * @return string
-     */
-    public function process()
-    {
-        if (empty($this->ip)) {
-            return false;
-        }
-
-        if ($this->filterProxy) {
-            static::doFilterProxy();
-        }
-
-        return $this->ip;
-    }
-
-    /**
-     * @return string
+     * @return null|string
      */
     protected function doFilterProxy()
     {
-        return $this->ip = array_shift(explode(',', $this->ip));
-    }
+        $keyList = [    // List where ip could be found. Note that order matters.
+            'HTTP_CLIENT_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_FORWARDED',
+            'HTTP_X_CLUSTER_CLIENT_IP',
+            'HTTP_FORWARDED_FOR',
+            'HTTP_FORWARDED',
+            'REMOTE_ADDR'
+        ];
 
-    /**
-     * IP Setter
-     * @param $ip
-     */
-    public function setIP($ip)
-    {
-        $this->ip = $ip;
+        foreach ($keyList as $key) {
+            if (false === array_key_exists($key, $_SERVER)) {
+                continue;
+            }
+
+            foreach (array_map('trim', explode(',', $_SERVER[$key])) as $ip) {
+                if (false !== filter_var($ip, FILTER_VALIDATE_IP)) {
+                    return $this->ip = $ip;
+                }
+            }
+        }
+
+        return $this->ip = null;
     }
 
     /**
@@ -66,6 +62,10 @@ class IPNormalizer
      */
     public function getIP()
     {
+        if ($this->filterProxy) {
+            static::doFilterProxy();
+        }
+
         return $this->ip;
     }
 }
