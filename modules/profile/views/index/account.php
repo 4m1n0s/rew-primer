@@ -1,8 +1,11 @@
 <?php
+
 /* @var \yii\web\View $this */
 /* @var \app\modules\user\models\User $currentUser */
 
 use yii\helpers\Html;
+
+$this->title = Yii::t('app', 'My Account');
 ?>
 <!-- post content -->
 <div class="post-content">

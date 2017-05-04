@@ -32,6 +32,9 @@ class FrontAsset extends AssetBundle {
         // Template color
         "css/color-variations/custom.css",
 
+        // Fonts
+        '//fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800',
+
         // CSS CUSTOM STYLE
         "css/custom.css",
     ];

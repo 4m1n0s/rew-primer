@@ -1,3 +1,9 @@
+<?php
+/* @var \yii\web\View $this */
+
+$this->title = Yii::t('app', 'Referral Program');
+?>
+
 <!-- post content -->
 <div class="post-content">
     <!-- Post item-->

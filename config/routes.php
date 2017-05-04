@@ -3,6 +3,7 @@
 return [
 
     // Profile
+    '/profile/offerwall' => '/profile/offer/wall',
     '/profile/account/info' => '/profile/index/account',
     '/profile/account/<action>' => '/profile/index/<action>',
 

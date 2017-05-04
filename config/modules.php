@@ -25,4 +25,7 @@ return [
     'contact' => [
         'class' => 'app\modules\contact\Module',
     ],
+    'offer' => [
+        'class' => 'app\modules\offer\Module',
+    ],
 ];

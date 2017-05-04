@@ -12,7 +12,10 @@
         'activeCssClass' => 'active',
         'submenuTemplate' => "<ul class=\"dropdown-menu\">{items}</ul>",
         'items' => [
-            ['label' => '<i class="fa fa-home"></i>', 'url' => ['/site/index']],
+            [
+                'label' => '<i class="fa fa-home"></i>',
+                'url' => Yii::$app->user->isGuest ? ['/site/index'] : ['/profile/offer/wall']
+            ],
             ['label' => Yii::t('app', 'Contact Us'), 'url' => ['/contact/index/index']],
             ['label' => Yii::t('app', 'FAQ') , 'url' => ['/site/faq']],
             [

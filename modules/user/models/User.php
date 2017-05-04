@@ -357,7 +357,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             case static::ROLE_USER:
             case static::ROLE_MOBILE_USER:
             default :
-                $url = Url::toRoute(['/profile/index/account']);
+                $url = Url::toRoute(['/profile/offer/wall']);
                 break;
         }
 
