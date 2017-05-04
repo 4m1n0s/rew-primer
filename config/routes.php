@@ -2,7 +2,11 @@
 
 return [
 
-    // frontend
+    // Profile
+    '/profile/account/info' => '/profile/index/account',
+    '/profile/account/<action>' => '/profile/index/<action>',
+
+    // Frontend
     'contact-us' => '/contact/index/index',
     'faq' => 'site/faq',
     'about' => 'site/about',
@@ -14,11 +18,10 @@ return [
     'recovery/request' => 'user/account/recovery-request',
     'activate/<token:[a-zA-Z0-9_-]+>' => 'user/account/activate',
     'recovery/reset/<code:[a-zA-Z0-9_-]+>' => 'user/account/recovery-reset',
-    'profile' => 'profile/index/account',
     'referral/<code>' => 'profile/default/referral-request',
     '/' => 'site/index',
 
-    // backend
+    // Backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
     'dashboard/settings/index' => 'settings/index-backend/index',
     'dashboard/user-group/<action>' => 'user/user-group-backend/<action>',

@@ -31,7 +31,7 @@ BackendAsset::register($this);
         <div class="page-container">
 
             <!-- BEGIN SIDEBAR -->
-            <?= $this->render('_elements/main_menu'); ?>
+            <?= $this->render('_elements/main-menu'); ?>
             <!-- END SIDEBAR -->
 
             <!-- BEGIN CONTENT -->
