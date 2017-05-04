@@ -36,6 +36,10 @@
                     ],
                     'items' => [
                         [
+                            'label' => \Yii::t('app', 'Offer Wall'),
+                            'url' => ['/profile/offer/wall'],
+                        ],
+                        [
                             'label' => \Yii::t('app', 'My Account'),
                             'url' => Yii::$app->getUser()->getIdentity()->role == 1 ? ['/user/index-backend/profile'] : ['/profile/index/account'],
                         ],

@@ -12,6 +12,8 @@ use \Yii;
  */
 class ProfileController extends FrontController
 {
+    public $layout = '//frontend/profile';
+
     public function behaviors() {
         return ArrayHelper::merge(parent::behaviors(), [
             'access' => [
