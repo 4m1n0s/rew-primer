@@ -29,6 +29,7 @@ use yii\helpers\Url;
  * @property string  $gender
  *
  * @property User $referrals
+ * @property User $sourceReferral
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface {
 
@@ -437,5 +438,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function getReferrals() {
         return $this->hasMany(User::className(), ['id' => 'target_user_id'])
             ->viaTable(Referral::tableName(), ['source_user_id' => 'id']);
+    }
+
+    public function getSourceReferral()
+    {
+        return $this->hasOne(User::className(), ['id' => 'source_user_id'])
+            ->viaTable(Referral::tableName(), ['target_user_id' => 'id']);
     }
 }
