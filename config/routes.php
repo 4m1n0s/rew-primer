@@ -4,6 +4,7 @@ return [
 
     // Profile
     '/profile/offerwall' => '/profile/offer/wall',
+    '/profile/offerwall/<action>' => '/profile/offer/<action>',
     '/profile/account/info' => '/profile/index/account',
     '/profile/account/<action>' => '/profile/index/<action>',
 
