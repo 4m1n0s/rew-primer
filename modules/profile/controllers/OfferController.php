@@ -74,4 +74,21 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * Clixwall offer page
+     */
+    public function actionClixwall()
+    {
+        $offerUrl = 'https://www.clixwall.com/wall.php?p={api_key}&u={username}'; // TODO: Store it somewhere else
+        $replace = [
+            '{api_key}' => 'H5H5D-6PWNL-PSD69',
+            '{username}' => Yii::$app->user->identity->username,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('offer-daddy', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }

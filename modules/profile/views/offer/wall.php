@@ -22,8 +22,15 @@ $this->title = 'Offer Walls';
     </div>
     <div class="col-md-3">
         <?= Html::a(
+            Html::img('/images/offer-providers/clixwall.png', ['alt' => 'clixwall', 'style' => 'width:100%']),
+            ['/profile/offer/clixwall']
+        ); ?>
+    </div>
+    <div class="col-md-3">
+        <?= Html::a(
             Html::img('/images/offer-providers/offerdaddy.png', ['alt' => 'offer-daddy', 'style' => '']),
             ['/profile/offer/offerdaddy']
         ); ?>
     </div>
+
 </div>
