@@ -91,4 +91,21 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * Ptcwall offer page
+     */
+    public function actionPtcwall()
+    {
+        $offerUrl = 'http://www.ptcwall.com/index.php?view=ptcwall&pubid={site_id}&usrid={username}'; // TODO: Store it somewhere else
+        $replace = [
+            '{site_id}' => '45swi56i8nj08b9z19',
+            '{username}' => Yii::$app->user->identity->username,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('ptcwall', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }

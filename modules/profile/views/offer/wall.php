@@ -32,5 +32,13 @@ $this->title = 'Offer Walls';
             ['/profile/offer/offerdaddy']
         ); ?>
     </div>
+</div>
 
+<div class="row">
+    <div class="col-md-3">
+        <?= Html::a(
+            Html::img('/images/offer-providers/ptcwall.jpg', ['alt' => 'ptcwall', 'style' => 'width:100%']),
+            ['/profile/offer/ptcwall']
+        ); ?>
+    </div>
 </div>
