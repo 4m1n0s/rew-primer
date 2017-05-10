@@ -4,6 +4,7 @@ namespace app\modules\offer\controllers;
 
 use app\modules\core\components\controllers\Controller;
 use app\modules\offer\controllers\postbacks\AdWorkMedia;
+use app\modules\offer\controllers\postbacks\OfferToro;
 
 class PostBackController extends Controller
 {
@@ -12,6 +13,9 @@ class PostBackController extends Controller
         return [
             'adworkmedia' => [
                 'class' => AdWorkMedia::class
+            ],
+            'offertoro' => [
+                'class' => OfferToro::class
             ],
         ];
     }
