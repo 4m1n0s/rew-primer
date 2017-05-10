@@ -57,4 +57,21 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * OfferToro offer page
+     */
+    public function actionOfferdaddy()
+    {
+        $offerUrl = 'https://www.offerdaddy.com/wall/{app_id}/{username}/'; // TODO: Store it somewhere else
+        $replace = [
+            '{app_id}' => 12838,
+            '{username}' => Yii::$app->user->identity->username,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('offer-daddy', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }

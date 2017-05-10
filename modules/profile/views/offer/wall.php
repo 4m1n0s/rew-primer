@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Offer Wall';
+$this->title = 'Offer Walls';
 ?>
 
 <div class="row">
@@ -18,6 +18,12 @@ $this->title = 'Offer Wall';
         <?= Html::a(
             Html::img('/images/offer-providers/offertoro.png', ['alt' => 'offer-toro', 'style' => 'width:100%']),
             ['/profile/offer/offertoro']
+        ); ?>
+    </div>
+    <div class="col-md-3">
+        <?= Html::a(
+            Html::img('/images/offer-providers/offerdaddy.png', ['alt' => 'offer-daddy', 'style' => '']),
+            ['/profile/offer/offerdaddy']
         ); ?>
     </div>
 </div>

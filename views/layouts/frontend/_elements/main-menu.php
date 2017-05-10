@@ -39,7 +39,7 @@
                     ],
                     'items' => [
                         [
-                            'label' => \Yii::t('app', 'Offer Wall'),
+                            'label' => \Yii::t('app', 'Offer Walls'),
                             'url' => ['/profile/offer/wall'],
                         ],
                         [
