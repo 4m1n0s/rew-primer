@@ -12,7 +12,7 @@ class Kiwiwall extends Action
 {
     public $accessHash = 'f6xdcz';
 
-    public function run($access_hash)
+    public function run($access_hash = null)
     {
         try {
             \Yii::info('Kiwiwall POSTBACK', 'offer_postback');
