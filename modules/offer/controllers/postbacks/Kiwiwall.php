@@ -16,6 +16,9 @@ class Kiwiwall extends Action
     {
         \Yii::info('Kiwiwall POSTBACK', 'offer_postback');
 
+        echo 1;
+        die();
+
         // Your secret key can be found in your apps section by clicking on the "Secret Key" button
         $secret_key = 'NGUoWT990bieACDN8xiWkRuXtP6ewmc2';
 
