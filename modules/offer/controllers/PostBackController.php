@@ -5,6 +5,7 @@ namespace app\modules\offer\controllers;
 use app\modules\core\components\controllers\Controller;
 use app\modules\offer\controllers\postbacks\AdWorkMedia;
 use app\modules\offer\controllers\postbacks\Clixwall;
+use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
 use app\modules\offer\controllers\postbacks\Ptcwall;
@@ -38,6 +39,9 @@ class PostBackController extends Controller
             ],
             'pw' => [
                 'class' => Ptcwall::class
+            ],
+            'kw' => [
+                'class' => Kiwiwall::class
             ],
         ];
     }

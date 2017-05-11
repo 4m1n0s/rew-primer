@@ -41,4 +41,10 @@ $this->title = 'Offer Walls';
             ['/profile/offer/ptcwall']
         ); ?>
     </div>
+    <div class="col-md-3">
+        <?= Html::a(
+            Html::img('/images/offer-providers/kiwiwall.png', ['alt' => 'kiwiwall', 'style' => '']),
+            ['/profile/offer/kiwiwall']
+        ); ?>
+    </div>
 </div>

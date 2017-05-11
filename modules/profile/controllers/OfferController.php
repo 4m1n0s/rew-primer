@@ -108,4 +108,21 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * Kiwiwall offer page
+     */
+    public function actionKiwiwall()
+    {
+        $offerUrl = 'https://www.kiwiwall.com/wall/{app_id}/{username}'; // TODO: Store it somewhere else
+        $replace = [
+            '{app_id}' => 'SSl86OGDAaX3PF7X7HBeWQR8fSoJLJPH',
+            '{username}' => Yii::$app->user->identity->username,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('kiwiwall', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }
