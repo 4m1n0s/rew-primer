@@ -8,25 +8,35 @@ use app\modules\offer\controllers\postbacks\Clixwall;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
 use app\modules\offer\controllers\postbacks\Ptcwall;
+use yii\web\NotFoundHttpException;
 
 class PostBackController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if (0 !== strcmp($this->action->accessHash, \Yii::$app->request->get('access_hash'))) {
+            throw new NotFoundHttpException();
+        }
+
+        return parent::beforeAction($action);
+    }
+
     public function actions()
     {
         return [
-            'adworkmedia' => [
+            'awm' => [
                 'class' => AdWorkMedia::class
             ],
-            'offertoro' => [
+            'ot' => [
                 'class' => OfferToro::class
             ],
-            'offerdaddy' => [
+            'od' => [
                 'class' => OfferDaddy::class
             ],
-            'clixwall' => [
+            'cw' => [
                 'class' => Clixwall::class
             ],
-            'ptcwall' => [
+            'pw' => [
                 'class' => Ptcwall::class
             ],
         ];

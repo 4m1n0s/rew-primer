@@ -9,7 +9,7 @@ return [
     '/profile/account/<action>' => '/profile/index/<action>',
 
     // Frontend
-    'postback/<action>' => '/offer/post-back/<action>',
+    'pb/<action>/<access_hash>' => '/offer/post-back/<action>',
     'contact-us' => '/contact/index/index',
     'faq' => 'site/faq',
     'about' => 'site/about',

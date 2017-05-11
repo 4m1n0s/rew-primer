@@ -10,8 +10,9 @@ use yii\base\Action;
  */
 class AdWorkMedia extends Action
 {
+    public $accessHash = 'e5c5xn';
 
-    public function run()
+    public function run($access_hash)
     {
         \Yii::info('AdWorkMedia POSTBACK', 'offer_postback');
     }
