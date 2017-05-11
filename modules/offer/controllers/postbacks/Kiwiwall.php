@@ -3,6 +3,7 @@
 namespace app\modules\offer\controllers\postbacks;
 
 use app\modules\offer\models\Transaction;
+use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\Exception;
 
@@ -55,19 +56,26 @@ class Kiwiwall extends Action
                 // Signatures not equal - send error code
                 throw new Exception('Signature validation error: ' . $validation_signature);
             }
-            
+
+            if (!($user = User::findOne(['username' => $sub_id]))) {
+                throw new Exception('Unknown user: ' . $sub_id);
+            }
+
             Transaction::initTransaction(
-                $status == 1 ? Transaction::TYPE_OFFER_INCOME : Transaction::TYPE_OFFER_REVERSAL,
+                Transaction::TYPE_OFFER_INCOME,
+                $status == 1 ? Transaction::STATUS_COMPLETE : Transaction::STATUS_REJECTED,
                 $amount,
-                $sub_id,
+                $user->id,
                 $ip_address,
                 Transaction::OBJECT_TYPE_KIWIWALL_OFFER,
                 $offer_id,
+                $trans_id,
                 $offer_name
             );
 
         } catch (\Exception $e) {
             \Yii::error('Kiwiwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
+            echo $e->getMessage();
             return 0;
         }
 
