@@ -37,6 +37,7 @@ class Transaction extends \yii\db\ActiveRecord
 
     const OBJECT_TYPE_REFERRAL = 1;
     const OBJECT_TYPE_ADWORKMEDIA_OFFER = 10;
+    const OBJECT_TYPE_KIWIWALL_OFFER = 11;
 
     /**
      * @inheritdoc
@@ -113,6 +114,7 @@ class Transaction extends \yii\db\ActiveRecord
      * @param $type
      * @param $amount
      * @param $userID
+     * @param $userIP
      * @param $objectType
      * @param $objectID
      * @param $description
@@ -120,7 +122,7 @@ class Transaction extends \yii\db\ActiveRecord
      * @return bool
      * @throws \yii\db\Exception
      */
-    public static function initTransaction($type, $amount, $userID, $objectType, $objectID, $description, $params = null)
+    public static function initTransaction($type, $amount, $userID, $userIP, $objectType, $objectID, $description, $params = null)
     {
         $transaction = Yii::$app->db->beginTransaction();
 
@@ -129,7 +131,7 @@ class Transaction extends \yii\db\ActiveRecord
             $model->type = $type;
             $model->amount = $amount;
             $model->user_id = $userID;
-            $model->ip = (new IPNormalizer)->getIP();
+            $model->ip = $userIP;
             $model->object_type = $objectType;
             $model->object_id = $objectID;
             $model->description = $description;
