@@ -29,6 +29,7 @@ class Transaction extends \yii\db\ActiveRecord
     const TYPE_OFFER_INCOME     = 1;
     const TYPE_REFERRAL_INCOME  = 2;
     const TYPE_REDEMPTION_SPEND = 3;
+    const TYPE_OFFER_REVERSAL   = 4;
 
     const TRANSACTION_STATUS_PENDING    = 1;
     const TRANSACTION_STATUS_COMPLETE   = 2;
