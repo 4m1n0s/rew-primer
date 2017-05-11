@@ -75,7 +75,6 @@ class Kiwiwall extends Action
 
         } catch (\Exception $e) {
             \Yii::error('Kiwiwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
-            echo $e->getMessage();
             return 0;
         }
 
