@@ -36,7 +36,7 @@ class Kiwiwall extends Action
             }
 
             // Get parameters
-            $status = trim($_REQUEST['status'], " \t\n\r\0\x0B?");
+            $status = trim($_REQUEST['?status']);   // Unknown leading symbol '?' issue
             $trans_id = $_REQUEST['trans_id'];
             $sub_id = $_REQUEST['sub_id'];
             $sub_id_2 = $_REQUEST['sub_id_2'];
@@ -47,10 +47,6 @@ class Kiwiwall extends Action
             $app_id = $_REQUEST['app_id'];
             $ip_address = $_REQUEST['ip_address'];
             $signature = $_REQUEST['signature'];
-
-            if ($status != 1) {
-                return 1;
-            }
 
             // Create validation signature
             $validation_signature = md5($sub_id . ':' . $amount . ':' . $secret_key);
