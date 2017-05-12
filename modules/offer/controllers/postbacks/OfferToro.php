@@ -37,7 +37,7 @@ class OfferToro extends Action
             $package_id         = \Yii::$app->request->get('package_id');
             $ip_address         = \Yii::$app->request->get('ip_address');
 
-            $secret_key = '';
+            $secret_key = '795b48cc06368fa88f696a0cc1268b0f';
 
             // Create validation signature
             $validation_signature = md5($oid . '-' . $user_id . ':' . $secret_key);
