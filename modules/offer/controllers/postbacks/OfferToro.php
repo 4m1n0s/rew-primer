@@ -40,7 +40,7 @@ class OfferToro extends Action
             $secret_key = '795b48cc06368fa88f696a0cc1268b0f';
 
             // Create validation signature
-            $validation_signature = md5($oid . '-' . $user_id . ':' . $secret_key);
+            $validation_signature = md5($oid . '-' . $user_id . '-' . $secret_key);
 
             if ($sig != $validation_signature) {
                 // Signatures not equal - send error code
