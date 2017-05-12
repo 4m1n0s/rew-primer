@@ -43,6 +43,7 @@ class Transaction extends \yii\db\ActiveRecord
     const OBJECT_TYPE_ADWORKMEDIA_OFFER = 10;
     const OBJECT_TYPE_KIWIWALL_OFFER = 11;
     const OBJECT_TYPE_OFFERTORO_OFFER = 12;
+    const OBJECT_TYPE_OFFERDADDY_OFFER = 13;
 
     /**
      * @inheritdoc
