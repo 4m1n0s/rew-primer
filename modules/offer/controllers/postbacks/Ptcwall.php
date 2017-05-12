@@ -64,5 +64,7 @@ class Ptcwall extends Action
         } catch (\Exception $e) {
             \Yii::error('Ptcwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
         }
+
+        return 'ok';
     }
 }
