@@ -36,7 +36,7 @@ class Transaction extends \yii\db\ActiveRecord
 
     const STATUS_PENDING    = 1;
     const STATUS_COMPLETE   = 2;
-    const STATUS_REJECTED   = 3;
+    const STATUS_REVERSED   = 3;
     const STATUS_DELETED    = 4;
 
     const OBJECT_TYPE_REFERRAL = 1;
