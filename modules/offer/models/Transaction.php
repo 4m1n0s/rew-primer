@@ -36,12 +36,15 @@ class Transaction extends \yii\db\ActiveRecord
 
     const STATUS_PENDING    = 1;
     const STATUS_COMPLETE   = 2;
-    const STATUS_REJECTED   = 3;
+    const STATUS_REVERSED   = 3;
     const STATUS_DELETED    = 4;
 
     const OBJECT_TYPE_REFERRAL = 1;
     const OBJECT_TYPE_ADWORKMEDIA_OFFER = 10;
     const OBJECT_TYPE_KIWIWALL_OFFER = 11;
+    const OBJECT_TYPE_OFFERTORO_OFFER = 12;
+    const OBJECT_TYPE_OFFERDADDY_OFFER = 13;
+    const OBJECT_TYPE_CLIXWALL_OFFER = 14;
 
     /**
      * @inheritdoc

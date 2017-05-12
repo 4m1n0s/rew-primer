@@ -63,7 +63,7 @@ class Kiwiwall extends Action
 
             Transaction::initTransaction(
                 Transaction::TYPE_OFFER_INCOME,
-                $status == 1 ? Transaction::STATUS_COMPLETE : Transaction::STATUS_REJECTED,
+                $status == 1 ? Transaction::STATUS_COMPLETE : Transaction::STATUS_REVERSED,
                 $amount,
                 $user->id,
                 $ip_address,
