@@ -381,3 +381,101 @@
   }
 }
 
+
+.timeline-img {  
+    position: relative;
+    height: 100px;
+    margin-top: 10px;
+    box-shadow: 0 0 3px 0px #ccc;
+    margin-bottom: 10px;
+}
+
+
+.timeline-badge-userpic {
+    bottom: 0;
+    display: block;
+    height: auto;
+    left: 0;
+    margin: auto;
+    max-width: 90%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-height: 100%;
+}
+
+.form-relative {
+    margin-top: -40px;
+    max-width: 400px;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid black;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 0;
+    float: right; 
+    padding-top: 26px;    
+}
+
+.form-relative a, p {
+    color: #fff;  
+    margin-bottom: 0px;
+}
+
+
+.form-relative .row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+#page-title .form-relative .col-md-6:nth-child(2n) {
+    padding-left: 3px;
+}
+#page-title .form-relative .col-md-6:nth-child(2n+1) {
+    padding-right: 3px;
+}
+
+@media only screen and (max-width: 767px ) {
+
+  .form-relative {
+    margin-left: -20px;
+    margin-right: -20px;
+    float: none;
+    padding: 10px;
+  }  
+
+  .form-relative .row .col-md-6 {
+    width: 50%;
+    float: left;
+    clear: none;
+  }
+
+}
+
+
+
+/* social-button */
+
+.btn-group .social-facebook {
+    background: #486db9;
+}
+.btn-group .social-facebook:hover, .btn-group .social-facebook:active {
+    background: #4062a7;
+   color: #fff; 
+}
+
+.btn-group .social-twitter {
+    background: #43b7ea;
+}
+.btn-group .social-twitter:hover, .btn-group .social-twitter:active {
+    background: #19a4e1;
+   color: #fff;
+}
+
+.btn-group .social-google {
+    background: #dd4b39;
+}
+.btn-group .social-google:hover, .btn-group .social-google:active {
+   background:#c23321;
+   color: #fff;
+}
+
+/* AND social-button */
