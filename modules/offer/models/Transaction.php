@@ -42,6 +42,7 @@ class Transaction extends \yii\db\ActiveRecord
     const OBJECT_TYPE_REFERRAL = 1;
     const OBJECT_TYPE_ADWORKMEDIA_OFFER = 10;
     const OBJECT_TYPE_KIWIWALL_OFFER = 11;
+    const OBJECT_TYPE_OFFERTORO_OFFER = 12;
 
     /**
      * @inheritdoc
