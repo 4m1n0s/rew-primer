@@ -137,7 +137,7 @@ class Transaction extends \yii\db\ActiveRecord
      * @throws \yii\db\Exception
      */
     public static function initTransaction($type, $status, $amount, $userID, $userIP, $objectType, $objectID,
-                                           $external_transaction_id, $name, $description = null, $params = null)
+                                           $external_transaction_id, $name = null, $description = null, $params = null)
     {
         $transaction = Yii::$app->db->beginTransaction();
 
