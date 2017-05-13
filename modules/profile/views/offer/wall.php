@@ -59,4 +59,12 @@ $this->title = 'Offer Walls';
             ); ?>
         </div>  
     </div>
+    <div class="col-md-3">
+        <div class="timeline-img">
+            <?= Html::a(
+                Html::img('/images/offer-providers/superrewards.png', ['alt' => 'kiwiwall', 'class' => 'timeline-badge-userpic']),
+                ['/profile/offer/superrewards']
+            ); ?>
+        </div>
+    </div>
 </div>

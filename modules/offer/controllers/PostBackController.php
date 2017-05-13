@@ -9,6 +9,7 @@ use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
 use app\modules\offer\controllers\postbacks\Ptcwall;
+use app\modules\offer\controllers\postbacks\SuperRewards;
 use yii\web\NotFoundHttpException;
 
 class PostBackController extends Controller
@@ -42,6 +43,9 @@ class PostBackController extends Controller
             ],
             'kw' => [
                 'class' => Kiwiwall::class
+            ],
+            'sr' => [
+                'class' => SuperRewards::class
             ],
         ];
     }

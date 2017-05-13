@@ -46,6 +46,7 @@ class Transaction extends \yii\db\ActiveRecord
     const OBJECT_TYPE_OFFERDADDY_OFFER = 13;
     const OBJECT_TYPE_CLIXWALL_OFFER = 14;
     const OBJECT_TYPE_PTCWALL_OFFER = 15;
+    const OBJECT_TYPE_SUPERREWARDS_OFFER = 16;
 
     /**
      * @inheritdoc
