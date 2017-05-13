@@ -20,6 +20,8 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\settings\components\KeyStorage $keyStorage
  * @property \himiklab\yii2\recaptcha\ReCaptcha $reCaptcha
  * @property \app\modules\core\components\geolocation\Location $geoLocation
+ * @property \app\modules\user\components\UserManager $userManager
+ * @property \app\modules\user\components\AuthenticationManager $authenticationManager
  */
 abstract class BaseApplication extends yii\base\Application
 {

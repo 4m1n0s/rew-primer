@@ -114,6 +114,12 @@ $config = [
             'class' => '\app\modules\core\components\geolocation\Location',
             'clientClassName' => '\app\modules\core\components\geolocation\ClientIPInfo'
         ],
+        'userManager' => [
+            'class' => '\app\modules\user\components\UserManager'
+        ],
+        'authenticationManager' => [
+            'class' => '\app\modules\user\components\AuthenticationManager'
+        ]
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

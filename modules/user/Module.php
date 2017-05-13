@@ -10,24 +10,8 @@ class Module extends \yii\base\Module {
     public $loginSuccess = '/';
     public $logoutSuccess = '/';
     
-    public function init() {
-        /*\Yii::$app->get('i18n')->translations['user*'] = [
-            'class' => \yii\i18n\PhpMessageSource::className(),
-            'basePath' => __DIR__ . '/messages',
-        ];*/
-        
-        \Yii::$app->setComponents([
-            'userManager' => [
-                'class' => '\app\modules\user\components\UserManager'
-            ]
-        ]);
-        
-        \Yii::$app->setComponents([
-            'authenticationManager' => [
-                'class' => '\app\modules\user\components\AuthenticationManager'
-            ]
-        ]);
-        
+    public function init()
+    {
         if (\Yii::$app->has('eventManager')) {
             \Yii::$app->get('eventManager')->events = \yii\helpers\ArrayHelper::merge(\Yii::$app->get('eventManager')->events, [
                 UserEvents::AFTER_LOGOUT                => ['app\modules\user\listeners\UserListener', 'onAfterLogout'],
