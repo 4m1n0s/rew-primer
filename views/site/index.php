@@ -28,7 +28,7 @@ $urlMockup = '/images/mockup/';
             <div class="form-relative clearfix">
                 <div class="form-group form-group-sm">
                     <?php $form = ActiveForm::begin([
-                        'enableClientScript' => true,
+                        'enableClientScript' => false,
                         'options' => [
                             'id' => 'front-sign-form',
                         ],

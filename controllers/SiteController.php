@@ -59,7 +59,15 @@ class SiteController extends FrontController {
         $cookies = Yii::$app->request->cookies;
         $form->referralCode = $cookies->getValue(Referral::COOKIES_REQUEST_ID, null);
 
-        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+        if ($form->load(Yii::$app->request->post())) {
+
+            if (!$form->validate() && !empty(array_shift($form->getErrors())[0])) {
+                Yii::$app->session->setFlash('error', Yii::t('user', array_shift($form->getErrors())[0]));
+                return $this->render('index', [
+                    'model' => $form,
+                ]);
+            }
+
             if ($user = Yii::$app->userManager->createUser($form)) {
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
                 return $this->redirect('/');
