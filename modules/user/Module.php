@@ -11,10 +11,10 @@ class Module extends \yii\base\Module {
     public $logoutSuccess = '/';
     
     public function init() {
-        \Yii::$app->get('i18n')->translations['user*'] = [
+        /*\Yii::$app->get('i18n')->translations['user*'] = [
             'class' => \yii\i18n\PhpMessageSource::className(),
             'basePath' => __DIR__ . '/messages',
-        ];
+        ];*/
         
         \Yii::$app->setComponents([
             'userManager' => [

@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\modules\user\forms\RegistrationForm;
+use app\modules\user\models\Referral;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -50,7 +52,25 @@ class SiteController extends FrontController {
             return $this->redirect(['/profile/offer/wall']);
         }
 
-        return $this->render('index');
+        $form = new RegistrationForm([
+            'scenario' => RegistrationForm::SIGNUP_SCENARIO
+        ]);
+
+        $cookies = Yii::$app->request->cookies;
+        $form->referralCode = $cookies->getValue(Referral::COOKIES_REQUEST_ID, null);
+
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            if ($user = Yii::$app->userManager->createUser($form)) {
+                Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
+                return $this->redirect('/');
+            }
+
+            Yii::$app->session->setFlash('error', Yii::t('user', 'Error creating account!'));
+        }
+
+        return $this->render('index', [
+            'model' => $form,
+        ]);
     }
     
     public function actionFaq()

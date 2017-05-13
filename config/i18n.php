@@ -7,6 +7,13 @@ return [
             'fileMap' => [
                 'admin*' => 'admin.php',
             ],
+        ],
+        'user' => [
+            'class' => 'yii\i18n\PhpMessageSource',
+            'basePath' => __DIR__ . '/modules/user/messages',
+            'fileMap' => [
+                'user*' => 'user.php',
+            ],
         ]
     ],
 ];

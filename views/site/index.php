@@ -1,5 +1,15 @@
 <?php
 
+use yii\bootstrap\ActiveForm;
+use app\assets\DatePickerAsset;
+use yii\helpers\Html;
+
+DatePickerAsset::register($this);
+
+/* @var $this yii\web\View */
+/* @var $form yii\bootstrap\ActiveForm */
+/* @var $model app\modules\user\forms\RegistrationForm */
+
 $urlPortfolio = '/images/portfolio/';
 $urlMockup = '/images/mockup/';
 
@@ -13,77 +23,121 @@ $urlMockup = '/images/mockup/';
             <!--            <h1>Left page title version</h1>-->
             <!--            <span>Subtext for page title. Lorem ipsum viverra a!</span>-->
         </div>
-        <div class="form-relative clearfix">
-            <div class="form-group form-group-sm">
-                <form id="sign-form" action="/sign-up" method="post" enctype="multipart/form-data">
-                  
+        <?php if (!Yii::$app->keyStorage->get('invite_only_signup')): ?>
+
+            <div class="form-relative clearfix">
+                <div class="form-group form-group-sm">
+                    <?php $form = ActiveForm::begin([
+                        'enableClientScript' => true,
+                        'options' => [
+                            'id' => 'front-sign-form',
+                        ],
+                        'fieldConfig' => [
+                            'template' => '{input}<p class="m-t-5"></p>',
+                            'options' => ['class' => 'col-md-6']
+                        ],
+                    ]); ?>
+                    
                     <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
-                      <div class="btn-group" role="group">
-                        <a href="" class="social-facebook btn-sm btn"><i class="fa fa-facebook"></i> facebook</a>
-                      </div>
-                      <div class="btn-group" role="group">
-                        <a href="" class="social-twitter btn-sm btn"><i class="fa fa-twitter"></i> twitter</a>
-                      </div>
-                      <div class="btn-group" role="group">
-                        <a href="" class="social-google btn-sm btn"><i class="fa fa-google-plus"></i> google</a>
-                      </div>
-                    </div>                         
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                        
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                   
+                        <div class="btn-group" role="group">
+                            <a href="" class="social-facebook btn-sm btn"><i class="fa fa-facebook"></i> facebook</a>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a href="" class="social-twitter btn-sm btn"><i class="fa fa-twitter"></i> twitter</a>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a href="" class="social-google btn-sm btn"><i class="fa fa-google-plus"></i> google</a>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                        
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                   
+
+                        <?= $form->field($model, 'first_name')->textInput([
+                            'placeholder' => 'First Name',
+                        ]); ?>
+
+                        <?= $form->field($model, 'last_name')->textInput([
+                            'placeholder' => 'Last Name',
+                        ]); ?>
+
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                        
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                   
+
+                        <?= $form->field($model, 'username')->textInput([
+                            'placeholder' => Yii::t('app', 'Username'),
+                            'class' => 'form-control'
+                        ]); ?>
+
+                        <?= $form->field($model, 'email')->textInput([
+                            'placeholder' => Yii::t('app', 'E-mail'),
+                            'type' => 'email',
+                            'class' => 'form-control'
+                        ]); ?>
+
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                        
-                        <div class="col-md-6">
-                            <input id="" name="" placeholder="First Name" aria-required="true" class="form-control" type="text"><p class="help-block help-block-error"></p>
-                        </div>                   
+
+                        <?php echo $form->field($model, 'password')->passwordInput([
+                            'placeholder' => Yii::t('app', 'Password'),
+                            'type' => 'password',
+                            'class' => 'form-control'
+                        ]); ?>
+
+                        <?php echo $form->field($model, 'confirmPassword')->passwordInput([
+                            'placeholder' => Yii::t('app', 'Confirm Password'),
+                            'class' => 'form-control'
+                        ]); ?>
+
                     </div>
 
                     <div class="row">
-                        <div class="form-group">                                       
-                    <label class="sr-only"><label class="control-label" for="registrationform-recaptcha">Re Captcha</label></label><input id="registrationform-recaptcha" name="RegistrationForm[reCaptcha]" type="hidden"><div class="g-recaptcha" data-sitekey="6LcfERsUAAAAAF9HF7Ay5PA3l6DqM4Muj_5DmxN1" data-callback="recaptchaCallback" data-expired-callback="recaptchaExpiredCallback"><div style="width: 304px; height: 78px;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?k=6LcfERsUAAAAAF9HF7Ay5PA3l6DqM4Muj_5DmxN1&amp;co=aHR0cDovL3Jld2FyZGJ1Y2tzLnNmZGV2c2VydmVyLmNvbTo4MA..&amp;hl=en&amp;v=r20170503135251&amp;size=normal&amp;cb=cqrne3ufakbs" title="recaptcha widget" scrolling="no" name="undefined" height="78" frameborder="0" width="304"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid #c1c1c1; margin: 10px 25px; padding: 0px; resize: none;  display: none; "></textarea></div></div><p class="help-block help-block-error"></p>
-                                           
-                            </div>
+
+                        <?= $form->field($model, 'birthday', [
+                        ])->textInput([
+                            'placeholder' => Yii::t('app', 'Birthday'),
+                            'class' => 'form-control',
+                            'id' => 'datePickerBirthday'
+                        ]); ?>
+
+                        <?= $form->field($model, 'gender')->dropDownList($model->getGender(), [
+                            'prompt' => Yii::t('app', 'Gender'),
+                            'class' => 'form-control'
+                        ]); ?>
+
+                    </div>
+
+                    <div class="row">
+
+                        <?php echo $form->field($model, 'referralCode')->textInput([
+                            'placeholder' => Yii::t('app', 'Referral Code'),
+                        ]); ?>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="form-group">
+                            <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
+                        </div>
 
                     </div>
 
                     <div class="text-left">
-                        <button type="submit" class="btn btn-primary btn-sm">Register New Account</button>                  
+                        <?php echo Html::submitButton(Yii::t('app', 'Register New Account'), ['class' => 'btn btn-primary btn-sm']) ?>
                     </div>
 
-                    <div class="text-left ">
-                        <a href="">Already have an account? </a>
+                    <div class="text-left">
+                        <?php echo Html::a('Already have an account?', ['user/account/login']); ?>
                     </div>
 
-                </form>
-            </div>    
-        </div>
+                    <?php $form->end(); ?>
+                </div>
+            </div>
+        <?php else: ?>
+
+        <?php endif; ?>
     </div>
 </section>
 <!-- END: PAGE TITLE -->
@@ -138,3 +192,18 @@ $urlMockup = '/images/mockup/';
         </div>
     </div>
 </section>
+
+<?php
+$js = <<<JS
+$(function () {
+    $('#datePickerBirthday').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY-MM-DD',
+        useCurrent: false
+    });
+    
+    
+});
+JS;
+$this->registerJs($js, $this::POS_READY);
+?>

@@ -415,11 +415,14 @@
     padding-top: 26px;    
 }
 
-.form-relative a, p {
-    color: #fff;  
+#front-sign-form a, #front-sign-form p {
+    color: #fff;
     margin-bottom: 0px;
 }
 
+#front-sign-form .help-block-error {
+    color: #a94442;
+}
 
 .form-relative .row {
   margin-right: 0px;

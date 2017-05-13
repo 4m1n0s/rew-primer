@@ -22,7 +22,7 @@
                 'label' => Yii::t('app', 'Sign Up'),
                 'url' => ['/user/account/sign-up'],
                 'active' => $module == 'user' && $controller == 'account' && ($action == 'invitation-request' || $action == 'sign-up'),
-                'visible' => Yii::$app->user->isGuest,
+                'visible' => Yii::$app->user->isGuest && !($controller == 'site' && $action == 'index'),
             ],
             Yii::$app->user->isGuest ?
                 [
