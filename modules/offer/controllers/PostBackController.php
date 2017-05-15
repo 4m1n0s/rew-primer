@@ -5,6 +5,7 @@ namespace app\modules\offer\controllers;
 use app\modules\core\components\controllers\Controller;
 use app\modules\offer\controllers\postbacks\AdWorkMedia;
 use app\modules\offer\controllers\postbacks\Clixwall;
+use app\modules\offer\controllers\postbacks\CpaLead;
 use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\MinuteStaff;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
@@ -50,6 +51,9 @@ class PostBackController extends Controller
             ],
             'ms' => [
                 'class' => MinuteStaff::class
+            ],
+            'cl' => [
+                'class' => CpaLead::class
             ],
         ];
     }

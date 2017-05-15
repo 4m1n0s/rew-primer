@@ -160,4 +160,22 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * CpaLead offer page
+     */
+    public function actionCpalead()
+    {
+        $offerUrl = 'https://cpalead.com/mobile/locker/?pub={pub}&gateid={gateid}&subid={userID}'; // TODO: Store it somewhere else
+        $replace = [
+            '{pub}' => '765543',
+            '{gateid}' => '1341944',
+            '{username}' => Yii::$app->user->identity->id,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('cpa-lead', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }

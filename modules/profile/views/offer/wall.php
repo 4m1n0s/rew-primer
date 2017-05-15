@@ -76,3 +76,14 @@ $this->title = 'Offer Walls';
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="timeline-img">
+            <?= Html::a(
+                Html::img('/images/offer-providers/cpalead.png', ['alt' => 'cpalead', 'class' => 'timeline-badge-userpic']),
+                ['/profile/offer/cpalead']
+            ); ?>
+        </div>
+    </div>
+</div>
