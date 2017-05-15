@@ -62,8 +62,16 @@ $this->title = 'Offer Walls';
     <div class="col-md-3">
         <div class="timeline-img">
             <?= Html::a(
-                Html::img('/images/offer-providers/superrewards.png', ['alt' => 'kiwiwall', 'class' => 'timeline-badge-userpic']),
+                Html::img('/images/offer-providers/superrewards.png', ['alt' => 'superrewards', 'class' => 'timeline-badge-userpic']),
                 ['/profile/offer/superrewards']
+            ); ?>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="timeline-img">
+            <?= Html::a(
+                Html::img('/images/offer-providers/minutestaff.png', ['alt' => 'minutestaff', 'class' => 'timeline-badge-userpic']),
+                ['/profile/offer/minutestaff']
             ); ?>
         </div>
     </div>

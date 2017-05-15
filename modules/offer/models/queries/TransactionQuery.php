@@ -31,4 +31,14 @@ class TransactionQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    /**
+     * @param $externalID
+     * @param $objectType
+     * @return $this
+     */
+    public function lead($externalID, $objectType)
+    {
+        return $this->andWhere(['object_type' => $objectType, 'external_transaction_id' => $externalID]);
+    }
 }
