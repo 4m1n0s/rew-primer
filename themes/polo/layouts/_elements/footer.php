@@ -9,7 +9,7 @@
             <div class="seperator seperator-dark seperator-simple"></div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="float-left">
+                    <div class="float-left footer-button">
                         <a href="/contact-us" class="button black button-3d rounded icon-left"><span>Contact Us</span></a>
                         <a href="/faq" class="button black button-3d rounded icon-left"><span>FAQ</span></a>
                         <a href="/sign-up" class="button black button-3d rounded icon-left"><span>SIGN UP</span></a>
