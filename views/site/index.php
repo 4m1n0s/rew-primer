@@ -39,11 +39,10 @@ $urlMockup = '/images/mockup/';
                         ],
                     ]); ?>
 
-                    <?php yii\authclient\widgets\AuthChoice::widget([
-                        'baseAuthUrl' => ['user/account/auth'],
-                        'popupMode' => false,
-                    ]) ?>
-
+                    <div class="form-group text-center">
+                        <p>Join Now to Start Earning Extra Bucks!</p>
+                    </div>                  
+                    
                     <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
                             <?php echo Html::a('<i class="fa fa-facebook"></i> facebook',
@@ -64,6 +63,10 @@ $urlMockup = '/images/mockup/';
                             ) ?>
                         </div>
                     </div>
+
+                    <div class="form-group-or text-center">
+                        <p>or</p>
+                    </div> 
 
                     <div class="row">
 
@@ -140,7 +143,7 @@ $urlMockup = '/images/mockup/';
                     </div>
 
                     <div class="text-left">
-                        <?php echo Html::submitButton(Yii::t('app', 'Register New Account'), ['class' => 'btn btn-primary btn-sm']) ?>
+                        <?php echo Html::submitButton(Yii::t('app', 'sign up and get 100 free points'), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
                     </div>
 
                     <div class="text-left">

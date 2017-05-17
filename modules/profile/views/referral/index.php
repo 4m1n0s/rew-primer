@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Referral Program');
                     <br>Share Link below to get percents!
                 </p>
                 <p></p>
-                <p><?php echo $referralLink ?></p>
+                <p><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> <span><?php echo $referralLink ?></span></p>
             </blockquote>
 
             <?php if ($dataProvider->count): ?>

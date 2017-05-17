@@ -35,7 +35,7 @@ FrontAsset::register($this);
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row row-container">
                 <div class="col-md-9">
                     <?= $content ?>
                 </div>
