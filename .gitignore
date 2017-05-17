@@ -2,6 +2,7 @@
 /runtime/
 /config/params.php
 /config/db.php
+/config/auth-clients.php
 /web/assets/
 /nbproject/private/
 /.idea

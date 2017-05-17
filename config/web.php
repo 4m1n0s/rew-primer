@@ -119,6 +119,10 @@ $config = [
         ],
         'authenticationManager' => [
             'class' => '\app\modules\user\components\AuthenticationManager'
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => require(__DIR__ . '/auth-clients.php'),
         ]
     ],
     'params' => $params,

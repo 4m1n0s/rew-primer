@@ -22,6 +22,7 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\core\components\geolocation\Location $geoLocation
  * @property \app\modules\user\components\UserManager $userManager
  * @property \app\modules\user\components\AuthenticationManager $authenticationManager
+ * @property yii\authclient\Collection $authClientCollection
  */
 abstract class BaseApplication extends yii\base\Application
 {

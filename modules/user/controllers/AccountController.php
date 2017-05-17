@@ -4,6 +4,7 @@ namespace app\modules\user\controllers;
 
 use app\modules\core\components\controllers\FrontController;
 use app\modules\invitation\actions\InvitationRequestAction;
+use app\modules\user\components\AuthHandler;
 use app\modules\user\controllers\account\ActivateAction;
 use app\modules\user\controllers\account\LoginAction;
 use app\modules\user\controllers\account\LogoutAction;
@@ -12,9 +13,11 @@ use app\modules\user\controllers\account\RecoveryResetAction;
 use yii\filters\AccessControl;
 use app\modules\user\controllers\account\RegisterAction;
 
-class AccountController extends FrontController {
+class AccountController extends FrontController
+{
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -30,7 +33,8 @@ class AccountController extends FrontController {
         ];
     }
 
-    public function actions() {
+    public function actions()
+    {
         return [
             'login' => [
                 'class' => LoginAction::className(),
@@ -60,7 +64,15 @@ class AccountController extends FrontController {
                 'class' => RecoveryResetAction::className(),
                 'layout' => '/frontend/main'
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
         ];
     }
-
+    
+    public function onAuthSuccess($client)
+    {
+        (new AuthHandler($client))->handle();
+    }
 }
