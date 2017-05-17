@@ -39,7 +39,7 @@ $urlMockup = '/images/mockup/';
                     ]); ?>
 
                     
-                    <div class="form-group text-left">
+                    <div class="form-group text-center">
                         <p>Join Now to Start Earning Extra Bucks!</p>
                     </div>                  
                     
@@ -134,7 +134,7 @@ $urlMockup = '/images/mockup/';
                     </div>
 
                     <div class="text-left">
-                        <?php echo Html::submitButton(Yii::t('app', 'Register New Account'), ['class' => 'btn btn-primary btn-sm']) ?>
+                        <?php echo Html::submitButton(Yii::t('app', 'sign up and get 100 free points'), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
                     </div>
 
                     <div class="text-left">
