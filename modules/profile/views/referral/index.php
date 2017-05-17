@@ -20,20 +20,22 @@ $this->title = Yii::t('app', 'Referral Program');
 
             <?php if ($dataProvider->count): ?>
                 <div class="seperator"><span>Referrals</span></div>
-                <?php \yii\widgets\Pjax::begin();
-                echo \yii\grid\GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'tableOptions' => [
-                        'class' => 'table table-striped',
-                    ],
-                    'columns' => [
-                        'username',
-                        'first_name',
-                        'last_name',
-                        'email:email'
-                    ]
-                ]);
-                \yii\widgets\Pjax::end(); ?>
+                <div class="table-responsive">
+                    <?php \yii\widgets\Pjax::begin();
+                    echo \yii\grid\GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'tableOptions' => [
+                            'class' => 'table table-striped',
+                        ],
+                        'columns' => [
+                            'username',
+                            'first_name',
+                            'last_name',
+                            'email:email'
+                        ]
+                    ]);
+                    \yii\widgets\Pjax::end(); ?>
+                </div>
             <?php endif; ?>
         </div>
     </div>
