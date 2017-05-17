@@ -37,6 +37,11 @@ $urlMockup = '/images/mockup/';
                             'options' => ['class' => 'col-md-6']
                         ],
                     ]); ?>
+
+                    
+                    <div class="form-group text-left">
+                        <p>Join Now to Start Earning Extra Bucks!</p>
+                    </div>                  
                     
                     <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
@@ -49,6 +54,10 @@ $urlMockup = '/images/mockup/';
                             <a href="" class="social-google btn-sm btn"><i class="fa fa-google-plus"></i> google</a>
                         </div>
                     </div>
+
+                    <div class="form-group-or text-center">
+                        <p>or</p>
+                    </div> 
 
                     <div class="row">
 
