@@ -513,6 +513,7 @@
   .post-item p {
       margin-bottom: 20px;
       position: relative;
+      line-height: 19px;
   }
 
   blockquote .glyphicon  {

@@ -4443,8 +4443,8 @@ body:not(.no-page-loader) .wrapper,
 
     body.device-sm .sidebar, body.device-xs .sidebar, body.device-xxs .sidebar, 
     .post-content, .post-content-single {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
     }
 
 
