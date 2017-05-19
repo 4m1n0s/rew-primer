@@ -30,6 +30,7 @@
                     'url' => ['/user/account/login'],
                     'active' => $module == 'user' && $controller == 'account' && $action == 'login',
                     'visible' => Yii::$app->user->isGuest,
+                    'template' => '<a href="{url}" class="link-active"><span>{label}</span></a>',
                 ] :
                 [
                     'label' => Yii::$app->getUser()->getIdentity()->username,
