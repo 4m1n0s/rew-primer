@@ -76,7 +76,33 @@ $config = [
         ],
         'i18n' => require(__DIR__ . '/i18n.php'),
         'eventManager' => [
-            'class' => 'app\modules\core\components\EventManager'
+            'class' => 'app\modules\core\components\EventManager',
+            'events' => [
+                'user.after.logout'                 => ['app\modules\user\listeners\UserListener', 'onAfterLogout'],
+                'user.before.logout'                => ['app\modules\user\listeners\UserListener', 'onBeforeLogout'],
+
+                'user.after.login'                  => ['app\modules\user\listeners\UserListener', 'onAfterLogin'],
+                'user.before.login'                 => ['app\modules\user\listeners\UserListener', 'onBeforeLogin'],
+                'user.success.login'                => ['app\modules\user\listeners\UserListener', 'onSuccessLogin'],
+                'user.failure.login'                => ['app\modules\user\listeners\UserListener', 'onFailureLogin'],
+
+                'user.success.activate'             => ['app\modules\user\listeners\UserListener', 'onSuccessActivateAccount'],
+                'user.failure.activate'             => ['app\modules\user\listeners\UserListener', 'onFailureActivateAccount'],
+
+                'user.success.email.confirm'        => ['app\modules\user\listeners\UserListener', 'onSuccessEmailConfirm'],
+                'user.failure.email.confirm'        => ['app\modules\user\listeners\UserListener', 'onFailureEmailConfirm'],
+
+                'user.before.password.recovery'     => ['app\modules\user\listeners\UserListener', 'onBeforePasswordRecovery'],
+                'user.success.password.recovery'    => ['app\modules\user\listeners\UserListener', 'onSuccessPasswordRecovery'],
+                'user.failure.password.recovery'    => ['app\modules\user\listeners\UserListener', 'onFailurePasswordRecovery'],
+
+                'user.before.password.reset'        => ['app\modules\user\listeners\UserListener', 'onBeforePasswordRecoveryReset'],
+                'user.success.password.reset'       => ['app\modules\user\listeners\UserListener', 'onSuccessPasswordRecoveryReset'],
+                'user.failure.password.reset'       => ['app\modules\user\listeners\UserListener', 'onFailurePasswordRecoveryReset'],
+
+                'user.success.registration'         => ['app\modules\user\listeners\UserListener', 'onSuccessRegistration'],
+                'user.failure.registration'         => ['app\modules\user\listeners\UserListener', 'onFailureRegistration'],
+            ]
         ],
         'export' => [
             'class' => 'app\modules\core\components\Export',

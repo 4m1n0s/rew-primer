@@ -28,10 +28,6 @@ class AuthHandler
 
     public function handle()
     {
-        if (!Yii::$app->user->isGuest) {
-            return false;
-        }
-
         $clientID = AuthSocial::getClientID($this->client);
         $userAttributes = $this->getUserAttributes($clientID);
 
@@ -51,10 +47,14 @@ class AuthHandler
             $form = new LoginForm();
             $form->username = $user->email;
             $form->setUser($user);
+
             Yii::$app->authenticationManager->login($form, Yii::$app->getUser());
+
+            return Yii::$app->response->redirect('/');
         } else { // signup
+
             $form = new RegistrationForm();
-            $form->scenario = RegistrationForm::OAUTH_SCENARIO;
+            $form->scenario = RegistrationForm::SCENARIO_OAUTH;
             $form->getDefaultReferralCode();
             $form->first_name = $userAttributes->firstName;
             $form->last_name = $userAttributes->lastName;
@@ -66,6 +66,9 @@ class AuthHandler
                 return Yii::$app->response->redirect(['/user/account/email-accept', 'token' => $token->code]);
             }
         }
+
+        Yii::$app->session->setFlash('error', 'Unexpected errors occurred. Please contact with us');
+        return false;
     }
 
     public function getUserAttributes($clientID)

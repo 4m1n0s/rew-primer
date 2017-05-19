@@ -11,15 +11,12 @@ use app\modules\user\forms\RecoveryForm;
  *
  * @author Stableflow
  */
-class RecoveryRequestAction extends Action {
-
+class RecoveryRequestAction extends Action
+{
     public $layout;
 
-    public function run() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->controller->redirect(Yii::$app->user->returnUrl);
-        }
-
+    public function run()
+    {
         $form = new RecoveryForm([
             'scenario' => RecoveryForm::REQUEST_SCENARIO
         ]);

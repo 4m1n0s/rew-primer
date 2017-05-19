@@ -10,12 +10,13 @@ use yii\base\Action;
  *
  * @author Stableflow
  */
-class ActivateAction extends Action {
-
-    public function run($token) {
+class ActivateAction extends Action
+{
+    public function run($token)
+    {
         if (Yii::$app->userManager->activateUser($token)) {
             Yii::$app->session->setFlash(
-                    'success', Yii::t('user', 'You have successfully activated the account. Now you can login!')
+                    'success', Yii::t('user', 'You have successfully activated the account.')
             );
 
             return $this->controller->redirect(['/user/account/login']);

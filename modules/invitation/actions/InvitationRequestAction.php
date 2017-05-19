@@ -14,9 +14,10 @@ use app\modules\invitation\models\Invitation;
  *
  * @author Stableflow
  */
-class InvitationRequestAction extends Action {
-
-    public function run() {
+class InvitationRequestAction extends Action
+{
+    public function run()
+    {
         $keyStorage = Yii::$app->get('keyStorage');
         $inviteSignup = $keyStorage->get('invite_only_signup');
 
@@ -29,7 +30,7 @@ class InvitationRequestAction extends Action {
         ]);
 
         $form = new RegistrationForm([
-            'scenario' => RegistrationForm::INVITATION_REQUEST_SCENARIO
+            'scenario' => RegistrationForm::SCENARIO_INVITATION_REQUEST
         ]);
 
         $post = Yii::$app->request->post();

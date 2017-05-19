@@ -26,6 +26,6 @@ class DefaultController extends FrontController
             ]));
         }
 
-        return $this->redirect(['/user/account/sign-up']);
+        return $this->redirect([Yii::$app->user->isGuest ? '/user/account/sign-up' : '/']);
     }
 }

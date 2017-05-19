@@ -2,6 +2,7 @@
 
 namespace app\modules\user\components;
 
+use app\helpers\DateHelper;
 use app\modules\core\components\EventManager;
 use app\modules\user\models\AuthSocial;
 use \Yii;
@@ -18,6 +19,7 @@ use \app\modules\user\models\Referral;
 use \app\modules\user\events\UserActivateEvent;
 use yii\base\ErrorException;
 use yii\base\Exception;
+use yii\helpers\ArrayHelper;
 
 /**
  * Class UserManager
@@ -51,19 +53,29 @@ class UserManager extends \yii\base\Component
      * Register new user
      *
      * @param RegistrationForm $form
-     * @return User
+     * @return User|bool
      */
     public function createUser(RegistrationForm $form)
     {
+        if ($form->getScenario() == RegistrationForm::SCENARIO_OAUTH) {
+            $user = User::find()->where(['id' => $form->tempUserID])->one();
+            $user->setScenario(User::SCENARIO_REGISTER_OAUTH);
+        } else {
+            $user = new User();
+            $user->setScenario(User::SCENARIO_REGISTER);
+        }
+
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-            $user = new User();
-            $user->scenario = ($form->getScenario() == RegistrationForm::OAUTH_SCENARIO) ? User::SCENARIO_REGISTER_OAUTH : User::SCENARIO_REGISTER;
             $data = $form->getAttributes();
+
             $user->setAttributes($data);
-            $user->role = User::ROLE_USER;
-            $user->status = User::STATUS_PENDING;
+            $user->password         = Password::hash(ArrayHelper::getValue($data, 'password'));
+            $user->referral_code    = Yii::$app->security->generateRandomString(rand(8, 12));
+            $user->create_date      = DateHelper::getCurrentDateTime();
+            $user->role             = User::ROLE_USER;
+            $user->status           = User::STATUS_PENDING;
 
             if ($user->save() && ($token = $this->tokenStorage->createAccountActivationToken($user)) !== false) {
                 if (!empty($form->referralCode)) {
@@ -72,20 +84,10 @@ class UserManager extends \yii\base\Component
                     }
                 }
 
-                if ($form->getScenario() == RegistrationForm::OAUTH_SCENARIO) {
-                    $auth = AuthSocial::find()->with(['user'])->where([
-                        'client_id' => $form->clientID,
-                        'external_id' => $form->externalID,
-                    ])->one();
-
-                    if (!$auth || !$auth->save()) {
-                        throw new Exception('Auth');
-                    }
-                }
-
                 Yii::$app->eventManager->fire(
                     UserEvents::SUCCESS_REGISTRATION, new UserRegistrationEvent($form, $user, $token)
                 );
+
                 $transaction->commit();
                 return $user;
             }
@@ -105,11 +107,14 @@ class UserManager extends \yii\base\Component
 
         try {
             $user = new User();
-            $user->scenario = User::SCENARIO_TEMP_OAUTH;
-            $data = $form->getAttributes();
-            $user->setAttributes($data);
-            $user->role = User::ROLE_USER;
-            $user->status = User::STATUS_PENDING;
+            $user->scenario     = User::SCENARIO_REGISTER_TEMP_OAUTH;
+            $user->first_name   = $form->first_name;
+            $user->last_name    = $form->last_name;
+            $user->email        = $form->email;
+            $user->password     = Password::hash(Password::generate(6));
+            $user->create_date  = DateHelper::getCurrentDateTime();
+            $user->role         = User::ROLE_USER;
+            $user->status       = User::STATUS_TEMP;
 
             if (!$user->save()) {
                 throw new Exception('Could not save user');
@@ -143,13 +148,11 @@ class UserManager extends \yii\base\Component
      */
     public function activateUser($token)
     {
+        $tokenModel = $this->tokenStorage->get($token, Token::TYPE_ACTIVATE);
         $transaction = Yii::$app->db->beginTransaction();
 
         try {
-            $tokenModel = $this->tokenStorage->get($token, Token::TYPE_ACTIVATE);
-
             if (null === $tokenModel) {
-                Yii::$app->eventManager->fire(UserEvents::FAILURE_ACTIVATE_ACCOUNT, new UserActivateEvent($token));
                 return false;
             }
 
@@ -160,6 +163,7 @@ class UserManager extends \yii\base\Component
                 return false;
             }
 
+            $userModel->setScenario(User::SCENARIO_UPDATE_STATUS);
             $userModel->status = User::STATUS_APPROVED;
 
             if ($this->tokenStorage->activate($tokenModel) && $userModel->save()) {
@@ -173,7 +177,7 @@ class UserManager extends \yii\base\Component
             ));
         } catch (Exception $exc) {
             $transaction->rollBack();
-            Yii::$app->eventManager->fire(UserEvents::FAILURE_ACTIVATE_ACCOUNT, new UserActivateEvent($token));
+            Yii::$app->eventManager->fire(UserEvents::FAILURE_ACTIVATE_ACCOUNT, new UserActivateEvent($tokenModel));
             return false;
         }
     }

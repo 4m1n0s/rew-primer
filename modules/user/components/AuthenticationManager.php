@@ -37,10 +37,12 @@ class AuthenticationManager extends \yii\base\Component
             switch ($identity->status) {
                 case User::STATUS_BLOCKED:
                     $form->addError('email', Yii::t('user', 'Your account was blocked.'));
+                    Yii::$app->session->setFlash('error', 'Your account was blocked.');
                     return false;
                     break;
                 case User::STATUS_PENDING:
                     $form->addError('email', Yii::t('user', 'Please activate your account.'));
+                    Yii::$app->session->setFlash('error', 'Please activate your account.');
                     return false;
                     break;
                 case User::STATUS_APPROVED:
