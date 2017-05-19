@@ -69,7 +69,8 @@ nav .main-menu .dropdown-menu {
 	border-color: #1c9355;
 }
 #header:not(.header-transparent) #mainMenu > ul > li:hover > a,
-#header:not(.header-transparent) #mainMenu > ul > li.current-menu > a, .link-active {
+#header:not(.header-transparent) #mainMenu > ul > li.current-menu > a, 
+.link-active, nav .main-menu a.link-active {
 	color: #1c9355;
 }
 #topbar.topbar-colored {
