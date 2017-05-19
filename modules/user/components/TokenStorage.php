@@ -19,7 +19,7 @@ class TokenStorage extends \yii\base\Component
     public function init()
     {
         parent::init();
-        $this->deleteExpired();
+//        $this->deleteExpired();
     }
 
     /**
@@ -131,6 +131,15 @@ class TokenStorage extends \yii\base\Component
             ])->one();
     }
 
+    public function getUserToken(User $user, $type, $status)
+    {
+        return Token::find()->where([
+            'user_id' => $user->id,
+            'type' => $type,
+            'status' => $status
+        ])->one();
+    }
+
     /**
      * Activete user token
      *
@@ -159,4 +168,21 @@ class TokenStorage extends \yii\base\Component
         throw new ErrorException(Yii::t('user', 'Error activate token!'));
     }
 
+    public function createOauthTempUserToken(User $user, $expire = null)
+    {
+        $expire = (int)$expire;
+        $model = new Token();
+        $model->user_id = $user->id;
+        $model->type = Token::TYPE_OAUTH_TEMP_USER;
+        $model->code = Yii::$app->security->generateRandomString(rand(8, 12));
+        $model->ip = Yii::$app->getRequest()->getUserIP();
+        $model->create_date = DateHelper::getCurrentDateTime();
+        $model->status = Token::STATUS_NEW;
+        $model->expire = DateHelper::getGTMDatetime(time() + $expire);
+        if ($model->save()) {
+            return $model;
+        }
+
+        return false;
+    }
 }

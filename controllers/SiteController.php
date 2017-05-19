@@ -56,8 +56,7 @@ class SiteController extends FrontController {
             'scenario' => RegistrationForm::SIGNUP_SCENARIO
         ]);
 
-        $cookies = Yii::$app->request->cookies;
-        $form->referralCode = $cookies->getValue(Referral::COOKIES_REQUEST_ID, null);
+        $form->getDefaultReferralCode();
 
         if ($form->load(Yii::$app->request->post())) {
 

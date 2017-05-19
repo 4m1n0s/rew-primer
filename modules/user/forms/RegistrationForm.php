@@ -2,6 +2,7 @@
 
 namespace app\modules\user\forms;
 
+use app\modules\user\models\Referral;
 use Yii;
 use yii\base\Model;
 use app\modules\user\models\User;
@@ -17,6 +18,7 @@ class RegistrationForm extends Model {
     const SIGNUP_SCENARIO = 'signup';
     const INVITATION_SCENARIO = 'inviteOnly';
     const INVITATION_REQUEST_SCENARIO = 'invitationRequest';
+    const OAUTH_SCENARIO = 'oauth';
 
     public $username;
     public $email;
@@ -24,6 +26,10 @@ class RegistrationForm extends Model {
     public $confirmPassword;
     public $invitationCode;
     public $referralCode;
+
+    // Oauth
+    public $externalID;
+    public $clientID;
 
     public $first_name;
     public $last_name;
@@ -37,7 +43,8 @@ class RegistrationForm extends Model {
         return [
             static::SIGNUP_SCENARIO                 => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode'],
             static::INVITATION_SCENARIO             => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode', 'invitationCode'],
-            static::INVITATION_REQUEST_SCENARIO     => ['email', 'reCaptcha']
+            static::INVITATION_REQUEST_SCENARIO     => ['email', 'reCaptcha'],
+            static::OAUTH_SCENARIO                  => ['email', 'reCaptcha'],
         ];
     }
 
@@ -112,4 +119,14 @@ class RegistrationForm extends Model {
         return User::getGender();
     }
 
+    /**
+     * After the referral link App stores referral code in cookie and then could auto put code in form
+     *
+     * @return mixed
+     */
+    public function getDefaultReferralCode()
+    {
+        $cookies = Yii::$app->request->cookies;
+        return $this->referralCode = $cookies->getValue(Referral::COOKIES_REQUEST_ID, null);
+    }
 }

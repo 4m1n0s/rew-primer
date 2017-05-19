@@ -30,6 +30,8 @@ use yii\helpers\Url;
  *
  * @property User $referrals
  * @property User $sourceReferral
+ * @property Token $token
+ * @property AuthSocial $authSocial
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface {
 
@@ -43,12 +45,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     const STATUS_BLOCKED    = 2;
     const STATUS_TRANSFER   = 3;
     const STATUS_BLACKLIST  = 4;
-    
-    const CREATE_SCENARIO   = 'create';
-    const UPDATE_SCENARIO   = 'update';
-    const REGISTER_SCENARIO = 'register';
-    const LOGIN_SCENARIO    = 'login';
-    
+
+    const SCENARIO_REGISTER             = 'register';
+    const SCENARIO_UPDATE_LOGIN         = 'update_login';
+    const SCENARIO_UPDATE_PASSWORD      = 'update_password';
+    const SCENARIO_UPDATE_PERSONAL      = 'update_personal';
+    const SCENARIO_TEMP_OAUTH           = 'temp';
+    const SCENARIO_REGISTER_OAUTH       = 'register_oauth';
+
     protected $metaData;
     public $newPassword;
 
@@ -75,10 +79,15 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
 
     /** @inheritdoc */
     public function scenarios() {
-        return\yii\helpers\ArrayHelper::merge([
-                static::LOGIN_SCENARIO     => ['username', 'email'],
-                static::REGISTER_SCENARIO  => ['username', 'email', 'last_name', 'first_name', 'role', 'password', 'create_date', 'status', 'gender', 'birthday']
-            ], parent::scenarios());
+        return [
+            static::SCENARIO_REGISTER           => ['username', 'email', 'last_name', 'first_name', 'role', 'password',
+                                                    'create_date', 'status', 'gender', 'birthday'],
+            static::SCENARIO_UPDATE_LOGIN       => ['username', 'email'],
+            static::SCENARIO_UPDATE_PASSWORD    => ['password'],
+            static::SCENARIO_UPDATE_PERSONAL    => ['first_name', 'last_name', 'birthday', 'gender'],
+            static::SCENARIO_TEMP_OAUTH         => ['first_name', 'last_name'],
+            static::SCENARIO_REGISTER_OAUTH     => ['first_name', 'last_name', 'email', 'role', 'create_date', 'status'],
+        ];
     }
 
     /** @inheritdoc */
@@ -121,7 +130,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /** @inheritdoc */
     public function beforeSave($insert) {
         if ($insert) {
-            if ($this->scenario == static::CREATE_SCENARIO) {
+            if ($this->scenario == static::SCENARIO_REGISTER) {
                 $this->password = Password::hash($this->newPassword);
             } else {
                 $this->password = Password::hash($this->password);
@@ -444,5 +453,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     {
         return $this->hasOne(User::className(), ['id' => 'source_user_id'])
             ->viaTable(Referral::tableName(), ['target_user_id' => 'id']);
+    }
+
+    public function getAuthSocial()
+    {
+        return $this->hasOne(AuthSocial::className(), ['user_id' => 'id']);
     }
 }

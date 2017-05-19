@@ -41,6 +41,7 @@ class IndexController extends ProfileController
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $currentUser->setScenario(User::SCENARIO_UPDATE_LOGIN);
             $currentUser->username = $model->username;
             $currentUser->email = $model->email;
 
@@ -73,6 +74,7 @@ class IndexController extends ProfileController
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $currentUser->setScenario(User::SCENARIO_UPDATE_PASSWORD);
             $currentUser->password = Password::hash($model->newPassword);
 
             if ($currentUser->save()) {
@@ -108,6 +110,7 @@ class IndexController extends ProfileController
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $currentUser->setScenario(User::SCENARIO_UPDATE_PERSONAL);
             $currentUser->first_name = $model->first_name;
             $currentUser->last_name = $model->last_name;
             $currentUser->birthday = $model->birthday;

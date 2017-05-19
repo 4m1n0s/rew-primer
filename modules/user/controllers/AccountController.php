@@ -6,12 +6,16 @@ use app\modules\core\components\controllers\FrontController;
 use app\modules\invitation\actions\InvitationRequestAction;
 use app\modules\user\components\AuthHandler;
 use app\modules\user\controllers\account\ActivateAction;
+use app\modules\user\controllers\account\EmailAcceptAction;
 use app\modules\user\controllers\account\LoginAction;
 use app\modules\user\controllers\account\LogoutAction;
 use app\modules\user\controllers\account\RecoveryRequestAction;
 use app\modules\user\controllers\account\RecoveryResetAction;
+use app\modules\user\forms\RegistrationForm;
+use yii\authclient\ClientInterface;
 use yii\filters\AccessControl;
 use app\modules\user\controllers\account\RegisterAction;
+use yii\helpers\ArrayHelper;
 
 class AccountController extends FrontController
 {
@@ -68,10 +72,14 @@ class AccountController extends FrontController
                 'class' => 'yii\authclient\AuthAction',
                 'successCallback' => [$this, 'onAuthSuccess'],
             ],
+            'email-accept' => [
+                'class' => EmailAcceptAction::className(),
+                'layout' => '/frontend/main'
+            ]
         ];
     }
     
-    public function onAuthSuccess($client)
+    public function onAuthSuccess(ClientInterface $client)
     {
         (new AuthHandler($client))->handle();
     }

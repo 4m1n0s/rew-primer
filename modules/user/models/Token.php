@@ -26,7 +26,8 @@ class Token extends \yii\db\ActiveRecord {
     const TYPE_ACTIVATE = 2;
     const TYPE_CHANGE_PASSWORD = 3;
     const TYPE_ACCESS = 4;
-    
+    const TYPE_OAUTH_TEMP_USER = 5;
+
     const STATUS_NEW = 0;
     const STATUS_ACTIVATE = 1;
     const STATUS_FAIL = 2;

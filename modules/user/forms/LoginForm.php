@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use app\modules\user\models\User;
 use app\modules\user\helpers\Password;
+use yii\web\IdentityInterface;
 
 /**
  * LoginForm is the model behind the login form.
@@ -67,4 +68,8 @@ class LoginForm extends Model {
         return $this->_user;
     }
 
+    public function setUser(IdentityInterface $user)
+    {
+        $this->_user = $user;
+    }
 }

@@ -3,6 +3,7 @@
 namespace app\modules\user\components;
 
 use app\modules\core\components\EventManager;
+use app\modules\user\models\AuthSocial;
 use \Yii;
 use \app\modules\user\forms\RegistrationForm;
 use \app\modules\user\models\User;
@@ -58,18 +59,10 @@ class UserManager extends \yii\base\Component
 
         try {
             $user = new User();
-            $user->scenario = User::REGISTER_SCENARIO;
+            $user->scenario = ($form->getScenario() == RegistrationForm::OAUTH_SCENARIO) ? User::SCENARIO_REGISTER_OAUTH : User::SCENARIO_REGISTER;
             $data = $form->getAttributes();
             $user->setAttributes($data);
             $user->role = User::ROLE_USER;
-            $keyStorage = \Yii::$app->get('keyStorage');
-
-            /*if ((null !== $data = SettingHelper::getOption('app-signup')) && isset($data['invite_only']) && (bool) $data['invite_only'] === true) {
-                $user->status = User::STATUS_APPROVED;
-            } else {
-                $user->status = User::STATUS_PENDING;
-            }*/
-
             $user->status = User::STATUS_PENDING;
 
             if ($user->save() && ($token = $this->tokenStorage->createAccountActivationToken($user)) !== false) {
@@ -78,6 +71,18 @@ class UserManager extends \yii\base\Component
                         Referral::linkReferral($sourceUser, $user);
                     }
                 }
+
+                if ($form->getScenario() == RegistrationForm::OAUTH_SCENARIO) {
+                    $auth = AuthSocial::find()->with(['user'])->where([
+                        'client_id' => $form->clientID,
+                        'external_id' => $form->externalID,
+                    ])->one();
+
+                    if (!$auth || !$auth->save()) {
+                        throw new Exception('Auth');
+                    }
+                }
+
                 Yii::$app->eventManager->fire(
                     UserEvents::SUCCESS_REGISTRATION, new UserRegistrationEvent($form, $user, $token)
                 );
@@ -87,10 +92,45 @@ class UserManager extends \yii\base\Component
 
             throw new Exception(Yii::t('user', 'Error creating account!'));
         } catch (Exception $e) {
-            $transaction->rollBack();
             Yii::$app->eventManager->fire(
                 UserEvents::FAILURE_REGISTRATION, new UserRegistrationEvent($form, $user)
             );
+            return false;
+        }
+    }
+
+    public function createTempUser(RegistrationForm $form)
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+
+        try {
+            $user = new User();
+            $user->scenario = User::SCENARIO_TEMP_OAUTH;
+            $data = $form->getAttributes();
+            $user->setAttributes($data);
+            $user->role = User::ROLE_USER;
+            $user->status = User::STATUS_PENDING;
+
+            if (!$user->save()) {
+                throw new Exception('Could not save user');
+            }
+
+            $auth = new AuthSocial([
+                'user_id' => $user->id,
+                'client_id' => $form->clientID,
+                'external_id' => $form->externalID,
+            ]);
+
+            if (!$auth->save()) {
+                throw new Exception('Could not save auth');
+            }
+
+            $transaction->commit();
+            $token = (new TokenStorage)->createOauthTempUserToken($user, null);
+
+            return $token;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
             return false;
         }
     }
