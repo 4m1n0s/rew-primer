@@ -48,7 +48,7 @@ class RegistrationForm extends Model
                                                         'confirmPassword', 'first_name', 'last_name', 'reCaptcha',
                                                         'referralCode', 'invitationCode'],
             static::SCENARIO_INVITATION_REQUEST     => ['email', 'reCaptcha'],
-            static::SCENARIO_OAUTH                  => ['email', 'username'],
+            static::SCENARIO_OAUTH                  => ['email', 'username', 'reCaptcha'],
         ];
     }
 

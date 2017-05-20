@@ -8,6 +8,7 @@ use app\modules\user\models\AuthSocial;
 use app\modules\user\models\Token;
 use app\modules\user\models\User;
 use yii\authclient\ClientInterface;
+use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use Yii;
 
@@ -28,6 +29,17 @@ class AuthHandler
 
     public function handle()
     {
+        if (!Yii::$app->getUser()->getIsGuest()) {
+            return false;
+        }
+
+        $keyStorage = Yii::$app->keyStorage;
+        $inviteSignup = $keyStorage->get('invite_only_signup');
+
+        if ($inviteSignup) {
+            return Yii::$app->response->redirect('/user/account/invitation-request');
+        }
+
         $clientID = AuthSocial::getClientID($this->client);
         $userAttributes = $this->getUserAttributes($clientID);
 
@@ -48,7 +60,7 @@ class AuthHandler
             $form->username = $user->email;
             $form->setUser($user);
 
-            Yii::$app->authenticationManager->login($form, Yii::$app->getUser());
+            Yii::$app->authenticationManager->login($form);
 
             return Yii::$app->response->redirect('/');
         } else { // signup
@@ -56,11 +68,11 @@ class AuthHandler
             $form = new RegistrationForm();
             $form->scenario = RegistrationForm::SCENARIO_OAUTH;
             $form->getDefaultReferralCode();
-            $form->first_name = $userAttributes->firstName;
-            $form->last_name = $userAttributes->lastName;
-            $form->email = $userAttributes->email;
-            $form->externalID = $userAttributes->externalID;
-            $form->clientID = $clientID;
+            $form->first_name   = $userAttributes->firstName;
+            $form->last_name    = $userAttributes->lastName;
+            $form->email        = $userAttributes->email;
+            $form->externalID   = $userAttributes->externalID;
+            $form->clientID     = $clientID;
 
             if ($token = Yii::$app->userManager->createTempUser($form)) {
                 return Yii::$app->response->redirect(['/user/account/email-accept', 'token' => $token->code]);
@@ -95,6 +107,8 @@ class AuthHandler
                 $data->firstName    = ArrayHelper::getValue($attributes, 'first_name');
                 $data->lastName     = ArrayHelper::getValue($attributes, 'last_name');
                 break;
+            default:
+                throw new InvalidConfigException('Wrong client id');
         }
 
         return $data;

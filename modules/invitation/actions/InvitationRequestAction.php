@@ -50,7 +50,7 @@ class InvitationRequestAction extends Action
                 EmailTemplate::TEMPLATE_INVITATION_REQUEST_RECEIVED
             );
 
-            Yii::$app->session->setFlash('success', 'Invitation code has been sent to your email!');
+            Yii::$app->session->setFlash('success', 'Sign up link will be sent at your email after confirmation!');
             return $this->controller->refresh();
         }
 

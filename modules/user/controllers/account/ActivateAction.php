@@ -19,7 +19,7 @@ class ActivateAction extends Action
                     'success', Yii::t('user', 'You have successfully activated the account.')
             );
 
-            return $this->controller->redirect(['/user/account/login']);
+            return $this->controller->redirect('/');
         }
 
         Yii::$app->session->setFlash(

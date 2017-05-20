@@ -8,6 +8,7 @@ use app\modules\user\models\User;
 /**
  * This is the model class for table "sf_token".
  *
+ * @property integer $id
  * @property integer $user_id
  * @property string $code
  * @property integer $create_date

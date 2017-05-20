@@ -4,6 +4,7 @@ namespace app\modules\user\components;
 
 use app\helpers\DateHelper;
 use app\modules\core\components\EventManager;
+use app\modules\user\forms\LoginForm;
 use app\modules\user\models\AuthSocial;
 use \Yii;
 use \app\modules\user\forms\RegistrationForm;
@@ -120,6 +121,10 @@ class UserManager extends \yii\base\Component
                 throw new Exception('Could not save user');
             }
 
+            if (!($token = $this->tokenStorage->createOauthTempUserToken($user, null))) {
+                throw new Exception('Could not save token');
+            }
+
             $auth = new AuthSocial([
                 'user_id' => $user->id,
                 'client_id' => $form->clientID,
@@ -131,8 +136,6 @@ class UserManager extends \yii\base\Component
             }
 
             $transaction->commit();
-            $token = (new TokenStorage)->createOauthTempUserToken($user, null);
-
             return $token;
         } catch (\Exception $e) {
             $transaction->rollBack();
@@ -167,6 +170,13 @@ class UserManager extends \yii\base\Component
             $userModel->status = User::STATUS_APPROVED;
 
             if ($this->tokenStorage->activate($tokenModel) && $userModel->save()) {
+
+                // immediately login to user profile after activation
+                $form = new LoginForm();
+                $form->username = $userModel->email;
+                $form->setUser($userModel);
+                Yii::$app->authenticationManager->login($form);
+
                 Yii::$app->eventManager->fire(UserEvents::SUCCESS_ACTIVATE_ACCOUNT, new UserActivateEvent($tokenModel, $userModel));
                 $transaction->commit();
                 return true;
@@ -283,10 +293,6 @@ class UserManager extends \yii\base\Component
     protected function changeUserPassword(User $user, $password)
     {
         $user->password = Password::hash($password);
-
-        if ($user->status === User::STATUS_TRANSFER) {
-            $user->status = User::STATUS_APPROVED;
-        }
 
         return $user->save(false);
     }

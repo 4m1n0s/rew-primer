@@ -21,7 +21,8 @@ class EmailAcceptAction extends Action
 
     public function run($token = null)
     {
-        if (!$tokenModel = (new TokenStorage())->get($token, Token::TYPE_OAUTH_TEMP_USER, Token::STATUS_NEW)) {
+        $tokenStorage = new TokenStorage();
+        if (!$tokenModel = $tokenStorage->get($token, Token::TYPE_OAUTH_TEMP_USER, Token::STATUS_NEW)) {
             throw new NotFoundHttpException();
         }
 
@@ -45,7 +46,7 @@ class EmailAcceptAction extends Action
             $form->tempUserID = $user->id;
 
             if ($user = Yii::$app->userManager->createUser($form)) {
-                $tokenModel->delete();
+                $tokenStorage->deleteByTypeAndUser($tokenModel->type, $user);
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
                 return $this->controller->redirect('/');
             }

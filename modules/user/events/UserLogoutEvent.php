@@ -2,6 +2,7 @@
 
 namespace app\modules\user\events;
 
+use app\modules\user\models\User;
 use yii\base\Event;
 
 /**
@@ -11,23 +12,29 @@ use yii\base\Event;
  */
 class UserLogoutEvent extends Event {
 
+    /**
+     * @var User|null
+     */
     protected $user;
 
-    public function __construct(\yii\web\User $user = null) {
+    public function __construct(User $user = null)
+    {
         $this->user = $user;
     }
 
     /**
-     * @param mixed $user
+     * @param $user
      */
-    public function setUser($user) {
+    public function setUser($user)
+    {
         $this->user = $user;
     }
 
     /**
-     * @return mixed
+     * @return User|null
      */
-    public function getUser() {
+    public function getUser()
+    {
         return $this->user;
     }
 

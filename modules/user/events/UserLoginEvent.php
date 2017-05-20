@@ -2,6 +2,8 @@
 
 namespace app\modules\user\events;
 
+use app\modules\user\forms\LoginForm;
+use app\modules\user\models\User;
 use yii\base\Event;
 
 /**
@@ -9,17 +11,20 @@ use yii\base\Event;
  *
  * @author Stableflow
  */
-class UserLoginEvent extends Event {
-
+class UserLoginEvent extends Event
+{
     /**
      * @var LoginForm;
      */
     protected $loginForm;
+    /**
+     * @var User|null
+     */
     protected $user;
-    protected $identity;
 
-    public function __construct(\app\modules\user\forms\LoginForm $loginForm, \yii\web\User $user, \app\modules\user\models\User $identity = null) {
-        $this->identity = $identity;
+
+    public function __construct(LoginForm $loginForm, User $user = null)
+    {
         $this->loginForm = $loginForm;
         $this->user = $user;
     }
@@ -27,42 +32,32 @@ class UserLoginEvent extends Event {
     /**
      * @param mixed $user
      */
-    public function setUser($user) {
+    public function setUser($user)
+    {
         $this->user = $user;
     }
 
     /**
      * @return mixed
      */
-    public function getUser() {
+    public function getUser()
+    {
         return $this->user;
     }
-    
-    /**
-     * @param mixed $identity
-     */
-    public function setIdentity($identity){
-        $this->identity = $identity;
-    }
-    
-    /**
-     * @return mixed
-     */
-    public function getIdentity(){
-        return $this->identity;
-    }
-    
+
     /**
      * @param mixed $loginForm
      */
-    public function setLoginForm($loginForm) {
+    public function setLoginForm($loginForm)
+    {
         $this->loginForm = $loginForm;
     }
 
     /**
      * @return mixed
      */
-    public function getLoginForm() {
+    public function getLoginForm()
+    {
         return $this->loginForm;
     }
 

@@ -16,7 +16,7 @@ class LogoutAction extends Action
     public function run()
     {
         if (!Yii::$app->user->isGuest) {
-             Yii::$app->authenticationManager->logout(Yii::$app->getUser());
+             Yii::$app->authenticationManager->logout(Yii::$app->getUser()->getIdentity());
         }
 
         return $this->controller->redirect(Url::to([Yii::$app->getModule('user')->logoutSuccess]));
