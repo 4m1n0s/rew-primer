@@ -69,7 +69,7 @@ class RegistrationForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
-            ['email', 'unique', 'targetClass' => User::className(), 'except' => static::SCENARIO_OAUTH],
+            ['email', 'unique', 'targetClass' => User::className()],
             ['email', 'unique', 'targetClass' => Invitation::className(), 'on' => static::SCENARIO_INVITATION_REQUEST],
             ['email', 'trim'],
 

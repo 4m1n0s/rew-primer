@@ -30,12 +30,12 @@ class EmailAcceptAction extends Action
             'scenario' => RegistrationForm::SCENARIO_OAUTH
         ]);
 
-        $post = Yii::$app->request->post();
-        $form->getDefaultReferralCode();
         $user = $tokenModel->user;
         $auth = $user->authSocial;
+        $form->getDefaultReferralCode();
+        $form->email = $user->getOauthTempEmail();
 
-        if ($form->load($post) && $form->validate()) {
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
 
             $form->first_name = $user->first_name;
             $form->last_name = $user->last_name;

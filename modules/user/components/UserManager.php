@@ -6,6 +6,7 @@ use app\helpers\DateHelper;
 use app\modules\core\components\EventManager;
 use app\modules\user\forms\LoginForm;
 use app\modules\user\models\AuthSocial;
+use app\modules\user\models\UserMeta;
 use \Yii;
 use \app\modules\user\forms\RegistrationForm;
 use \app\modules\user\models\User;
@@ -111,7 +112,6 @@ class UserManager extends \yii\base\Component
             $user->scenario     = User::SCENARIO_REGISTER_TEMP_OAUTH;
             $user->first_name   = $form->first_name;
             $user->last_name    = $form->last_name;
-            $user->email        = $form->email;
             $user->password     = Password::hash(Password::generate(6));
             $user->create_date  = DateHelper::getCurrentDateTime();
             $user->role         = User::ROLE_USER;
@@ -120,6 +120,8 @@ class UserManager extends \yii\base\Component
             if (!$user->save()) {
                 throw new Exception('Could not save user');
             }
+
+            UserMeta::updateUserMeta($user->id, 'oauth_temp_mail', $form->email);
 
             if (!($token = $this->tokenStorage->createOauthTempUserToken($user, null))) {
                 throw new Exception('Could not save token');

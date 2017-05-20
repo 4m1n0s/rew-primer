@@ -84,7 +84,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return [
             static::SCENARIO_REGISTER               => ['username', 'email', 'first_name', 'last_name', 'role', 'password',
                                                         'create_date', 'status', 'gender', 'birthday'],
-            static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'email', 'role', 'create_date', 'status'],
+            static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'role', 'create_date', 'status'],
             static::SCENARIO_REGISTER_OAUTH         => ['username', 'email', 'first_name', 'last_name', 'role',
                                                         'create_date', 'status', 'password'],
             static::SCENARIO_UPDATE_STATUS          => ['status'],
@@ -375,7 +375,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /** @inheritdoc */
     public function afterFind() {
         $this->metaData = new \stdClass();
-        foreach ($this->meta as $key => $value){
+        foreach ($this->meta as $key => $value) {
             $this->metaData->{$value->meta_key} = $value->meta_value;
         }
     }
@@ -387,7 +387,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function getMetaData() {
         return $this->metaData;
     }
-    
+
+    public function getOauthTempEmail() {
+        return isset($this->metaData->oauth_temp_mail) ? $this->metaData->oauth_temp_mail : null;
+    }
+
     public function getAvatar() {
         return isset($this->metaData->avatar) ? $this->metaData->avatar : null;
     }
