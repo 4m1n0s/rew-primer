@@ -19,6 +19,32 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign In');
                 <div class="col-md-3 center" style="background-color: #101010 !important; opacity: 0.95; ">
                     <div style="padding: 30px 0 20px 0">
                         <h3>Login to your Account</h3>
+
+                        <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-facebook"></i> facebook',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('facebook')->name],
+                                    ['class' => 'social-facebook btn-sm btn']
+                                ) ?>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-twitter"></i> twitter',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('twitter')->name],
+                                    ['class' => 'social-twitter btn-sm btn']
+                                ) ?>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-google-plus"></i> google',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('google')->name],
+                                    ['class' => 'social-google btn-sm btn']
+                                ) ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group-or text-center">
+                            <p>or</p>
+                        </div> 
+                        
                         <?php
                         $form = ActiveForm::begin([
                             'id' => 'frontend-login-form',
