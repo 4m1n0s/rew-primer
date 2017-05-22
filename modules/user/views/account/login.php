@@ -17,7 +17,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign In');
         <div class="text-middle text-light">
             <div class="row">
                 <div class="col-md-3 center" style="background-color: #101010 !important; opacity: 0.95; ">
-                    <div style="padding: 30px 0 20px 0">
+                    <div style="padding: 20px 0 20px 0">
                         <h3>Login to your Account</h3>
 
                         <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
@@ -44,7 +44,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign In');
                         <div class="form-group-or text-center">
                             <p>or</p>
                         </div> 
-                        
+
                         <?php
                         $form = ActiveForm::begin([
                             'id' => 'frontend-login-form',
