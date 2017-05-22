@@ -53,7 +53,7 @@ class Clixwall extends Action
                 $CampaignName
             );
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             \Yii::error('Clixwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
         }
 
