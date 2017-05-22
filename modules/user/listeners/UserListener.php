@@ -132,7 +132,7 @@ class UserListener {
 
         $mandrillMailer->addToQueue(
             $user->email,
-            EmailTemplate::TEMPLATE_SIGN_UP_CONFIRMATION, [
+            EmailTemplate::TEMPLATE_REGISTER_CONFIRMATION, [
             'username' => $user->username,
             'confirmation_link' => Html::a('Confirmation link', Url::toRoute(['/user/account/activate', 'token' => $token->code], true), [
                 'target' => '_blank',
@@ -146,7 +146,7 @@ class UserListener {
         if (!empty($referralCode) && (($sourceUser = User::getUserByReferralCode($referralCode)) !== null) && (int)$referralPercents > 0) {
             $mandrillMailer->addToQueue(
                 $user->email,
-                EmailTemplate::TEMPLATE_SIGN_UP_CONFIRMATION, [
+                EmailTemplate::TEMPLATE_REGISTER_REFERRAL_BONUS, [
                 'source_username' => $sourceUser->username,
                 'target_username' => $user->username,
                 'referral_percents' => $referralPercents
