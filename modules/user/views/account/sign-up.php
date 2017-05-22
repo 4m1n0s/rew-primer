@@ -37,19 +37,19 @@ DatePickerAsset::register($this);
                         <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <?php echo Html::a('<i class="fa fa-facebook"></i> facebook',
-                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('facebook')->name],
+                                    ['/user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('facebook')->name],
                                     ['class' => 'social-facebook btn-sm btn']
                                 ) ?>
                             </div>
                             <div class="btn-group" role="group">
                                 <?php echo Html::a('<i class="fa fa-twitter"></i> twitter',
-                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('twitter')->name],
+                                    ['/user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('twitter')->name],
                                     ['class' => 'social-twitter btn-sm btn']
                                 ) ?>
                             </div>
                             <div class="btn-group" role="group">
                                 <?php echo Html::a('<i class="fa fa-google-plus"></i> google',
-                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('google')->name],
+                                    ['/user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('google')->name],
                                     ['class' => 'social-google btn-sm btn']
                                 ) ?>
                             </div>
