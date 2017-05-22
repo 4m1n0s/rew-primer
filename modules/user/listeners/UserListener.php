@@ -145,7 +145,7 @@ class UserListener {
 
         if (!empty($referralCode) && (($sourceUser = User::getUserByReferralCode($referralCode)) !== null) && (int)$referralPercents > 0) {
             $mandrillMailer->addToQueue(
-                $user->email,
+                $sourceUser->email,
                 EmailTemplate::TEMPLATE_REGISTER_REFERRAL_BONUS, [
                 'source_username' => $sourceUser->username,
                 'target_username' => $user->username,
