@@ -32,6 +32,35 @@ DatePickerAsset::register($this);
                         <h3>Register New Account</h3>
                         <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
                     </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-facebook"></i> facebook',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('facebook')->name],
+                                    ['class' => 'social-facebook btn-sm btn']
+                                ) ?>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-twitter"></i> twitter',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('twitter')->name],
+                                    ['class' => 'social-twitter btn-sm btn']
+                                ) ?>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <?php echo Html::a('<i class="fa fa-google-plus"></i> google',
+                                    ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('google')->name],
+                                    ['class' => 'social-google btn-sm btn']
+                                ) ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group-or text-center">
+                            <p>or</p>
+                        </div>
+                    </div>
+                    
+
                     <?php yii\widgets\Pjax::begin(['id' => 'register', 'enablePushState' => false]) ?>
                     <?php $form = ActiveForm::begin([
                         'options' => [

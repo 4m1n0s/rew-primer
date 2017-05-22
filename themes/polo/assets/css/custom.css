@@ -467,6 +467,7 @@
 
 .btn-group .social-facebook {
     background: #486db9;
+   color: #fff; 
 }
 .btn-group .social-facebook:hover, .btn-group .social-facebook:active {
     background: #4062a7;
@@ -475,6 +476,7 @@
 
 .btn-group .social-twitter {
     background: #43b7ea;
+   color: #fff; 
 }
 .btn-group .social-twitter:hover, .btn-group .social-twitter:active {
     background: #19a4e1;
@@ -483,6 +485,7 @@
 
 .btn-group .social-google {
     background: #dd4b39;
+   color: #fff; 
 }
 .btn-group .social-google:hover, .btn-group .social-google:active {
    background:#c23321;
