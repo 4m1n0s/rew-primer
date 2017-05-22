@@ -18,6 +18,6 @@ return [
         'class' => 'yii\authclient\clients\Facebook',
         'clientId' => 'facebook_client_id',
         'clientSecret' => 'facebook_client_secret',
-        'attributeNames' => ['id', 'email', 'first_name', 'last_name']
+        'attributeNames' => ['id', 'email', 'first_name', 'last_name', 'gender']
     ],
 ];
