@@ -497,6 +497,10 @@
 
 @media only screen and (max-width: 767px ) {
 
+  .btn-group .btn {
+    font-size: 11px;
+  }
+
   .footer-button {
     margin-top: 20px;
     text-align: center;
