@@ -100,10 +100,10 @@ class AuthHandler
                 $data->gender       = ArrayHelper::getValue($attributes, 'gender') == 'female' ? User::FEMALE : User::MALE;
                 break;
             case AuthSocial::CLIENT_ID_TWITTER:
-                $data->externalID   = ArrayHelper::getValue($attributes, 'id');
+                $data->externalID   = ArrayHelper::getValue($attributes, 'id_str');
                 $data->email        = ArrayHelper::getValue($attributes, 'email');
-                $data->firstName    = ArrayHelper::getValue($attributes, 'first_name');
-                $data->lastName     = ArrayHelper::getValue($attributes, 'last_name');
+                $data->firstName    = null;
+                $data->lastName     = null;
                 $data->gender       = null;
                 break;
             case AuthSocial::CLIENT_ID_GOOGLE:
