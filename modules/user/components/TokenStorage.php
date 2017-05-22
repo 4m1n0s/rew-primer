@@ -155,7 +155,7 @@ class TokenStorage extends \yii\base\Component
         if ($token->save()) {
             if ($invalidate) {
                 Token::deleteAll(
-                    'id != :id AND user_id = :user_id AND type = :type',
+                    'id = :id AND user_id = :user_id AND type = :type',
                     [
                         ':user_id' => $token->user_id,
                         ':type' => $token->type,

@@ -53,7 +53,7 @@ class SiteController extends FrontController {
         }
 
         $form = new RegistrationForm([
-            'scenario' => RegistrationForm::SIGNUP_SCENARIO
+            'scenario' => RegistrationForm::SCENARIO_SIGNUP
         ]);
 
         $form->getDefaultReferralCode();

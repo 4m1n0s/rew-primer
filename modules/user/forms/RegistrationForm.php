@@ -6,19 +6,17 @@ use app\modules\user\models\Referral;
 use Yii;
 use yii\base\Model;
 use app\modules\user\models\User;
-use app\modules\user\helpers\Password;
 use app\modules\invitation\models\Invitation;
-use yii\helpers\ArrayHelper;
 
 /**
  * RegisterForm is the model behind the register form.
  */
-class RegistrationForm extends Model {
-
-    const SIGNUP_SCENARIO = 'signup';
-    const INVITATION_SCENARIO = 'inviteOnly';
-    const INVITATION_REQUEST_SCENARIO = 'invitationRequest';
-    const OAUTH_SCENARIO = 'oauth';
+class RegistrationForm extends Model
+{
+    const SCENARIO_SIGNUP = 'signup';
+    const SCENARIO_INVITATION = 'inviteOnly';
+    const SCENARIO_INVITATION_REQUEST = 'invitationRequest';
+    const SCENARIO_OAUTH = 'oauth';
 
     public $username;
     public $email;
@@ -27,24 +25,30 @@ class RegistrationForm extends Model {
     public $invitationCode;
     public $referralCode;
 
-    // Oauth
-    public $externalID;
-    public $clientID;
-
     public $first_name;
     public $last_name;
     public $birthday;
     public $gender;
+
     public $reCaptcha;
+
+    // Oauth
+    public $externalID;
+    public $clientID;
+    public $tempUserID;
 
     protected $referralUser;
 
     public function scenarios() {
         return [
-            static::SIGNUP_SCENARIO                 => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode'],
-            static::INVITATION_SCENARIO             => ['username', 'gender', 'birthday', 'email', 'password', 'confirmPassword', 'first_name', 'last_name', 'reCaptcha', 'referralCode', 'invitationCode'],
-            static::INVITATION_REQUEST_SCENARIO     => ['email', 'reCaptcha'],
-            static::OAUTH_SCENARIO                  => ['email', 'reCaptcha'],
+            static::SCENARIO_SIGNUP                 => ['username', 'gender', 'birthday', 'email', 'password',
+                                                        'confirmPassword', 'first_name', 'last_name',
+                                                        'referralCode'],
+            static::SCENARIO_INVITATION             => ['username', 'gender', 'birthday', 'email', 'password',
+                                                        'confirmPassword', 'first_name', 'last_name', 'reCaptcha',
+                                                        'referralCode', 'invitationCode'],
+            static::SCENARIO_INVITATION_REQUEST     => ['email', 'reCaptcha'],
+            static::SCENARIO_OAUTH                  => ['email', 'username', 'reCaptcha'],
         ];
     }
 
@@ -54,34 +58,41 @@ class RegistrationForm extends Model {
     public function rules() {
         return [
 
-            [['gender', 'first_name', 'last_name'], 'required'],
-
-            // username rules
+            // Username
             ['username', 'required'],
             ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
             ['username', 'string', 'min' => 3, 'max' => 60],
             ['username', 'unique', 'targetClass' => User::className()],
             ['username', 'trim'],
-            // email rules
+
+            // Email
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
             ['email', 'unique', 'targetClass' => User::className()],
-            ['email', 'unique', 'targetClass' => Invitation::className(), 'on' => self::INVITATION_REQUEST_SCENARIO],
+            ['email', 'unique', 'targetClass' => Invitation::className(), 'on' => static::SCENARIO_INVITATION_REQUEST],
             ['email', 'trim'],
-            // password rules
+
+            // Password
             ['password', 'required'],
             ['password', 'string', 'min' => 6, 'max' => 64],
-            // confirm password rules
+
+            // Confirm Password
             ['confirmPassword', 'required'],
             ['confirmPassword', 'string', 'min' => 6],
             ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
-            //invite code rules
+
+            // Meta
+            [['gender', 'first_name', 'last_name'], 'required'],
+
+            // Invite code
             ['invitationCode', 'required'],
-            ['email', 'validateInvitationCode', 'on' => self::INVITATION_SCENARIO],
-            //referral code rules
+            ['email', 'validateInvitationCode', 'on' => self::SCENARIO_INVITATION],
+
+            // Referral code
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
-            // captcha
+
+            // Captcha
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
         ];
     }

@@ -12,7 +12,7 @@ use Yii;
  * @property string $meta_key
  * @property string $meta_value
  *
- * @property Users $user
+ * @property User $user
  */
 class UserMeta extends \yii\db\ActiveRecord {
 
@@ -50,7 +50,7 @@ class UserMeta extends \yii\db\ActiveRecord {
      * @return \yii\db\ActiveQuery
      */
     public function getUser() {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     
     /**

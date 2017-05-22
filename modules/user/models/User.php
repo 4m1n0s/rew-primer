@@ -33,8 +33,8 @@ use yii\helpers\Url;
  * @property Token $token
  * @property AuthSocial $authSocial
  */
-class User extends ActiveRecord implements \yii\web\IdentityInterface {
-
+class User extends ActiveRecord implements \yii\web\IdentityInterface
+{
     const ROLE_ADMIN        = 1;
     const ROLE_USER         = 2;
     const ROLE_PARTNER      = 3;
@@ -45,13 +45,15 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     const STATUS_BLOCKED    = 2;
     const STATUS_TRANSFER   = 3;
     const STATUS_BLACKLIST  = 4;
+    const STATUS_TEMP       = 5;
 
     const SCENARIO_REGISTER             = 'register';
+    const SCENARIO_REGISTER_TEMP_OAUTH  = 'register_temp_oauth';
+    const SCENARIO_REGISTER_OAUTH       = 'register_oauth';
+    const SCENARIO_UPDATE_STATUS        = 'update_status';
     const SCENARIO_UPDATE_LOGIN         = 'update_login';
     const SCENARIO_UPDATE_PASSWORD      = 'update_password';
     const SCENARIO_UPDATE_PERSONAL      = 'update_personal';
-    const SCENARIO_TEMP_OAUTH           = 'temp';
-    const SCENARIO_REGISTER_OAUTH       = 'register_oauth';
 
     protected $metaData;
     public $newPassword;
@@ -80,40 +82,47 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /** @inheritdoc */
     public function scenarios() {
         return [
-            static::SCENARIO_REGISTER           => ['username', 'email', 'last_name', 'first_name', 'role', 'password',
-                                                    'create_date', 'status', 'gender', 'birthday'],
-            static::SCENARIO_UPDATE_LOGIN       => ['username', 'email'],
-            static::SCENARIO_UPDATE_PASSWORD    => ['password'],
-            static::SCENARIO_UPDATE_PERSONAL    => ['first_name', 'last_name', 'birthday', 'gender'],
-            static::SCENARIO_TEMP_OAUTH         => ['first_name', 'last_name'],
-            static::SCENARIO_REGISTER_OAUTH     => ['first_name', 'last_name', 'email', 'role', 'create_date', 'status'],
+            static::SCENARIO_REGISTER               => ['username', 'email', 'first_name', 'last_name', 'role', 'password',
+                                                        'create_date', 'status', 'gender', 'birthday'],
+            static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'role', 'create_date', 'status'],
+            static::SCENARIO_REGISTER_OAUTH         => ['username', 'email', 'first_name', 'last_name', 'role',
+                                                        'create_date', 'status', 'password'],
+            static::SCENARIO_UPDATE_STATUS          => ['status'],
+            static::SCENARIO_UPDATE_LOGIN           => ['username', 'email'],
+            static::SCENARIO_UPDATE_PASSWORD        => ['password'],
+            static::SCENARIO_UPDATE_PERSONAL        => ['first_name', 'last_name', 'birthday', 'gender'],
         ];
     }
 
     /** @inheritdoc */
     public function rules() {
         return [
-            // username rules
+
+            // Username
             ['username', 'required'],
             ['username', 'unique'],
             ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/'],
             ['username', 'string', 'min' => 3, 'max' => 60],
             ['username', 'trim'],
-            // email rules
+
+            // Email
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 100],
-            ['email', 'unique'],
+            ['email', 'unique', 'except' => static::SCENARIO_REGISTER_TEMP_OAUTH],
             ['email', 'trim'],
-            // password rules
+
+            // Password
             ['password', 'required'],
             ['password', 'string', 'min' => 6, 'max' => 64],
             
-            // status rules
+            // Status
             [['status'], 'integer'],
-            // role rules
+
+            // Role
             [['role'], 'integer'],
 
+            // Meta
             [['last_name', 'first_name'], 'string', 'max' => 255],
             [['birthday', 'gender'], 'safe']
         ];
@@ -125,30 +134,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
             $this->password = $this->newPassword;
         }
         return parent::beforeValidate();
-    }
-
-    /** @inheritdoc */
-    public function beforeSave($insert) {
-        if ($insert) {
-            if ($this->scenario == static::SCENARIO_REGISTER) {
-                $this->password = Password::hash($this->newPassword);
-            } else {
-                $this->password = Password::hash($this->password);
-            }
-
-            $this->referral_code = Yii::$app->security->generateRandomString(rand(8, 12));
-            $this->create_date = \app\helpers\DateHelper::getCurrentDateTime();
-        } else {
-//            if (!empty($this->newPassword)) {
-//                $this->password = Password::hash($this->newPassword);
-//            }
-            
-//            if ($this->status === static::STATUS_BLOCKED) {
-//                $this->auth_key = Yii::$app->security->generateRandomString();
-//            }
-        }
-
-        return parent::beforeSave($insert);
     }
 
     public function getQueueMail()
@@ -390,7 +375,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     /** @inheritdoc */
     public function afterFind() {
         $this->metaData = new \stdClass();
-        foreach ($this->meta as $key => $value){
+        foreach ($this->meta as $key => $value) {
             $this->metaData->{$value->meta_key} = $value->meta_value;
         }
     }
@@ -402,7 +387,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface {
     public function getMetaData() {
         return $this->metaData;
     }
-    
+
+    public function getOauthTempEmail() {
+        return isset($this->metaData->oauth_temp_mail) ? $this->metaData->oauth_temp_mail : null;
+    }
+
     public function getAvatar() {
         return isset($this->metaData->avatar) ? $this->metaData->avatar : null;
     }

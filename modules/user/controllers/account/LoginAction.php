@@ -13,20 +13,17 @@ use yii\base\ErrorException;
  *
  * @author Stableflow
  */
-class LoginAction extends Action {
-
+class LoginAction extends Action
+{
     public $layout;
 
-    public function run() {
-        if (!Yii::$app->user->isGuest) {
-            return $this->controller->redirect(Yii::$app->user->returnUrl);
-        }
-
+    public function run()
+    {
         $form = new LoginForm();
 
         if ($form->load(Yii::$app->request->post())) {
 
-            if ($form->validate() && Yii::$app->authenticationManager->login($form, Yii::$app->getUser(), Yii::$app->getRequest())) {
+            if ($form->validate() && Yii::$app->authenticationManager->login($form, Yii::$app->getRequest())) {
                 return $this->controller->redirect([Yii::$app->user->identity->returnUrl]);
             } else {
                 if ($form->hasErrors('password')) {

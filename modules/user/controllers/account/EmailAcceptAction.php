@@ -2,14 +2,12 @@
 
 namespace app\modules\user\controllers\account;
 
-use app\modules\invitation\models\Invitation;
 use app\modules\user\components\TokenStorage;
-use app\modules\user\models\Referral;
+use app\modules\user\helpers\Password;
 use app\modules\user\models\Token;
 use Yii;
 use yii\base\Action;
 use app\modules\user\forms\RegistrationForm;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -20,32 +18,35 @@ use yii\web\NotFoundHttpException;
 class EmailAcceptAction extends Action
 {
     public $layout;
-    public $returnUrl;
 
     public function run($token = null)
     {
-        if (!$tokenModel = (new TokenStorage())->get($token, Token::TYPE_OAUTH_TEMP_USER, Token::STATUS_NEW)) {
+        $tokenStorage = new TokenStorage();
+        if (!$tokenModel = $tokenStorage->get($token, Token::TYPE_OAUTH_TEMP_USER, Token::STATUS_NEW)) {
             throw new NotFoundHttpException();
         }
 
         $form = new RegistrationForm([
-            'scenario' => RegistrationForm::OAUTH_SCENARIO
+            'scenario' => RegistrationForm::SCENARIO_OAUTH
         ]);
 
-        $post = Yii::$app->request->post();
-        $form->getDefaultReferralCode();
         $user = $tokenModel->user;
         $auth = $user->authSocial;
+        $form->getDefaultReferralCode();
+        $form->email = $user->getOauthTempEmail();
 
-        if ($form->load($post) && $form->validate()) {
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
 
             $form->first_name = $user->first_name;
             $form->last_name = $user->last_name;
+            $form->password = Password::hash($form->password);
+
             $form->externalID = $auth->external_id;
             $form->clientID = $auth->client_id;
+            $form->tempUserID = $user->id;
 
             if ($user = Yii::$app->userManager->createUser($form)) {
-                $tokenModel->delete();
+                $tokenStorage->deleteByTypeAndUser($tokenModel->type, $user);
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
                 return $this->controller->redirect('/');
             }

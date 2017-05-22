@@ -16,9 +16,10 @@ class RecoveryResetAction extends Action {
 
     public $layout;
 
-    public function run($code) {
-
+    public function run($code)
+    {
         $tokenModel = Yii::$app->userManager->tokenStorage->get($code, Token::TYPE_CHANGE_PASSWORD);
+
         if (null === $tokenModel) {
             throw new \yii\web\NotFoundHttpException();
         }

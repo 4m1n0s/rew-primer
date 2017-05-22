@@ -18,14 +18,9 @@ use yii\web\NotFoundHttpException;
 class RegisterAction extends Action
 {
     public $layout;
-    public $returnUrl;
 
     public function run($code = null)
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->controller->redirect(Yii::$app->user->returnUrl);
-        }
-
         $keyStorage = Yii::$app->get('keyStorage');
         $inviteSignup = $keyStorage->get('invite_only_signup');
 
@@ -39,7 +34,7 @@ class RegisterAction extends Action
         }
 
         $form = new RegistrationForm([
-            'scenario' => ($inviteSignup && !is_null($code)) ? RegistrationForm::INVITATION_SCENARIO : RegistrationForm::SIGNUP_SCENARIO
+            'scenario' => ($inviteSignup && !is_null($code)) ? RegistrationForm::SCENARIO_INVITATION : RegistrationForm::SCENARIO_SIGNUP
         ]);
 
         if ($inviteSignup) {

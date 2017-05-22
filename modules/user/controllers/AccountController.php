@@ -3,6 +3,7 @@
 namespace app\modules\user\controllers;
 
 use app\modules\core\components\controllers\FrontController;
+use app\modules\core\filters\NonGuestFilter;
 use app\modules\invitation\actions\InvitationRequestAction;
 use app\modules\user\components\AuthHandler;
 use app\modules\user\controllers\account\ActivateAction;
@@ -33,6 +34,11 @@ class AccountController extends FrontController
                         'roles' => ['@'],
                     ],
                 ],
+            ],
+            [
+                'class' => NonGuestFilter::class,
+                'only'  => ['login', 'sign-up', 'activate', 'invitation-request', 'recovery-request', 'recovery-reset',
+                            'auth', 'email-accept']
             ],
         ];
     }

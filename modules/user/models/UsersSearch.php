@@ -48,6 +48,7 @@ class UsersSearch extends User {
         $query = User::find();
 
         $query->andWhere('id != :id', [':id' => Yii::$app->user->id]);
+        $query->andWhere('status != :status', [':status' => User::STATUS_TEMP]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
