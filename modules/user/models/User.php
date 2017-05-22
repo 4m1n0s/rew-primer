@@ -84,7 +84,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return [
             static::SCENARIO_REGISTER               => ['username', 'email', 'first_name', 'last_name', 'role', 'password',
                                                         'create_date', 'status', 'gender', 'birthday'],
-            static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'role', 'create_date', 'status'],
+            static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'role', 'create_date', 'status', 'gender'],
             static::SCENARIO_REGISTER_OAUTH         => ['username', 'email', 'first_name', 'last_name', 'role',
                                                         'create_date', 'status', 'password'],
             static::SCENARIO_UPDATE_STATUS          => ['status'],

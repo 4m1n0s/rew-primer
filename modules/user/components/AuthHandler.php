@@ -71,6 +71,9 @@ class AuthHandler
             $form->first_name   = $userAttributes->firstName;
             $form->last_name    = $userAttributes->lastName;
             $form->email        = $userAttributes->email;
+            $form->gender       = $userAttributes->gender;
+
+            // Oauth
             $form->externalID   = $userAttributes->externalID;
             $form->clientID     = $clientID;
 
@@ -94,18 +97,21 @@ class AuthHandler
                 $data->email        = ArrayHelper::getValue($attributes, 'email');
                 $data->firstName    = ArrayHelper::getValue($attributes, 'first_name');
                 $data->lastName     = ArrayHelper::getValue($attributes, 'last_name');
+                $data->gender       = ArrayHelper::getValue($attributes, 'gender') == 'female' ? User::FEMALE : User::MALE;
                 break;
             case AuthSocial::CLIENT_ID_TWITTER:
-                $data->externalID   = ArrayHelper::getValue($attributes, 'id');
+                $data->externalID   = ArrayHelper::getValue($attributes, 'id_str');
                 $data->email        = ArrayHelper::getValue($attributes, 'email');
-                $data->firstName    = ArrayHelper::getValue($attributes, 'first_name');
-                $data->lastName     = ArrayHelper::getValue($attributes, 'last_name');
+                $data->firstName    = null;
+                $data->lastName     = null;
+                $data->gender       = null;
                 break;
             case AuthSocial::CLIENT_ID_GOOGLE:
                 $data->externalID   = ArrayHelper::getValue($attributes, 'id');
-                $data->email        = ArrayHelper::getValue($attributes, 'email');
-                $data->firstName    = ArrayHelper::getValue($attributes, 'first_name');
-                $data->lastName     = ArrayHelper::getValue($attributes, 'last_name');
+                $data->email        = ArrayHelper::getValue($attributes, 'emails.0.value');
+                $data->firstName    = ArrayHelper::getValue($attributes, 'name.givenName');
+                $data->lastName     = ArrayHelper::getValue($attributes, 'name.familyName');
+                $data->gender       = ArrayHelper::getValue($attributes, 'gender') == 'female' ? User::FEMALE : User::MALE;
                 break;
             default:
                 throw new InvalidConfigException('Wrong client id');
