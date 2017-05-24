@@ -27,6 +27,7 @@ use yii\helpers\Url;
  * @property string  $last_name
  * @property string  $birthday
  * @property string  $gender
+ * @property string  $virtual_currency
  *
  * @property User $referrals
  * @property User $sourceReferral
@@ -54,6 +55,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     const SCENARIO_UPDATE_LOGIN         = 'update_login';
     const SCENARIO_UPDATE_PASSWORD      = 'update_password';
     const SCENARIO_UPDATE_PERSONAL      = 'update_personal';
+    const SCENARIO_UPDATE_CURRENCY      = 'update_currency';
 
     protected $metaData;
     public $newPassword;
@@ -91,6 +93,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             static::SCENARIO_UPDATE_LOGIN           => ['username', 'email'],
             static::SCENARIO_UPDATE_PASSWORD        => ['password'],
             static::SCENARIO_UPDATE_PERSONAL        => ['first_name', 'last_name', 'birthday', 'gender'],
+            static::SCENARIO_UPDATE_CURRENCY        => ['virtual_currency'],
         ];
     }
 
@@ -124,7 +127,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 
             // Meta
             [['last_name', 'first_name'], 'string', 'max' => 255],
-            [['birthday', 'gender'], 'safe']
+            [['birthday', 'gender'], 'safe'],
+
+            // Virtual Currency
+            ['virtual_currency', 'number']      // TODO: Right decimal format
         ];
     }
     

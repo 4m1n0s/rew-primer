@@ -58,7 +58,13 @@ class IndexBackendController extends BackController
                     'label' => 'Referral Percents',
                     'type' => FormModel::TYPE_TEXTINPUT,
                     'options' => ['placeholder' => 'Referral Percents'],
-                    'rules' => [['number']]
+                    'rules' => [['number', 'min' => 0]]
+                ],
+                'free_points_register' => [
+                    'label' => 'Free Points Amount',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Free Points Amount'],
+                    'rules' => [['number', 'min' => 0]]
                 ],
                 'invite_only_signup' => [
                     'label' => 'Invite Only Signup',

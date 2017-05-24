@@ -149,6 +149,9 @@ $config = [
         'authClientCollection' => [
             'class' => 'yii\authclient\Collection',
             'clients' => require(__DIR__ . '/auth-clients.php'),
+        ],
+        'virtualCurrency' => [
+            'class' => '\app\modules\core\components\VirtualCurrency'
         ]
     ],
     'params' => $params,

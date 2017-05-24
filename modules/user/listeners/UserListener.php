@@ -5,6 +5,7 @@ namespace app\modules\user\listeners;
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
 use app\modules\core\components\IPNormalizer;
+use app\modules\core\components\VirtualCurrency;
 use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
 use app\modules\user\models\User;
@@ -119,12 +120,13 @@ class UserListener {
      * @throws \yii\base\InvalidConfigException
      */
     public static function onSuccessRegistration(UserRegistrationEvent $event) {
-        $user = $event->getUser();
-        $token = $event->getToken();
-        $form = $event->getForm();
-        $mandrillMailer = \Yii::$app->get('mandrillMailer');
-        /* @var MandrillMailer $mandrillMailer */
-        $keyStorage = \Yii::$app->get('keyStorage');
+        $user   = $event->getUser();
+        $token  = $event->getToken();
+        $form   = $event->getForm();
+
+        $mandrillMailer = \Yii::$app->mandrillMailer;
+        $keyStorage = \Yii::$app->keyStorage;
+        $virtualCurrency = \Yii::$app->virtualCurrency;
 
         if ($user->status !== User::STATUS_PENDING) {
             return false;
@@ -151,6 +153,14 @@ class UserListener {
                 'target_username' => $user->username,
                 'referral_percents' => $referralPercents
             ]);
+        }
+
+        // Free points crediting
+        $freePointsAmount = $keyStorage->get('free_points_register');
+
+        if (!empty($freePointsAmount) && $freePointsAmount > 0) {
+            $virtualCurrency->setUser($user);
+            $virtualCurrency->crediting($freePointsAmount);
         }
     }
 

@@ -42,8 +42,8 @@ class RegistrationForm extends Model
     public function scenarios() {
         return [
             static::SCENARIO_SIGNUP                 => ['username', 'gender', 'birthday', 'email', 'password',
-                                                        'confirmPassword', 'first_name', 'last_name',
-                                                        'referralCode'],
+                                                        'confirmPassword', 'first_name', 'last_name', 'referralCode',
+                                                        'reCaptcha'],
             static::SCENARIO_INVITATION             => ['username', 'gender', 'birthday', 'email', 'password',
                                                         'confirmPassword', 'first_name', 'last_name', 'reCaptcha',
                                                         'referralCode', 'invitationCode'],
