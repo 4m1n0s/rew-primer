@@ -178,4 +178,21 @@ class OfferController extends ProfileController
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
+
+    /**
+     * Persona offer page
+     */
+    public function actionPersona()
+    {
+        $offerUrl = 'https://persona.ly/widget/?appid={appID}&userid={userID}'; // TODO: Store it somewhere else
+        $replace = [
+            '{appID}' => '93aa4722ccc529cfc231482b18b7d78f',
+            '{userID}' => Yii::$app->user->identity->id,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->render('persona', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
 }

@@ -86,4 +86,12 @@ $this->title = 'Offer Walls';
             ); ?>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="timeline-img">
+            <?= Html::a(
+                Html::img('/images/offer-providers/persona.jpg', ['alt' => 'persona', 'class' => 'timeline-badge-userpic']),
+                ['/profile/offer/persona']
+            ); ?>
+        </div>
+    </div>
 </div>
