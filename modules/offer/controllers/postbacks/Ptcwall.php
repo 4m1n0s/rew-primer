@@ -5,6 +5,7 @@ namespace app\modules\offer\controllers\postbacks;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
+use yii\base\ErrorException;
 use yii\base\Exception;
 use yii\helpers\Json;
 
@@ -60,6 +61,13 @@ class Ptcwall extends Action
                 null,
                 Json::encode(\Yii::$app->request->getQueryParams())
             );
+
+            $virtualCurrency = \Yii::$app->virtualCurrency;
+            $virtualCurrency->setUser($user);
+
+            if (!$virtualCurrency->crediting($rate)) {
+                throw new ErrorException('Could not crediting user');
+            }
 
         } catch (\Exception $e) {
             \Yii::error('Ptcwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');

@@ -5,6 +5,7 @@ namespace app\modules\offer\controllers\postbacks;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
+use yii\base\ErrorException;
 use yii\base\Exception;
 
 /**
@@ -62,6 +63,13 @@ class OfferToro extends Action
                 $id,
                 $o_name
             );
+
+            $virtualCurrency = \Yii::$app->virtualCurrency;
+            $virtualCurrency->setUser($user);
+
+            if (!$virtualCurrency->crediting($amount)) {
+                throw new ErrorException('Could not crediting user');
+            }
 
         } catch (\Exception $e) {
             \Yii::error('OfferToro POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');

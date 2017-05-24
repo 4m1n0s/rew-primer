@@ -5,6 +5,7 @@ namespace app\modules\offer\controllers\postbacks;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
+use yii\base\ErrorException;
 use yii\base\Exception;
 
 /**
@@ -70,6 +71,13 @@ class MinuteStaff extends Action
                     null,
                     $notify_id
                 );
+
+                $virtualCurrency = \Yii::$app->virtualCurrency;
+                $virtualCurrency->setUser($user);
+
+                if (!$virtualCurrency->crediting($credit_amount)) {
+                    throw new ErrorException('Could not crediting user');
+                }
 
                 // Deduct Earning From User
             } else if (($credit_amount < 0) && ($real_amount < 0)) {

@@ -53,6 +53,13 @@ class Clixwall extends Action
                 $CampaignName
             );
 
+            $virtualCurrency = \Yii::$app->virtualCurrency;
+            $virtualCurrency->setUser($user);
+
+            if (!$virtualCurrency->crediting($amount)) {
+                throw new ErrorException('Could not crediting user');
+            }
+
         } catch (\Exception $e) {
             \Yii::error('Clixwall POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
         }
