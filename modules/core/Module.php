@@ -2,16 +2,14 @@
 
 namespace app\modules\core;
 
-use yii\base\Module;
-
 /**
  * Class Module
  * 
  * @author Stableflow
  * 
  */
-class Module extends Module {
-
+class Module extends \yii\base\Module
+{
     public $controllerNamespace = 'app\modules\core\controllers';
 
     public function init() {
