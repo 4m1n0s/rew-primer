@@ -32,11 +32,12 @@ class Persona extends Action
             $user_id        = \Yii::$app->request->get('user_id');
             $amount         = \Yii::$app->request->get('amount');
             $offer_id       = \Yii::$app->request->get('offer_id');
-            $app_hash       = \Yii::$app->request->get('app_id');
+            $app_id         = \Yii::$app->request->get('app_id');
             $signature      = \Yii::$app->request->get('signature');
             $offer_name     = \Yii::$app->request->get('offer_name');
 
             $secret_key = '4585b277bff753702b3988b520a0c9ae';
+            $app_hash = '93aa4722ccc529cfc231482b18b7d78f';
 
             // Create validation signature
             $validation_signature = md5($user_id . ':' . $app_hash . ':' . $secret_key); // the app_hash can be found in your app settings
