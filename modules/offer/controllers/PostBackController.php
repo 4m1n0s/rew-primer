@@ -17,15 +17,6 @@ use yii\web\NotFoundHttpException;
 
 class PostBackController extends Controller
 {
-    public function beforeAction($action)
-    {
-        if (0 !== strcmp($this->action->accessHash, \Yii::$app->request->get('access_hash'))) {
-            throw new NotFoundHttpException();
-        }
-
-        return parent::beforeAction($action);
-    }
-
     public function actions()
     {
         return [
@@ -60,5 +51,14 @@ class PostBackController extends Controller
                 'class' => Persona::class
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        if (0 !== strcmp($this->action->accessHash, \Yii::$app->request->get('access_hash'))) {
+            throw new NotFoundHttpException();
+        }
+
+        return parent::beforeAction($action);
     }
 }
