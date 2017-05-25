@@ -5,6 +5,7 @@ namespace app\modules\profile\controllers;
 use app\modules\offer\controllers\offerwalls\AdWorkMedia;
 use app\modules\offer\controllers\offerwalls\Clixwall;
 use app\modules\offer\controllers\offerwalls\CpaLead;
+use app\modules\offer\controllers\offerwalls\Fyber;
 use app\modules\offer\controllers\offerwalls\Kiwiwall;
 use app\modules\offer\controllers\offerwalls\MinuteStaff;
 use app\modules\offer\controllers\offerwalls\OfferDaddy;
@@ -63,6 +64,10 @@ class OfferController extends ProfileController
             'persona' => [
                 'class' => Persona::class,
                 'view' => 'persona'
+            ],
+            'fyber' => [
+                'class' => Fyber::class,
+                'view' => 'fyber'
             ],
         ];
     }
