@@ -392,7 +392,7 @@
     padding: 15px 0;
 }
 
-.logo-mob {
+#header #logo img.logo-mob {
   display: none;
 }
 
@@ -406,10 +406,10 @@
 }
 
 @media only screen and (max-width: 767px ){
-  .logo-desktop {
+  #header #logo img.logo-desktop {
     display: none;
   }
-  .logo-mob {
+  #header #logo img.logo-mob {
     display: block;
   }
 }

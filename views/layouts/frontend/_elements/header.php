@@ -19,17 +19,6 @@ use yii\widgets\Menu;
             </div>
             <!--END: LOGO-->
 
-            <!--MOBILE MENU -->
-            <div class="nav-main-menu-responsive">
-                <button class="lines-button x">
-                    <span class="lines"></span>
-                </button>
-            </div>
-            <!--END: MOBILE MENU -->
-            <div class="block-point">
-                <span><img src="/images/coins.png" alt="" ></span>
-                <span>10</span>
-            </div>
 
             <!--NAVIGATION-->
             <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
@@ -38,6 +27,19 @@ use yii\widgets\Menu;
                 </div>
             </div>
             <!--END: NAVIGATION-->
+
+            <div class="block-point">
+                <span><img src="/images/coins.png" alt="" ></span>
+                <span>10</span>
+            </div>
+
+            <!--MOBILE MENU -->
+            <div class="nav-main-menu-responsive">
+                <button class="lines-button x">
+                    <span class="lines"></span>
+                </button>
+            </div>
+            <!--END: MOBILE MENU -->
 
 
 
