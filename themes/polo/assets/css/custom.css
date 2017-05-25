@@ -20,6 +20,11 @@
   display: inline-block;
 }
 
+.header-sticky .block-point {
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
 @media only screen and (max-width: 991px) {
     .block-point {
         position: absolute;
