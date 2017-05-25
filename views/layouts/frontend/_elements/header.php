@@ -14,7 +14,7 @@ use yii\widgets\Menu;
             <div id="logo">
                 <a href="/" class="logo" data-dark-logo="/images/logo-dark.png">
                     <img class="logo-desktop" src="/images/rewardbuckslogo.png" alt="Polo Logo" >
-                    <img class="logo-mob" src="/images/rewardbuckslogo-mob.png" alt="Polo Logo" >
+                    <img class="logo-mob" src="/images/rewardbuckslogo-mob.png" alt="Polo Logo mob" >
                 </a>
             </div>
             <!--END: LOGO-->
@@ -26,7 +26,10 @@ use yii\widgets\Menu;
                 </button>
             </div>
             <!--END: MOBILE MENU -->
-
+            <div class="block-point">
+                <span><img src="/images/coins.png" alt="" ></span>
+                <span>10</span>
+            </div>
 
             <!--NAVIGATION-->
             <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
@@ -36,10 +39,7 @@ use yii\widgets\Menu;
             </div>
             <!--END: NAVIGATION-->
 
-            <div class="block-point">
-                <span><img src="/images/coins.png" alt="" ></span>
-                <span>10</span>
-            </div>
+
 
         </div>
     </div>
