@@ -126,8 +126,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['role'], 'integer'],
 
             // Meta
-            [['last_name', 'first_name'], 'string', 'max' => 255],
-            [['birthday', 'gender'], 'safe'],
+            [['first_name', 'last_name'], 'string', 'max' => 255],
+            [['first_name', 'last_name'], 'trim'],
+            [['gender'], 'in', 'range' => [User::MALE, User::FEMALE]],
+            ['birthday', 'date', 'format' => 'Y-m-d'],
 
             // Virtual Currency
             ['virtual_currency', 'number']      // TODO: Right decimal format

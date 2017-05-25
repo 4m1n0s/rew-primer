@@ -16,143 +16,15 @@ $urlMockup = '/images/mockup/';
 
 ?>
 
-
 <!-- PAGE TITLE -->
 <section id="page-title" class="page-title-parallax page-title-center" style="height: 500px; background-image:url(/images/large-phone-bg.jpg);">
     <div class="container">
-        <div class="page-title col-md-8">
-            <!--            <h1>Left page title version</h1>-->
-            <!--            <span>Subtext for page title. Lorem ipsum viverra a!</span>-->
-        </div>
         <?php if (!Yii::$app->keyStorage->get('invite_only_signup')): ?>
 
             <div class="form-relative clearfix">
-                <div class="form-group form-group-sm">
-                    <?php $form = ActiveForm::begin([
-                        'enableClientScript' => false,
-                        'options' => [
-                            'id' => 'front-sign-form',
-                        ],
-                        'fieldConfig' => [
-                            'template' => '{input}<p class="m-t-5"></p>',
-                            'options' => ['class' => 'col-md-6']
-                        ],
-                    ]); ?>
-
-                    <div class="form-group text-center">
-                        <p>Join Now to Start Earning Extra Bucks!</p>
-                    </div>                  
-                    
-                    <div class="form-group btn-group btn-group-justified" role="group" aria-label="...">
-                        <div class="btn-group" role="group">
-                            <?php echo Html::a('<i class="fa fa-facebook"></i> facebook',
-                                ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('facebook')->name],
-                                ['class' => 'social-facebook btn-sm btn']
-                            ) ?>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <?php echo Html::a('<i class="fa fa-twitter"></i> twitter',
-                                ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('twitter')->name],
-                                ['class' => 'social-twitter btn-sm btn']
-                            ) ?>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <?php echo Html::a('<i class="fa fa-google-plus"></i> google',
-                                ['user/account/auth', 'authclient'=> Yii::$app->authClientCollection->getClient('google')->name],
-                                ['class' => 'social-google btn-sm btn']
-                            ) ?>
-                        </div>
-                    </div>
-
-                    <div class="form-group-or text-center">
-                        <p>or</p>
-                    </div> 
-
-                    <div class="row">
-
-                        <?= $form->field($model, 'first_name')->textInput([
-                            'placeholder' => 'First Name',
-                        ]); ?>
-
-                        <?= $form->field($model, 'last_name')->textInput([
-                            'placeholder' => 'Last Name',
-                        ]); ?>
-
-                    </div>
-
-                    <div class="row">
-
-                        <?= $form->field($model, 'username')->textInput([
-                            'placeholder' => Yii::t('app', 'Username'),
-                            'class' => 'form-control'
-                        ]); ?>
-
-                        <?= $form->field($model, 'email')->textInput([
-                            'placeholder' => Yii::t('app', 'E-mail'),
-                            'type' => 'email',
-                            'class' => 'form-control'
-                        ]); ?>
-
-                    </div>
-
-                    <div class="row">
-
-                        <?php echo $form->field($model, 'password')->passwordInput([
-                            'placeholder' => Yii::t('app', 'Password'),
-                            'type' => 'password',
-                            'class' => 'form-control'
-                        ]); ?>
-
-                        <?php echo $form->field($model, 'confirmPassword')->passwordInput([
-                            'placeholder' => Yii::t('app', 'Confirm Password'),
-                            'class' => 'form-control'
-                        ]); ?>
-
-                    </div>
-
-                    <div class="row">
-
-                        <?= $form->field($model, 'birthday', [
-                        ])->textInput([
-                            'placeholder' => Yii::t('app', 'Birthday'),
-                            'class' => 'form-control',
-                            'id' => 'datePickerBirthday'
-                        ]); ?>
-
-                        <?= $form->field($model, 'gender')->dropDownList($model->getGender(), [
-                            'prompt' => Yii::t('app', 'Gender'),
-                            'class' => 'form-control'
-                        ]); ?>
-
-                    </div>
-
-                    <div class="row">
-
-                        <?php echo $form->field($model, 'referralCode')->textInput([
-                            'placeholder' => Yii::t('app', 'Referral Code'),
-                        ]); ?>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="form-group">
-                            <?= $form->field($model, 'reCaptcha')->widget(\himiklab\yii2\recaptcha\ReCaptcha::className()) ?>
-                        </div>
-
-                    </div>
-
-                    <div class="text-left">
-                        <?php echo Html::submitButton(Yii::t('app', 'sign up and get 100 free points'), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
-                    </div>
-
-                    <div class="text-left">
-                        <?php echo Html::a('Already have an account?', ['user/account/login']); ?>
-                    </div>
-
-                    <?php $form->end(); ?>
-                </div>
+                <?php echo \app\modules\user\widgets\RegisterBriefForm::widget() ?>
             </div>
+
         <?php else: ?>
 
         <?php endif; ?>

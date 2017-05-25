@@ -42,8 +42,6 @@ class ProfileForm extends Model {
      */
     public function rules() {
         return [
-            [['first_name', 'last_name', 'gender'], 'required'],
-            [['first_name', 'last_name'], 'trim'],
 
             // Email
             ['email', 'required'],
@@ -64,12 +62,17 @@ class ProfileForm extends Model {
             // Password
             ['newPassword', 'required'],
             ['newPassword', 'string', 'min' => 6, 'max' => 64],
+
+            // Confirm Password
             ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword'],
             [['currentPassword'], 'validateCurrentPassword'],
             [['newPassword'], 'validateNewPassword'],
 
-            // Birthday
-            ['birthday', 'date', 'format' => 'php:Y-m-d', 'message' => 'Invalid date format']
+            // Meta
+            [['first_name', 'last_name'], 'string', 'max' => 255],
+            [['first_name', 'last_name'], 'trim'],
+            [['gender'], 'in', 'range' => [User::MALE, User::FEMALE]],
+            ['birthday', 'date', 'format' => 'Y-m-d'],
         ];
     }
 

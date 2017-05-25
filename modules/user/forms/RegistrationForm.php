@@ -37,13 +37,15 @@ class RegistrationForm extends Model
     public $clientID;
     public $tempUserID;
 
+    public $isWidget;
+
     protected $referralUser;
 
     public function scenarios() {
         return [
             static::SCENARIO_SIGNUP                 => ['username', 'gender', 'birthday', 'email', 'password',
                                                         'confirmPassword', 'first_name', 'last_name', 'referralCode',
-                                                        'reCaptcha'],
+                                                        'isWidget', 'reCaptcha'],
             static::SCENARIO_INVITATION             => ['username', 'gender', 'birthday', 'email', 'password',
                                                         'confirmPassword', 'first_name', 'last_name', 'reCaptcha',
                                                         'referralCode', 'invitationCode'],
@@ -79,11 +81,14 @@ class RegistrationForm extends Model
 
             // Confirm Password
             ['confirmPassword', 'required'],
-            ['confirmPassword', 'string', 'min' => 6],
+            ['confirmPassword', 'string', 'min' => 6, 'max' => 64],
             ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
 
             // Meta
-            [['gender', 'first_name', 'last_name'], 'required'],
+            [['first_name', 'last_name'], 'string', 'max' => 255],
+            [['first_name', 'last_name'], 'trim'],
+            [['gender'], 'in', 'range' => [User::MALE, User::FEMALE]],
+            ['birthday', 'date', 'format' => 'Y-m-d'],
 
             // Invite code
             ['invitationCode', 'required'],

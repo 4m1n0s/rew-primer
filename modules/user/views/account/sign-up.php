@@ -73,16 +73,6 @@ DatePickerAsset::register($this);
                         ],
                     ]); ?>
                     <div class="row">
-                        <?= $form->field($model, 'first_name')->textInput([
-                            'placeholder' => Yii::t('app', 'First Name'),
-                            'class' => ' form-control input-lg'
-                        ]); ?>
-                        <?= $form->field($model, 'last_name')->textInput([
-                            'placeholder' => Yii::t('app', 'Last Name'),
-                            'class' => 'form-control input-lg'
-                        ]); ?>
-                    </div>
-                    <div class="row">
 
                         <?= $form->field($model, 'username')->textInput([
                             'placeholder' => Yii::t('app', 'Username'),
@@ -111,9 +101,20 @@ DatePickerAsset::register($this);
                     </div>
                     <div class="row">
 
-                        <?= $form->field($model, 'birthday', [
-                            'template' => '<div class="col-md-12 form-group">{input}</div>'
-                        ])->textInput([
+                        <?= $form->field($model, 'first_name')->textInput([
+                            'placeholder' => Yii::t('app', 'First Name'),
+                            'class' => ' form-control input-lg'
+                        ]); ?>
+
+                        <?= $form->field($model, 'last_name')->textInput([
+                            'placeholder' => Yii::t('app', 'Last Name'),
+                            'class' => 'form-control input-lg'
+                        ]); ?>
+
+                    </div>
+                    <div class="row">
+
+                        <?= $form->field($model, 'birthday')->textInput([
                             'placeholder' => Yii::t('app', 'Birthday'),
                             'class' => 'form-control',
                             'id' => 'datePickerBirthday'
@@ -145,7 +146,7 @@ DatePickerAsset::register($this);
                     </div>
 
                     <div class="col-md-12 form-group">
-                        <?php echo Html::submitButton(Yii::t('app', 'Register New Account'), ['class' => 'btn btn-primary']) ?>
+                        <?php echo Html::submitButton(Yii::t('app', 'Sign up and get 100 free points'), ['class' => 'btn btn-primary']) ?>
                     </div>
 
                     <?php ActiveForm::end(); ?>

@@ -52,32 +52,7 @@ class SiteController extends FrontController {
             return $this->redirect(['/profile/offer/wall']);
         }
 
-        $form = new RegistrationForm([
-            'scenario' => RegistrationForm::SCENARIO_SIGNUP
-        ]);
-
-        $form->getDefaultReferralCode();
-
-        if ($form->load(Yii::$app->request->post())) {
-
-            if (!$form->validate() && !empty(array_shift($form->getErrors())[0])) {
-                Yii::$app->session->setFlash('error', Yii::t('user', array_shift($form->getErrors())[0]));
-                return $this->render('index', [
-                    'model' => $form,
-                ]);
-            }
-
-            if ($user = Yii::$app->userManager->createUser($form)) {
-                Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
-                return $this->redirect('/');
-            }
-
-            Yii::$app->session->setFlash('error', Yii::t('user', 'Error creating account!'));
-        }
-
-        return $this->render('index', [
-            'model' => $form,
-        ]);
+        return $this->render('index');
     }
     
     public function actionFaq()

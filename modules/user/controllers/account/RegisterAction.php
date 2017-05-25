@@ -44,7 +44,7 @@ class RegisterAction extends Action
         $post = Yii::$app->request->post();
         $form->getDefaultReferralCode();
 
-        if ($form->load($post) && $form->validate()) {
+        if ($form->load($post) && !$form->isWidget && $form->validate()) {
 
             if ($user = Yii::$app->userManager->createUser($form)) {
                 Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
