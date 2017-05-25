@@ -21,17 +21,13 @@ use yii\widgets\Menu;
 
 
             <!--NAVIGATION-->
-            <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+            <div class="navbar-collapse collapse main-menu-collapse navigation-wrap pull-right">
                 <div class="container">
                     <?= $this->render('main-menu')?>
                 </div>
             </div>
             <!--END: NAVIGATION-->
 
-            <div class="block-point">
-                <span><img src="/images/coins.png" alt="" ></span>
-                <span>10</span>
-            </div>
 
             <!--MOBILE MENU -->
             <div class="nav-main-menu-responsive">
@@ -40,6 +36,11 @@ use yii\widgets\Menu;
                 </button>
             </div>
             <!--END: MOBILE MENU -->
+
+            <div class="block-point">
+                <span><img src="/images/coins.png" alt="" ></span>
+                <span>10</span>
+            </div> 
 
 
 
