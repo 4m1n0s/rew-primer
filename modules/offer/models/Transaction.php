@@ -167,6 +167,7 @@ class Transaction extends \yii\db\ActiveRecord
             return true;
         } catch (\Exception $e) {
             $transaction->rollBack();
+            Yii::error(Json::encode($e->getMessage()), 'transaction');
             return false; // TODO: Log occurred errors
         }
     }

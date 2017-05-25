@@ -19,6 +19,9 @@ class Fyber extends Action
 
     public function run($access_hash)
     {
+
+        $transaction = \Yii::$app->db->beginTransaction();
+
         try {
 
             $model = new DynamicModel(['ip_address']);
@@ -63,7 +66,9 @@ class Fyber extends Action
                 throw new ErrorException('Could not crediting user');
             }
 
+            $transaction->commit();
         } catch (\Exception $e) {
+            $transaction->rollBack();
             \Yii::error('Fyber POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
         }
     }
