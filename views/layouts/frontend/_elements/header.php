@@ -19,7 +19,6 @@ use yii\widgets\Menu;
             </div>
             <!--END: LOGO-->
 
-
             <!--NAVIGATION-->
             <div class="navbar-collapse collapse main-menu-collapse navigation-wrap pull-right">
                 <div class="container">
@@ -28,12 +27,14 @@ use yii\widgets\Menu;
             </div>
             <!--END: NAVIGATION-->
 
-
-            <div class="block-point">
-                <span><img src="/images/coins.png" alt="" ></span>
-                <span>10</span>
-            </div>  
-
+            <?php if (!Yii::$app->user->isGuest): ?>
+                <div class="block-point">
+                    <div title="<?php echo Yii::$app->user->identity->virtual_currency ?>">
+                        <span><img src="/images/coins.png" alt="" ></span>
+                        <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
+                    </div>
+                </div>
+            <?php endif ?>
 
             <!--MOBILE MENU -->
             <div class="nav-main-menu-responsive">
@@ -42,9 +43,6 @@ use yii\widgets\Menu;
                 </button>
             </div>
             <!--END: MOBILE MENU -->
-
-
-
 
         </div>
     </div>

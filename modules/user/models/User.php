@@ -456,4 +456,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->hasOne(AuthSocial::className(), ['user_id' => 'id']);
     }
+
+    public function getVC()
+    {
+        return number_format($this->virtual_currency, 0);
+    }
+
+    public function getExchangedCurrency()
+    {
+        return bcdiv($this->virtual_currency, 100, 2);
+    }
 }
