@@ -21,8 +21,6 @@ class Fyber extends Action
     {
         try {
 
-            echo \Yii::$app->security->generateRandomString(6);
-
             $model = new DynamicModel(['ip_address']);
             $model->addRule('ip_address', 'ip', ['ranges' => ['146.0.239.0/24']]);
             $model->setAttributes(['ip_address' => \Yii::$app->request->getUserIP()]);
