@@ -50,6 +50,7 @@ class Transaction extends \yii\db\ActiveRecord
     const OBJECT_TYPE_MINUTESTAFF_OFFER = 17;
     const OBJECT_TYPE_CPALEAD_OFFER = 18;
     const OBJECT_TYPE_PERSONA_OFFER = 19;
+    const OBJECT_TYPE_FYBER_OFFER = 20;
 
     /**
      * @inheritdoc
