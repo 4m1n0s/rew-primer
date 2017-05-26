@@ -353,6 +353,7 @@ ul.icon-list li i {
 
 #header {
 	box-shadow: 0 0 0 2px  #1c9355; 
+	background: rgba(28,147,85,0.1);
 }
 
 .panel-primary {
