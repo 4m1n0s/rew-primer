@@ -428,6 +428,7 @@
   }
   #header #logo img.logo-mob {
     display: block;
+    height: 65px;
   }
 }
 
