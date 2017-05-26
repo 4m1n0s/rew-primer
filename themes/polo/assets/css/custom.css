@@ -23,8 +23,7 @@
 }
 
 .header-sticky .block-point {
-  margin-top: 9px;
-  margin-bottom: 9px;
+  margin-top: 12px;
 }
 
 @media only screen and (max-width: 991px) {
