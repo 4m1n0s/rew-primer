@@ -31,6 +31,8 @@
     .block-point {
         position: absolute;
         right: 34px;
+        margin-top: 17px;
+        padding: 3px 10px;
   }
 }
 
@@ -413,7 +415,7 @@
 
 @media only screen and (max-width: 911px ) {
   #header #logo img {
-      padding: 18px 0;
+      padding: 9px 0;
   }
   .nav-pills > li.active > a {
     color: #1c9355;

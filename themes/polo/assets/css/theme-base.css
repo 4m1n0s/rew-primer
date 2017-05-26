@@ -565,8 +565,8 @@ nav.mega-menu .mega-menu-content {
 .nav-main-menu-responsive {
     display: none;
     float: right;
-    height: 90px;
-    line-height: 90px;
+    height: 65px;
+    line-height: 65px;
     margin-left: 6px;
         transition: opacity .3s ease, height .4s ease;
     -webkit-transition: opacity .3s ease, height .4s ease;
