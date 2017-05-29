@@ -421,8 +421,8 @@
   }
 
   #header #logo img.logo-desktop {
-    height: 56px;
-    padding: 13px 0 3px;
+    height: 50px;
+    padding: 19px 0 0px;
   }
 
 }
