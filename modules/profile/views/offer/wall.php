@@ -9,7 +9,7 @@ $this->title = 'Offer Walls';
 <div>
 
     <!--Portfolio Filter-->
-    <div class="filter-active-title">Banner</div>
+    <div class="filter-active-title">Show All</div>
     <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
         <li class="ptf-active" data-filter="*">Show All</li>
         <li data-filter=".cat1" class="">Category 1</li>
