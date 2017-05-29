@@ -419,9 +419,12 @@
   .nav-pills > li.active > a {
     color: #1c9355;
   }
-}
 
-@media only screen and (max-width: 767px ){
+  #header #logo img.logo-desktop {
+    height: 60px;
+    padding: 11px 0 6px;
+  }
+
   #header.logged  #logo img.logo-desktop {
     display: none;
   }
@@ -429,6 +432,7 @@
     display: block;
     height: 65px;
   }
+
 }
 
 
