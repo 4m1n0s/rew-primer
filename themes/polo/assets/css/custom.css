@@ -435,9 +435,10 @@
 .timeline-img {  
     position: relative;
     height: 100px;
-    margin-top: 10px;
+    margin-top: 1px;
     box-shadow: 0 0 3px 0px #ccc;
     margin-bottom: 10px;
+    margin-left: 1px;
 }
 
 
@@ -452,6 +453,7 @@
     right: 0;
     top: 0;
     max-height: 100%;
+    width: auto !important;
 }
 
 .form-relative {
@@ -489,6 +491,10 @@
 .form-group-or { 
   margin-top: -13px;
   margin-bottom: 5px;
+}
+
+.portfolio-filter li, .portfolio-filter .filter-active-title {
+    line-height: 5px;
 }
 
 @media only screen and (max-width: 767px ) {
