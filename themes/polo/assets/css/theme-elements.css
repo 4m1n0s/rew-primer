@@ -6051,16 +6051,16 @@ PRICING TABLE
     margin-bottom: 0;
 }
 .pricing-table .plan .plan-header .plan-price {
-    font-size: 12vmin;
+    font-size: 7vmin;
     font-weight: 600;
     position: relative;
     text-align: center;
     padding: 20px 0;
 }
 .pricing-table .plan .plan-header .plan-price sup {
-    font-size: 24px;
+    font-size: 3vmin;
     position: relative;
-    top: -30px;
+    top: -4vmin;
     color: #bdc3c7;
 }
 .pricing-table .plan .plan-header .plan-price span {
