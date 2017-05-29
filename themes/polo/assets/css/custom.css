@@ -435,9 +435,10 @@
 .timeline-img {  
     position: relative;
     height: 100px;
-    margin-top: 10px;
+    margin-top: 1px;
     box-shadow: 0 0 3px 0px #ccc;
     margin-bottom: 10px;
+    margin-left: 1px;
 }
 
 
