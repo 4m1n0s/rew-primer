@@ -412,25 +412,32 @@
   display: none;
 }
 
-@media only screen and (max-width: 911px ) {
+@media only screen and (max-width: 992px ) {
   #header #logo img {
       padding: 9px 0;
   }
   .nav-pills > li.active > a {
     color: #1c9355;
   }
+
+  #header #logo img.logo-desktop {
+    height: 50px;
+    padding: 19px 0 0px;
+  }
+
 }
 
-@media only screen and (max-width: 767px ){
-  #header #logo img.logo-desktop {
+@media only screen and (max-width: 768px ) {
+
+  #header.logged  #logo img.logo-desktop {
     display: none;
   }
-  #header #logo img.logo-mob {
+  #header.logged  #logo img.logo-mob {
     display: block;
     height: 65px;
   }
-}
 
+}
 
 .timeline-img {  
     position: relative;
@@ -439,6 +446,7 @@
     box-shadow: 0 0 3px 0px #ccc;
     margin-bottom: 10px;
     margin-left: 1px;
+    margin-right: 1px;
 }
 
 
