@@ -527,7 +527,9 @@
 
 }
 
-
+#clipboard-copy-btn {
+    cursor: pointer;
+}
 
 /* social-button */
 

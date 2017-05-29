@@ -15,7 +15,11 @@ $this->title = Yii::t('app', 'Referral Program');
                     <br>Share Link below to get percents!
                 </p>
                 <p></p>
-                <p><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> <span><?php echo $referralLink ?></span></p>
+                <p>
+                    <span id="clipboard-copy-btn" class="glyphicon glyphicon-copy" title="Add to ClipBoard" aria-hidden="true"></span>
+                    <span id="clipboard-copy-text"><?php echo $referralLink ?></span>
+                </p>
+                <p><span id="clipboard-copy-helper" class="hide">Added to ClipBoard</span></p>
             </blockquote>
 
             <?php if ($dataProvider->count): ?>
@@ -42,3 +46,24 @@ $this->title = Yii::t('app', 'Referral Program');
 
 </div>
 <!-- END: post content -->
+
+<?php
+
+$js = <<< JS
+$('#clipboard-copy-btn').click(function(e) {
+    copyToClipboard($('#clipboard-copy-text'));
+});
+
+function copyToClipboard(element) {
+    var temp = $("<input>");
+    $("body").append(temp);
+    temp.val($(element).text()).select();
+    document.execCommand("copy");
+    temp.remove();
+    $("#clipboard-copy-helper").removeClass('hide');
+    $("#clipboard-copy-helper").delay(3000).hide(400)
+}
+JS;
+
+$this->registerJs($js)
+?>
