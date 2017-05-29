@@ -31,6 +31,7 @@ class RegistrationForm extends Model
     public $gender;
 
     public $reCaptcha;
+    public $terms;
 
     // Oauth
     public $externalID;
@@ -45,7 +46,7 @@ class RegistrationForm extends Model
         return [
             static::SCENARIO_SIGNUP                 => ['username', 'gender', 'birthday', 'email', 'password',
                                                         'confirmPassword', 'first_name', 'last_name', 'referralCode',
-                                                        'isWidget', 'reCaptcha'],
+                                                        'isWidget', 'reCaptcha', 'terms'],
             static::SCENARIO_INVITATION             => ['username', 'gender', 'birthday', 'email', 'password',
                                                         'confirmPassword', 'first_name', 'last_name', 'reCaptcha',
                                                         'referralCode', 'invitationCode'],
@@ -98,7 +99,10 @@ class RegistrationForm extends Model
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
 
             // Captcha
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.']
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
+
+            // Terms
+            ['terms', 'required', 'requiredValue' => 1, 'message' => 'Terms are required'],
         ];
     }
 
