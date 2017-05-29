@@ -422,10 +422,10 @@
 }
 
 @media only screen and (max-width: 767px ){
-  #header #logo img.logo-desktop {
+  .logged #header #logo img.logo-desktop {
     display: none;
   }
-  #header #logo img.logo-mob {
+  .logged #header #logo img.logo-mob {
     display: block;
     height: 65px;
   }
