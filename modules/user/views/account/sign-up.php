@@ -145,6 +145,19 @@ DatePickerAsset::register($this);
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="" id="register-terms">
+                            <div class="form-group">
+                                <?php echo $form->field($model, 'terms')->checkbox([
+                                    'placeholder' => Yii::t('app', 'Referral Code'),
+                                    'template' => "<div class='checkbox'>\n<div>You must agree and have read our <a onclick='window.open(\"/terms\")' href='javascript:void(0)'>Terms of Service and Privacy Policy</a>.</div>{beginLabel}\n{input}\n{labelTitle}\n{endLabel}\n{error}\n{hint}\n</div>"
+                                ])->label('I Agree') ?>
+                            </div>
+                        </div>
+
+
+                    </div>
+
                     <div class="col-md-12 form-group">
                         <?php echo Html::submitButton(Yii::t('app', 'Sign up and get 100 free points'), ['class' => 'btn btn-primary']) ?>
                     </div>

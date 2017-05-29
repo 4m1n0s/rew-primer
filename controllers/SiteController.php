@@ -10,9 +10,11 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\modules\core\components\controllers\FrontController;
 
-class SiteController extends FrontController {
+class SiteController extends FrontController
+{
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -34,7 +36,8 @@ class SiteController extends FrontController {
         ];
     }
 
-    public function actions() {
+    public function actions()
+    {
         return [
             'error' => [
                 'class' => 'yii\web\ErrorAction',
@@ -54,7 +57,7 @@ class SiteController extends FrontController {
 
         return $this->render('index');
     }
-    
+
     public function actionFaq()
     {
         return $this->render('faq');
@@ -65,4 +68,8 @@ class SiteController extends FrontController {
         return $this->render('about');
     }
 
+    public function actionTerms()
+    {
+        return $this->render('terms');
+    }
 }

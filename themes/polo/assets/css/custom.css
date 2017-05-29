@@ -505,6 +505,10 @@
     line-height: 5px;
 }
 
+#register-terms {
+    padding-left: 15px;
+}
+
 @media only screen and (max-width: 767px ) {
 
   .form-relative {

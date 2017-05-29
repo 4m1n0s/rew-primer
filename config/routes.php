@@ -13,6 +13,7 @@ return [
     'contact-us' => '/contact/index/index',
     'faq' => 'site/faq',
     'about' => 'site/about',
+    'terms' => 'site/terms',
     'invite' => '/user/account/invitation-request',
 
     'sign-up/<code:[a-zA-Z0-9_-]+>' => 'user/account/sign-up',
