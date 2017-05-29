@@ -6051,7 +6051,7 @@ PRICING TABLE
     margin-bottom: 0;
 }
 .pricing-table .plan .plan-header .plan-price {
-    font-size: 70px;
+    font-size: 12vmin;
     font-weight: 600;
     position: relative;
     text-align: center;
