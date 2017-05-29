@@ -6058,9 +6058,9 @@ PRICING TABLE
     padding: 20px 0;
 }
 .pricing-table .plan .plan-header .plan-price sup {
-    font-size: 24px;
+    font-size: 5vmin;
     position: relative;
-    top: -30px;
+    top: -7vmin;
     color: #bdc3c7;
 }
 .pricing-table .plan .plan-header .plan-price span {
