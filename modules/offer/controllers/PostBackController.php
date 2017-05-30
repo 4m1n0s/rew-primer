@@ -12,6 +12,7 @@ use app\modules\offer\controllers\postbacks\MinuteStaff;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
 use app\modules\offer\controllers\postbacks\Persona;
+use app\modules\offer\controllers\postbacks\Pollfish;
 use app\modules\offer\controllers\postbacks\Ptcwall;
 use app\modules\offer\controllers\postbacks\SuperRewards;
 use yii\web\NotFoundHttpException;
@@ -53,6 +54,9 @@ class PostBackController extends Controller
             ],
             'fb' => [
                 'class' => Fyber::class
+            ],
+            'pf' => [
+                'class' => Pollfish::class
             ],
         ];
     }

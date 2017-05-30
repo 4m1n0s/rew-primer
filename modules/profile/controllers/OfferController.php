@@ -11,6 +11,7 @@ use app\modules\offer\controllers\offerwalls\MinuteStaff;
 use app\modules\offer\controllers\offerwalls\OfferDaddy;
 use app\modules\offer\controllers\offerwalls\OfferToro;
 use app\modules\offer\controllers\offerwalls\Persona;
+use app\modules\offer\controllers\offerwalls\Pollfish;
 use app\modules\offer\controllers\offerwalls\Ptcwall;
 use app\modules\offer\controllers\offerwalls\SuperRewards;
 use \Yii;
@@ -74,6 +75,10 @@ class OfferController extends ProfileController
             'fyber' => [
                 'class' => Fyber::class,
                 'view' => 'fyber'
+            ],
+            'pollfish' => [
+                'class' => Pollfish::class,
+                'view' => 'pollfish'
             ],
         ];
     }

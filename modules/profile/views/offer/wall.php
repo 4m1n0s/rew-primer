@@ -116,6 +116,14 @@ $this->title = 'Offer Walls';
                 ); ?>
             </div>
         </div>
+        <div class="portfolio-item cat1 cat2">
+            <div class="timeline-img">
+                <?= Html::a(
+                    Html::img('/images/offer-providers/pollfish.png', ['alt' => 'pollfish', 'class' => 'timeline-badge-userpic']),
+                    ['/profile/offer/pollfish']
+                ); ?>
+            </div>
+        </div>
     </div>
     <!-- END: Portfolio Items -->
     <hr class="space">

@@ -10,7 +10,7 @@ use yii\base\ErrorException;
 use yii\base\Exception;
 
 /**
- * Class OfferToro
+ * Class Fyber
  * @package app\modules\offer\controllers\actions
  */
 class Fyber extends Action
