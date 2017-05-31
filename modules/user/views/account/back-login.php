@@ -13,7 +13,7 @@ $this->registerJsFile('/backend/global/plugins/jquery-validation/js/jquery.valid
 $this->registerJsFile('/backend/global/plugins/jquery-validation/js/additional-methods.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
 $this->registerJsFile('/backend/global/plugins/select2/js/select2.full.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
 
-$this->registerJsFile('/backend/pages/scripts/login.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
+//$this->registerJsFile('/backend/pages/scripts/login.min.js', ['depends' => [app\assets\BackendAsset::className()]]);
 $this->registerCssFile("/backend/pages/css/login.min.css", ['depends' => [app\assets\BackendAsset::className()]]);
 
 ?>
