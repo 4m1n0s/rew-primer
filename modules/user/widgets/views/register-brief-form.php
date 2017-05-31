@@ -89,14 +89,11 @@ DatePickerAsset::register($this);
                 'class' => 'form-control'
             ]); ?>
         </div>
-
-
-
-
+        
     </div>
 
     <div class="text-left">
-        <?php echo Html::submitButton(Yii::t('app', 'sign up and get 100 free points'), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
+        <?php echo Html::submitButton(Yii::$app->globalTexts->getFreePoints(), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
     </div>
 
     <div class="text-left">

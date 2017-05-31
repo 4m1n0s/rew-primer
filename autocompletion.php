@@ -25,6 +25,7 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\user\components\AuthenticationManager $authenticationManager
  * @property yii\authclient\Collection $authClientCollection
  * @property \app\modules\core\components\VirtualCurrency $virtualCurrency
+ * @property \app\modules\core\components\GlobalTexts $globalTexts
  */
 abstract class BaseApplication extends yii\base\Application
 {

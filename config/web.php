@@ -160,7 +160,10 @@ $config = [
         ],
         'virtualCurrency' => [
             'class' => '\app\modules\core\components\VirtualCurrency'
-        ]
+        ],
+        'globalTexts' => [
+            'class' => '\app\modules\core\components\GlobalTexts'
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),
