@@ -124,6 +124,14 @@ $this->title = 'Offer Walls';
                 ); ?>
             </div>
         </div>
+        <div class="portfolio-item cat1 cat2">
+            <div class="timeline-img">
+                <?= Html::a(
+                    Html::img('/images/offer-providers/paymentwall-logo.jpg', ['alt' => 'paymentwall', 'class' => 'timeline-badge-userpic']),
+                    ['/profile/offer/paymentwall']
+                ); ?>
+            </div>
+        </div>
     </div>
     <!-- END: Portfolio Items -->
     <hr class="space">
