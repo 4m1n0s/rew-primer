@@ -18,7 +18,7 @@ class PaymentWall extends Action
 
     public function run()
     {
-        \Yii::trace('trace', 'offer_postback');
+        \Yii::info('info', 'offer_postback');
         echo 'OK';
     }
 }

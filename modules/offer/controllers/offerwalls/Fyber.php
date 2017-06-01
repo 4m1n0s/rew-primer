@@ -5,7 +5,7 @@ namespace app\modules\offer\controllers\offerwalls;
 use yii\base\Action;
 
 /**
- * Class OfferToro
+ * Class Fyber
  * @package app\modules\offer\controllers\actions
  */
 class Fyber extends Action
