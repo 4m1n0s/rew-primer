@@ -10,6 +10,7 @@ use app\modules\offer\controllers\offerwalls\Kiwiwall;
 use app\modules\offer\controllers\offerwalls\MinuteStaff;
 use app\modules\offer\controllers\offerwalls\OfferDaddy;
 use app\modules\offer\controllers\offerwalls\OfferToro;
+use app\modules\offer\controllers\offerwalls\PaymentWall;
 use app\modules\offer\controllers\offerwalls\Persona;
 use app\modules\offer\controllers\offerwalls\Pollfish;
 use app\modules\offer\controllers\offerwalls\Ptcwall;
@@ -79,6 +80,10 @@ class OfferController extends ProfileController
             'pollfish' => [
                 'class' => Pollfish::class,
                 'view' => 'pollfish'
+            ],
+            'paymentwall' => [
+                'class' => PaymentWall::class,
+                'view' => 'payment-wall'
             ],
         ];
     }

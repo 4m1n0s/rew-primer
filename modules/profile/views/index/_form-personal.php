@@ -1,7 +1,7 @@
 <?php
 /* @var \yii\web\View $this */
 /* @var \app\modules\user\models\User $currentUser */
-/* @var \app\modules\profile\forms\ProfileForm $model  */
+/* @var \app\modules\user\forms\RegistrationForm $model  */
 
 use yii\helpers\Html;
 ?>

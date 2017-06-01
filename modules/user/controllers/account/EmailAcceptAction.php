@@ -47,7 +47,10 @@ class EmailAcceptAction extends Action
 
             if ($user = Yii::$app->userManager->createUser($form)) {
                 $tokenStorage->deleteByTypeAndUser($tokenModel->type, $user);
-                Yii::$app->session->setFlash('success', Yii::t('user', 'Account was created! Check your email!'));
+                Yii::$app->session->setFlash(
+                    'success', Yii::t('user',
+                    'Account has been created! Instructions for the account activation have been sent to your e-mail')
+                );
                 return $this->controller->redirect('/');
             }
 
