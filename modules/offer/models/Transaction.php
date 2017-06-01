@@ -52,6 +52,7 @@ class Transaction extends \yii\db\ActiveRecord
     const OBJECT_TYPE_PERSONA_OFFER = 19;
     const OBJECT_TYPE_FYBER_OFFER = 20;
     const OBJECT_TYPE_POLLFISH_OFFER = 21;
+    const OBJECT_TYPE_PAYMENTWALL_OFFER = 22;
 
     /**
      * @inheritdoc
