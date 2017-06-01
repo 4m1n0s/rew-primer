@@ -11,6 +11,7 @@ use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\MinuteStaff;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
+use app\modules\offer\controllers\postbacks\PaymentWall;
 use app\modules\offer\controllers\postbacks\Persona;
 use app\modules\offer\controllers\postbacks\Pollfish;
 use app\modules\offer\controllers\postbacks\Ptcwall;
@@ -57,6 +58,9 @@ class PostBackController extends Controller
             ],
             'pf' => [
                 'class' => Pollfish::class
+            ],
+            'pmw' => [
+                'class' => PaymentWall::class
             ],
         ];
     }
