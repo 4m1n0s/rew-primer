@@ -10,9 +10,6 @@ return [
     'user' => [
         'class' => 'app\modules\user\Module',
     ],
-    'subscriber' => [
-        'class' => 'app\modules\subscriber\Module',
-    ],
     'settings' => [
         'class' => 'app\modules\settings\Module',
     ],
