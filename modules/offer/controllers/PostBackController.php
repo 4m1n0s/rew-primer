@@ -15,6 +15,7 @@ use app\modules\offer\controllers\postbacks\PaymentWall;
 use app\modules\offer\controllers\postbacks\Persona;
 use app\modules\offer\controllers\postbacks\Pollfish;
 use app\modules\offer\controllers\postbacks\Ptcwall;
+use app\modules\offer\controllers\postbacks\SaySoPubs;
 use app\modules\offer\controllers\postbacks\SuperRewards;
 use yii\web\NotFoundHttpException;
 
@@ -61,6 +62,9 @@ class PostBackController extends Controller
             ],
             'pmw' => [
                 'class' => PaymentWall::class
+            ],
+            'ssp' => [
+                'class' => SaySoPubs::class
             ],
         ];
     }
