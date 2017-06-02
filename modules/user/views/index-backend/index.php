@@ -166,9 +166,8 @@ $this->params['breadcrumbs'] = [
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => Yii::t('user/admin', 'Actions'),
-                                'headerOptions' => [
-                                    'width' => '250',
-                                ],
+                                'headerOptions' => ['style' => 'min-width:220px;width:220px'],
+
                                 'buttons' => [
                                     'referrals' => function($url, $model) {
                                         $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
