@@ -166,8 +166,7 @@ $this->params['breadcrumbs'] = [
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => Yii::t('user/admin', 'Actions'),
-                                'headerOptions' => ['style' => 'min-width:220px;width:220px'],
-
+                                'headerOptions' => ['style' => 'min-width:230px;width:230px'],
                                 'buttons' => [
                                     'referrals' => function($url, $model) {
                                         $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
@@ -204,7 +203,7 @@ $this->params['breadcrumbs'] = [
                                             );
                                         } else {
                                             return Html::a(
-                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Restore'),
+                                                '<i class="fa fa-check"></i> ' . Yii::t('user/admin', 'Restore'),
                                                 Url::to(),
                                                 [
                                                     'title' => 'Activate user',
@@ -215,7 +214,6 @@ $this->params['breadcrumbs'] = [
                                             );
                                         }
                                     },
-
                                     'remove' => function($url, $model) {
                                         $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/delete', 'id' => $model->id]);
 

@@ -133,6 +133,7 @@ class IndexBackendController extends BackController {
                 $status = User::STATUS_APPROVED;
             }
 
+            $user->setScenario(User::SCENARIO_UPDATE_STATUS);
             $user->status = $status;
             $user->update();
 
