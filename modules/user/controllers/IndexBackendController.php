@@ -30,6 +30,7 @@ class IndexBackendController extends BackController {
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
+                    'delete' => ['POST'],
                     'user-to-blacklist' => ['POST'],
                 ],
             ],
@@ -180,4 +181,21 @@ class IndexBackendController extends BackController {
         ]);
     }
 
+    /**
+     * Deletes an existing User model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException
+     */
+    public function actionDelete($id)
+    {
+        if (($model = BackUsersForm::findOne($id)) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        $model->delete();
+
+        return $this->redirect(['index']);
+    }
 }

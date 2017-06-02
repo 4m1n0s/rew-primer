@@ -167,7 +167,7 @@ $this->params['breadcrumbs'] = [
                                 'class' => 'yii\grid\ActionColumn',
                                 'header' => Yii::t('user/admin', 'Actions'),
                                 'headerOptions' => [
-                                    'width' => '150',
+                                    'width' => '250',
                                 ],
                                 'buttons' => [
                                     'referrals' => function($url, $model) {
@@ -188,21 +188,22 @@ $this->params['breadcrumbs'] = [
                                                 'data-pjax' => 0
                                         ]);
                                     },
-                                    'toBlackList' => function($url, $model){
+                                    'toBlackList' => function($url, $model) {
 
                                         $url = Url::to(['/user/index-backend/user-to-blacklist']);
-                                        if($model->status != app\modules\user\models\User::STATUS_BLACKLIST){
+
+                                        if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
                                             return Html::a(
-                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Delete'),
+                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Block'),
                                                 Url::to(),
                                                 [
                                                     'title' => 'Move to black list',
-                                                    'class' => 'btn default btn-xs red',
+                                                    'class' => 'btn default btn-xs yellow',
                                                     'onclick'=> "blacklist('$url', '$model->id')",
                                                     'data-pjax' => 1
                                                 ]
                                             );
-                                        }else{
+                                        } else {
                                             return Html::a(
                                                 '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Restore'),
                                                 Url::to(),
@@ -214,9 +215,20 @@ $this->params['breadcrumbs'] = [
                                                 ]
                                             );
                                         }
-                                    }
+                                    },
+
+                                    'remove' => function($url, $model) {
+                                        $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/delete', 'id' => $model->id]);
+
+                                        return Html::a('<i class="fa fa-trash"></i> ' . Yii::t('user/admin', 'Remove'), $url, [
+                                            'class' => 'btn default btn-xs red',
+                                            'title' => Yii::t('user/admin', 'Remove'),
+                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                            'data-method' => 'post',
+                                        ]);
+                                    },
                                 ],
-                                'template' => '{toBlackList} {edit}',
+                                'template' => '{toBlackList} {edit} {remove}',
                             ],
                         ],
                     ]);
