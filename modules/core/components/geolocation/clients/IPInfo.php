@@ -1,12 +1,15 @@
 <?php
 
-namespace app\modules\core\components\geolocation;
+namespace app\modules\core\components\geolocation\clients;
+
+use app\modules\core\components\geolocation\LocationClientInterface;
+use yii\helpers\ArrayHelper;
 
 /**
- * Class LocationServiceIPInfo
- * @package app\modules\core\components\geolocation
+ * Class IPInfo
+ * @package app\modules\core\components\geolocation\clients
  */
-class ClientIPInfo implements LocationClientInterface
+class IPInfo implements LocationClientInterface
 {
     /**
      * @var \stdClass
@@ -51,28 +54,35 @@ class ClientIPInfo implements LocationClientInterface
         return true;
     }
 
-
     /**
      * @return string
      */
-    public function getCountry()
+    public function getCountryName()
     {
-        return $this->data->country;
+        return ArrayHelper::getValue($this->data, 'country');
     }
 
     /**
      * @return string
      */
-    public function getCity()
+    public function getCityName()
     {
-        return $this->data->city;
+        return ArrayHelper::getValue($this->data, 'city');
     }
 
     /**
      * @return string
      */
-    public function getRegion()
+    public function getRegionName()
     {
-        return $this->data->region;
+        return ArrayHelper::getValue($this->data, 'region');
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryISO()
+    {
+        return ArrayHelper::getValue($this->data, 'country');
     }
 }

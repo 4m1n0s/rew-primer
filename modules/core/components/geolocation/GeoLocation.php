@@ -5,10 +5,26 @@ namespace app\modules\core\components\geolocation;
 use yii\base\Object;
 
 /**
- * Class Location
+ * GeoLocation contains geo info from an IP address.
+ * You can configure it as an application component in [[\yii\base\Application]]
+ * Example:
+ *
+ * 'components' => [
+ *     // ...
+ *     'geoLocation' => [
+ *         'class' => '\app\modules\core\components\geolocation\GeoLocation',
+ *         'clientClassName' => '\app\modules\core\components\geolocation\clients\IPInfo'
+ *      ],
+ * ]
+ *
+ * Base usage example:
+ *
+ * $client = \Yii::$app->geoLocation->process($ip);
+ * $client->getCountry();
+ *
  * @package app\modules\core\components
  */
-class Location extends Object
+class GeoLocation extends Object
 {
     /**
      * @var LocationClientInterface
@@ -20,6 +36,9 @@ class Location extends Object
      */
     public $clientClassName;
 
+    /**
+     * @throws \yii\base\InvalidConfigException
+     */
     public function init()
     {
         $client = \Yii::createObject($this->clientClassName);
@@ -33,11 +52,11 @@ class Location extends Object
     public function process($ip)
     {
         $this->client->getResult($ip);
-        return $this->client;
+        return $this->getClient();
     }
 
     /**
-     * @param $client
+     * @param LocationClientInterface $client
      */
     public function setClient(LocationClientInterface $client)
     {

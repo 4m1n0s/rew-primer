@@ -19,7 +19,7 @@ class Yii extends \yii\BaseYii
  * @property \app\components\MandrillMailer $mandrillMailer
  * @property \app\modules\settings\components\KeyStorage $keyStorage
  * @property \himiklab\yii2\recaptcha\ReCaptcha $reCaptcha
- * @property \app\modules\core\components\geolocation\Location $geoLocation
+ * @property \app\modules\core\components\geolocation\GeoLocation $geoLocation
  * @property app\modules\core\components\EventManager $eventManager
  * @property \app\modules\user\components\UserManager $userManager
  * @property \app\modules\user\components\AuthenticationManager $authenticationManager

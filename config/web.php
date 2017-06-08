@@ -145,8 +145,8 @@ $config = [
             'class' => '\app\modules\settings\components\KeyStorage'
         ],
         'geoLocation' => [
-            'class' => '\app\modules\core\components\geolocation\Location',
-            'clientClassName' => '\app\modules\core\components\geolocation\ClientIPInfo'
+            'class' => '\app\modules\core\components\geolocation\GeoLocation',
+            'clientClassName' => '\app\modules\core\components\geolocation\clients\MaxMind'
         ],
         'userManager' => [
             'class' => '\app\modules\user\components\UserManager'
