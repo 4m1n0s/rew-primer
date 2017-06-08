@@ -16,6 +16,8 @@ $this->params['pageSmallTitle'] = Yii::t('app', 'edit');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<span id="country-link" data-link="<?php echo \yii\helpers\Url::toRoute(['/settings/index-backend/get-country']) ?>"></span>
+
 <div class="portlet box blue">
     <div class="portlet-title">
         <div class="caption">
@@ -71,6 +73,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 <?php
-$this->registerJsFile('/backend/js/user_group_module.js', ['depends' => \app\assets\SelectAsset::class]);
-$this->registerJs('user_group_module.init()');
+$this->registerJsFile('/backend/js/offer_targeting_module.js', ['depends' => \app\assets\SelectAsset::class]);
+$this->registerJs('offer_targeting_module.init()');
 ?>

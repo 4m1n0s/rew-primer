@@ -3,10 +3,13 @@
 namespace app\modules\settings\controllers;
 
 use app\modules\core\components\controllers\BackController;
+use app\modules\core\models\GeoCountry;
 use app\modules\offer\components\Offer;
 use app\modules\settings\forms\FormModel;
 use kartik\switchinput\SwitchInput;
 use \Yii;
+use yii\helpers\Json;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Default controller for the `settings` module
@@ -99,10 +102,13 @@ class IndexBackendController extends BackController
             'class' => FormModel::class,
             'keys' => [
                 Offer::getStorageKeyCountry(Offer::ADWORKMEDIA) => [
+                    'format' => FormModel::FORMAT_JSON,
                     'label' => 'adworkmedia',
-                    'type' => FormModel::TYPE_TEXTINPUT,
-                    'options' => ['placeholder' => 'adworkmedia'],
-//                    'rules' => [['required']]
+                    'type' => FormModel::TYPE_DROPDOWN,
+                    'options' => [
+                        'multiple' => 'multiple',
+                        'class' => 'offer-targeting-select',
+                    ],
                 ],
             ]
         ]);
@@ -115,5 +121,19 @@ class IndexBackendController extends BackController
         return $this->render('offer-targeting', [
             'model' => $model
         ]);
+    }
+
+    public function actionGetCountry()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        $collection = GeoCountry::find()
+            ->select(['id', 'country_name'])
+            ->where(['like', 'country_name', Yii::$app->request->get('q')])
+            ->all();
+
+        return Json::encode($collection);
     }
 }
