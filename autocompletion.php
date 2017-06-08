@@ -26,6 +26,7 @@ class Yii extends \yii\BaseYii
  * @property yii\authclient\Collection $authClientCollection
  * @property \app\modules\core\components\VirtualCurrency $virtualCurrency
  * @property \app\modules\core\components\GlobalTexts $globalTexts
+ * @property \app\modules\offer\components\OfferFactory $offerFactory
  */
 abstract class BaseApplication extends yii\base\Application
 {

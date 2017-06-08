@@ -8,3 +8,4 @@
 /.idea
 /web/uploads/
 /modules/core/components/geolocation/source-maxmind/
+/commands/CommonController.php

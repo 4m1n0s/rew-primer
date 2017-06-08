@@ -46,6 +46,9 @@ return [
             'class' => '\app\modules\core\components\geolocation\GeoLocation',
             'clientClassName' => '\app\modules\core\components\geolocation\clients\MaxMind'
         ],
+        'offerFactory' => [
+            'class' => '\app\modules\offer\components\OfferFactory',
+        ],
     ],
     'params' => $params,
 ];
