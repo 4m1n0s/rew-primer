@@ -8,6 +8,7 @@ use yii\base\InvalidParamException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
+use yii\helpers\Json;
 
 /**
  * @author Eugene Terentev <eugene@terentev.net>
@@ -37,6 +38,10 @@ class FormModel extends Model
     const TYPE_CHECKBOXLIST = 'checkboxList';
     const TYPE_WIDGET = 'widget';
 
+    const FORMAT_PLAIN = 1;
+    const FORMAT_JSON = 2;
+    const FORMAT_SERIALIZED = 3;
+
     /**
      * @var array
      */
@@ -57,6 +62,11 @@ class FormModel extends Model
     public $scenarios = [];
 
     /**
+     * @var int
+     */
+    public $format = self::FORMAT_PLAIN;
+
+    /**
      * @var array
      */
     protected $attributes;
@@ -70,7 +80,15 @@ class FormModel extends Model
         foreach ($keys as $key => $data) {
             $variablizedKey = Inflector::variablize($key);
             $this->map[$variablizedKey] = $key;
-            $values[$variablizedKey] = $this->getKeyStorage()->get($key, null, false);
+            $value = $this->getKeyStorage()->get($key, null, false);
+            if (static::FORMAT_JSON == ArrayHelper::getValue($data, 'format')) {
+                $formattedValue = Json::decode($value);
+            } elseif (static::FORMAT_SERIALIZED == ArrayHelper::getValue($data, 'format')) {
+                $formattedValue = unserialize($value);
+            } else {
+                $formattedValue = $value;
+            }
+            $values[$variablizedKey] = $formattedValue;
             $variablized[$variablizedKey] = $data;
         }
         $this->keys = $variablized;
@@ -164,7 +182,15 @@ class FormModel extends Model
             if (!$originalKey) {
                 throw new Exception;
             }
-            $this->getKeyStorage()->set($originalKey, $value);
+            $format = ArrayHelper::getValue($this->keys[$variablizedKey], 'format', static::FORMAT_PLAIN);
+            if (static::FORMAT_JSON == $format) {
+                $formattedValue = Json::encode($value);
+            } elseif (static::FORMAT_SERIALIZED == $format) {
+                $formattedValue = serialize($value);
+            } else {
+                $formattedValue = $value;
+            }
+            $this->getKeyStorage()->set($originalKey, $formattedValue);
         }
         return true;
     }
