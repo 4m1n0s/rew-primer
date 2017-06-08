@@ -10,3 +10,4 @@
 /modules/core/components/geolocation/source-maxmind/
 /logs/
 /nbproject/
+/commands/CommonController.php

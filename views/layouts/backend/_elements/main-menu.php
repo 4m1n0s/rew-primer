@@ -15,9 +15,10 @@
         
         
         <?php
-        $module = Yii::$app->controller->module->id;
-        $controller = Yii::$app->controller->id;
-        $action = Yii::$app->controller->action->id;
+        echo $module = Yii::$app->controller->module->id;
+        echo $controller = Yii::$app->controller->id;
+        echo $action = Yii::$app->controller->action->id;
+//        exit();
 
             echo yii\widgets\Menu::widget([
                 'encodeLabels' => false,
@@ -76,8 +77,25 @@
                     ],
 
                     [
-                        'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span>',
-                        'url' => ['/settings/index-backend/index'],
+                        'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span></span><span class="arrow"></span>',
+                        'url' => 'javascript:;',
+                        'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
+                        'options' => [
+                            'class' => 'nav-item'
+                        ],
+                        'items' => [
+                            'options' => [
+                                'class' => 'sub-menu'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'General'),
+                                'url' => ['/settings/index-backend/index'],
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Offer Targeting'),
+                                'url' => ['/settings/index-backend/offer-targeting'],
+                            ],
+                        ]
                     ],
                 ]
             ]);

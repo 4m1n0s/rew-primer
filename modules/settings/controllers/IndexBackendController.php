@@ -3,6 +3,7 @@
 namespace app\modules\settings\controllers;
 
 use app\modules\core\components\controllers\BackController;
+use app\modules\offer\components\Offer;
 use app\modules\settings\forms\FormModel;
 use kartik\switchinput\SwitchInput;
 use \Yii;
@@ -82,13 +83,36 @@ class IndexBackendController extends BackController
             ]
         ]);
 
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Settings have been updated');
             return $this->refresh();
         }
 
         return $this->render('index', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionOfferTargeting()
+    {
+        $model = Yii::createObject([
+            'class' => FormModel::class,
+            'keys' => [
+                Offer::getStorageKeyCountry(Offer::ADWORKMEDIA) => [
+                    'label' => 'adworkmedia',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'adworkmedia'],
+//                    'rules' => [['required']]
+                ],
+            ]
+        ]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Settings have been updated');
+            return $this->refresh();
+        }
+
+        return $this->render('offer-targeting', [
             'model' => $model
         ]);
     }

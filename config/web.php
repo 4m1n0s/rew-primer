@@ -164,6 +164,9 @@ $config = [
         'globalTexts' => [
             'class' => '\app\modules\core\components\GlobalTexts'
         ],
+        'offerFactory' => [
+            'class' => '\app\modules\offer\components\OfferFactory',
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),
