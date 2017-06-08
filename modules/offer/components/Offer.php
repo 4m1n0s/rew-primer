@@ -2,6 +2,8 @@
 
 namespace app\modules\offer\components;
 
+use yii\base\InvalidConfigException;
+
 class Offer
 {
     const ADWORKMEDIA       = 10;
@@ -23,5 +25,25 @@ class Offer
     public function __construct($offerID)
     {
         $this->id = $offerID;
+    }
+
+    public static function getStorageKeyCountry($offerID)
+    {
+        if (!static::isExist($offerID)) {
+            throw new InvalidConfigException('Unexpected offer ID: ' . $offerID);
+        }
+
+        return 'offer.targeting.country.' . $offerID;
+    }
+
+    /**
+     * @param $offerID
+     * @return bool
+     */
+    public static function isExist($offerID)
+    {
+        // TODO: Not implemented;
+
+        return true;
     }
 }
