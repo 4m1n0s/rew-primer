@@ -2,7 +2,10 @@
 
 namespace app\modules\offer\components;
 
+use app\modules\core\models\GeoCountry;
 use yii\base\InvalidConfigException;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 class Offer
 {
@@ -20,6 +23,8 @@ class Offer
     const POLLFISH          = 21;
     const PAYMENTWALL       = 22;
 
+    const STORAGE_KEY_COUNTRY_PREFIX = 'offer.targeting.country.';
+
     public $id;
     
     public function __construct($offerID)
@@ -27,13 +32,44 @@ class Offer
         $this->id = $offerID;
     }
 
-    public static function getStorageKeyCountry($offerID)
+    /**
+     * @param $offerID
+     * @return string
+     * @throws InvalidConfigException
+     */
+    public static function getStorageKeyTargetingCountry($offerID)
     {
         if (!static::isExist($offerID)) {
             throw new InvalidConfigException('Unexpected offer ID: ' . $offerID);
         }
 
-        return 'offer.targeting.country.' . $offerID;
+        return static::STORAGE_KEY_COUNTRY_PREFIX . $offerID;
+    }
+
+    /**
+     * @param $offerID
+     * @return array
+     * @throws InvalidConfigException
+     */
+    public static function getSelectedTargetingCountryList($offerID)
+    {
+        if (!static::isExist($offerID)) {
+            throw new InvalidConfigException('Unexpected offer ID: ' . $offerID);
+        }
+
+        $value = \Yii::$app->keyStorage->get(static::STORAGE_KEY_COUNTRY_PREFIX . $offerID);
+
+        if (empty($value)) {
+            return [];
+        }
+
+        $formattedValue = Json::decode($value);     // TODO: Format
+
+        return $arr = ArrayHelper::map(
+            GeoCountry::find()->where(['in', 'id', $formattedValue])->asArray()->all(),
+            'id',
+            'country_name'
+        );
     }
 
     /**
