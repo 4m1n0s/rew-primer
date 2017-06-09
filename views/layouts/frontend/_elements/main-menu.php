@@ -14,7 +14,7 @@
         'items' => [
             [
                 'label' => '<i class="fa fa-home"></i>',
-                'url' => Yii::$app->user->isGuest ? ['/site/index'] : ['/profile/offer/wall']
+                'url' => Yii::$app->user->isGuest ? ['/site/index'] : ['/profile/offer/list']
             ],
             [
                 'label' => Yii::t('app', 'Sign Up'),
@@ -39,7 +39,7 @@
                     'items' => [
                         [
                             'label' => \Yii::t('app', 'Offer Walls'),
-                            'url' => ['/profile/offer/wall'],
+                            'url' => ['/profile/offer/list'],
                         ],
                         [
                             'label' => \Yii::t('app', 'Stats'),

@@ -3,8 +3,8 @@
 return [
 
     // Profile
-    '/profile/offerwall' => '/profile/offer/wall',
-    '/profile/offerwall/<action>' => '/profile/offer/<action>',
+    '/profile/offerwall/<id>' => '/profile/offer/single',
+    '/profile/offerwall' => '/profile/offer/list',
     '/profile/account/info' => '/profile/index/account',
     '/profile/account/<action>' => '/profile/index/<action>',
 
