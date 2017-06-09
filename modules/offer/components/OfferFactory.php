@@ -10,34 +10,41 @@ class OfferFactory
 {
     /**
      * @param integer $offerID
-     * @param bool $init
+     * @param bool $initTargeting
      * @return Offer
      */
-    public function create($offerID, $init = true)
+    public function create($offerID, $initTargeting = false)
     {
-        return new Offer($offerID);
+        $offer = new Offer($offerID);
+
+        if ($initTargeting) {
+            $offer->initTargeting();
+        }
+
+        return $offer;
     }
 
     /**
+     * @param bool $initTargeting
      * @return OfferCollection
      */
-    public function createAll()
+    public function createAll($initTargeting = false)
     {
         $collection = new OfferCollection();
 
-        $collection->add($this->create(Offer::ADWORKMEDIA));
-        $collection->add($this->create(Offer::KIWIWALL));
-        $collection->add($this->create(Offer::OFFERTORO));
-        $collection->add($this->create(Offer::OFFERDADDY));
-        $collection->add($this->create(Offer::CLIXWALL));
-        $collection->add($this->create(Offer::PTCWALL));
-        $collection->add($this->create(Offer::SUPERREWARDS));
-        $collection->add($this->create(Offer::MINUTESTAFF));
-        $collection->add($this->create(Offer::CPALEAD));
-        $collection->add($this->create(Offer::PERSONA));
-        $collection->add($this->create(Offer::FYBER));
-        $collection->add($this->create(Offer::POLLFISH));
-        $collection->add($this->create(Offer::PAYMENTWALL));
+        $collection->append($this->create(Offer::ADWORKMEDIA, $initTargeting));
+        $collection->append($this->create(Offer::KIWIWALL, $initTargeting));
+        $collection->append($this->create(Offer::OFFERTORO, $initTargeting));
+        $collection->append($this->create(Offer::OFFERDADDY, $initTargeting));
+        $collection->append($this->create(Offer::CLIXWALL, $initTargeting));
+        $collection->append($this->create(Offer::PTCWALL, $initTargeting));
+        $collection->append($this->create(Offer::SUPERREWARDS, $initTargeting));
+        $collection->append($this->create(Offer::MINUTESTAFF, $initTargeting));
+        $collection->append($this->create(Offer::CPALEAD, $initTargeting));
+        $collection->append($this->create(Offer::PERSONA, $initTargeting));
+        $collection->append($this->create(Offer::FYBER, $initTargeting));
+        $collection->append($this->create(Offer::POLLFISH, $initTargeting));
+        $collection->append($this->create(Offer::PAYMENTWALL, $initTargeting));
 
         return $collection;
     }

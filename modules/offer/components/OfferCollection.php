@@ -2,18 +2,10 @@
 
 namespace app\modules\offer\components;
 
-class OfferCollection
+class OfferCollection extends \ArrayIterator
 {
-    /**
-     * @var
-     */
-    protected $offers = [];
-
-    /**
-     * @param Offer $offer
-     */
-    public function add(Offer $offer)
+    public function append(Offer $value)
     {
-        array_push($this->offers, $offer);
+        parent::append($value);
     }
 }

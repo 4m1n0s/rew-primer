@@ -31,4 +31,13 @@ class GeoCountryQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    /**
+     * @param $iso
+     * @return $this
+     */
+    public function ISOa2($iso)
+    {
+        return $this->andWhere(['country_iso_code' => $iso]);
+    }
 }

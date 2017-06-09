@@ -25,11 +25,32 @@ class Offer
 
     const STORAGE_KEY_COUNTRY_PREFIX = 'offer.targeting.country.';
 
+    /**
+     * @var
+     */
     public $id;
-    
+
+    /**
+     * @var array
+     */
+    public $targetingCountryList = [];
+
+    /**
+     * Offer constructor.
+     * @param $offerID
+     */
     public function __construct($offerID)
     {
         $this->id = $offerID;
+    }
+
+    /**
+     * @throws InvalidConfigException
+     */
+    public function initTargeting()
+    {
+        $decoded = Json::decode(\Yii::$app->keyStorage->get(static::getStorageKeyTargetingCountry($this->id)));
+        $this->targetingCountryList = $decoded ? $decoded : [];
     }
 
     /**
