@@ -4,8 +4,8 @@ namespace app\modules\offer\components\criteria;
 
 use app\modules\core\components\IPNormalizer;
 use app\modules\core\models\GeoCountry;
-use app\modules\offer\components\Offer;
 use app\modules\offer\components\OfferCollection;
+use app\modules\offer\models\Offer;
 
 class CriteriaGeoLocation implements CriteriaInterface
 {

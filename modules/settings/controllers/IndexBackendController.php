@@ -4,7 +4,7 @@ namespace app\modules\settings\controllers;
 
 use app\modules\core\components\controllers\BackController;
 use app\modules\core\models\GeoCountry;
-use app\modules\offer\components\Offer;
+use app\modules\offer\models\Offer;
 use app\modules\settings\forms\FormModel;
 use kartik\switchinput\SwitchInput;
 use \Yii;
@@ -98,143 +98,24 @@ class IndexBackendController extends BackController
 
     public function actionOfferTargeting()
     {
+        $keys = [];
+        foreach (Offer::find()->all() as $offer) {
+            $keys[$offer->getStorageKeyTargetingCountry($offer->id)] = [
+                'format' => FormModel::FORMAT_JSON,
+                'label' => $offer->name,
+                'type' => FormModel::TYPE_DROPDOWN,
+                'options' => [
+                    'multiple' => 'multiple',
+                    'class' => 'offer-targeting-select',
+                ],
+                'items' => Offer::getSelectedTargetingCountryList($offer->id)
+            ];
+        }
+
         $model = Yii::createObject([
             'class' => FormModel::class,
-            'keys' => [
-                Offer::getStorageKeyTargetingCountry(Offer::ADWORKMEDIA) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'Adworkmedia',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::ADWORKMEDIA)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::KIWIWALL) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'KiwiWall',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::KIWIWALL)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::OFFERTORO) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'OfferToro',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::OFFERTORO)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::OFFERDADDY) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'OfferDaddy',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::OFFERDADDY)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::CLIXWALL) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'ClixWall',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::CLIXWALL)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::PTCWALL) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'PtcWall',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::PTCWALL)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::SUPERREWARDS) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'SuperRewards',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::SUPERREWARDS)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::MINUTESTAFF) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'MinuteStaff',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::MINUTESTAFF)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::CPALEAD) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'CpaLead',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::CPALEAD)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::PERSONA) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'Persona',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::PERSONA)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::FYBER) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'Fyber',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::FYBER)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::POLLFISH) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'PollFish',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::POLLFISH)
-                ],
-                Offer::getStorageKeyTargetingCountry(Offer::PAYMENTWALL) => [
-                    'format' => FormModel::FORMAT_JSON,
-                    'label' => 'PaymentWall',
-                    'type' => FormModel::TYPE_DROPDOWN,
-                    'options' => [
-                        'multiple' => 'multiple',
-                        'class' => 'offer-targeting-select',
-                    ],
-                    'items' => Offer::getSelectedTargetingCountryList(Offer::PAYMENTWALL)
-                ],
-            ]
+            'keys' => $keys
         ]);
-
-        ;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Yii::$app->session->setFlash('success', 'Settings have been updated');

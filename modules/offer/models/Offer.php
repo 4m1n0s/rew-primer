@@ -6,6 +6,7 @@ use app\modules\core\models\GeoCountry;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Inflector;
 use yii\helpers\Json;
 
 /**
@@ -121,5 +122,26 @@ class Offer extends \yii\db\ActiveRecord
             'id',
             'country_name'
         );
+    }
+
+    public function getCategories()
+    {
+        return $this->hasMany(Category::class, ['id' => 'category_id'])
+            ->via('categoryOffers');
+    }
+
+    public function getCategoryOffers()
+    {
+        return $this->hasMany(CategoryOffer::class, ['offer_id' => 'id']);
+    }
+
+    public function getCategoriesViewList()
+    {
+        $list = [];
+        foreach ($this->categories as $category) {
+            $list[] = Inflector::variablize($category->name);
+        }
+
+        return join(' ', $list);
     }
 }
