@@ -7,7 +7,7 @@
 /nbproject/private/
 /.idea
 /web/uploads/
-/modules/core/components/geolocation/source-maxmind/
+/config/source-maxmind/
 /logs/
 /nbproject/
 /commands/CommonController.php
