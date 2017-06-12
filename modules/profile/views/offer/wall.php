@@ -20,7 +20,7 @@ $this->title = 'Offer Walls';
     </ul>
     <!-- END: Offer Filter -->
 
-    <?php if ($offers): ?>
+    <?php if ($offers->count()): ?>
         <div id="isotope" class="isotope"
              data-isotope-item-space="3"
              data-isotope-mode="fitRows"

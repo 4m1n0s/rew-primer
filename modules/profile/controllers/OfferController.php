@@ -6,7 +6,6 @@ use app\modules\offer\components\criteria\CriteriaGeoLocation;
 use app\modules\offer\models\Category;
 use app\modules\offer\models\Offer;
 use \Yii;
-use yii\helpers\VarDumper;
 use yii\web\NotFoundHttpException;
 use app\modules\offer\controllers\offerwalls\AdWorkMedia;
 use app\modules\offer\controllers\offerwalls\Clixwall;
@@ -108,7 +107,6 @@ class OfferController extends ProfileController
         $offerCollection = \Yii::$app->offerFactory->createAll(true);
         $geoLocationCriteria = new CriteriaGeoLocation();
         $filteredCollection = $geoLocationCriteria->match($offerCollection);
-
         $categories = Category::find()->select(['name'])->active()->asArray()->all();
 
         return $this->render('wall', [

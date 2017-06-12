@@ -5,7 +5,6 @@ namespace app\modules\offer\components\criteria;
 use app\modules\core\components\IPNormalizer;
 use app\modules\core\models\GeoCountry;
 use app\modules\offer\components\OfferCollection;
-use app\modules\offer\models\Offer;
 
 class CriteriaGeoLocation implements CriteriaInterface
 {
@@ -19,14 +18,14 @@ class CriteriaGeoLocation implements CriteriaInterface
         $client = \Yii::$app->geoLocation->process($ip);
         $ISOa2 = $client->getCountryISO();
         $country = GeoCountry::find()->select(['id'])->ISOa2($ISOa2)->asArray()->one();
+        $filteredCollection = new OfferCollection();
 
         foreach ($offers as $idx => $offer) {
-            /* @var Offer $offer */
-            if (!in_array($country['id'], $offer->targetingCountryList)) {
-                unset($offers[$idx]);
+            if (in_array($country['id'], $offer->targetingCountryList)) {
+                $filteredCollection->append($offer);
             }
         }
 
-        return $offers;
+        return $filteredCollection;
     }
 }
