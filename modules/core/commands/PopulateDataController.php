@@ -19,7 +19,7 @@ class PopulateDataController extends Controller
      */
     public function actionGeoCities()
     {
-        $csv = \Yii::getAlias('@app') . '/modules/core/components/geolocation/source-maxmind/GeoLite2-Country-Locations-en.csv';
+        $csv = \Yii::getAlias('@app') . '/config/source-maxmind/GeoLite2-Country-Locations-en.csv';
 
         if (($handle = fopen($csv, "r")) !== FALSE) {
             $signature = fgetcsv($handle, null, ",");

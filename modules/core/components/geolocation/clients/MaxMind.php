@@ -23,7 +23,7 @@ class MaxMind implements LocationClientInterface
      */
     public function getResult($ip)
     {
-        $databaseFile = \Yii::getAlias('@app') . '/modules/core/components/geolocation/source-maxmind/GeoLite2-City.mmdb';
+        $databaseFile = \Yii::getAlias('@app') . '/config/source-maxmind/GeoLite2-City.mmdb';
         $reader = new Reader($databaseFile);
         $this->data = $reader->get($ip);
     }
