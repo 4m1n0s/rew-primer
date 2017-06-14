@@ -54,10 +54,10 @@ class CriteriaDevice implements CriteriaInterface
     {
         $detect = $this->detect;
         
-        if ($detect->isMobile()) {
-            return Offer::DEVICE_TYPE_MOBILE;
-        } elseif ($detect->isTablet()) {
+        if ($detect->isTablet()) {
             return Offer::DEVICE_TYPE_TABLET;
+        } elseif ($detect->isMobile()) {
+            return Offer::DEVICE_TYPE_MOBILE;
         } else {
             return Offer::DEVICE_TYPE_DESKTOP;
         }
@@ -73,7 +73,7 @@ class CriteriaDevice implements CriteriaInterface
             return Offer::OS_ANDROID;
         } elseif ($detect->isWindowsPhoneOS()) {
             return Offer::OS_WINDOWS;
-        } elseif ($detect->BlackBerryOS()) {
+        } elseif ($detect->isBlackBerryOS()) {
             return Offer::OS_BLACKBERRY;
         } else {
             return Offer::OS_OTHER;
