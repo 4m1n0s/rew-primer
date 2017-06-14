@@ -53,12 +53,15 @@ class FormRender extends Widget
         echo Html::beginTag('div', $this->formBodyWrapOptions);
         /* @var ActiveForm $form */
         foreach ($model->keys as $key => $config) {
-            $label = ArrayHelper::getValue($config, 'label', null);
-            $labelOptions = ArrayHelper::getValue($config, 'labelOptions', []);
-            $type = ArrayHelper::getValue($config, 'type', FormModel::TYPE_TEXTINPUT);
-            $options = ArrayHelper::getValue($config, 'options', []);
-            $field = $form->field($model, $key);
-            $items = ArrayHelper::getValue($config, 'items', []);
+            $label          = ArrayHelper::getValue($config, 'label', null);
+            $labelOptions   = ArrayHelper::getValue($config, 'labelOptions', []);
+            $type           = ArrayHelper::getValue($config, 'type', FormModel::TYPE_TEXTINPUT);
+            $options        = ArrayHelper::getValue($config, 'options', []);
+            $fieldOptions   = ArrayHelper::getValue($config, 'fieldOptions', []);
+            $items          = ArrayHelper::getValue($config, 'items', []);
+
+            $field = $form->field($model, $key, $fieldOptions);
+
             switch ($type) {
                 case FormModel::TYPE_TEXTINPUT:
                     $input = $field->textInput($options);

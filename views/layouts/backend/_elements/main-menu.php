@@ -15,10 +15,9 @@
         
         
         <?php
-        echo $module = Yii::$app->controller->module->id;
-        echo $controller = Yii::$app->controller->id;
-        echo $action = Yii::$app->controller->action->id;
-//        exit();
+        $module = Yii::$app->controller->module->id;
+        $controller = Yii::$app->controller->id;
+        $action = Yii::$app->controller->action->id;
 
             echo yii\widgets\Menu::widget([
                 'encodeLabels' => false,
@@ -93,7 +92,9 @@
                             ],
                             [
                                 'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Offer Targeting'),
-                                'url' => ['/settings/index-backend/offer-targeting'],
+                                'url' => ['/settings/index-backend/offer-targeting-countries'],
+                                'active' => $module == 'settings' && $controller == 'index-backend' &&
+                                    ($action == 'offer-targeting-countries' || $action == 'offer-targeting-devices'),
                             ],
                         ]
                     ],

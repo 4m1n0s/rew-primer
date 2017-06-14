@@ -3,7 +3,12 @@ var offer_targeting_module = function ($) {
     var initHandlers = function () {
         var url = $('#country-link').data('link');
 
-        $('.offer-targeting-select').select2({
+        $('.offer-targeting-device-select, .offer-targeting-mobile-select, .offer-targeting-tablet-select').select2({
+            width: '100%',
+            allowClear: true
+        });
+
+        $('.offer-targeting-country-select').select2({
             width: '100%',
             allowClear: true,
             triggerChange: true,

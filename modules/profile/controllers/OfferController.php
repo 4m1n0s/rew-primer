@@ -2,6 +2,7 @@
 
 namespace app\modules\profile\controllers;
 
+use app\modules\offer\components\criteria\CriteriaDevice;
 use app\modules\offer\components\criteria\CriteriaGeoLocation;
 use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Category;
@@ -109,11 +110,17 @@ class OfferController extends ProfileController
         $categories = Category::find()->select(['name'])->active()->asArray()->all();
         $offerCollection = \Yii::$app->offerFactory->createAll(true);
 
-        $geoLocationCriteria = new CriteriaGeoLocation();
-        $filteredCollection = $geoLocationCriteria->match($offerCollection);
+        $criteria = [
+            $geoLocationCriteria = new CriteriaGeoLocation(),
+            $deviceCriteria = new CriteriaDevice()
+        ];
+
+        foreach ($criteria as $criterion) {
+            $offerCollection = $criterion->match($offerCollection);
+        }
 
         return $this->render('wall', [
-            'offers' => $filteredCollection,
+            'offers' => $offerCollection,
             'categories' => $categories
         ]);
     }
@@ -130,10 +137,16 @@ class OfferController extends ProfileController
         $offerCollection = new OfferCollection();
         $offerCollection->append($offer);
 
-        $geoLocationCriteria = new CriteriaGeoLocation();
-        $filteredCollection = $geoLocationCriteria->match($offerCollection);
+        $criteria = [
+            $geoLocationCriteria = new CriteriaGeoLocation(),
+            $deviceCriteria = new CriteriaDevice()
+        ];
 
-        if ($filteredCollection->count() === 0) {
+        foreach ($criteria as $criterion) {
+            $offerCollection = $criterion->match($offerCollection);
+        }
+
+        if ($offerCollection->count() === 0) {
             throw new NotAcceptableHttpException;
         }
 

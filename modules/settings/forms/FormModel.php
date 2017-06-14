@@ -22,6 +22,7 @@ use yii\helpers\Json;
  *           'rules' => [ [... validation rules ...], [ ... ] ]
  *           // 'items' => ['a' => 'b']  - For lists like TYPE_DROPBOX,
  *           // 'options' => [ ... ... ] - Options that will be passed to ActiveInput or widget
+ *           // 'fieldOptions' => [ ... ... ] - Field Options that will be passed to ActiveInput or widget
  *           // 'labelOptions' => [ ... ... ] - Options that will be passed to label
  *           // 'widget' => 'yii\jui\Datepicker' - Widget class name if TYPE_WIDGET
  *       ]
