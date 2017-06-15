@@ -66,28 +66,24 @@ $this->params['breadcrumbs'] = [
                                 'header' => 'Actions',
                                 'headerOptions' => ['style' => 'min-width:170px;width:170px'],
                                 'buttons' => [
-                                    'edit' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['offer/backend-category/update', 'id' => $model->id]);
-
+                                    'update' => function($url, $model) {
                                         return Html::a('<i class="fa fa-edit"></i> ' . 'Edit', $url, [
                                             'class' => 'btn default btn-xs green',
                                             'title' => 'Edit',
                                             'data-pjax' => 0
                                         ]);
                                     },
-                                    'remove' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['offer/backend-category/delete', 'id' => $model->id]);
-
+                                    'delete' => function ($url, $model, $key) {
                                         return Html::a('<i class="fa fa-trash"></i> ' . 'Remove', $url, [
                                             'class' => 'btn default btn-xs red',
                                             'title' => 'Remove',
-                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                             'data-method' => 'post',
+                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                         ]);
                                     },
                                 ],
 
-                                'template' => '{edit} {remove}'
+                                'template' => '{update} {delete}'
                             ],
                         ],
                     ]); ?>
