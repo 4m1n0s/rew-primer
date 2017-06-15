@@ -50,7 +50,31 @@
                         'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
                         'url' => ['/invitation/index-backend/index'],
                     ],
-                    
+
+                    [
+                        'label' => '<i class="fa fa-cubes"></i> <span class="title"> ' . Yii::t('app', 'Offers') . '</span></span><span class="arrow"></span>',
+                        'url' => 'javascript:;',
+                        'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
+                        'options' => [
+                            'class' => 'nav-item'
+                        ],
+                        'items' => [
+                            'options' => [
+                                'class' => 'sub-menu'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'OfferWalls'),
+                                'url' => ['/offer/backend-offer/index'],
+                                'active' => $module == 'offer' && $controller == 'backend-offer'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Categories'),
+                                'url' => ['/offer/backend-category/index'],
+                                'active' => $module == 'offer' && $controller == 'backend-category',
+                            ],
+                        ]
+                    ],
+
                     [
                         'label' => '<i class="fa fa-users"></i> <span class="title"> ' . Yii::t('app', 'Users') . '</span></span><span class="arrow"></span>',
                         'url' => 'javascript:;',

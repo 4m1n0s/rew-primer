@@ -3,6 +3,7 @@
 namespace app\modules\offer\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%category}}".
@@ -62,5 +63,10 @@ class Category extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\modules\offer\models\queries\CategoryQuery(get_called_class());
+    }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(static::find()->all(), 'id', 'name');
     }
 }

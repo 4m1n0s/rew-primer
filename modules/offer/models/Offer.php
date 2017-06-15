@@ -8,6 +8,7 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Inflector;
 use yii\helpers\Json;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "{{%offer}}".
@@ -64,6 +65,14 @@ class Offer extends \yii\db\ActiveRecord
      * @var array
      */
     public $targetingDeviceTabletOSList = [];
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+    /**
+     * @var array
+     */
+    public $categoriesBuff;
 
     /**
      * @inheritdoc
@@ -79,10 +88,11 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'img'], 'required'],
+            [['id', 'name', 'img', 'label'], 'required'],
             [['id', 'active'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['img'], 'string', 'max' => 255],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -106,6 +116,23 @@ class Offer extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\modules\offer\models\queries\OfferQuery(get_called_class());
+    }
+
+    public function uploadImage()
+    {
+        $dir = Yii::getAlias('@app/web/uploads/offers');
+        $web = Yii::getAlias('@web/uploads/offers');
+        if (!is_dir($dir)) {
+            $oldmask = umask(0);
+            mkdir($dir, 0777, true);
+            umask($oldmask);
+        }
+        $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+        if ($this->imageFile) {
+            $imgName = $this->imageFile->baseName . '_' . time() . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs($dir . '/' . $imgName);
+            $this->img = $web . '/' . $imgName;
+        }
     }
 
     /**

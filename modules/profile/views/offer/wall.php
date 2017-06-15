@@ -32,7 +32,7 @@ $this->title = 'Offer Walls';
                 <div class="offer-item <?= $offer->getCategoriesViewList() ?>">
                     <div class="timeline-img">
                         <?= Html::a(
-                            Html::img($offer->img, ['alt' => strtolower($offer->name), 'class' => 'timeline-badge-userpic']),
+                            Html::img($offer->img, ['alt' => strtolower($offer->label), 'class' => 'timeline-badge-userpic']),
                             ['/profile/offer/single', 'id' => $offer->id]
                         ); ?>
                     </div>

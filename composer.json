@@ -25,7 +25,8 @@
         "2amigos/yii2-ckeditor-widget": "^2.0",
         "yiisoft/yii2-authclient": "*",
         "maxmind-db/reader": "~1.0",
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "2amigos/yii2-file-upload-widget": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

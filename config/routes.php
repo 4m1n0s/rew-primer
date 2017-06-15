@@ -27,6 +27,8 @@ return [
 
     // Backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
+    'dashboard/offer/<_a>' => 'offer/backend-offer/<_a>',
+    'dashboard/category/<_a>' => 'offer/backend-category/<_a>',
     'dashboard/settings/<_a>' => 'settings/index-backend/<_a>',
     'dashboard/user-group/<action>' => 'user/user-group-backend/<action>',
     'dashboard/contact/<action>' => 'contact/index-backend/<action>',

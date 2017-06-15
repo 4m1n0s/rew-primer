@@ -75,20 +75,21 @@ class PopulateDataController extends Controller
      */
     public function actionOffers()
     {
-        \Yii::$app->db->createCommand()->batchInsert(Offer::tableName(), ['id', 'active', 'name', 'img'], [
-            [10, 1, 'Adworkmedia', '/images/offer-providers/adwork-media.png'],
-            [11, 1, 'KiwiWall', '/images/offer-providers/kiwiwall.png'],
-            [12, 1, 'OfferToro', '/images/offer-providers/offertoro.png'],
-            [13, 1, 'OfferDaddy', '/images/offer-providers/offerdaddy.png'],
-            [14, 1, 'ClixWall', '/images/offer-providers/clixwall.png'],
-            [15, 1, 'PtcWall', '/images/offer-providers/ptcwall.jpg'],
-            [16, 1, 'SuperRewards', '/images/offer-providers/superrewards.png'],
-            [17, 1, 'MinuteStaff', '/images/offer-providers/minutestaff.png'],
-            [18, 1, 'CpaLead', '/images/offer-providers/cpalead.png'],
-            [19, 1, 'Persona', '/images/offer-providers/persona.jpg'],
-            [20, 1, 'Fyber', '/images/offer-providers/fyber_logo.png'],
-            [21, 1, 'PollFish', '/images/offer-providers/pollfish.png'],
-            [22, 1, 'PaymentWall', '/images/offer-providers/paymentwall-logo.jpg'],
+        Offer::deleteAll();
+        \Yii::$app->db->createCommand()->batchInsert(Offer::tableName(), ['id', 'active', 'name', 'label', 'img'], [
+            [10, 1, 'Adworkmedia', 'Adworkmedia', '/images/offer-providers/adwork-media.png'],
+            [11, 1, 'KiwiWall', 'KiwiWall', '/images/offer-providers/kiwiwall.png'],
+            [12, 1, 'OfferToro', 'OfferToro', '/images/offer-providers/offertoro.png'],
+            [13, 1, 'OfferDaddy', 'OfferDaddy', '/images/offer-providers/offerdaddy.png'],
+            [14, 1, 'ClixWall', 'ClixWall', '/images/offer-providers/clixwall.png'],
+            [15, 1, 'PtcWall', 'PtcWall', '/images/offer-providers/ptcwall.jpg'],
+            [16, 1, 'SuperRewards', 'SuperRewards', '/images/offer-providers/superrewards.png'],
+            [17, 1, 'MinuteStaff', 'MinuteStaff', '/images/offer-providers/minutestaff.png'],
+            [18, 1, 'CpaLead', 'CpaLead', '/images/offer-providers/cpalead.png'],
+            [19, 1, 'Persona', 'Persona', '/images/offer-providers/persona.jpg'],
+            [20, 1, 'Fyber', 'Fyber', '/images/offer-providers/fyber_logo.png'],
+            [21, 1, 'PollFish', 'PollFish', '/images/offer-providers/pollfish.png'],
+            [22, 1, 'PaymentWall', 'PaymentWall', '/images/offer-providers/paymentwall-logo.jpg'],
         ])->execute();
     }
 
