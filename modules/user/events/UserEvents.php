@@ -7,8 +7,8 @@ namespace app\modules\user\events;
  *
  * @author Stableflow
  */
-class UserEvents {
-
+class UserEvents
+{
     const SUCCESS_ACTIVATE_ACCOUNT  = 'user.success.activate';
     const FAILURE_ACTIVATE_ACCOUNT  = 'user.failure.activate';
     const SUCCESS_EMAIL_CONFIRM     = 'user.success.email.confirm';
