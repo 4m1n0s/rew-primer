@@ -120,13 +120,16 @@
                                 'active' => $module == 'settings' && $controller == 'index-backend' &&
                                     ($action == 'offer-targeting-countries' || $action == 'offer-targeting-devices'),
                             ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Security'),
+                                'url' => ['/settings/index-backend/security'],
+                                'active' => $module == 'settings' && $controller == 'index-backend' && $action == 'security',
+                            ],
                         ]
                     ],
                 ]
             ]);
         ?>
-        
-        <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
     </div>
     <!-- END SIDEBAR -->

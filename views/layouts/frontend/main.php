@@ -4,11 +4,8 @@
 
 use yii\helpers\Html;
 use app\assets\FrontAsset;
-use app\assets\AdsAsset;
 
 FrontAsset::register($this);
-AdsAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

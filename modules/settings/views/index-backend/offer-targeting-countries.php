@@ -7,10 +7,9 @@ use app\modules\settings\widgets\FormRender;
 /* @var $model app\modules\settings\models\Settings */
 
 $this->title = Yii::t('app', 'Edit {modelClass}', [
-    'modelClass' => 'Settings',
+    'modelClass' => 'Offer Targeting Settings',
 ]);
 
-$this->title = Yii::t('app', 'Offer Targeting');
 $this->params['pageTitle'] = Yii::t('app', 'Offer Targeting');
 $this->params['pageSmallTitle'] = Yii::t('app', 'edit');
 $this->params['breadcrumbs'][] = $this->title;
@@ -19,11 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <span id="country-link" data-link="<?php echo \yii\helpers\Url::toRoute(['/settings/index-backend/get-country']) ?>"></span>
 
 <div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-reorder"></i>Targeting
-        </div>
-    </div>
+    <div class="portlet-title"></div>
     <div class="portlet-body" style="display: block;">
         <?= $this->render('_offer-targeting-nav'); ?>
         <div class="tabbable-custom">

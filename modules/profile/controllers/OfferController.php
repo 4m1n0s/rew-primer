@@ -32,12 +32,6 @@ class OfferController extends ProfileController
 {
     public $layout = '//frontend/main';
 
-    public function beforeAction($action)
-    {
-        $this->view->registerJs('commercial_block_checker_module.init()');
-        return parent::beforeAction($action);
-    }
-
     public function actions()
     {
         return [

@@ -78,7 +78,7 @@ class IndexBackendController extends BackController
                         'name' => 'inv_only_signup',
                         'inlineLabel' => false,
                         'pluginOptions' => [
-                            'handleWidth'=>30,
+                            'handleWidth' => 30,
                         ],
                         'class' => 'self-class'
                     ],
@@ -91,7 +91,8 @@ class IndexBackendController extends BackController
             return $this->refresh();
         }
 
-        return $this->render('index', [
+        return $this->render('default', [
+            'pageTitle' => 'General Settings',
             'model' => $model
         ]);
     }
@@ -195,5 +196,36 @@ class IndexBackendController extends BackController
             ->all();
 
         return Json::encode($collection);
+    }
+
+    public function actionSecurity()
+    {
+        $model = Yii::createObject([
+            'class' => FormModel::class,
+            'keys' => [
+                'security.ads' => [
+                    'label' => 'AdsBlock Checker',
+                    'type' => FormModel::TYPE_WIDGET,
+                    'widget' => SwitchInput::class,
+                    'options' => [
+                        'inlineLabel' => false,
+                        'pluginOptions' => [
+                            'handleWidth' => 30,
+                        ],
+                        'class' => 'self-class'
+                    ],
+                ],
+            ]
+        ]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Settings have been updated');
+            return $this->refresh();
+        }
+
+        return $this->render('default', [
+            'pageTitle' => 'Security Settings',
+            'model' => $model
+        ]);
     }
 }
