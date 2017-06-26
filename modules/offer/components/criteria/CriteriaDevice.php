@@ -4,7 +4,6 @@ namespace app\modules\offer\components\criteria;
 
 use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Offer;
-use Detection\MobileDetect;
 
 class CriteriaDevice implements CriteriaInterface
 {
@@ -14,19 +13,20 @@ class CriteriaDevice implements CriteriaInterface
     protected $detect;
 
     /**
-     * @param OfferCollection $offers
+     * @param OfferCollection $collection
      * @return OfferCollection
      */
-    public function match(OfferCollection $offers)
+    public function match(OfferCollection $collection)
     {
         $this->detect = new \Mobile_Detect();
+        $iter = $collection->getIterator();
         $filteredCollection = new OfferCollection();
 
-        /** @var Offer $offer */
-        foreach ($offers as $idx => $offer) {
+        /* @var Offer $offer */
+        foreach ($iter as $offer) {
             if (in_array(Offer::DEVICE_TYPE_DESKTOP, $offer->targetingDeviceTypeList) &&
                 $this->getCurrentDeviceType() == Offer::DEVICE_TYPE_DESKTOP) {
-                $filteredCollection->append($offer);
+                $filteredCollection[] = $offer;
                 continue;
             }
 
@@ -34,7 +34,7 @@ class CriteriaDevice implements CriteriaInterface
                     $this->getCurrentDeviceType() == Offer::DEVICE_TYPE_MOBILE) &&
                 (in_array($this->getCurrentOS(), $offer->targetingDeviceMobileOSList))
             ) {
-                $filteredCollection->append($offer);
+                $filteredCollection[] = $offer;
                 continue;
             }
 
@@ -42,7 +42,7 @@ class CriteriaDevice implements CriteriaInterface
                     $this->getCurrentDeviceType() == Offer::DEVICE_TYPE_TABLET) &&
                 (in_array($this->getCurrentOS(), $offer->targetingDeviceTabletOSList))
             ) {
-                $filteredCollection->append($offer);
+                $filteredCollection[] = $offer;
                 continue;
             }
         }

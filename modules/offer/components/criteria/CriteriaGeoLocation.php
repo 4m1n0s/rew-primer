@@ -5,27 +5,29 @@ namespace app\modules\offer\components\criteria;
 use app\modules\core\components\IPNormalizer;
 use app\modules\core\models\GeoCountry;
 use app\modules\offer\components\OfferCollection;
+use app\modules\offer\models\Offer;
 
 class CriteriaGeoLocation implements CriteriaInterface
 {
     /**
-     * @param OfferCollection $offers
+     * @param OfferCollection $collection
      * @return OfferCollection
      */
-    public function match(OfferCollection $offers)
+    public function match(OfferCollection $collection)
     {
         $ip = YII_DEBUG ? '45.78.27.15' : (new IPNormalizer())->getIP();
         $client = \Yii::$app->geoLocation->process($ip);
         $ISOa2 = $client->getCountryISO();
         $country = GeoCountry::find()->select(['id'])->ISOa2($ISOa2)->asArray()->one();
-        $filteredCollection = new OfferCollection();
+        $iter = $collection->getIterator();
 
-        foreach ($offers as $idx => $offer) {
-            if (in_array($country['id'], $offer->targetingCountryList)) {
-                $filteredCollection->append($offer);
+        /* @var Offer $offer */
+        foreach ($iter as $offer) {
+            if (!in_array($country['id'], $offer->targetingCountryList)) {
+                $collection->offsetUnset($iter->key());
             }
         }
 
-        return $filteredCollection;
+        return $collection;
     }
 }

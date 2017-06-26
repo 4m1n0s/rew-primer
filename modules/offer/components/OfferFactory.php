@@ -35,11 +35,11 @@ class OfferFactory
         $collection = new OfferCollection();
         $offerModels = OfferModel::find()->active()->all();
 
-        foreach ($offerModels as $offerModel) {
+        foreach ($offerModels as $idx => $offerModel) {
             if ($initTargeting) {
                 $offerModel->initTargeting();
             }
-            $collection->append($offerModel);
+            $collection[] = $offerModel;
         }
 
         return $collection;

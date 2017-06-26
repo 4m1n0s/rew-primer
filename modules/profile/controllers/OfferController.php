@@ -63,7 +63,7 @@ class OfferController extends ProfileController
 
         $offer->initTargeting();
         $offerCollection = new OfferCollection();
-        $offerCollection->append($offer);
+        $offerCollection[] = $offer;
 
         $criteria = [
             $geoLocationCriteria = new CriteriaGeoLocation(),
