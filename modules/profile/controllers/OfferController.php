@@ -124,7 +124,7 @@ class OfferController extends ProfileController
             }
         }
 
-        return false;
+        return true;
     }
 
     public function adworkmedia()
