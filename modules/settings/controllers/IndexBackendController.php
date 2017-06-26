@@ -215,6 +215,18 @@ class IndexBackendController extends BackController
                         'class' => 'self-class'
                     ],
                 ],
+                'security.crawler' => [
+                    'label' => 'Bots/Crawlers/Spiders Detect',
+                    'type' => FormModel::TYPE_WIDGET,
+                    'widget' => SwitchInput::class,
+                    'options' => [
+                        'inlineLabel' => false,
+                        'pluginOptions' => [
+                            'handleWidth' => 30,
+                        ],
+                        'class' => 'self-class'
+                    ],
+                ],
             ]
         ]);
 

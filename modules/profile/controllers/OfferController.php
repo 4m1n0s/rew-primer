@@ -7,23 +7,10 @@ use app\modules\offer\components\criteria\CriteriaGeoLocation;
 use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Category;
 use app\modules\offer\models\Offer;
+use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use \Yii;
 use yii\web\NotAcceptableHttpException;
 use yii\web\NotFoundHttpException;
-use app\modules\offer\controllers\offerwalls\AdWorkMedia;
-use app\modules\offer\controllers\offerwalls\Clixwall;
-use app\modules\offer\controllers\offerwalls\CpaLead;
-use app\modules\offer\controllers\offerwalls\Dailymotion;
-use app\modules\offer\controllers\offerwalls\Fyber;
-use app\modules\offer\controllers\offerwalls\Kiwiwall;
-use app\modules\offer\controllers\offerwalls\MinuteStaff;
-use app\modules\offer\controllers\offerwalls\OfferDaddy;
-use app\modules\offer\controllers\offerwalls\OfferToro;
-use app\modules\offer\controllers\offerwalls\PaymentWall;
-use app\modules\offer\controllers\offerwalls\Persona;
-use app\modules\offer\controllers\offerwalls\Pollfish;
-use app\modules\offer\controllers\offerwalls\Ptcwall;
-use app\modules\offer\controllers\offerwalls\SuperRewards;
 
 /**
  * Class IndexController
@@ -32,74 +19,16 @@ class OfferController extends ProfileController
 {
     public $layout = '//frontend/main';
 
-    public function actions()
-    {
-        return [
-            'adworkmedia' => [
-                'class' => AdWorkMedia::class,
-                'view' => 'ad-work-media'
-            ],
-            'offertoro' => [
-                'class' => OfferToro::class,
-                'view' => 'offer-toro'
-            ],
-            'offerdaddy' => [
-                'class' => OfferDaddy::class,
-                'view' => 'offer-daddy'
-            ],
-            'clixwall' => [
-                'class' => Clixwall::class,
-                'view' => 'clixwall'
-            ],
-            'ptcwall' => [
-                'class' => Ptcwall::class,
-                'view' => 'ptcwall'
-            ],
-            'kiwiwall' => [
-                'class' => Kiwiwall::class,
-                'view' => 'kiwiwall'
-            ],
-            'superrewards' => [
-                'class' => SuperRewards::class,
-                'view' => 'super-rewards'
-            ],
-            'minutestaff' => [
-                'class' => MinuteStaff::class,
-                'view' => 'minute-staff'
-            ],
-            'cpalead' => [
-                'class' => CpaLead::class,
-                'view' => 'cpa-lead'
-            ],
-            'persona' => [
-                'class' => Persona::class,
-                'view' => 'persona'
-            ],
-            'fyber' => [
-                'class' => Fyber::class,
-                'view' => 'fyber'
-            ],
-            'pollfish' => [
-                'class' => Pollfish::class,
-                'view' => 'pollfish'
-            ],
-            'paymentwall' => [
-                'class' => PaymentWall::class,
-                'view' => 'payment-wall'
-            ],
-            'dailymotion' => [
-                'class' => Dailymotion::class,
-                'view' => 'dailymotion'
-            ],
-        ];
-    }
-
     /**
      * OfferWalls page
      */
     public function actionList()
     {
         $this->layout = '//frontend/profile';
+
+        if (!$this->isPermitted()) {
+            return $this->render('deny');
+        }
 
         $categories = Category::find()->select(['name'])->active()->asArray()->all();
         $offerCollection = \Yii::$app->offerFactory->createAll(true);
@@ -125,6 +54,11 @@ class OfferController extends ProfileController
 
         if (!$offer) {
             throw new NotFoundHttpException;
+        }
+
+        if (!$this->isPermitted()) {
+            $this->layout = '//frontend/profile';
+            return $this->render('deny');
         }
 
         $offer->initTargeting();
@@ -172,6 +106,25 @@ class OfferController extends ProfileController
             case Offer::PAYMENTWALL:
                 return $this->paymentwall();
         }
+    }
+
+    /**
+     * Checks if the user passed security
+     *
+     * @return bool
+     */
+    protected function isPermitted()
+    {
+        $keyStorage = Yii::$app->keyStorage;
+
+        if ($keyStorage->get('security.crawler')) {
+            $crawlerDetect = new CrawlerDetect();
+            if ($crawlerDetect->isCrawler()) {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     public function adworkmedia()
