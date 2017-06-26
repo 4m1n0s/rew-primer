@@ -3,6 +3,8 @@
 namespace app\modules\core\commands;
 
 use app\modules\core\models\GeoCountry;
+use app\modules\offer\models\Category;
+use app\modules\offer\models\CategoryOffer;
 use app\modules\offer\models\Offer;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
@@ -95,7 +97,10 @@ class PopulateDataController extends Controller
 
     public function actionMockCategories()
     {
-        \Yii::$app->db->createCommand()->batchInsert('{{%category}}', ['id', 'active', 'name'], [
+        Category::deleteAll();
+        CategoryOffer::deleteAll();
+
+        \Yii::$app->db->createCommand()->batchInsert(Category::tableName(), ['id', 'active', 'name'], [
             [1, 1, 'Category 1'],
             [2, 1, 'Category 2'],
             [3, 1, 'Category 3'],
@@ -103,7 +108,7 @@ class PopulateDataController extends Controller
             [5, 1, 'Category 5'],
         ])->execute();
 
-        \Yii::$app->db->createCommand()->batchInsert('{{%category_offer}}', ['category_id', 'offer_id'], [
+        \Yii::$app->db->createCommand()->batchInsert(CategoryOffer::tableName(), ['category_id', 'offer_id'], [
             [1, 10],
             [3, 10],
             [4, 10],
