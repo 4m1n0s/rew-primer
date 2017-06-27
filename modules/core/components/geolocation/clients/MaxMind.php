@@ -59,4 +59,12 @@ class MaxMind implements LocationClientInterface
     {
         return ArrayHelper::getValue($this->data, 'country.iso_code');
     }
+
+    /**
+     * @return string
+     */
+    public function getTimezone()
+    {
+        return ArrayHelper::getValue($this->data, 'location.time_zone');
+    }
 }

@@ -35,4 +35,9 @@ interface LocationClientInterface
      * @return string
      */
     public function getCountryISO();
+
+    /**
+     * @return string
+     */
+    public function getTimezone();
 }

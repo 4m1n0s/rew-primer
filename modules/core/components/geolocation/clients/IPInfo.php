@@ -85,4 +85,12 @@ class IPInfo implements LocationClientInterface
     {
         return ArrayHelper::getValue($this->data, 'country');
     }
+
+    /**
+     * @return string
+     */
+    public function getTimezone()
+    {
+        // TODO: Implement getTimezone() method.
+    }
 }
