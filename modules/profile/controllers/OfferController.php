@@ -2,6 +2,7 @@
 
 namespace app\modules\profile\controllers;
 
+use app\modules\core\components\IPNormalizer;
 use app\modules\offer\components\criteria\CriteriaDevice;
 use app\modules\offer\components\criteria\CriteriaGeoLocation;
 use app\modules\offer\components\OfferCollection;
@@ -9,6 +10,7 @@ use app\modules\offer\models\Category;
 use app\modules\offer\models\Offer;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use \Yii;
+use yii\helpers\ArrayHelper;
 use yii\web\NotAcceptableHttpException;
 use yii\web\NotFoundHttpException;
 
@@ -120,6 +122,25 @@ class OfferController extends ProfileController
         if ($keyStorage->get('security.crawler')) {
             $crawlerDetect = new CrawlerDetect();
             if ($crawlerDetect->isCrawler()) {
+                return false;
+            }
+        }
+
+        if ($keyStorage->get('security.timezone')) {
+            $ip = (new IPNormalizer())->getIP();
+            $client = \Yii::$app->geoLocation->process($ip);
+            $ipTimezone = $client->getTimezone();
+            $ipdtz = new \DateTimeZone($ipTimezone);
+            $ipTimeOffset = (new \DateTime('now', $ipdtz))->getOffset();
+
+            $clientTimezone = $_SESSION['RB__clientTimeZone'];
+            $clientdtz = new \DateTimeZone($clientTimezone);
+            $clientTimeOffset = (new \DateTime('now', $clientdtz))->getOffset();
+
+            $ipLocation = ArrayHelper::getValue($ipdtz->getLocation(), 'country_code');
+            $clientLocation = ArrayHelper::getValue($clientdtz->getLocation(), 'country_code');
+
+            if ($ipLocation !== $clientLocation || $ipTimeOffset !== $clientTimeOffset) {
                 return false;
             }
         }
