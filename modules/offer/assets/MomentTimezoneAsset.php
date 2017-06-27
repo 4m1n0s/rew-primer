@@ -1,13 +1,13 @@
 <?php
 
-namespace app\assets;
+namespace app\modules\offer\assets;
 
+use app\assets\CookieAsset;
 use yii\web\AssetBundle;
 
 class MomentTimezoneAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@app/modules/offer/frontend';
 
     public $css = [
 
@@ -15,10 +15,11 @@ class MomentTimezoneAsset extends AssetBundle
 
     public $js = [
         'js/moment.min.js',
-        'js/moment-timezone-with-data.js',
+        'js/moment-timezone-with-data.min.js',
+        'js/timezone_checker_module.js',
     ];
 
     public $depends = [
-        'yii\web\YiiAsset'
+        CookieAsset::class
     ];
 }
