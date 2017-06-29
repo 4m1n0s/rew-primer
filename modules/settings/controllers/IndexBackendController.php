@@ -227,6 +227,18 @@ class IndexBackendController extends BackController
                         'class' => 'self-class'
                     ],
                 ],
+                'security.timezone' => [
+                    'label' => 'Timezone',
+                    'type' => FormModel::TYPE_WIDGET,
+                    'widget' => SwitchInput::class,
+                    'options' => [
+                        'inlineLabel' => false,
+                        'pluginOptions' => [
+                            'handleWidth' => 30,
+                        ],
+                        'class' => 'self-class'
+                    ],
+                ],
             ]
         ]);
 

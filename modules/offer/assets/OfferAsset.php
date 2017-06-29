@@ -2,10 +2,10 @@
 
 namespace app\modules\offer\assets;
 
-use app\assets\CookieAsset;
 use yii\web\AssetBundle;
+use yii\web\YiiAsset;
 
-class MomentTimezoneAsset extends AssetBundle
+class OfferAsset extends AssetBundle
 {
     public $sourcePath = '@app/modules/offer/frontend';
 
@@ -14,11 +14,11 @@ class MomentTimezoneAsset extends AssetBundle
     ];
 
     public $js = [
-        'js/moment.min.js',
-        'js/moment-timezone-with-data.min.js',
+        'js/offer_render_module.js',
     ];
 
     public $depends = [
-
+        YiiAsset::class,
+        MomentTimezoneAsset::class
     ];
 }

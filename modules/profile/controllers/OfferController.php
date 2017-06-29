@@ -8,6 +8,7 @@ use app\modules\offer\components\criteria\CriteriaGeoLocation;
 use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Category;
 use app\modules\offer\models\Offer;
+use app\modules\offer\assets\OfferAsset;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use \Yii;
 use yii\helpers\ArrayHelper;
@@ -27,10 +28,6 @@ class OfferController extends ProfileController
     public function actionList()
     {
         $this->layout = '//frontend/profile';
-
-        if (!$this->isPermitted()) {
-            return $this->render('deny');
-        }
 
         $categories = Category::find()->select(['name'])->active()->asArray()->all();
         $offerCollection = \Yii::$app->offerFactory->createAll(true);
@@ -52,15 +49,23 @@ class OfferController extends ProfileController
 
     public function actionSingle($id)
     {
+        if (!Yii::$app->request->isAjax) {
+            $this->getView()->registerAssetBundle(OfferAsset::class);
+            $this->getView()->registerJs('offer_render_module.init()');
+
+            return $this->render('default', [
+                'offerID' => $id
+            ]);
+        }
+
         $offer = Offer::find()->where(['id' => $id])->active()->one();
 
         if (!$offer) {
-            throw new NotFoundHttpException;
+            return $this->renderAjax('notFound');
         }
 
         if (!$this->isPermitted()) {
-            $this->layout = '//frontend/profile';
-            return $this->render('deny');
+            return $this->renderAjax('deny');
         }
 
         $offer->initTargeting();
@@ -77,7 +82,7 @@ class OfferController extends ProfileController
         }
 
         if ($offerCollection->count() === 0) {
-            throw new NotAcceptableHttpException;
+            return $this->renderAjax('notFound');
         }
 
         switch ($offer->id) {
@@ -127,20 +132,20 @@ class OfferController extends ProfileController
         }
 
         if ($keyStorage->get('security.timezone')) {
-            $ip = (new IPNormalizer())->getIP();
+            $ip = YII_DEBUG ? Yii::$app->params['localIP'] : (new IPNormalizer())->getIP();
             $client = \Yii::$app->geoLocation->process($ip);
             $ipTimezone = $client->getTimezone();
             $ipdtz = new \DateTimeZone($ipTimezone);
             $ipTimeOffset = (new \DateTime('now', $ipdtz))->getOffset();
 
-            $clientTimezone = $_SESSION['RB__clientTimeZone'];
+            $clientTimezone = Yii::$app->request->post('timezone');
             $clientdtz = new \DateTimeZone($clientTimezone);
             $clientTimeOffset = (new \DateTime('now', $clientdtz))->getOffset();
 
             $ipLocation = ArrayHelper::getValue($ipdtz->getLocation(), 'country_code');
             $clientLocation = ArrayHelper::getValue($clientdtz->getLocation(), 'country_code');
 
-            if ($ipLocation !== $clientLocation || $ipTimeOffset !== $clientTimeOffset) {
+            if ($ipTimeOffset !== $clientTimeOffset) {
                 return false;
             }
         }
@@ -156,7 +161,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('ad-work-media', [
+        return $this->renderAjax('ad-work-media', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -171,7 +176,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('offer-toro', [
+        return $this->renderAjax('offer-toro', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -185,7 +190,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('offer-daddy', [
+        return $this->renderAjax('offer-daddy', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -199,7 +204,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('clixwall', [
+        return $this->renderAjax('clixwall', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -213,7 +218,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('ptcwall', [
+        return $this->renderAjax('ptcwall', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -227,7 +232,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('kiwiwall', [
+        return $this->renderAjax('kiwiwall', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -241,7 +246,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('super-rewards', [
+        return $this->renderAjax('super-rewards', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -256,7 +261,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('minute-staff', [
+        return $this->renderAjax('minute-staff', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -271,7 +276,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('cpa-lead', [
+        return $this->renderAjax('cpa-lead', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -285,7 +290,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('persona', [
+        return $this->renderAjax('persona', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
@@ -299,14 +304,14 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('fyber', [
+        return $this->renderAjax('fyber', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
 
     public function pollfish()
     {
-        return $this->render('pollfish');
+        return $this->renderAjax('pollfish');
     }
 
     public function paymentwall()
@@ -322,7 +327,7 @@ class OfferController extends ProfileController
         ];
         $offerFrameUrl = strtr($offerUrl, $replace);
 
-        return $this->render('payment-wall', [
+        return $this->renderAjax('payment-wall', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }

@@ -8,4 +8,5 @@ return [
     'adminEmail' => '',
     'mandrillApiKey' => 'hash',
     'emailLimit' => 20,
+    'localIP' => '127.0.0.1'    // Used for most ip based components for dev purposes
 ];
