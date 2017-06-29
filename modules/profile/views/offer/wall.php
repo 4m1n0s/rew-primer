@@ -9,7 +9,7 @@ use yii\helpers\Html;
 $this->title = 'Offer Walls';
 ?>
 
-<div>
+<div id="offer-walls-wrap" class="hide">
     <!--Offer Filter-->
     <div class="filter-active-title">Show All</div>
     <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
@@ -46,3 +46,11 @@ $this->title = 'Offer Walls';
 
     <hr class="space">
 </div>
+
+<?php
+$js = <<< JS
+$('#offer-walls-wrap').removeClass('hide');
+JS;
+
+$this->registerJs($js);
+?>
