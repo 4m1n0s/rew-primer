@@ -8,6 +8,10 @@ use yii\helpers\Html;
 
 $this->title = 'Offer Walls';
 ?>
+    <div class="loader text-center">
+        <img width="40" src="/images/svg-loaders/bars.svg" alt="">
+        <div class="m-t-100"></div>
+    </div>
 
 <div id="offer-walls-wrap" class="hide">
     <!--Offer Filter-->
@@ -50,6 +54,7 @@ $this->title = 'Offer Walls';
 <?php
 $js = <<< JS
 $('#offer-walls-wrap').removeClass('hide');
+$('.loader').addClass('hide');
 JS;
 
 $this->registerJs($js);
