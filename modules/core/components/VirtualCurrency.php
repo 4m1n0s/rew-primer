@@ -2,10 +2,12 @@
 
 namespace app\modules\core\components;
 
+use app\modules\offer\models\RedeemLimit;
 use app\modules\user\models\User;
 use yii\base\Component;
 use yii\base\ErrorException;
 use yii\base\InvalidConfigException;
+use yii\base\InvalidValueException;
 use yii\helpers\Json;
 
 /**
@@ -14,6 +16,9 @@ use yii\helpers\Json;
  */
 class VirtualCurrency extends Component
 {
+    const ERROR_CODE_MIN_REDEEM = 1;
+    const ERROR_CODE_MAX_REDEEM = 2;
+
     /**
      * @var User
      */
@@ -63,6 +68,18 @@ class VirtualCurrency extends Component
         }
 
         $value = bcsub($this->user->virtual_currency, $amount, $this->scale);
+        $keyStorage = \Yii::$app->keyStorage;
+
+        if (is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours((int)$keyStorage->get('redeem.reset'))->one())) {
+            $redeemLimitModel = new RedeemLimit();
+            $redeemLimitModel->user_id = $this->user->id;
+            $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
+            $redeemLimitModel->save();
+        } else {
+            $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
+            $redeemLimitModel->save();
+        }
+
         // TODO: Handle negative number result
         return $this->updateCurrency($value);
     }
@@ -86,6 +103,28 @@ class VirtualCurrency extends Component
         }
 
         return true;
+    }
+
+    /**
+     * @param RedeemLimit $model
+     * @param $amount
+     * @return int
+     */
+    protected function getRedeemLimitTotalCurrency(RedeemLimit $model, $amount)
+    {
+        $keyStorage = \Yii::$app->keyStorage;
+
+        if ($amount < $keyStorage->get('redeem.minLimit')) {
+            throw new InvalidValueException('Min Redeem limit', static::ERROR_CODE_MIN_REDEEM);
+        }
+
+        $total = bcadd($model->amount, $amount, $this->scale);
+
+        if ($total > $keyStorage->get('redeem.maxLimit')) {
+            throw new InvalidValueException('Max Redeem limit', static::ERROR_CODE_MAX_REDEEM);
+        }
+
+        return $total;
     }
 
     /**

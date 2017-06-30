@@ -70,6 +70,24 @@ class IndexBackendController extends BackController
                     'options' => ['placeholder' => 'Free Points Amount'],
                     'rules' => [['number', 'min' => 0]]
                 ],
+                'redeem.maxLimit' => [
+                    'label' => 'Redeem Max Limit',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Redeem Max Limit'],
+                    'rules' => [['number', 'min' => 0]]
+                ],
+                'redeem.minLimit' => [
+                    'label' => 'Redeem Min Limit',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Redeem Min Limit'],
+                    'rules' => [['number', 'min' => 0]]
+                ],
+                'redeem.reset' => [
+                    'label' => 'Redeem Reset Time (Hours)',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Redeem Reset Time (Hours)'],
+                    'rules' => [['number', 'min' => 0]]
+                ],
                 'invite_only_signup' => [
                     'label' => 'Invite Only Signup',
                     'type' => FormModel::TYPE_WIDGET,
