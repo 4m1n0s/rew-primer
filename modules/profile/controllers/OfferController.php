@@ -112,6 +112,8 @@ class OfferController extends ProfileController
                 return $this->pollfish();
             case Offer::PAYMENTWALL:
                 return $this->paymentwall();
+            case Offer::SAYSOPUBS:
+                return $this->saysopubs();
         }
     }
 
@@ -328,6 +330,21 @@ class OfferController extends ProfileController
         $offerFrameUrl = strtr($offerUrl, $replace);
 
         return $this->renderAjax('payment-wall', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
+
+    public function saysopubs()
+    {
+        $projectKey = '5928a8cee4b092af1b9437cc';
+        $offerUrl = 'http://survey.saysoforgood.com/trop/survey/{project_key}/RBUKS0517?rid={userID}'; // TODO: Store it somewhere else
+        $replace = [
+            '{project_key}' => $projectKey,
+            '{userID}' => \Yii::$app->user->identity->id,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->renderAjax('saysopubs', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }

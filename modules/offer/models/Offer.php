@@ -33,6 +33,7 @@ class Offer extends \yii\db\ActiveRecord
     const FYBER = 20;
     const POLLFISH = 21;
     const PAYMENTWALL = 22;
+    const SAYSOPUBS = 23;
 
     const DEVICE_TYPE_DESKTOP = 1;
     const DEVICE_TYPE_MOBILE = 2;
