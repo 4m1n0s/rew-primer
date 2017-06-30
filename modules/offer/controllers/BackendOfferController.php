@@ -56,12 +56,14 @@ class BackendOfferController extends BackController
                 if (!$model->save(false)) {
                     throw new ErrorException();
                 }
-                foreach ($model->categoriesBuff as $categoryID) {
-                    $categoryOfferModel = new CategoryOffer();
-                    $categoryOfferModel->category_id = $categoryID;
-                    $categoryOfferModel->offer_id = $model->id;
-                    if (!$categoryOfferModel->save()) {
-                        throw new ErrorException();
+                if (!empty($model->categoriesBuff)) {
+                    foreach ($model->categoriesBuff as $categoryID) {
+                        $categoryOfferModel = new CategoryOffer();
+                        $categoryOfferModel->category_id = $categoryID;
+                        $categoryOfferModel->offer_id = $model->id;
+                        if (!$categoryOfferModel->save()) {
+                            throw new ErrorException('category');
+                        }
                     }
                 }
                 $transaction->commit();
