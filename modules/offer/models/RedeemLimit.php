@@ -33,7 +33,7 @@ class RedeemLimit extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::class,
-                'value' => new Expression('NOW()')
+                'value' => date('Y-m-d H:i:s')
             ]
         ];
     }

@@ -6,6 +6,7 @@ use app\modules\offer\models\RedeemLimit;
 use app\modules\user\models\User;
 use yii\base\Component;
 use yii\base\ErrorException;
+use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\helpers\Json;
@@ -18,6 +19,7 @@ class VirtualCurrency extends Component
 {
     const ERROR_CODE_MIN_REDEEM = 1;
     const ERROR_CODE_MAX_REDEEM = 2;
+    const ERROR_CODE_INSUFFICIENT_FUNDS = 3;
 
     /**
      * @var User
@@ -67,21 +69,38 @@ class VirtualCurrency extends Component
             throw new InvalidConfigException('User Model must be set');
         }
 
-        $value = bcsub($this->user->virtual_currency, $amount, $this->scale);
         $keyStorage = \Yii::$app->keyStorage;
+        $transaction = \Yii::$app->db->beginTransaction();
 
-        if (is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours((int)$keyStorage->get('redeem.reset'))->one())) {
-            $redeemLimitModel = new RedeemLimit();
-            $redeemLimitModel->user_id = $this->user->id;
-            $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
-            $redeemLimitModel->save();
-        } else {
-            $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
-            $redeemLimitModel->save();
+        try {
+            if (!is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours((int)$keyStorage->get('redeem.reset'))->one())) {
+                $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
+            } else {
+                $redeemLimitModel = new RedeemLimit();
+                $redeemLimitModel->user_id = $this->user->id;
+                $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
+            }
+            if (!$redeemLimitModel->save()) {
+                throw new Exception('Could not save ' . RedeemLimit::class . ' model');
+            }
+
+            $value = bcsub($this->user->virtual_currency, $amount, $this->scale);
+            if ($value < 0) {
+                throw new InvalidValueException('Insufficient funds', static::ERROR_CODE_INSUFFICIENT_FUNDS);
+            }
+            if (!$this->updateCurrency($value)) {
+                throw new Exception('Could not update user\'s currency');
+            }
+
+            $transaction->commit();
+            return true;
+        } catch (InvalidValueException $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            return false;
         }
-
-        // TODO: Handle negative number result
-        return $this->updateCurrency($value);
     }
 
     /**

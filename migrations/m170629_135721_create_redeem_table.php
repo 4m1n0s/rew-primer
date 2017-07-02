@@ -22,7 +22,16 @@ class m170629_135721_create_redeem_table extends Migration
             'updated_at' => $this->dateTime()->notNull(),
         ]);
 
-        $this->createIndex('idx_user_id', $this->tableName, 'user_id');
+        $this->createIndex('idx_user_id_created_at', $this->tableName, ['user_id', 'created_at']);
+        $this->addForeignKey(
+            'fk_redeem_limit_users_user_id',
+            $this->tableName,
+            'user_id',
+            '{{%users}}',
+            'id',
+            'CASCADE',
+            'CASCADE'
+        );
     }
 
     /**

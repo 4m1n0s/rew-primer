@@ -40,7 +40,8 @@ class RedeemLimitQuery extends \yii\db\ActiveQuery
      */
     public function lastHours($hours = 24)
     {
-        return $this->andWhere(['<', 'NOW()', new Expression('DATE_ADD(created_at, INTERVAL ' . $hours . ' HOUR)')]);
+        $now = date('Y-m-d H:i:s'); // Literal for DB caching
+        return $this->andWhere(['>', 'created_at', new Expression('DATE_SUB("' . $now . '", INTERVAL ' . $hours . ' HOUR)')]);
     }
 
     /**
