@@ -14,13 +14,18 @@ class m170629_135721_create_redeem_table extends Migration
      */
     public function up()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey()->unsigned(),
             'user_id' => $this->integer(),
             'amount' => $this->decimal(12, 5)->notNull(),
             'created_at' => $this->dateTime()->notNull(),
             'updated_at' => $this->dateTime()->notNull(),
-        ]);
+        ], $tableOptions);
 
         $this->createIndex('idx_user_id_created_at', $this->tableName, ['user_id', 'created_at']);
         $this->addForeignKey(
