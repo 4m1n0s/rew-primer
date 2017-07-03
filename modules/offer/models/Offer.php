@@ -34,6 +34,7 @@ class Offer extends \yii\db\ActiveRecord
     const POLLFISH = 21;
     const PAYMENTWALL = 22;
     const SAYSOPUBS = 23;
+    const DRYVERLESSADS = 24;
 
     const DEVICE_TYPE_DESKTOP = 1;
     const DEVICE_TYPE_MOBILE = 2;

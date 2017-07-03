@@ -6,6 +6,7 @@ use app\modules\core\components\controllers\Controller;
 use app\modules\offer\controllers\postbacks\AdWorkMedia;
 use app\modules\offer\controllers\postbacks\Clixwall;
 use app\modules\offer\controllers\postbacks\CpaLead;
+use app\modules\offer\controllers\postbacks\Dryverlessads;
 use app\modules\offer\controllers\postbacks\Fyber;
 use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\MinuteStaff;
@@ -65,6 +66,9 @@ class PostBackController extends Controller
             ],
             'ssp' => [
                 'class' => SaySoPubs::class
+            ],
+            'dla' => [
+                'class' => Dryverlessads::class
             ],
         ];
     }

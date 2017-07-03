@@ -93,6 +93,7 @@ class PopulateDataController extends Controller
             [Offer::POLLFISH, 1, 'PollFish', 'PollFish', '/images/offer-providers/pollfish.png'],
             [Offer::PAYMENTWALL, 1, 'PaymentWall', 'PaymentWall', '/images/offer-providers/paymentwall-logo.jpg'],
             [Offer::SAYSOPUBS, 1, 'SaySoPubs', 'SaySoPubs', '/images/no-image-default'],
+            [Offer::DRYVERLESSADS, 1, 'DryverlessAds', 'DryverlessAds', '/images/no-image-default'],
         ])->execute();
     }
 

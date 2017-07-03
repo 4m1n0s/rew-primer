@@ -114,6 +114,8 @@ class OfferController extends ProfileController
                 return $this->paymentwall();
             case Offer::SAYSOPUBS:
                 return $this->saysopubs();
+            case Offer::DRYVERLESSADS:
+                return $this->dryverlessads();
         }
     }
 
@@ -345,6 +347,21 @@ class OfferController extends ProfileController
         $offerFrameUrl = strtr($offerUrl, $replace);
 
         return $this->renderAjax('saysopubs', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
+
+    public function dryverlessads()
+    {
+        $offerUrl = 'https://offerwall.dryverlessads.com/#/offers?appId={appId}&subid=&subid2=&subid3=&subid4=&subid5=&uid={userID}&un={username}'; // TODO: Store it somewhere else
+        $replace = [
+            '{appId}' => '4eda6d55-c67a-4a27-b4fa-9f3ebcd1087b',
+            '{userID}' => \Yii::$app->user->identity->id,
+            '{username}' => \Yii::$app->user->identity->username,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->renderAjax('dryverlessads', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }
