@@ -2,6 +2,7 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\offer\models\Offer;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
@@ -19,7 +20,10 @@ class SaySoPubs extends Action
 
     public function run($access_hash)
     {
-        \Yii::info('SaySoPubs POSTBACK', 'offer_postback');
+        \Yii::info([
+            'message' => 'SAYSOPUBS info',
+            'offer_id' => Offer::SAYSOPUBS
+        ], 'offer_postback');
         return 'ok';
     }
 }

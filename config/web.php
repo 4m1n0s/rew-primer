@@ -60,14 +60,13 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'except' => ['yii\web\HttpException:404'],
                 ],
                 [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning', 'info'],
-                    'categories' => ['offer_postback'],
-                    'logVars' => ['_POST', '_GET', '_SERVER'],
-                    'logFile' => '@app/runtime/logs/offers/errors.log',
-                    'maxLogFiles' => 50,
+                    'levels' => ['error', 'warning'],
+                    'categories' => ['yii\web\HttpException:404'],
+                    'logFile' => '@runtime/logs/404/errors.log',
                 ],
                 [
                     'class' => 'yii\log\FileTarget',
@@ -76,6 +75,12 @@ $config = [
                     'logVars' => ['_POST', '_GET', '_SERVER'],
                     'logFile' => '@app/runtime/logs/transactions/errors.log',
                     'maxLogFiles' => 50,
+                ],
+                [
+                    'class' => 'app\modules\core\components\log\DbTargetPostback',
+                    'levels' => ['error', 'warning', 'info'],
+                    'categories' => ['offer_postback'],
+                    'logVars' => [],    // Exclude next message with vars
                 ],
             ],
         ],

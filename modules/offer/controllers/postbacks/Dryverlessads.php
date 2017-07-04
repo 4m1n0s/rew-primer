@@ -2,6 +2,7 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\offer\models\Offer;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
@@ -41,9 +42,15 @@ class Dryverlessads extends Action
             $cs             = \Yii::$app->request->get('hash');
 
         } catch (\Exception $e) {
-            \Yii::error('Dryverlessads POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
+            \Yii::error([
+                'message' => $e->getMessage(),
+                'offer_id' => Offer::DRYVERLESSADS
+            ], 'offer_postback');
         }
 
-        \Yii::info('Dryverlessads info', 'offer_postback');
+        \Yii::info([
+            'message' => 'Dryverlessads info',
+            'offer_id' => Offer::DRYVERLESSADS
+        ], 'offer_postback');
     }
 }

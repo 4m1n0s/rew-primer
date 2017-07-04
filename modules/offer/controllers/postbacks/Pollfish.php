@@ -2,6 +2,7 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\offer\models\Offer;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
@@ -76,7 +77,10 @@ class Pollfish extends Action
             $transaction->commit();
         } catch (\Exception $e) {
             $transaction->rollBack();
-            \Yii::error('Pollfish POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
+            \Yii::error([
+                'message' => $e->getMessage(),
+                'offer_id' => Offer::POLLFISH
+            ], 'offer_postback');
         }
     }
 }

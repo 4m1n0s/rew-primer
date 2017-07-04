@@ -2,6 +2,7 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\offer\models\Offer;
 use app\modules\offer\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
@@ -72,7 +73,10 @@ class OfferToro extends Action
             }
 
         } catch (\Exception $e) {
-            \Yii::error('OfferToro POSTBACK exception' . PHP_EOL . $e->getMessage(), 'offer_postback');
+            \Yii::error([
+                'message' => $e->getMessage(),
+                'offer_id' => Offer::OFFERTORO
+            ], 'offer_postback');
             return 0;
         }
 
