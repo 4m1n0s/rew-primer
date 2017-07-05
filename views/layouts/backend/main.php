@@ -41,29 +41,17 @@ BackendAsset::register($this);
                     <!-- BEGIN PAGE HEADER-->
                     <!-- BEGIN PAGE BAR -->
                     <div class="page-bar">
-                        <?php
-                        if (isset($this->params['breadcrumbs']) && count($this->params['breadcrumbs']) > 0) {
-                            $this->params['breadcrumbs'] = array_merge([[
-                            'label' => 'Home',
-                            'url' => '/admin',
-                            'template' => '<li> {link} <i class="fa fa-circle"></i></li>',
-                                ]], $this->params['breadcrumbs']);
-                        } else {
-                            $this->params['breadcrumbs'] = [[
-                            'label' => 'Home',
-                            'url' => '/admin',
-                            'template' => '<li> {link} </li>',
-                            ]];
-                        }
-
-                        echo yii\widgets\Breadcrumbs::widget([
+                        <?php echo yii\widgets\Breadcrumbs::widget([
                             'options' => [
                                 'class' => 'page-breadcrumb'
                             ],
-                            'homeLink' => false,
+                            'homeLink' => [
+                                'label' => 'Home',
+                                'url' => ['/dashboard/index-backend/index'],
+                            ],
+                            'itemTemplate' => '<li> {link} <i class="fa fa-circle"></i></li>',
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        ])
-                        ?>
+                        ]) ?>
 
                         <div class="page-toolbar"></div>
                     </div>
