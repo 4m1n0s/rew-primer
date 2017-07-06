@@ -56,13 +56,16 @@ BackendAsset::register($this);
                         <div class="page-toolbar"></div>
                     </div>
                     <!-- END PAGE BAR -->
-                    <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title">
-                        <?= isset($this->params['pageTitle']) ? $this->params['pageTitle'] : '' ?> <small><?= isset($this->params['pageSmallTitle']) ? $this->params['pageSmallTitle'] : '' ?></small>
-                    </h3>
-                    <!-- END PAGE TITLE-->
-                    <!-- END PAGE HEADER-->
+
+                    <?php if (!empty($this->params['pageTitle'])): ?>
+                        <!-- BEGIN PAGE TITLE-->
+                        <h3 class="page-title">
+                            <?= $this->params['pageTitle'] ?> <small><?= isset($this->params['pageSmallTitle']) ? $this->params['pageSmallTitle'] : '' ?></small>
+                        </h3>
+                        <!-- END PAGE TITLE-->
+                    <?php endif; ?>
                     <?= \app\modules\dashboard\widgets\Alert::widget() ?>
+                    <!-- END PAGE HEADER-->
                     <?= $content ?>
                 </div> 
                 <!-- END CONTENT BODY -->
