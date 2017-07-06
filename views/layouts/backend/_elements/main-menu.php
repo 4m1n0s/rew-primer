@@ -41,6 +41,11 @@
                     ],
 
                     [
+                        'label' => '<i class="fa fa-shopping-cart"></i> <span class="title"> ' . Yii::t('app', 'Orders') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
+                        'url' => ['/catalog/backend-order/index'],
+                    ],
+
+                    [
                         'label' => '<i class="fa fa-envelope-o"></i> <span class="title"> ' . Yii::t('app', 'Contact Messages') . '</span><span class="badge badge-info">' . \app\modules\contact\widgets\CountWidget::widget(['status' => \app\modules\contact\models\Contact::STATUS_NEW]) . '</span>',
                         'url' => ['/contact/index-backend/index'],
                         'active' => $module == 'contact' && $controller == 'index-backend'
@@ -71,6 +76,30 @@
                                 'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Categories'),
                                 'url' => ['/offer/backend-category/index'],
                                 'active' => $module == 'offer' && $controller == 'backend-category',
+                            ],
+                        ]
+                    ],
+
+                    [
+                        'label' => '<i class="fa fa-list"></i> <span class="title"> ' . Yii::t('app', 'Catalog') . '</span></span><span class="arrow"></span>',
+                        'url' => 'javascript:;',
+                        'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
+                        'options' => [
+                            'class' => 'nav-item'
+                        ],
+                        'items' => [
+                            'options' => [
+                                'class' => 'sub-menu'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Products'),
+                                'url' => ['/catalog/backend-product/index'],
+                                'active' => $module == 'catalog' && $controller == 'backend-product'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Categories'),
+                                'url' => ['/catalog/backend-category/index'],
+                                'active' => $module == 'catalog' && $controller == 'backend-category',
                             ],
                         ]
                     ],

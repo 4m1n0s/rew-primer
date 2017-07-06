@@ -24,7 +24,7 @@ class m170706_085054_create_ref_product_category_table extends Migration
             'product_id' => $this->integer()->unsigned()->notNull(),
         ], $tableOptions);
 
-        $this->addPrimaryKey('PRIMARY', $this->tableName, ['category_id', 'product_id']);
+        $this->addPrimaryKey('pk', $this->tableName, ['product_id', 'category_id']);
 
         $this->addForeignKey(
             'fk_ref_category_product_category_product_category_id',

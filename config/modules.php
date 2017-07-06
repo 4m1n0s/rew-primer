@@ -25,4 +25,7 @@ return [
     'offer' => [
         'class' => 'app\modules\offer\Module',
     ],
+    'catalog' => [
+        'class' => 'app\modules\catalog\Module',
+    ],
 ];

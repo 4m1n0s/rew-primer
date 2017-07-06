@@ -22,10 +22,10 @@ class m170706_093535_create_ref_product_order_table extends Migration
         $this->createTable($this->tableName, [
             'order_id' => $this->integer()->unsigned()->notNull(),
             'product_id' => $this->integer()->unsigned()->notNull(),
-            'quantity' => $this->integer()->unsigned()->notNull(),
+            'quantity' => $this->smallInteger()->unsigned()->notNull(),
         ], $tableOptions);
 
-        $this->addPrimaryKey('PRIMARY', $this->tableName, ['order_id', 'product_id']);
+        $this->addPrimaryKey('pk', $this->tableName, ['order_id', 'product_id']);
 
         $this->addForeignKey(
             'fk_ref_order_product_order_order_id',
