@@ -93,11 +93,11 @@ class BackendProductController extends BackController
                     }
                 }
                 $transaction->commit();
-                Yii::$app->session->setFlash('success', 'Offer has been updated');
+                Yii::$app->session->setFlash('success', 'Product has been updated');
                 return $this->redirect(['index']);
             } catch (\Exception $e) {
                 $transaction->rollBack();
-                Yii::$app->session->setFlash('error', 'Could not save offer');
+                Yii::$app->session->setFlash('error', 'Could not save product');
             }
         }
 
@@ -141,11 +141,11 @@ class BackendProductController extends BackController
                     }
                 }
                 $transaction->commit();
-                Yii::$app->session->setFlash('success', 'Offer has been updated');
+                Yii::$app->session->setFlash('success', 'Product has been updated');
                 return $this->redirect(['index']);
             } catch (\Exception $e) {
                 $transaction->rollBack();
-                Yii::$app->session->setFlash('error', 'Could not save offer');
+                Yii::$app->session->setFlash('error', 'Could not save product');
             }
         }
 

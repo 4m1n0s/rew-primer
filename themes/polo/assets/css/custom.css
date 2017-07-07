@@ -562,6 +562,11 @@
 
 /* AND social-button */
 
+.product .product-description {
+    padding: 10px;
+    box-shadow: 0 0 3px 0px #ccc;
+}
+
 
 @media only screen and (max-width: 767px ) {
 
