@@ -1,15 +1,27 @@
+<?php
+
+/* @var \yii\base\View $this */
+/* @var \app\modules\catalog\models\Product[] $products */
+/* @var \app\modules\catalog\models\CategoryProduct[] $categories */
+/* @var \yii\data\ActiveDataProvider $productDataProvider */
+
+use yii\helpers\Html;
+use yii\widgets\ListView;
+?>
+
 <section>
     <div class="container">
         <h3 class="text-justify">Gift Cards</h3>
 
         <div class="row">
             <!-- Post content-->
+            <?php \yii\widgets\Pjax::begin() ?>
             <div class="post-content col-md-9">
                 <div class="row m-b-20">
-                    <div class="col-md-6 p-t-60 m-b-20">
-                        <form id="widget-subscribe-form-sidebar" action="include/subscribe-form.php" role="form" method="post" class="form-inline" novalidate="novalidate">
+                    <div class="col-md-6 p-t-20 m-b-20">
+                        <form id="widget-subscribe-form-sidebar" role="form" method="get" class="form-inline" novalidate="novalidate">
                             <div class="input-group">
-                                <input type="email" aria-required="true" name="widget-subscribe-form-email" class="form-control required email" placeholder="Search">
+                                <input type="email" aria-required="true" name="name" class="form-control required email" placeholder="Search">
                                 <span class="input-group-btn">
                                     <button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary">
                                         <i class="fa fa-search"></i>
@@ -20,7 +32,6 @@
                     <div class="col-md-3">
                         <div class="order-select">
                             <h6>Sort by</h6>
-                            <p>Showing 1–12 of 25 results</p>
                             <form method="get">
                                 <select>
                                     <option selected="selected" value="order">Default sorting</option>
@@ -36,7 +47,6 @@
                     <div class="col-md-3">
                         <div class="order-select">
                             <h6>Sort by Price</h6>
-                            <p>From 0 - 190$</p>
                             <form method="get">
                                 <select>
                                     <option selected="selected" value="">0$ - 50$</option>
@@ -52,55 +62,19 @@
                 </div>
                 <!--Product list-->
                 <div class="shop">
-                    <div class="row">
+                    <div class="row"></div>
 
-                        <div class="col-md-4">
-                            <div class="product">
-                                <div class="product-description">
-                                    <div class="product-category">Category</div>
-                                    <div class="product-title">
-                                        <h3><a href="#">Gift Card #1</a></h3>
-                                    </div>
-                                    <div class="product-price">
-                                        <ins>$15.00</ins>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <?php echo ListView::widget([
+                        'dataProvider' => $productDataProvider,
+                        'itemView' => '_product-item',
+                        'layout' => "{summary}\n<div class='row'>{items}</div>\n<nav class='text-center'>{pager}</nav>"
+                    ]); ?>
 
-
-                    </div>
-                    <nav class="text-center">
-                        <div class="pagination-wrap">
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
-
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a>
-                                </li>
-                                <li><a href="#">2</a>
-                                </li>
-                                <li class="active"><a href="#">3</a>
-                                </li>
-                                <li><a href="#">4</a>
-                                </li>
-                                <li><a href="#">5</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
                 </div>
                 <!--END: Product list-->
 
             </div>
+            <?php \yii\widgets\Pjax::end() ?>
             <!-- END: Post content-->
 
             <!-- Sidebar-->

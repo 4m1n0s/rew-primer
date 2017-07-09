@@ -4,6 +4,7 @@ namespace app\modules\catalog\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%product}}".
@@ -123,5 +124,13 @@ class Product extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\modules\catalog\models\queries\ProductQuery(get_called_class());
+    }
+
+    /**
+     * @return string
+     */
+    public function categoryList()
+    {
+        return implode(', ', ArrayHelper::getColumn($this->categories, 'name'));
     }
 }

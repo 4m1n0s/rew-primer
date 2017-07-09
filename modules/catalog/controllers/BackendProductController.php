@@ -93,7 +93,7 @@ class BackendProductController extends BackController
                     }
                 }
                 $transaction->commit();
-                Yii::$app->session->setFlash('success', 'Product has been updated');
+                Yii::$app->session->setFlash('success', 'Product has been created');
                 return $this->redirect(['index']);
             } catch (\Exception $e) {
                 $transaction->rollBack();

@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\catalog\models\queries;
+use app\modules\catalog\models\Product;
 
 /**
  * This is the ActiveQuery class for [[\app\modules\catalog\models\Product]].
@@ -30,5 +31,13 @@ class ProductQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    /**
+     * @return $this
+     */
+    public function inStock()
+    {
+        return $this->andWhere(['status' => Product::IN_STOCK]);
     }
 }
