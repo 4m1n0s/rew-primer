@@ -7,6 +7,7 @@ use app\modules\catalog\models\Product;
 use app\modules\catalog\models\search\ProductSearch;
 use app\modules\core\components\controllers\FrontController;
 use Yii;
+use yii\web\NotFoundHttpException;
 
 class CatalogController extends FrontController
 {
@@ -30,6 +31,19 @@ class CatalogController extends FrontController
             'products' => $products,
             'categories' => $categories,
             'productDataProvider' => $productDataProvider
+        ]);
+    }
+    
+    public function actionSingle($id)
+    {
+        $product = Product::find()->alias('p')->where(['p.id' => $id])->joinWith(['categories'])->inStock()->one();
+
+        if (!$product) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('single', [
+            'product' => $product
         ]);
     }
 }

@@ -5,6 +5,8 @@ namespace app\modules\catalog\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yz\shoppingcart\CartPositionInterface;
+use yz\shoppingcart\CartPositionTrait;
 
 /**
  * This is the model class for table "{{%product}}".
@@ -22,8 +24,10 @@ use yii\helpers\ArrayHelper;
  * @property RefProductOrder[] $refProductOrders
  * @property Order[] $orders
  */
-class Product extends \yii\db\ActiveRecord
+class Product extends \yii\db\ActiveRecord implements CartPositionInterface
 {
+    use CartPositionTrait;
+
     const IN_STOCK = 1;
     const OUT_OF_STOCK = 2;
 
@@ -132,5 +136,15 @@ class Product extends \yii\db\ActiveRecord
     public function categoryList()
     {
         return implode(', ', ArrayHelper::getColumn($this->categories, 'name'));
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

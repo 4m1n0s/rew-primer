@@ -11,7 +11,7 @@ use yii\helpers\Html;
         <div class="product-description">
             <div class="product-category"><?php echo $model->categoryList() ?></div>
             <div class="product-title">
-                <h3><?php echo Html::encode($model->name) ?></h3>
+                <h3><?php echo Html::a($model->name, ['/catalog/catalog/single', 'id' => $model->id]) ?>
             </div>
             <div class="product-price">
                 <ins><?php echo Html::encode($model->price) ?></ins>

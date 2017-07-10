@@ -27,6 +27,7 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\core\components\VirtualCurrency $virtualCurrency
  * @property \app\modules\core\components\GlobalTexts $globalTexts
  * @property \app\modules\offer\components\OfferFactory $offerFactory
+ * @property yz\shoppingcart\ShoppingCart $cart
  */
 abstract class BaseApplication extends yii\base\Application
 {

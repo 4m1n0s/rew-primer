@@ -19,10 +19,20 @@ use yii\widgets\Menu;
             </div>
             <!--END: LOGO-->
 
+            <!--MOBILE MENU -->
+            <div class="nav-main-menu-responsive">
+                <button class="lines-button x">
+                    <span class="lines"></span>
+                </button>
+            </div>
+            <!--END: MOBILE MENU -->
+
+           <?php echo \app\modules\catalog\widgets\Cart::widget() ?>
+
             <!--NAVIGATION-->
-            <div class="navbar-collapse collapse main-menu-collapse navigation-wrap pull-right">
+            <div class="navigation-wrap pull-right">
                 <div class="container">
-                    <?= $this->render('main-menu')?>
+                    <?= $this->render('main-menu') ?>
                 </div>
             </div>
             <!--END: NAVIGATION-->
@@ -35,14 +45,6 @@ use yii\widgets\Menu;
                     </div>
                 </div>
             <?php endif ?>
-
-            <!--MOBILE MENU -->
-            <div class="nav-main-menu-responsive">
-                <button class="lines-button x">
-                    <span class="lines"></span>
-                </button>
-            </div>
-            <!--END: MOBILE MENU -->
 
         </div>
     </div>

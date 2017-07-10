@@ -13,6 +13,7 @@
                         <?php echo \yii\helpers\Html::a('<span>Contact Us</span>', ['/contact/index/index'], ['class' => 'button black button-3d rounded icon-left'])?>
                         <a href="/faq" class="button black button-3d rounded icon-left"><span>FAQ</span></a>
                         <?php echo \yii\helpers\Html::a('<span>How it works</span>', ['/site/about'], ['class' => 'button black button-3d rounded icon-left'])?>
+                        <?php echo \yii\helpers\Html::a('<span>Gift Cards</span>', ['/catalog/catalog/index'], ['class' => 'button black button-3d rounded icon-left'])?>
                         <?php if (Yii::$app->user->isGuest): ?>
                             <?php echo \yii\helpers\Html::a('SIGN UP', ['/user/account/sign-up'], ['class' => 'button black button-3d rounded icon-left']) ?>
                         <?php endif; ?>

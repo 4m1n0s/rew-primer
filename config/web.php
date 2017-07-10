@@ -149,6 +149,10 @@ $config = [
         'offerFactory' => [
             'class' => '\app\modules\offer\components\OfferFactory',
         ],
+        'cart' => [
+            'class' => 'yz\shoppingcart\ShoppingCart',
+            'cartId' => 'products',
+        ]
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

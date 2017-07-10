@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "03183eb287e6dd6418743cef4029ba23",
-    "content-hash": "28e697bb7a48cf278d7f72acbb7f994a",
+    "hash": "deff34dd2f6179cf74515bd4f48bd6fc",
+    "content-hash": "cb8e9d7daa053a745e67090118689a89",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -1000,6 +1000,44 @@
                 "php mobile detect"
             ],
             "time": "2017-03-29 13:59:30"
+        },
+        {
+            "name": "omnilight/yii2-shopping-cart",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/omnilight/yii2-shopping-cart.git",
+                "reference": "76f785e278f403fbac6b1b59d8d15d83345533d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/omnilight/yii2-shopping-cart/zipball/76f785e278f403fbac6b1b59d8d15d83345533d5",
+                "reference": "76f785e278f403fbac6b1b59d8d15d83345533d5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yz\\shoppingcart\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Pavel Agalecky",
+                    "email": "pavel.agalecky@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension that adds shopping cart functions",
+            "keywords": [
+                "shopping cart",
+                "yii"
+            ],
+            "time": "2015-09-08 11:18:44"
         },
         {
             "name": "swiftmailer/swiftmailer",
