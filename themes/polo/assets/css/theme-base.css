@@ -1447,17 +1447,6 @@ body.outter #vertical-dot-menu {
 }
 
 
-@media(max-width:991px) {
-    #shopping-cart > a > i {
-        line-height: 67px;
-    }
-
-    #shopping-cart .shopping-cart-items {
-        right: -10px;
-        top: 32px;
-    }
-}
-
 /* ----------------------------------------------------------------
     Top Search
 -----------------------------------------------------------------*/
@@ -1884,10 +1873,22 @@ body.wide #header.header-fullwidth nav .main-menu .mega-menu-item .dropdown-menu
     line-height: 58px;
 }
 #header.header-sticky:not(.header-static) #shopping-cart .shopping-cart-items {
-    top: 17px;
+    top: 28px;
 }
 #header.header-sticky:not(.header-static) #top-search form input {
     font-size: 20px;
+}
+
+
+@media(max-width:991px) {
+    #shopping-cart > a > i {
+        line-height: 67px;
+    }
+
+    #shopping-cart .shopping-cart-items {
+        right: -10px;
+        top: 32px;
+    }
 }
 
 /* ----------------------------------------------------------------
