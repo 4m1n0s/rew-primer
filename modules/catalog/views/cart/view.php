@@ -1,7 +1,8 @@
 <?php
 
 /* @var \yii\web\View $this */
-/* @var \app\modules\catalog\models\Product $product */
+/* @var \app\modules\catalog\models\Product[] $positions */
+/* @var string $totalCost */
 
 use yii\helpers\Html;
 ?>
@@ -21,31 +22,31 @@ use yii\helpers\Html;
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="cart-item">
-                        <td class="cart-product-remove">
-                            <a href="#"><i class="fa fa-close"></i></a>
-                        </td>
+                    <?php foreach ($positions as $position): ?>
+                        <tr class="cart-item">
+                            <td class="cart-product-remove">
+                                <a href="#"><i class="fa fa-close"></i></a>
+                            </td>
 
-                        <td class="cart-product-thumbnail">
+                            <td class="cart-product-thumbnail">
+                                <div class="cart-product-thumbnail-name"><?php echo $position->name ?></div>
+                            </td>
 
-                            <div class="cart-product-thumbnail-name">Bolt Sweatshirt</div>
-                        </td>
+                            <td class="cart-product-price">
+                                <span class="amount"><?php echo $position->price ?></span>
+                            </td>
 
-                        <td class="cart-product-price">
-                            <span class="amount">$20.00</span>
-                        </td>
+                            <td class="cart-product-quantity">
+                                <div class="quantity-min-width">
+                                    <input type="text" class="qty" value="<?php echo $position->getQuantity() ?>" name="quantity">
+                                </div>
+                            </td>
 
-                        <td class="cart-product-quantity">
-                            <div class="quantity">
-                                <input type="text" class="qty" value="1" name="quantity">
-                            </div>
-                        </td>
-
-                        <td class="cart-product-subtotal">
-                            <span class="amount">$20.00</span>
-                        </td>
-                    </tr>
-
+                            <td class="cart-product-subtotal">
+                                <span class="amount"><?php echo $position->getCost() ?></span>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                     </tbody>
 
                 </table>
@@ -65,7 +66,7 @@ use yii\helpers\Html;
                                 </td>
 
                                 <td class="cart-product-name text-right">
-                                    <span class="amount color lead"><strong>$100.76</strong></span>
+                                    <span class="amount color lead"><strong><?php echo $totalCost ?></strong></span>
                                 </td>
                             </tr>
                             </tbody>
@@ -74,7 +75,7 @@ use yii\helpers\Html;
 
                     </div>
 
-                    <a href="#" class="button rounded icon-left float-right"><span>Redeem</span></a>
+                    <a href="#" class="btn btn-primary btn-lg float-right"><span>Redeem</span></a>
                 </div>
             </div>
         </div>
@@ -87,6 +88,8 @@ $js = <<< JS
     $('.qty').TouchSpin({
         min: 1,
         max: 50,
+        buttondown_class: 'btn btn-default btn-sm',
+        buttonup_class: 'btn btn-default btn-sm'
     });
 JS;
 $this->registerJs($js);

@@ -29,13 +29,16 @@ use yii\helpers\Html;
                             <h6>Select quantity</h6>
                             <div class="cart-product-quantity">
 
-                                <div class="quantity m-l-5">
-                                    <input type="text"  value="1" id="qty" name="qty">
+                                <div class="quantity-min-width">
+                                    <input type="text" value="1" id="qty" name="qty" class="input-sm">
                                 </div>
                             </div>
+                            <input type="hidden" value="<?php echo $product->id ?>" name="pk">
+
                         </div>
                         <div class="m-t-20">
                             <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                            <?php echo Html::a('Redeem', ['/catalog/cart/view'], ['class' => 'btn btn-primary btn-lg']) ?>
                         </div>
                     </form>
 
@@ -51,9 +54,12 @@ $js = <<< JS
     $('#qty').TouchSpin({
         min: 1,
         max: 50,
+        buttondown_class: 'btn btn-default btn-sm',
+        buttonup_class: 'btn btn-default btn-sm'
     });
     
     var form = $('#cart-form');
+    var cart = $('#shopping-cart');
    
     form.on('submit', function(e) {
         e.preventDefault();
@@ -65,7 +71,7 @@ $js = <<< JS
             method: 'POST',
             dataType: 'JSON',
             success: function(response) {
-                 
+                cart.find('.shopping-cart-items').html(response.data.cartCount);
             }
         }); 
         
