@@ -1445,6 +1445,14 @@ body.outter #vertical-dot-menu {
     line-height: 90px;
 }
 
+
+@media(max-width:991px) {
+    #shopping-cart > a > i {
+        line-height: 67px;
+    }
+
+}
+
 /* ----------------------------------------------------------------
     Top Search
 -----------------------------------------------------------------*/
