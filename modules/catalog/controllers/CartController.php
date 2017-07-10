@@ -12,7 +12,8 @@ class CartController extends FrontController
     {
         return $this->render('view', [
             'positions' => \Yii::$app->cart->getPositions(),
-            'totalCost' => \Yii::$app->cart->getCost()
+            'totalCost' => \Yii::$app->cart->getCost(),
+            'totalCount' => \Yii::$app->cart->getCount()
         ]);
     }
 
@@ -25,6 +26,29 @@ class CartController extends FrontController
         }
 
         \Yii::$app->cart->put($product, \Yii::$app->request->post('qty'));
-        return Json::encode(['data' => ['cartCount' => \Yii::$app->cart->getCount()]]);
+
+        if (\Yii::$app->request->isAjax) {
+            return Json::encode(['data' => ['cartCount' => \Yii::$app->cart->getCount()]]);
+        }
+
+        return $this->redirect(['/catalog/cart/view']);
+    }
+
+    public function actionUpdate($id, $qty = 0)
+    {
+
+    }
+
+    public function actionRemove($id)
+    {
+        if (\Yii::$app->cart->hasPosition($id)) {
+            \Yii::$app->cart->removeById($id);
+        }
+
+        return $this->render('view', [
+            'positions' => \Yii::$app->cart->getPositions(),
+            'totalCost' => \Yii::$app->cart->getCost(),
+            'totalCount' => \Yii::$app->cart->getCount()
+        ]);
     }
 }

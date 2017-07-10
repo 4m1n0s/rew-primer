@@ -34,6 +34,7 @@ use yii\helpers\Html;
                                 </div>
                             </div>
                             <input type="hidden" value="<?php echo $product->id ?>" name="pk">
+                            <?php echo Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []); ?>
 
                         </div>
                         <div class="m-t-20">
@@ -57,28 +58,6 @@ $js = <<< JS
         buttondown_class: 'btn btn-default btn-sm',
         buttonup_class: 'btn btn-default btn-sm'
     });
-    
-    var form = $('#cart-form');
-    var cart = $('#shopping-cart');
-   
-    form.on('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        $.ajax({
-            url: form.attr('action'),
-            data: form.serialize(),
-            method: 'POST',
-            dataType: 'JSON',
-            success: function(response) {
-                cart.find('.shopping-cart-items').html(response.data.cartCount);
-            }
-        }); 
-        
-        return false;
-    });
-   
-  
 JS;
 $this->registerJs($js);
 ?>
