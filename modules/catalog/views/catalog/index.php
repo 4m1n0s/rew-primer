@@ -67,7 +67,10 @@ use yii\widgets\ListView;
                     <?php echo ListView::widget([
                         'dataProvider' => $productDataProvider,
                         'itemView' => '_product-item',
-                        'layout' => "{summary}\n<div class='row'>{items}</div>\n<nav class='text-center'>{pager}</nav>"
+                        'layout' => "{summary}\n<div class='row'>{items}</div>\n<nav class='text-center'>{pager}</nav>",
+                        'itemOptions' => [
+                            'tag' => false,
+                        ]
                     ]); ?>
 
                 </div>
