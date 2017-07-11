@@ -15,7 +15,7 @@ class CatalogController extends FrontController
     {
         $searchModel = new ProductSearch();
         $productDataProvider = $searchModel->searchCatalog(Yii::$app->request->queryParams);
-        $productsCount = Product::find()->joinWith(['categories'])->inStock()->count();
+        $productsCount = Product::find()->alias('p')->joinWith(['categories'])->inStock()->groupBy('p.id')->count();
         $categories = CategoryProduct::find()
             ->alias('c')
             ->select(['c.id', 'c.name', 'count(pc.product_id) as count'])
