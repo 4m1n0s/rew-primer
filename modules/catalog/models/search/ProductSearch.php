@@ -37,7 +37,6 @@ class ProductSearch extends Product
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
     public function search($params)
@@ -76,12 +75,15 @@ class ProductSearch extends Product
      * Creates data provider instance with search query applied
      *
      * @param array $params
-     *
      * @return ActiveDataProvider
      */
     public function searchCatalog($params)
     {
-        $query = Product::find()->joinWith(['categories'])->inStock();
+        $query = Product::find()->joinWith(['categories' => function($query) use ($params) {
+            if (!empty($params['cat']) && $params['cat'] > 0) {
+                return $query->alias('c')->andWhere(['c.id' => $params['cat']]);
+            }
+        }])->inStock();
 
         // add conditions that should always apply here
 
@@ -91,25 +93,6 @@ class ProductSearch extends Product
                 'defaultPageSize' => 15
             ]
         ]);
-
-        $this->load($params);
-
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
-            return $dataProvider;
-        }
-
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'price' => $this->price,
-            'status' => $this->status
-        ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;
     }

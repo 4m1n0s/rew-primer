@@ -1,9 +1,9 @@
 <?php
 
 /* @var \yii\base\View $this */
-/* @var \app\modules\catalog\models\Product[] $products */
 /* @var \app\modules\catalog\models\CategoryProduct[] $categories */
 /* @var \yii\data\ActiveDataProvider $productDataProvider */
+/* @var string $productsCount */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -13,9 +13,9 @@ use yii\widgets\ListView;
     <div class="container">
         <h3 class="text-justify">Gift Cards</h3>
 
+        <?php \yii\widgets\Pjax::begin() ?>
         <div class="row">
             <!-- Post content-->
-            <?php \yii\widgets\Pjax::begin() ?>
             <div class="post-content col-md-9">
                 <div class="row m-b-20">
                     <div class="col-md-6 p-t-20 m-b-20">
@@ -35,9 +35,8 @@ use yii\widgets\ListView;
                             <form method="get">
                                 <select>
                                     <option selected="selected" value="order">Default sorting</option>
-                                    <option value="popularity">Sort by popularity</option>
-                                    <option value="rating">Sort by average rating</option>
-                                    <option value="date">Sort by newness</option>
+                                    <option value="date">Sort by alphabetical: A to Z</option>
+                                    <option value="date">Sort by alphabetical: Z to A</option>
                                     <option value="price">Sort by price: low to high</option>
                                     <option value="price-desc">Sort by price: high to low</option>
                                 </select>
@@ -49,10 +48,10 @@ use yii\widgets\ListView;
                             <h6>Sort by Price</h6>
                             <form method="get">
                                 <select>
-                                    <option selected="selected" value="">0$ - 50$</option>
-                                    <option value="">51$ - 90$</option>
-                                    <option value="">91$ - 120$</option>
-                                    <option value="">121$ - 200$</option>
+                                    <option selected="selected" value="">0 - 200</option>
+                                    <option value="">201 - 500</option>
+                                    <option value="">501 - 800</option>
+                                    <option value="">from 801</option>
                                 </select>
                             </form>
                         </div>
@@ -77,7 +76,6 @@ use yii\widgets\ListView;
                 <!--END: Product list-->
 
             </div>
-            <?php \yii\widgets\Pjax::end() ?>
             <!-- END: Post content-->
 
             <!-- Sidebar-->
@@ -86,15 +84,15 @@ use yii\widgets\ListView;
                 <div class="widget clearfix widget-archive">
                     <h4 class="widget-title">Categories</h4>
                     <ul class="list list-lines">
+                        <li><?php echo Html::a('All', ['/catalog/catalog/index', 'cat' => 0]) ?> <span class="count">(<?php echo $productsCount ?>)</span></li>
                         <?php foreach ($categories as $category): ?>
-                            <li><a href="#"><?php echo $category['name'] ?></a> <span class="count">(<?php echo $category['count'] ?>)</span></li>
+                            <li><?php echo Html::a(Html::encode($category['name']), ['/catalog/catalog/index', 'cat' => $category['id']]) ?> <span class="count">(<?php echo $category['count'] ?>)</span></li>
                         <?php endforeach ?>
                     </ul>
                 </div>
-
-
             </div>
             <!-- END: Sidebar-->
         </div>
+        <?php \yii\widgets\Pjax::end() ?>
     </div>
 </section>

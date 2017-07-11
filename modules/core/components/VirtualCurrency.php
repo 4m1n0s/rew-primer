@@ -73,7 +73,8 @@ class VirtualCurrency extends Component
         $transaction = \Yii::$app->db->beginTransaction();
 
         try {
-            if (!is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours((int)$keyStorage->get('redeem.reset'))->one())) {
+            $resetTime = (int)$keyStorage->get('redeem.reset') ?: '24';
+            if (!is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours($resetTime)->one())) {
                 $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
             } else {
                 $redeemLimitModel = new RedeemLimit();

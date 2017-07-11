@@ -4,6 +4,7 @@ namespace app\modules\catalog\models;
 
 use app\modules\user\models\User;
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%order}}".
@@ -23,6 +24,10 @@ use Yii;
  */
 class Order extends \yii\db\ActiveRecord
 {
+    const STATUS_PROCESSING = 1;
+    const STATUS_COMPLETED  = 2;
+    const STATUS_CANCELLED  = 3;
+
     /**
      * @inheritdoc
      */
@@ -32,12 +37,26 @@ class Order extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'create_date',
+                'updatedAtAttribute' => 'update_date'
+            ]
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['user_id', 'create_date', 'update_date'], 'required'],
+            [['user_id', 'status'], 'required'],
             [['user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
             [['note'], 'string'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -66,7 +85,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 
     /**

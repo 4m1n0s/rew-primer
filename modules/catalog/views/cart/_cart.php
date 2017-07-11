@@ -82,12 +82,9 @@ use yii\helpers\Html;
                                 </td>
                             </tr>
                             </tbody>
-
                         </table>
-
                     </div>
-
-                    <a href="#" class="btn btn-primary btn-lg float-right"><span>Redeem</span></a>
+                    <?php echo Html::a('Redeem', ['/catalog/order/checkout'], ['class' => 'btn btn-primary btn-lg float-right']) ?>
                 </div>
             </div>
         <?php endif ?>

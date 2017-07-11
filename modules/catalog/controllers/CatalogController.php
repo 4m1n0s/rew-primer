@@ -13,11 +13,9 @@ class CatalogController extends FrontController
 {
     public function actionIndex()
     {
-        $products = Product::find()->joinWith(['categories'])->inStock()->all();
-
         $searchModel = new ProductSearch();
         $productDataProvider = $searchModel->searchCatalog(Yii::$app->request->queryParams);
-
+        $productsCount = Product::find()->joinWith(['categories'])->inStock()->count();
         $categories = CategoryProduct::find()
             ->alias('c')
             ->select(['c.id', 'c.name', 'count(pc.product_id) as count'])
@@ -28,9 +26,9 @@ class CatalogController extends FrontController
             ->all();
 
         return $this->render('index', [
-            'products' => $products,
             'categories' => $categories,
-            'productDataProvider' => $productDataProvider
+            'productDataProvider' => $productDataProvider,
+            'productsCount' => $productsCount
         ]);
     }
     
