@@ -39,7 +39,6 @@ use yii\helpers\Html;
                         </div>
                         <div class="m-t-20">
                             <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                            <?php echo Html::a('Redeem', ['/catalog/cart/view'], ['class' => 'btn btn-primary btn-lg']) ?>
                         </div>
                     </form>
 
