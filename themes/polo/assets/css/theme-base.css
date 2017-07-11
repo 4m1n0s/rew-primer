@@ -4734,9 +4734,9 @@ body:not(.no-page-loader) .wrapper,
 }
 
 
-@media(min-width:992px) {
+@media(min-width:767px) {
     .col-md-4.col-display-none {
-        min-width: 30%;
+        min-width: 33%;
         width: auto;
         display: inline-block;
         float: none;
