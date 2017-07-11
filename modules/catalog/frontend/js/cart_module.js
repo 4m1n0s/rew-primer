@@ -3,7 +3,6 @@ var cart_module = function($) {
     var $shopCart = $('#shop-cart');
     var $headerShopCart = $('#shopping-cart');
     var $cartItem = $('.cart-item');
-    var $remove = $cartItem.find('.cart-product-remove-item');
 
     var updateShopingCart = function (e) {
         $.ajax({
@@ -19,7 +18,8 @@ var cart_module = function($) {
     };
 
     var initHandlers = function () {
-        $remove.click(function (e) {
+
+        $(document).on('click', '.cart-item .cart-product-remove-item', function (e) {
             e.stopPropagation();
             e.preventDefault();
             var current = $(this);
@@ -38,13 +38,12 @@ var cart_module = function($) {
             });
         });
 
-
         $(document).on('change', '.cart-item .cart-product-quantity .qty', function(e) {
             e.preventDefault();
             var current = $(this);
-            var url = $(this).data('url');
-            var id = $(this).data('id');
-            var qty = $(this).val();
+            var url = current.data('url');
+            var id = current.data('id');
+            var qty = current.val();
 
             $.ajax({
                 url: url,
