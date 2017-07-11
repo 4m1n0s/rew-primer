@@ -4732,3 +4732,52 @@ body:not(.no-page-loader) .wrapper,
     height: 100px;
     float: left;
 }
+
+
+@media(min-width:992px) {
+    .col-md-4.col-display-none {
+        min-width: 30%;
+        width: auto;
+        display: inline-block;
+        float: none;
+    }
+}
+
+
+.col-display-none .product {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.col-display-none .product .product-category {
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+
+.col-display-none .product-title {
+    min-height: auto;
+    width: auto;
+    float: left;
+}
+
+
+.col-display-none .product .product-title h3, .col-display-none .product .product-title h3 a {
+    font-size: 16px;
+}
+
+
+.col-display-none .product .product-price {
+    width: auto;
+    float: right;
+    margin-left: 20px;
+    margin-top: 0px;
+    line-height: 23px;
+}
+
+
+
+
+
+

@@ -6,9 +6,9 @@
 use yii\helpers\Html;
 ?>
 
-<div class="col-md-4">
+<div class="col-md-4 col-display-none clearfix">
     <div class="product">
-        <div class="product-description">
+        <div class="product-description clearfix">
             <div class="product-category"><?php echo $model->categoryList() ?></div>
             <div class="product-title">
                 <h3><?php echo Html::a($model->name, ['/catalog/catalog/single', 'id' => $model->id]) ?>
