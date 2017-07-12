@@ -28,6 +28,7 @@ class CatalogController extends FrontController
         return $this->render('index', [
             'categories' => $categories,
             'productDataProvider' => $productDataProvider,
+            'searchModel' => $searchModel,
             'productsCount' => $productsCount
         ]);
     }

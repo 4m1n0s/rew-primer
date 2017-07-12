@@ -12,13 +12,15 @@ use app\modules\catalog\models\Product;
  */
 class ProductSearch extends Product
 {
+    public $category;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at'], 'integer'],
+            [['id', 'status', 'created_at', 'category'], 'integer'],
             [['name', 'sku', 'description'], 'safe'],
             [['price'], 'number'],
         ];
@@ -79,11 +81,7 @@ class ProductSearch extends Product
      */
     public function searchCatalog($params)
     {
-        $query = Product::find()->joinWith(['categories' => function($query) use ($params) {
-            if (!empty($params['cat']) && $params['cat'] > 0) {
-                return $query->alias('c')->andWhere(['c.id' => $params['cat']]);
-            }
-        }])->inStock()->groupBy('id');
+        $query = Product::find()->alias('p')->joinWith(['categories c'])->inStock()->groupBy('id');
 
         // add conditions that should always apply here
 
@@ -93,6 +91,20 @@ class ProductSearch extends Product
                 'defaultPageSize' => 15
             ]
         ]);
+
+        $this->load($params);
+
+        $query->andFilterWhere(['like', 'p.name', $this->name]);
+
+        if ($this->category > 0) {
+            $query->andFilterWhere(['c.id' => $this->category]);
+        }
+
+        if ($this->price == 'price-desc') {
+            $query->orderBy('p.price DESC');
+        } else {
+            $query->orderBy('p.price ASC');
+        }
 
         return $dataProvider;
     }

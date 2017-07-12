@@ -1,68 +1,53 @@
 <?php
 
-/* @var \yii\base\View $this */
+/* @var \yii\web\View $this */
 /* @var \app\modules\catalog\models\CategoryProduct[] $categories */
 /* @var \yii\data\ActiveDataProvider $productDataProvider */
+/* @var \app\modules\catalog\models\search\ProductSearch $searchModel */
 /* @var string $productsCount */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
+use yii\helpers\ArrayHelper;
 ?>
 
 <section>
     <div class="container">
         <h3 class="text-justify">Gift Cards</h3>
-
-        <?php \yii\widgets\Pjax::begin() ?>
+        <?php \yii\widgets\Pjax::begin(['id' => 'catalog-pjax']) ?>
         <div class="row">
             <!-- Post content-->
             <div class="post-content col-md-9">
                 <div class="row m-b-20">
-                    <div class="col-md-6 p-t-20 m-b-20">
-                        <form id="widget-subscribe-form-sidebar" role="form" method="get" class="form-inline" novalidate="novalidate">
+                    <form role="form" method="get" class="form-inline" id="order-filter" novalidate="novalidate" data-pjax="">
+                        <div class="col-md-8 p-t-20 m-b-20">
                             <div class="input-group">
-                                <input type="email" aria-required="true" name="name" class="form-control required email" placeholder="Search">
-                                <span class="input-group-btn">
-                                    <button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span></div>
-                        </form>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="order-select">
-                            <h6>Sort by</h6>
-                            <form method="get">
-                                <select>
-                                    <option selected="selected" value="order">Default sorting</option>
-                                    <option value="date">Sort by alphabetical: A to Z</option>
-                                    <option value="date">Sort by alphabetical: Z to A</option>
-                                    <option value="price">Sort by price: low to high</option>
-                                    <option value="price-desc">Sort by price: high to low</option>
-                                </select>
-                            </form>
+                                <input type="text" aria-required="true" name="ProductSearch[name]" class="form-control"
+                                       placeholder="Search"
+                                       value="<?php echo ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'name'); ?>">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" id="name-search">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="order-select">
-                            <h6>Sort by Price</h6>
-                            <form method="get">
-                                <select>
-                                    <option selected="selected" value="">0 - 200</option>
-                                    <option value="">201 - 500</option>
-                                    <option value="">501 - 800</option>
-                                    <option value="">from 801</option>
-                                </select>
-                            </form>
+                        <div class="col-md-4">
+                            <div class="order-select">
+                                <h6>Sort by Price</h6>
+                                <?php echo Html::dropDownList('ProductSearch[price]', ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'price'), [
+                                    'price-asc' => 'Low to High',
+                                    'price-desc' => 'High to Low',
+                                ], ['id' => 'price-dropdown']) ?>
+                            </div>
                         </div>
-                    </div>
 
-
+                        <?php echo Html::hiddenInput('ProductSearch[category]', ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'category'), ['id' => 'filter-category'])?>
+                    </form>
                 </div>
                 <!--Product list-->
                 <div class="shop">
                     <div class="row"></div>
-
                     <?php echo ListView::widget([
                         'dataProvider' => $productDataProvider,
                         'itemView' => '_product-item',
@@ -71,7 +56,6 @@ use yii\widgets\ListView;
                             'tag' => false,
                         ]
                     ]); ?>
-
                 </div>
                 <!--END: Product list-->
 
@@ -84,9 +68,10 @@ use yii\widgets\ListView;
                 <div class="widget clearfix widget-archive">
                     <h4 class="widget-title">Categories</h4>
                     <ul class="list list-lines">
-                        <li><?php echo Html::a('All', ['/catalog/catalog/index', 'cat' => 0]) ?> <span class="count">(<?php echo $productsCount ?>)</span></li>
+                        <li></li>
+                        <li><a href="javascript: void(0)" class="filter-categories" data-id="0">All</a>&nbsp;<span class="count">(<?php echo $productsCount ?>)</span></li>
                         <?php foreach ($categories as $category): ?>
-                            <li><?php echo Html::a(Html::encode($category['name']), ['/catalog/catalog/index', 'cat' => $category['id']]) ?> <span class="count">(<?php echo $category['count'] ?>)</span></li>
+                            <li><a href="javascript: void(0)" class="filter-categories" data-id="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a>&nbsp;<span class="count">(<?php echo $category['count'] ?>)</span></li>
                         <?php endforeach ?>
                     </ul>
                 </div>
@@ -96,3 +81,19 @@ use yii\widgets\ListView;
         <?php \yii\widgets\Pjax::end() ?>
     </div>
 </section>
+
+<?php
+$js = <<< JS
+$(document).on('change', '#price-dropdown', function(event) {
+    $('#order-filter').submit();
+})
+$(document).on('click', '#name-search', function(event) {
+    $('#order-filter').submit();
+})
+$(document).on('click', '.filter-categories', function(event) {
+    $('#filter-category').val($(this).data('id'));
+    $('#order-filter').submit();
+})
+JS;
+$this->registerJs($js);
+?>
