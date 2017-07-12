@@ -30,6 +30,7 @@ return [
 
     // Backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
+    'dashboard/catalog/order/<_a>' => 'catalog/backend-order/<_a>',
     'dashboard/catalog/product/<_a>' => 'catalog/backend-product/<_a>',
     'dashboard/catalog/category/<_a>' => 'catalog/backend-category/<_a>',
     'dashboard/offer/<_a>' => 'offer/backend-offer/<_a>',

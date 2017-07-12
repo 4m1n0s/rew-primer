@@ -41,8 +41,9 @@
                     ],
 
                     [
-                        'label' => '<i class="fa fa-shopping-cart"></i> <span class="title"> ' . Yii::t('app', 'Orders') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
+                        'label' => '<i class="fa fa-shopping-cart"></i> <span class="title"> ' . Yii::t('app', 'Orders') . '</span><span class="badge badge-info">' . \app\modules\catalog\widgets\OrderCount::widget(['status' => \app\modules\catalog\models\Order::STATUS_PROCESSING]) . '</span>',
                         'url' => ['/catalog/backend-order/index'],
+                        'active' => $module == 'catalog' && $controller == 'backend-order'
                     ],
 
                     [

@@ -5,6 +5,7 @@ namespace app\modules\catalog\models;
 use app\modules\user\models\User;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "{{%order}}".
@@ -17,6 +18,8 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $closed_date
  * @property integer $create_date
  * @property integer $update_date
+ * @property integer $refunded
+ * @property integer $cost
  *
  * @property User $user
  * @property RefProductOrder[] $refProductOrders
@@ -57,8 +60,9 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'status'], 'required'],
-            [['user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
+            [['user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date', 'refunded'], 'integer'],
             [['note'], 'string'],
+            [['cost'], 'number'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -111,5 +115,78 @@ class Order extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\modules\catalog\models\queries\OrderQuery(get_called_class());
+    }
+
+    /**
+     * Get status list
+     * @return array
+     */
+    public static function getStatusList() {
+        return [
+            static::STATUS_PROCESSING => Yii::t('app', 'Processing'),
+            static::STATUS_COMPLETED => Yii::t('app', 'Completed'),
+            static::STATUS_CANCELLED => Yii::t('app', 'Canceled'),
+        ];
+    }
+
+    /**
+     * Get status
+     * @param boolean $html
+     * @return string
+     */
+    public function getStatus($html = false) {
+        $statusList = $this->getStatusList();
+
+        switch ($this->status) {
+            case static::STATUS_PROCESSING :
+                $label = 'info';
+                $status = $statusList[static::STATUS_PROCESSING];
+                break;
+            case static::STATUS_COMPLETED:
+                $label = 'success';
+                $status = $statusList[static::STATUS_COMPLETED];
+                break;
+            case static::STATUS_CANCELLED:
+                $label = 'danger';
+                $status = $statusList[static::STATUS_CANCELLED];
+                break;
+            default:
+                $label = 'default';
+                $status = 'unknown';
+        }
+
+        if ($html) {
+            return "<span class=\"label label-sm label-$label\">$status</span>";
+        }
+
+        return $status;
+    }
+
+    public function setStatusCanceled()
+    {
+        $this->status = static::STATUS_CANCELLED;
+        $this->closed_user_id = Yii::$app->user->getId();
+        $this->closed_date = time();
+        return $this->save();
+    }
+
+    public function setStatusProcessing()
+    {
+        $this->status = static::STATUS_PROCESSING;
+        $this->closed_user_id = null;
+        $this->closed_date = null;
+        return $this->save();
+    }
+
+    public function getProductsView()
+    {
+        $html = '<ul>';
+        foreach ($this->refProductOrders as $refProductOrder) {
+            $html .= '<li>' . Html::a($refProductOrder->product->name . ' (' . $refProductOrder->quantity . ')', [
+                    '/catalog/backend-product/update', 'id' => $refProductOrder->product->id
+                ]) . '</li>';
+        }
+        $html .= '<ul>';
+        return $html;
     }
 }

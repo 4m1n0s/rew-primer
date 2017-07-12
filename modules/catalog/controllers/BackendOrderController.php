@@ -7,6 +7,7 @@ use app\modules\catalog\models\Order;
 use app\modules\catalog\models\search\OrderSearch;
 use app\modules\core\components\controllers\BackController;
 use yii\helpers\ArrayHelper;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -49,62 +50,17 @@ class BackendOrderController extends BackController
      * Displays a single Order model.
      * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException
      */
     public function actionView($id)
     {
+        if (($model = Order::find()->alias('o')->where(['o.id' => $id])->joinWith(['products'])->one()) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
-    }
-
-    /**
-     * Creates a new Order model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Order();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Updates an existing Order model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Order model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**
@@ -121,5 +77,65 @@ class BackendOrderController extends BackController
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionCancel() {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+
+        if (!$order = Order::findOne($id)) {
+            return false;
+        }
+
+        return $order->setStatusCanceled();
+    }
+
+    public function actionRestore() {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('id');
+
+        if (!$order = Order::findOne($id)) {
+            return false;
+        }
+
+        return $order->setStatusProcessing();
+    }
+
+    public function actionProcessingAll()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        $orders = Order::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
+
+        foreach ($orders as $order) {
+            $order->setStatusProcessing();
+        }
+
+        return true;
+    }
+
+    public function actionCanceledAll()
+    {
+        if (!Yii::$app->request->isAjax) {
+            throw new ForbiddenHttpException();
+        }
+
+        $orders = Order::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
+
+        foreach ($orders as $order) {
+            $order->setStatusCanceled();
+        }
+
+        return true;
     }
 }

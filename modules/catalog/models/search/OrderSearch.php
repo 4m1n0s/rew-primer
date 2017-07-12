@@ -19,6 +19,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
+            ['cost', 'number'],
             [['note'], 'safe'],
         ];
     }
@@ -61,6 +62,7 @@ class OrderSearch extends Order
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
+            'cost' => $this->cost,
             'status' => $this->status,
             'closed_user_id' => $this->closed_user_id,
             'closed_date' => $this->closed_date,

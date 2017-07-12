@@ -12,30 +12,37 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
-            'status',
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function($row) {
+                    return Html::a($row->user_id, ['/user/index-backend/edit', 'id' => $row->user_id]);
+                }
+            ],
+            'cost',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function ($row) {
+                    return $row->getStatus(true);
+                }
+            ],
+            [
+                'label' => 'Products',
+                'format' => 'raw',
+                'value' => function($row) {
+                    return $row->getProductsView();
+                }
+            ],
             'note:ntext',
             'closed_user_id',
-            'closed_date',
-            'create_date',
-            'update_date',
+            'closed_date:date',
+            'create_date:date',
+            'update_date:date',
         ],
     ]) ?>
 

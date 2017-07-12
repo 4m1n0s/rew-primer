@@ -31,6 +31,7 @@ class OrderController extends FrontController
             $order = new Order();
             $order->user_id = Yii::$app->user->identity->id;
             $order->status = Order::STATUS_PROCESSING;
+            $order->cost = Yii::$app->cart->getCost();
             if (!$order->save()) {
                 throw new ErrorException('Could not save order');
             }

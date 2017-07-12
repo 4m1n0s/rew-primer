@@ -69,7 +69,7 @@ $this->params['breadcrumbs'] = [
                                 </div>
                             </div>
                         </div>";
-                    Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]);
+                    Pjax::begin(['id' => 'user-grid', 'enablePushState' => true]);
                     ?>
 
                     <?=
@@ -265,9 +265,6 @@ $script = <<< JS
                 _csrf: "$token"
             },
             success: function(data) {
-                if (data == true) {
-                    $.pjax.reload({container:'#invitation-grid'});                    
-                }
             }
         });
         return false;

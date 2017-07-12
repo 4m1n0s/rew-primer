@@ -31,4 +31,13 @@ class OrderQuery extends \yii\db\ActiveQuery
     {
         return parent::one($db);
     }
+
+    /**
+     * @param $status
+     * @return $this
+     */
+    public function status($status)
+    {
+        return $this->andWhere(['status' => $status]);
+    }
 }

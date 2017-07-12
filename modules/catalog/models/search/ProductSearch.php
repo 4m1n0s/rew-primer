@@ -83,7 +83,7 @@ class ProductSearch extends Product
             if (!empty($params['cat']) && $params['cat'] > 0) {
                 return $query->alias('c')->andWhere(['c.id' => $params['cat']]);
             }
-        }])->inStock();
+        }])->inStock()->groupBy('id');
 
         // add conditions that should always apply here
 
