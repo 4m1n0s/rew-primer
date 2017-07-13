@@ -620,3 +620,15 @@
 .quantity-min-width {
     width: 100px;
 }
+
+
+.btn-groups > * {
+  display: inline-block;
+  margin:3px;
+}
+
+@media screen and (max-width: 540px) {
+  .btn-groups {
+    text-align: center;
+  }
+}
