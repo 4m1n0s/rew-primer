@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\catalog\models\queries;
+use app\modules\catalog\models\Order;
 
 /**
  * This is the ActiveQuery class for [[\app\modules\catalog\models\Order]].
@@ -38,6 +39,6 @@ class OrderQuery extends \yii\db\ActiveQuery
      */
     public function status($status)
     {
-        return $this->andWhere(['status' => $status]);
+        return $this->andWhere([Order::tableName() . '.status' => $status]);
     }
 }

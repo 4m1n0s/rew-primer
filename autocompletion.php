@@ -28,6 +28,7 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\core\components\GlobalTexts $globalTexts
  * @property \app\modules\offer\components\OfferFactory $offerFactory
  * @property yz\shoppingcart\ShoppingCart $cart
+ * @property app\modules\core\components\Export $export
  */
 abstract class BaseApplication extends yii\base\Application
 {

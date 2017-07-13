@@ -48,6 +48,9 @@ class OrderSearch extends Order
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'defaultPageSize' => 100
+            ]
         ]);
 
         $this->load($params);

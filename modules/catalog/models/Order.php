@@ -178,6 +178,14 @@ class Order extends \yii\db\ActiveRecord
         return $this->save();
     }
 
+    public function setStatusCompleted()
+    {
+        $this->status = static::STATUS_COMPLETED;
+        $this->closed_user_id = Yii::$app->user->getId();
+        $this->closed_date = time();
+        return $this->save();
+    }
+
     public function getProductsView()
     {
         $html = '<ul>';

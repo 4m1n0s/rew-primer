@@ -16,9 +16,32 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions') ?>
+<div class="row hidden">
+    <?= Html::beginForm(['import'], 'post', [
+        'enctype' => 'multipart/form-data',
+        'id' => 'order-import-form'
+    ]);?>
+    <?= Html::fileInput('Import[file]', null, [
+        'id' => 'file-import'
+    ]);?>
+    <?= Html::endForm();?>
+</div>
+<?= Html::button('<i class="fa fa-cloud-upload"></i> <span class="hidden-480">' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>&nbsp;
+<form action="<?= Url::toRoute('/catalog/backend-order/export-all') ?>"
+      method="post"
+      id="order-export-form"
+      style="display: inline-block">
+    <?= Html :: hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []);?>
+    <?= Html::hiddenInput('ids', null, ['id' => 'export-ids']) ?>
+    <button type="submit" class="btn yellow" style="padding: 4px 10px;
+    font-size: 13px;
+    line-height: 1.5;">
+        <i class="fa fa-file-o"></i>&nbsp;Export Selected
+    </button>
+</form>&nbsp;
 <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Processing Selected').'</span>',
     [
-        'title' => 'All selected emails will be approved.',
+        'title' => 'All selected orders will be marked as processing.',
         'id' => 'processing-all',
         'class' => 'btn blue',
         'data-confirm' => 'Confirm the action',
@@ -28,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ) ?>&nbsp;
 <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Mark as Canceled Selected').'</span>',
     [
-        'title' => 'All selected emails will be declined.',
+        'title' => 'All selected orders will be marked as canceled.',
         'id' => 'canceled-all',
         'class' => 'btn red',
         'data-confirm' => 'Confirm the action',

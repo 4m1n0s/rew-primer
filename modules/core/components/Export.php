@@ -10,14 +10,15 @@ use yii\base\Component;
  *
  * @author Stableflow
  */
-class Export extends Component {
-
+class Export extends Component 
+{
     const FILE_TYPE_CSV = 'csv';
 
     protected $tmp;
     protected $extension;
 
-    public function export($data, $properties, $fileType = 'csv') {
+    public function export($data, $properties, $fileType = 'csv') 
+    {
         $this->extension = $fileType;
         switch ($fileType) {
             case static::FILE_TYPE_CSV:
@@ -34,13 +35,14 @@ class Export extends Component {
      * @param array $properties 
      * @return string
      */
-    protected function toCSV($data, $properties) {
+    protected function toCSV($data, $properties)
+    {
         ob_start();
         $df = fopen("php://output", 'w');
-        fputcsv($df, $properties);
+        fputcsv($df, array_keys($properties));
         foreach ($data as $row) {
             $item = [];
-            foreach ($properties as $property) {
+            foreach ($properties as $key => $property) {
                 if (is_object($row)) {
                     $parts = explode(':', $property);
                     if (count($parts) > 1) {
@@ -84,19 +86,20 @@ class Export extends Component {
      * 
      * @param string $filename
      */
-    public function download($filename) {
-        $now = gmdate("D, d M Y H:i:s");
-        header("Expires: Tue, 03 Jul 2001 06:00:00 GMT");
-        header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
-        header("Last-Modified: {$now} GMT");
+    public function download($filename)
+    {
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+        header("Cache-Control: private", false);
 
-        // force download  
+        // force download
         header("Content-Type: application/force-download");
         header("Content-Type: application/octet-stream");
         header("Content-Type: application/download");
 
         // disposition / encoding on response body
-        header("Content-Disposition: attachment;filename=$filename.{$this->extension}");
+        header("Content-Disposition: attachment; filename=$filename.{$this->extension}");
         header("Content-Transfer-Encoding: binary");
         
         echo $this->tmp;

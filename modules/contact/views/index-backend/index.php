@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="actions">
                         <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Read Selected').'</span>',
                             [
-                                'title' => 'All selected emails will be approved.',
+                                'title' => 'All selected messages will be approved.',
                                 'id' => 'read-all',
                                 'class' => 'btn blue',
                                 'data-confirm' => 'Confirm the action',
@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ) ?>
                         <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Remove Selected').'</span>',
                             [
-                                'title' => 'All selected emails will be declined.',
+                                'title' => 'All selected messages will be declined.',
                                 'id' => 'delete-all',
                                 'class' => 'btn red',
                                 'data-confirm' => 'Confirm the action',
