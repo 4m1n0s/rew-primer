@@ -12,8 +12,3 @@
   margin:3px;
 }
 
-@media screen and (max-width: 540px) {
-  .btn-groups {
-    text-align: center;
-  }
-}

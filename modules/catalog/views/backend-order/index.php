@@ -28,16 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);?>
         <?= Html::endForm();?>
     </div>
-    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span class="hidden-480">' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>&nbsp;
+    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span>' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>&nbsp;
     <form action="<?= Url::toRoute('/catalog/backend-order/export-all') ?>"
           method="post"
-          id="order-export-form"
-          style="display: inline-block">
+          id="order-export-form">
         <?= Html :: hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []);?>
         <?= Html::hiddenInput('ids', null, ['id' => 'export-ids']) ?>
-        <button type="submit" class="btn yellow" style="padding: 4px 10px;
-        font-size: 13px;
-        line-height: 1.5;">
+        <button type="submit" class="btn yellow">
             <i class="fa fa-file-o"></i>&nbsp;Export Selected
         </button>
     </form>&nbsp;
