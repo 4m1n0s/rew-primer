@@ -10,6 +10,12 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'templateFile' => '@app/modules/core/views/templates/migration-mysql.php',
+        ],
+    ],
     'modules' => [
         'gii' => 'yii\gii\Module',
         'core' => [
