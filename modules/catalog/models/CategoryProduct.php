@@ -80,7 +80,7 @@ class CategoryProduct extends \yii\db\ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('loc_ref_product_category', ['category_id' => 'id']);
+        return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('{{%ref_product_category}}', ['category_id' => 'id']);
     }
 
     /**

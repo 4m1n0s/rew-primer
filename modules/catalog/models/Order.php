@@ -105,7 +105,7 @@ class Order extends \yii\db\ActiveRecord
      */
     public function getProducts()
     {
-        return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('loc_ref_product_order', ['order_id' => 'id']);
+        return $this->hasMany(Product::className(), ['id' => 'product_id'])->viaTable('{{%ref_product_order}}', ['order_id' => 'id']);
     }
 
     /**

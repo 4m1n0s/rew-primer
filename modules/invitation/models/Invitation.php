@@ -13,7 +13,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
- * This is the model class for table "loc_invitations".
+ * This is the model class for table "invitations".
  *
  * @property integer $id
  * @property string $email
