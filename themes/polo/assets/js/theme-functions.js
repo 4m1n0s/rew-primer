@@ -1792,7 +1792,7 @@ var INSPIRO = {};
         INSPIRO.loader(),
         INSPIRO.responsiveClasses(),
         INSPIRO.mainMenu(),
-        INSPIRO.stickyHeader(),
+        // INSPIRO.stickyHeader(),
         INSPIRO.logoStatus(),
         INSPIRO.verticalDotMenu(),
         INSPIRO.mouseScroll(),

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\Menu;
 ?>
 
-<header id="header" class="header-light <?php echo Yii::$app->user->isGuest ? '' : 'logged' ?>">
+<header id="header" class="header-light header-sticky <?php echo Yii::$app->user->isGuest ? '' : 'logged' ?>">
     <div id="header-wrap">
         <div class="container">
 
@@ -26,8 +26,6 @@ use yii\widgets\Menu;
                 </button>
             </div>
             <!--END: MOBILE MENU -->
-
-           <?php echo \app\modules\catalog\widgets\Cart::widget() ?>
 
             <!--NAVIGATION-->
             <div class="navigation-wrap pull-right">

@@ -13,10 +13,6 @@
         'submenuTemplate' => "<ul class=\"dropdown-menu\">{items}</ul>",
         'items' => [
             [
-                'label' => '<i class="fa fa-home"></i>',
-                'url' => Yii::$app->user->isGuest ? ['/site/index'] : ['/profile/offer/list']
-            ],
-            [
                 'label' => Yii::t('app', 'Sign Up'),
                 'url' => ['/user/account/sign-up'],
                 'active' => $module == 'user' && $controller == 'account' && ($action == 'invitation-request' || $action == 'sign-up'),
@@ -40,6 +36,10 @@
                         [
                             'label' => \Yii::t('app', 'Offer Walls'),
                             'url' => ['/profile/offer/list'],
+                        ],
+                        [
+                            'label' => \Yii::t('app', 'Cart') . ' (' . \app\modules\catalog\widgets\CartCount::widget() . ')',
+                            'url' => ['/catalog/cart/view'],
                         ],
                         [
                             'label' => \Yii::t('app', 'Stats'),
