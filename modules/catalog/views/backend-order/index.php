@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);?>
         <?= Html::endForm();?>
     </div>
-    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span>' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>&nbsp;
+    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span>' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
     <form action="<?= Url::toRoute('/catalog/backend-order/export-all') ?>"
           method="post"
           id="order-export-form">
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <button type="submit" class="btn yellow">
             <i class="fa fa-file-o"></i>&nbsp;Export Selected
         </button>
-    </form>&nbsp;
+    </form>
     <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Processing Selected').'</span>',
         [
             'title' => 'All selected orders will be marked as processing.',
@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'data-link' => Url::toRoute(['/catalog/backend-order/processing-all']),
 
         ]
-    ) ?>&nbsp;
+    ) ?>
     <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Mark as Canceled Selected').'</span>',
         [
             'title' => 'All selected orders will be marked as canceled.',
