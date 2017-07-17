@@ -35,6 +35,7 @@ var cart_module = function($) {
                     $shopCart.html(response);
                     updateShopingCart();
                     initTouchSpin();
+                    $(window).trigger('resize');
                 }
             });
         });
