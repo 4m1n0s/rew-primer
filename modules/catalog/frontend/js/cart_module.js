@@ -34,6 +34,7 @@ var cart_module = function($) {
                 success: function (response) {
                     $shopCart.html(response);
                     updateShopingCart();
+                    initTouchSpin();
                 }
             });
         });
@@ -53,14 +54,25 @@ var cart_module = function($) {
                 success: function (response) {
                     $shopCart.html(response);
                     updateShopingCart();
+                    initTouchSpin();
                 }
             });
+        });
+    };
+
+    var initTouchSpin = function () {
+        $('.qty').TouchSpin({
+            min: 1,
+            max: 50,
+            buttondown_class: 'btn btn-default btn-sm',
+            buttonup_class: 'btn btn-default btn-sm'
         });
     };
 
     return {
         init: function() {
             initHandlers();
+            initTouchSpin();
         }
     }
 }(jQuery);

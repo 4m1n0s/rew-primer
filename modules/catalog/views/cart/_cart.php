@@ -91,15 +91,3 @@ use yii\helpers\Html;
         <?php endif ?>
     </div>
 </div>
-
-<?php
-$js = <<< JS
-    $('.qty').TouchSpin({
-        min: 1,
-        max: 50,
-        buttondown_class: 'btn btn-default btn-sm',
-        buttonup_class: 'btn btn-default btn-sm'
-    });
-JS;
-$this->registerJs($js);
-?>
