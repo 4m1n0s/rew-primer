@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\modules\pages\models\Page;
 use app\modules\user\forms\RegistrationForm;
 use app\modules\user\models\Referral;
 use Yii;
@@ -60,12 +61,20 @@ class SiteController extends FrontController
 
     public function actionFaq()
     {
-        return $this->render('faq');
+        $page = Page::find()->template(Page::TEMPLATE_FAQ)->one() ?: new Page();
+
+        return $this->render('faq', [
+            'page' => $page
+        ]);
     }
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $page = Page::find()->template(Page::TEMPLATE_ABOUT)->one() ?: new Page();
+
+        return $this->render('about', [
+            'page' => $page
+        ]);
     }
 
     public function actionTerms()
