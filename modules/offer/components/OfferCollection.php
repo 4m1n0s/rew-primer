@@ -4,6 +4,8 @@ namespace app\modules\offer\components;
 
 use app\modules\offer\models\Offer;
 use yii\base\InvalidConfigException;
+use yii\di\Instance;
+use yii\helpers\Inflector;
 
 class OfferCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 {
@@ -11,6 +13,16 @@ class OfferCollection implements \IteratorAggregate, \ArrayAccess, \Countable
      * @var Offer[] offers in this collection
      */
     private $offers = [];
+
+    public function __construct(array $offers = [])
+    {
+        foreach ($offers as $offer) {
+            if (!Instance::ensure($offer, Offer::class)) {
+                throw new \InvalidArgumentException('All items should be of Offer model.');
+            }
+        }
+        $this->offers = $offers;
+    }
 
     public function getIterator()
     {
@@ -34,7 +46,7 @@ class OfferCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 
     public function offsetSet($offset, $value)
     {
-        if (!$value instanceof Offer) {
+        if (!Instance::ensure($value, Offer::class)) {
             throw new InvalidConfigException(__METHOD__ . ' method must accept ' . Offer::class . ' object only');
         }
 
@@ -45,5 +57,10 @@ class OfferCollection implements \IteratorAggregate, \ArrayAccess, \Countable
     public function count()
     {
         return count($this->offers);
+    }
+
+    public function getOfferById()
+    {
+        
     }
 }

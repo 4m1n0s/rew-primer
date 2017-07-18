@@ -6,6 +6,7 @@
 /* @var string $totalCount */
 
 use yii\helpers\Html;
+$this->title = 'Cart';
 ?>
 
 <section id="shop-cart">
