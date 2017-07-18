@@ -36,13 +36,19 @@ use yii\widgets\Menu;
             <!--END: NAVIGATION-->
 
             <?php if (!Yii::$app->user->isGuest): ?>
-                <div class="block-point">
+                <div class="block-header block-point">
                     <div title="<?php echo Yii::$app->user->identity->virtual_currency ?>">
                         <span><img src="/images/coins.png" alt="" ></span>
                         <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
                     </div>
                 </div>
             <?php endif ?>
+
+
+                <div class="block-header" style="display:none;">
+                    <span><img src="/images/1.png" alt="" ></span>
+                    <span>17</span>
+                </div>
 
         </div>
     </div>
