@@ -42,13 +42,13 @@ use yii\widgets\Menu;
                         <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
                     </div>
                 </div>
-            <?php endif ?>
-
-
                 <div class="block-header">
-                    <span class="vertical-align-top"><img src="/images/1.png" alt="" ></span>
-                    <span class="txt-bl-header">9000</span>
+                    <span class="vertical-align-top"><img src="/images/1.png" alt=""></span>
+                    <span class="txt-bl-header"><?php echo \app\modules\offer\widgets\TransactionCount::widget([
+                            'type' => \app\modules\offer\models\Transaction::TYPE_OFFER_INCOME
+                        ]) ?></span>
                 </div>
+            <?php endif ?>
 
         </div>
     </div>
