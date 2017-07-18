@@ -6,6 +6,9 @@ return [
     '/profile/offerwall/<id>' => '/profile/offer/single',
     '/profile/offerwall' => '/profile/offer/list',
     '/profile/account/info' => '/profile/index/account',
+    '/profile/order-history'=> '/catalog/order-history/list',
+    '/profile/completion-history'=> '/profile/stats/completion-history',
+    '/profile/stats' => '/profile/stats/index',
     '/profile/account/<action>' => '/profile/index/<action>',
 
     // Frontend

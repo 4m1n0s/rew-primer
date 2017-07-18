@@ -6,6 +6,7 @@ use app\modules\catalog\models\Product;
 use app\modules\core\components\controllers\FrontController;
 use app\modules\core\traits\AjaxResponseTrait;
 use yii\helpers\Json;
+use yii\web\NotFoundHttpException;
 
 class CartController extends FrontController
 {
@@ -13,6 +14,10 @@ class CartController extends FrontController
 
     public function actionView()
     {
+        if (\Yii::$app->getUser()->getIsGuest()) {
+            throw new NotFoundHttpException;
+        }
+
         return $this->render('view', [
             'positions' => \Yii::$app->cart->getPositions(),
             'totalCost' => \Yii::$app->cart->getCost(),
