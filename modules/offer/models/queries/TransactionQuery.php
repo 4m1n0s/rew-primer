@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\offer\models\queries;
+use yii\web\IdentityInterface;
 
 /**
  * This is the ActiveQuery class for [[\app\modules\offer\models\Transaction]].
@@ -40,5 +41,19 @@ class TransactionQuery extends \yii\db\ActiveQuery
     public function lead($externalID, $objectType)
     {
         return $this->andWhere(['object_type' => $objectType, 'external_transaction_id' => $externalID]);
+    }
+
+    /**
+     * @param IdentityInterface $user
+     * @return $this
+     */
+    public function user(IdentityInterface $user)
+    {
+        return $this->andWhere(['user_id' => $user->getId()]);
+    }
+
+    public function type($type)
+    {
+        return $this->andWhere(['type' => $type]);
     }
 }

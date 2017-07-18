@@ -46,6 +46,10 @@
                             'url' => ['/catalog/order-history/list'],
                         ],
                         [
+                            'label' => \Yii::t('app', 'Completion History'),
+                            'url' => ['/profile/stats/completion-history'],
+                        ],
+                        [
                             'label' => \Yii::t('app', 'Stats'),
                             'url' => ['/profile/stats/index'],
                         ],

@@ -2,6 +2,7 @@
 
 namespace app\modules\catalog\models\search;
 
+use app\modules\user\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -12,8 +13,6 @@ use app\modules\catalog\models\Order;
  */
 class OrderSearch extends Order
 {
-
-    public $userName;
     public $date_from;
     public $date_to;
 
@@ -25,7 +24,7 @@ class OrderSearch extends Order
         return [
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
             ['cost', 'number'],
-            [['note', 'userName'], 'safe'],
+            [['note'], 'safe'],
             [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
@@ -59,7 +58,9 @@ class OrderSearch extends Order
             ]
         ]);
 
-        $query->joinWith(['user']);
+        $query->joinWith(['user' => function($query) {
+            return $query->andWhere([User::tableName() . '.id' => Yii::$app->getUser()->getId()]);
+        }]);
 
         $dataProvider->setSort([
             'attributes' => [
@@ -86,10 +87,6 @@ class OrderSearch extends Order
                 'cost' => [
                     'asc' => ['cost' => SORT_ASC],
                     'desc' => ['cost' => SORT_DESC],
-                ],
-                'userName' => [
-                    'asc' => ['{{%users}}.username' => SORT_ASC],
-                    'desc' => ['{{%users}}.username' => SORT_DESC],
                 ],
             ],
             'defaultOrder' => ['create_date' => SORT_DESC]
@@ -119,10 +116,6 @@ class OrderSearch extends Order
             ->andFilterWhere(['=', 'o.status', $this->status])
             ->andFilterWhere(['>=', 'o.create_date', $this->date_from ? strtotime($this->date_from) : null])
             ->andFilterWhere(['<=', 'o.create_date', $this->date_to ? strtotime($this->date_to) : null]);
-
-        $query->joinWith(['user' => function ($q) {
-            $q->where('{{%users}}.username LIKE "%' . $this->userName . '%"');
-        }]);
 
         return $dataProvider;
     }

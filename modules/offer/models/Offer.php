@@ -17,6 +17,7 @@ use yii\web\UploadedFile;
  * @property integer $active
  * @property string $name
  * @property string $img
+ * @property string $label
  */
 class Offer extends \yii\db\ActiveRecord
 {
@@ -262,4 +263,5 @@ class Offer extends \yii\db\ActiveRecord
 
         return $list[$osID];
     }
+
 }
