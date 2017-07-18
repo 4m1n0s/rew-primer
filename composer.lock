@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7595680607f7f0202799658758512f8",
+    "hash": "bf8b952373a1f43d04cac14afa0fa870",
+    "content-hash": "9b1fe518a94bba111339e0c07b701368",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -1142,6 +1143,48 @@
                 "yii"
             ],
             "time": "2015-09-08T11:18:44+00:00"
+        },
+        {
+            "name": "romi45/yii2-seo-behavior",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romi45/yii2-seo-behavior.git",
+                "reference": "d37af55bc2244865dac003ca6366a88f5a9091d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romi45/yii2-seo-behavior/zipball/d37af55bc2244865dac003ca6366a88f5a9091d1",
+                "reference": "d37af55bc2244865dac003ca6366a88f5a9091d1",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "romi45\\seoContent\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Agilov",
+                    "email": "agilovr@gmail.com"
+                }
+            ],
+            "description": "Seo behavior for Yii2 models and meta tags helper",
+            "keywords": [
+                "Behavior",
+                "romi45",
+                "seo",
+                "yii2"
+            ],
+            "time": "2016-02-19 14:11:46"
         },
         {
             "name": "swiftmailer/swiftmailer",

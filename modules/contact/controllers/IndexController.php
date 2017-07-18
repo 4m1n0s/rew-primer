@@ -4,6 +4,7 @@ namespace app\modules\contact\controllers;
 
 use app\modules\contact\models\Contact;
 use app\modules\core\components\controllers\FrontController;
+use app\modules\pages\models\Page;
 
 class IndexController extends FrontController
 {
@@ -11,6 +12,7 @@ class IndexController extends FrontController
     {
         $model = new Contact;
         $model->setScenario(Contact::SCENARIO_MAIN);
+        $page = Page::find()->template(Page::TEMPLATE_CONTACT)->one() ?: new Page();
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             if ($model->save(false)) {
@@ -21,7 +23,8 @@ class IndexController extends FrontController
         }
         
         return $this->render('contact-form', [
-            'model' => $model
+            'model' => $model,
+            'page' => $page
         ]);
     }
 }

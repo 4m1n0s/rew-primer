@@ -2,6 +2,11 @@
   .group-process { display: flex; }
 }
 
+.parallax.fullscreen {
+  max-height: 630px;
+  min-height: 540px;
+}
+
 .block-point {
   float: right;
   margin-top: 27px;

@@ -28,4 +28,7 @@ return [
     'catalog' => [
         'class' => 'app\modules\catalog\Module',
     ],
+    'pages' => [
+        'class' => 'app\modules\pages\Module',
+    ],
 ];

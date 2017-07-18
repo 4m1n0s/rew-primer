@@ -101,16 +101,6 @@ $this->params['breadcrumbs'] = [
                                 ],
                             ],
                             'email:email',
-//                            [
-//                                'attribute' => 'create_date',
-//                                'headerOptions' => [
-//                                    'width' => '150',
-//                                ],
-////                                'filter' => app\helpers\FilterHelper::dateRange($searchModel, 'dateFrom', 'dateTo'),
-//                                'value' => function($model){
-//                                    return Yii::$app->formatter->asDatetime($model->create_date);;
-//                                }
-//                            ],
                             [
                                 'attribute' => 'status',
                                 'filter' => $statusList,
@@ -134,20 +124,7 @@ $this->params['breadcrumbs'] = [
                                     'width' => '200',
                                 ],
                             ],
-                            [
-                                'attribute' => 'balance',
-                                'value' => function($model){
-                                    if(isset($model->metaData->balance)){
-                                        return Yii::t('user/admin', '{balance}pt.', [
-                                            'balance' => number_format($model->metaData->balance, 2)
-                                        ]);
-                                    }
-                                    
-                                    return Yii::t('user/admin', '{balance}pt.', [
-                                        'balance' => number_format(0, 2)
-                                    ]);
-                                }
-                            ],
+                            'virtual_currency',
                             [
                                 'attribute' => 'note',
                                 'headerOptions' => [

@@ -1,13 +1,18 @@
 <?php
 /* @var \app\modules\contact\models\Contact $model */
+/* @var \app\modules\pages\models\Page $page */
+
+use yii\helpers\Html;
+
+\romi45\seoContent\components\SeoContentHelper::registerAll($page);
 ?>
 
 <!-- PAGE TITLE -->
 <section id="page-title" class="page-title-parallax page-title-center text-dark" style="background-image:url(/images/page-title-parallax.jpg);">
     <div class="container">
         <div class="page-title col-md-8">
-            <h1>Contact Us</h1>
-            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            <h1><?php echo Html::encode($page->title) ?></h1>
+            <span><?php echo Html::encode($page->description) ?></span>
         </div>
     </div>
 </section>
@@ -17,8 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h3 class="text-uppercase">Get In Touch</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse condimentum porttitor cursus. Duis nec nulla turpis. Nulla lacinia laoreet odio, non lacinia nisl malesuada vel. Aenean malesuada fermentum bibendum.</p>
+                <?php echo $page->content ?>
                 <div class="m-t-30">
                     <?php $form = \yii\widgets\ActiveForm::begin([
                         'id' => 'contact-form'

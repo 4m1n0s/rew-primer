@@ -13,7 +13,13 @@ return [
     'controllerMap' => [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',
-            'templateFile' => '@app/modules/core/views/templates/migration-mysql.php',
+            'generatorTemplateFiles' => [
+                'create_table' => '@app/modules/core/views/templates/migration-create-mysql.php',
+                'drop_table' => '@yii/views/dropTableMigration.php',
+                'add_column' => '@yii/views/addColumnMigration.php',
+                'drop_column' => '@yii/views/dropColumnMigration.php',
+                'create_junction' => '@yii/views/createTableMigration.php',
+            ]
         ],
     ],
     'modules' => [

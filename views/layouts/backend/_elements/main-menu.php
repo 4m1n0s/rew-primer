@@ -130,6 +130,12 @@
                     ],
 
                     [
+                        'label' => '<i class="fa fa-file-text-o"></i> <span class="title"> ' . Yii::t('app', 'Pages') . '</span>',
+                        'url' => ['/pages/backend-page/index'],
+                        'active' => $module == 'pages' && $controller == 'backend-page'
+                    ],
+
+                    [
                         'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span></span><span class="arrow"></span>',
                         'url' => 'javascript:;',
                         'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
