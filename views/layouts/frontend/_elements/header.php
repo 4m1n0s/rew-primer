@@ -36,7 +36,7 @@ use yii\widgets\Menu;
             <!--END: NAVIGATION-->
 
             <?php if (!Yii::$app->user->isGuest): ?>
-                <div class="block-header block-point">
+                <div class="block-point">
                     <div title="<?php echo Yii::$app->user->identity->virtual_currency ?>">
                         <span><img src="/images/coins.png" alt="" ></span>
                         <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
@@ -45,8 +45,8 @@ use yii\widgets\Menu;
             <?php endif ?>
 
 
-                <div class="block-header" style="display:none;">
-                    <span><img src="/images/1.png" alt="" ></span>
+                <div class="block-header">
+                    <span class="vertical-align-top"><img src="/images/1.png" alt="" ></span>
                     <span class="txt-bl-header">9000</span>
                 </div>
 
