@@ -41,6 +41,18 @@
 
 }
 
+.block-header {
+  float: right;
+  margin-top: 15px;
+  font-size: 16px;
+  margin-right: 10px;
+
+}
+
+.txt-bl-header {
+  line-height: 29px;  
+}
+
 
 .block-process {
      padding-left: 15px;
@@ -672,3 +684,6 @@
 }
 
 /* ANDdatepicker */
+
+
+

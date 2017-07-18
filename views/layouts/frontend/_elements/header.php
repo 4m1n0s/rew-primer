@@ -47,7 +47,7 @@ use yii\widgets\Menu;
 
                 <div class="block-header" style="display:none;">
                     <span><img src="/images/1.png" alt="" ></span>
-                    <span>17</span>
+                    <span class="txt-bl-header">9000</span>
                 </div>
 
         </div>
