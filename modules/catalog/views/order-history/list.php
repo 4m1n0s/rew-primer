@@ -10,7 +10,7 @@ $this->title = 'Order history';
 ?>
 
 <div class="order-history-list">
-        <?= GridView::widget([
+    <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'options' => ['class' => 'table-responsive'],
@@ -20,30 +20,6 @@ $this->title = 'Order history';
             ],
             'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
             'columns' => [
-                [
-                    'filter' =>
-                        DatePicker::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'date_from',
-                        'attribute2' => 'date_to',
-                        'type' => DatePicker::TYPE_RANGE,
-                        'separator' => 'to',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'autoclose' => true
-                        ]
-                    ]),
-                    'attribute' => 'create_date',
-                    'format' => 'datetime',
-                ],
-                'userName',
-                [
-                    'attribute' => 'status',
-                    'filter' => \app\modules\catalog\models\Order::getStatusList(),
-                    'value' => function($model) {
-                        return $model->getStatus();
-                    }
-                ],
                 [
                     'label' => 'Products',
                     'format' => 'raw',
@@ -57,7 +33,38 @@ $this->title = 'Order history';
                         return $output .= Html::endTag('ul');
                     }
                 ],
-                'cost'
+                [
+                    'attribute' => 'status',
+                    'filter' => \app\modules\catalog\models\Order::getStatusList(),
+                    'value' => function($model) {
+                        return $model->getStatus();
+                    },
+                    'headerOptions' => [
+                        'style' => 'min-width: 110px;'
+                    ]
+                ],
+                [
+                    'attribute' => 'cost',
+                    'headerOptions' => [
+                        'style' => 'min-width: 70px; width: 70px'
+                    ]
+                ],
+                [
+                    'filter' => DatePicker::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'date_from',
+                        'attribute2' => 'date_to',
+                        'type' => DatePicker::TYPE_RANGE,
+                        'separator' => 'to',
+                        'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                            'autoclose' => true
+                        ]
+                    ]),
+                    'headerOptions' => ['style' => 'min-width: 250px;'],
+                    'attribute' => 'create_date',
+                    'format' => 'datetime',
+                ],
             ],
         ]); ?>
 </div>
