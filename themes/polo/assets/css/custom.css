@@ -640,3 +640,20 @@
 }
 
 /* ANDfooter sticky */
+
+.product-list ul{
+    list-style: none;
+    padding-left:0;
+}
+
+.order-history-list .form-control {
+    padding:5px;
+}
+
+.table-header {
+    background: #1c9355;
+}
+
+.table-header a, .table-header{
+    color: #fff;
+}

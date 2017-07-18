@@ -42,6 +42,10 @@
                             'url' => ['/catalog/cart/view'],
                         ],
                         [
+                            'label' => \Yii::t('app', 'Orders History'),
+                            'url' => ['/catalog/order-history/list'],
+                        ],
+                        [
                             'label' => \Yii::t('app', 'Stats'),
                             'url' => ['/profile/stats/index'],
                         ],

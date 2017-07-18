@@ -12,6 +12,11 @@ use app\modules\catalog\models\Order;
  */
 class OrderSearch extends Order
 {
+
+    public $userName;
+    public $date_from;
+    public $date_to;
+
     /**
      * @inheritdoc
      */
@@ -20,7 +25,8 @@ class OrderSearch extends Order
         return [
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
             ['cost', 'number'],
-            [['note'], 'safe'],
+            [['note', 'userName'], 'safe'],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
 
@@ -42,7 +48,7 @@ class OrderSearch extends Order
      */
     public function search($params)
     {
-        $query = Order::find();
+        $query = Order::find()->alias('o');
 
         // add conditions that should always apply here
 
@@ -51,6 +57,42 @@ class OrderSearch extends Order
             'pagination' => [
                 'defaultPageSize' => 100
             ]
+        ]);
+
+        $query->joinWith(['user']);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'id' => [
+                    'asc' => ['id' => SORT_ASC],
+                    'desc' => ['id' => SORT_DESC],
+                ],
+                'user_id' => [
+                    'asc' => ['user_id' => SORT_ASC],
+                    'desc' => ['user_id' => SORT_DESC],
+                ],
+                'status' => [
+                    'asc' => ['status' => SORT_ASC],
+                    'desc' => ['status' => SORT_DESC],
+                ],
+                'closed_date' => [
+                    'asc' => ['closed_date' => SORT_ASC],
+                    'desc' => ['closed_date' => SORT_DESC],
+                ],
+                'create_date' => [
+                    'asc' => ['create_date' => SORT_ASC],
+                    'desc' => ['create_date' => SORT_DESC],
+                ],
+                'cost' => [
+                    'asc' => ['cost' => SORT_ASC],
+                    'desc' => ['cost' => SORT_DESC],
+                ],
+                'userName' => [
+                    'asc' => ['{{%users}}.username' => SORT_ASC],
+                    'desc' => ['{{%users}}.username' => SORT_DESC],
+                ],
+            ],
+            'defaultOrder' => ['create_date' => SORT_DESC]
         ]);
 
         $this->load($params);
@@ -66,14 +108,21 @@ class OrderSearch extends Order
             'id' => $this->id,
             'user_id' => $this->user_id,
             'cost' => $this->cost,
-            'status' => $this->status,
             'closed_user_id' => $this->closed_user_id,
             'closed_date' => $this->closed_date,
             'create_date' => $this->create_date,
             'update_date' => $this->update_date,
         ]);
 
-        $query->andFilterWhere(['like', 'note', $this->note]);
+        $query
+            ->andFilterWhere(['like', 'note', $this->note])
+            ->andFilterWhere(['=', 'o.status', $this->status])
+            ->andFilterWhere(['>=', 'o.create_date', $this->date_from ? strtotime($this->date_from) : null])
+            ->andFilterWhere(['<=', 'o.create_date', $this->date_to ? strtotime($this->date_to) : null]);
+
+        $query->joinWith(['user' => function ($q) {
+            $q->where('{{%users}}.username LIKE "%' . $this->userName . '%"');
+        }]);
 
         return $dataProvider;
     }

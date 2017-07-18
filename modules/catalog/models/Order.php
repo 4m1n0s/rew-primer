@@ -81,6 +81,7 @@ class Order extends \yii\db\ActiveRecord
             'closed_date' => Yii::t('app', 'Closed Date'),
             'create_date' => Yii::t('app', 'Create Date'),
             'update_date' => Yii::t('app', 'Update Date'),
+            'userName' => Yii::t('app', 'User Name')
         ];
     }
 
@@ -90,6 +91,11 @@ class Order extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getUserName()
+    {
+        return $this->user->name;
     }
 
     /**
