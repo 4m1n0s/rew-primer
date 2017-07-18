@@ -60,3 +60,13 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 </div>
+
+<?php
+$js = <<<'JS'
+var allowedTags = ['a', 'i', 'span'];
+for (var i in allowedTags) {
+    CKEDITOR.dtd.$removeEmpty[allowedTags[i]] = 0;
+}
+JS;
+$this->registerJs($js);
+?>
