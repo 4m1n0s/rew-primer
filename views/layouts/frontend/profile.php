@@ -10,16 +10,7 @@ FrontAsset::register($this);
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
-
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="robots" content="noindex,nofolow">
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-        <?= Html::csrfMetaTags() ?>
-    </head>
-
+    <?= $this->render('_elements/head'); ?>
     <body class="wide">
     <?php $this->beginBody(); ?>
     <?= $this->render('_elements/header'); ?>
