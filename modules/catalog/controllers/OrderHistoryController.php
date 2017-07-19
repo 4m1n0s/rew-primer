@@ -10,7 +10,9 @@ class OrderHistoryController extends ProfileController
     public function actionList()
     {
         $searchModel = new OrderSearch();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $params = \Yii::$app->request->queryParams;
+        $params['OrderSearch']['user_id'] = \Yii::$app->user->getId();
+        $dataProvider = $searchModel->search($params);
 
         return $this->render('list', [
             'searchModel' => $searchModel,

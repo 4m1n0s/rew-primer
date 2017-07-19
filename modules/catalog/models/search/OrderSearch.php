@@ -13,8 +13,11 @@ use app\modules\catalog\models\Order;
  */
 class OrderSearch extends Order
 {
-    public $date_from;
-    public $date_to;
+    public $cr_date_from;
+    public $cr_date_to;
+
+    public $cl_date_from;
+    public $cl_date_to;
 
     /**
      * @inheritdoc
@@ -25,7 +28,7 @@ class OrderSearch extends Order
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
             ['cost', 'number'],
             [['note'], 'safe'],
-            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
+            [['cr_date_from', 'cr_date_to', 'cl_date_from', 'cl_date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
 
@@ -58,9 +61,7 @@ class OrderSearch extends Order
             ]
         ]);
 
-        $query->joinWith(['user' => function($query) {
-            return $query->andWhere([User::tableName() . '.id' => Yii::$app->getUser()->getId()]);
-        }]);
+        $query->joinWith(['user']);
 
         $dataProvider->setSort([
             'attributes' => [
@@ -102,7 +103,6 @@ class OrderSearch extends Order
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
             'user_id' => $this->user_id,
             'cost' => $this->cost,
             'closed_user_id' => $this->closed_user_id,
@@ -114,8 +114,11 @@ class OrderSearch extends Order
         $query
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['=', 'o.status', $this->status])
-            ->andFilterWhere(['>=', 'o.create_date', $this->date_from ? strtotime($this->date_from) : null])
-            ->andFilterWhere(['<=', 'o.create_date', $this->date_to ? strtotime($this->date_to) : null]);
+            ->andFilterWhere(['=', 'o.id', $this->id])
+            ->andFilterWhere(['>=', 'o.create_date', $this->cl_date_from ? strtotime($this->cl_date_from) : null])
+            ->andFilterWhere(['<=', 'o.create_date', $this->cl_date_to ? strtotime($this->cl_date_to) : null])
+            ->andFilterWhere(['>=', 'o.create_date', $this->cr_date_from ? strtotime($this->cr_date_from) : null])
+            ->andFilterWhere(['<=', 'o.create_date', $this->cr_date_to ? strtotime($this->cr_date_to) : null]);
 
         return $dataProvider;
     }

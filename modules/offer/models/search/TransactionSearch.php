@@ -9,6 +9,9 @@ use yii\web\IdentityInterface;
 
 class TransactionSearch extends Transaction
 {
+    public $date_from;
+    public $date_to;
+
     /**
      * @inheritdoc
      */
@@ -17,6 +20,7 @@ class TransactionSearch extends Transaction
         return [
             [['amount'], 'number'],
             [['name'], 'string'],
+            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
 
@@ -60,8 +64,11 @@ class TransactionSearch extends Transaction
             'amount' => $this->amount,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
-
+        $query
+            ->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from) : null])
+            ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to) : null]);
+//echo $query->createCommand()->getRawSql();exit;
         return $dataProvider;
     }
 }
