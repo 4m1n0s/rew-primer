@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\modules\catalog\models\search\OrderSearch */
@@ -92,9 +93,38 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $model->getStatus(true);
                     }
                 ],
-                'create_date:date',
-                'closed_date:date',
-
+                [
+                    'filter' => DatePicker::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'cr_date_from',
+                        'attribute2' => 'cr_date_to',
+                        'type' => DatePicker::TYPE_RANGE,
+                        'separator' => 'to',
+                        'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                            'autoclose' => true
+                        ]
+                    ]),
+                    'headerOptions' => ['style' => 'min-width: 250px;'],
+                    'attribute' => 'create_date',
+                    'format' => 'datetime',
+                ],
+                [
+                    'filter' => DatePicker::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'cl_date_from',
+                        'attribute2' => 'cl_date_to',
+                        'type' => DatePicker::TYPE_RANGE,
+                        'separator' => 'to',
+                        'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                            'autoclose' => true
+                        ]
+                    ]),
+                    'headerOptions' => ['style' => 'min-width: 250px;'],
+                    'attribute' => 'closed_date',
+                    'format' => 'datetime',
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'header' => Yii::t('user/admin', 'Actions'),
