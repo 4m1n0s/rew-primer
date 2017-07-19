@@ -27,19 +27,38 @@
   display: inline-block;
 }
 
-.header-sticky .block-point {
+.header-sticky .block-point, .block-header {
   margin-top: 12px;
+}
+
+.vertical-align-top {
+  vertical-align: top;
+}
+
+.block-header {
+  float: right;
+  font-size: 16px;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.txt-bl-header {
+  line-height: 30px;  
 }
 
 @media only screen and (max-width: 991px) {
     .block-point {
-        position: absolute;
-        right: 20px;
         margin-top: 17px;
         padding: 3px 10px;
+        margin-right: 0px;
+  }
+  .block-header {
+        margin-top: 12px;
   }
 
 }
+
+
 
 
 .block-process {
@@ -672,3 +691,6 @@
 }
 
 /* ANDdatepicker */
+
+
+

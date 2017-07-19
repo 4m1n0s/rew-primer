@@ -10,13 +10,7 @@ BackendAsset::register($this);
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
-    <head>
-        <meta charset="<?= Yii::$app->charset ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
+<?= $this->render('_elements/head'); ?>
     <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
         <?php $this->beginBody() ?>
         <!-- BEGIN HEADER -->

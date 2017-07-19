@@ -3,7 +3,7 @@
 /* @var string $offerFrameUrl */
 ?>
 
-<div id="offer-page-wrap"
+<div id="offer-page-wrap" style="height: 1000px;"
      data-link="<?php echo \yii\helpers\Url::toRoute(['/profile/offer/single', 'id' => $offerID]) ?>"
      data-pk="<?php echo $offerID ?>">
     <section>
