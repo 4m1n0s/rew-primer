@@ -36,24 +36,25 @@ use yii\widgets\Menu;
             <!--END: NAVIGATION-->
 
             <?php if (!Yii::$app->user->isGuest): ?>
-                <div class="block-point">
-                    <a href="<?php echo Url::toRoute(['/profile/stats/index']) ?>">
-                        <div title="<?php echo Yii::$app->user->identity->virtual_currency ?>">
-                            <span><img src="/images/coins.png" alt="" ></span>
-                            <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
-                        </div>
-                    </a>
-                </div>
-                <div class="block-header">
-                    <a href="<?php echo Url::toRoute(['/profile/stats/completion-history']) ?>">
-                        <span class="vertical-align-top"><img src="/images/1.png" alt=""></span>
-                        <span class="txt-bl-header"><?php echo \app\modules\core\widgets\TransactionCount::widget([
-                            'type' => \app\modules\core\models\Transaction::TYPE_OFFER_INCOME
-                        ]) ?></span>
-                    </a>
+                <div class="mob-position">
+                    <div class="block-point">
+                        <a href="<?php echo Url::toRoute(['/profile/stats/index']) ?>">
+                            <div title="<?php echo Yii::$app->user->identity->virtual_currency ?>">
+                                <span><img src="/images/coins.png" alt="" ></span>
+                                <?php echo \yii\bootstrap\Html::tag('span', Yii::$app->user->identity->getVC()) ?>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="block-header">
+                        <a href="<?php echo Url::toRoute(['/profile/stats/completion-history']) ?>">
+                            <span class="vertical-align-top"><img src="/images/1.png" alt=""></span>
+                            <span class="txt-bl-header"><?php echo \app\modules\core\widgets\TransactionCount::widget([
+                                'type' => \app\modules\core\models\Transaction::TYPE_OFFER_INCOME
+                            ]) ?></span>
+                        </a>
+                    </div>
                 </div>
             <?php endif ?>
-
         </div>
     </div>
 </header>

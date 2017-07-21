@@ -46,6 +46,7 @@
   line-height: 30px;  
 }
 
+
 @media only screen and (max-width: 991px) {
     .block-point {
         margin-top: 17px;
@@ -54,6 +55,11 @@
   }
   .block-header {
         margin-top: 12px;
+  }
+
+  .mob-position {
+    position: absolute;
+    right: 60px;
   }
 
 }
