@@ -6,6 +6,7 @@ use app\modules\core\components\IPNormalizer;
 use app\modules\core\models\GeoCountry;
 use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Offer;
+use yii\helpers\ArrayHelper;
 
 class CriteriaGeoLocation implements CriteriaInterface
 {
@@ -23,7 +24,7 @@ class CriteriaGeoLocation implements CriteriaInterface
 
         /* @var Offer $offer */
         foreach ($iter as $offer) {
-            if (!in_array($country['id'], $offer->targetingCountryList)) {
+            if (!in_array($country['id'], ArrayHelper::getColumn($offer->geoCountries, 'id'))) {
                 $collection->offsetUnset($iter->key());
             }
         }

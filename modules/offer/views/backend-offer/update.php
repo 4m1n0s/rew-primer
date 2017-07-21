@@ -5,6 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\modules\offer\models\Offer */
 /* @var $categoryList array */
+/* @var $countriesList array */
+/* @var $deviceTypeList array */
+/* @var $deviceOsList array */
 
 $this->title = Yii::t('app', 'Update {modelClass}: ', [
     'modelClass' => 'Offer',
@@ -26,7 +29,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <div class="portlet-body form">
         <?= $this->render('_form', [
             'model' => $model,
-            'categoryList' => $categoryList
+            'categoryList' => $categoryList,
+            'countriesList' => $countriesList,
+            'deviceTypeList' => $deviceTypeList,
+            'deviceOsList' => $deviceOsList
         ]) ?>
     </div>
 </div>

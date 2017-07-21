@@ -18,6 +18,13 @@ use yii\web\UploadedFile;
  * @property string $name
  * @property string $img
  * @property string $label
+
+ * @property GeoCountry[] $geoCountries
+ * @property CategoryOffer[] $categoryOffers
+ * @property RefOfferCountry[] $offerCountries
+ * @property OfferDeviceType[] $deviceTypes
+ * @property OfferDeviceOs[] $deviceOs
+ * @property Category[] $categories
  */
 class Offer extends \yii\db\ActiveRecord
 {
@@ -37,37 +44,6 @@ class Offer extends \yii\db\ActiveRecord
     const SAYSOPUBS = 23;
     const DRYVERLESSADS = 24;
 
-    const DEVICE_TYPE_DESKTOP = 1;
-    const DEVICE_TYPE_MOBILE = 2;
-    const DEVICE_TYPE_TABLET = 3;
-
-    const OS_OTHER = 1;
-    const OS_IOS = 2;
-    const OS_ANDROID = 3;
-    const OS_WINDOWS = 4;
-    const OS_BLACKBERRY = 5;
-
-    const STORAGE_KEY_COUNTRY_PREFIX = 'offer.targeting.country.';
-    const STORAGE_KEY_DEVICE_TYPE_PREFIX = 'offer.targeting.devicetype.';
-    const STORAGE_KEY_MOBILE_PREFIX = 'offer.targeting.mobile.';
-    const STORAGE_KEY_TABLET_PREFIX = 'offer.targeting.tablet.';
-
-    /**
-     * @var array
-     */
-    public $targetingCountryList = [];
-    /**
-     * @var array
-     */
-    public $targetingDeviceTypeList = [];
-    /**
-     * @var array
-     */
-    public $targetingDeviceMobileOSList = [];
-    /**
-     * @var array
-     */
-    public $targetingDeviceTabletOSList = [];
     /**
      * @var UploadedFile
      */
@@ -76,6 +52,19 @@ class Offer extends \yii\db\ActiveRecord
      * @var array
      */
     public $categoriesBuff;
+    /**
+     * @var array
+     */
+    public $newCountries;
+    /**
+     * @var array
+     */
+    public $newDeviceOs;
+    /**
+     * @var array
+     */
+    public $newDeviceTypes;
+
 
     /**
      * @inheritdoc
@@ -138,85 +127,31 @@ class Offer extends \yii\db\ActiveRecord
         }
     }
 
-    /**
-     * @throws InvalidConfigException
-     */
-    public function initTargeting()
-    {
-        $countries = Json::decode(\Yii::$app->keyStorage->get(static::getStorageKeyTargetingCountry($this->id)));
-        $deviceTypes = Json::decode(\Yii::$app->keyStorage->get(static::getStorageKeyTargetingDeviceType($this->id)));
-        $deviceMobile = Json::decode(\Yii::$app->keyStorage->get(static::getStorageKeyTargetingMobile($this->id)));
-        $deviceTablet = Json::decode(\Yii::$app->keyStorage->get(static::getStorageKeyTargetingTablet($this->id)));
-
-        $this->targetingCountryList = $countries ? $countries : [];
-        $this->targetingDeviceTypeList = $deviceTypes ? $deviceTypes : [];
-        $this->targetingDeviceMobileOSList = $deviceMobile ? $deviceMobile : [];
-        $this->targetingDeviceTabletOSList = $deviceTablet ? $deviceTablet : [];
-    }
-
-    /**
-     * @param $offerID
-     * @return string
-     * @throws InvalidConfigException
-     */
-    public static function getStorageKeyTargetingCountry($offerID)
-    {
-        return static::STORAGE_KEY_COUNTRY_PREFIX . $offerID;
-    }
-
-    /**
-     * @param $offerID
-     * @return string
-     */
-    public static function getStorageKeyTargetingDeviceType($offerID)
-    {
-        return static::STORAGE_KEY_DEVICE_TYPE_PREFIX . $offerID;
-    }
-
-    /**
-     * @param $offerID
-     * @return string
-     */
-    public static function getStorageKeyTargetingMobile($offerID)
-    {
-        return static::STORAGE_KEY_MOBILE_PREFIX . $offerID;
-    }
-
-    /**
-     * @param $offerID
-     * @return string
-     */
-    public static function getStorageKeyTargetingTablet($offerID)
-    {
-        return static::STORAGE_KEY_TABLET_PREFIX. $offerID;
-    }
-
-    /**
-     * @param $offerID
-     * @return array
-     * @throws InvalidConfigException
-     */
-    public static function getSelectedTargetingCountryList($offerID)
-    {
-        $value = \Yii::$app->keyStorage->get(static::STORAGE_KEY_COUNTRY_PREFIX . $offerID);
-
-        if (empty($value)) {
-            return [];
-        }
-
-        $formattedValue = Json::decode($value);     // TODO: Format
-
-        return ArrayHelper::map(
-            GeoCountry::find()->where(['in', 'id', $formattedValue])->asArray()->all(),
-            'id',
-            'country_name'
-        );
-    }
-
     public function getCategories()
     {
         return $this->hasMany(Category::class, ['id' => 'category_id'])
             ->via('categoryOffers');
+    }
+
+    public function getOfferCountries()
+    {
+        return $this->hasMany(RefOfferCountry::class, ['offer_id' => 'id']);
+    }
+
+    public function getGeoCountries()
+    {
+        return $this->hasMany(GeoCountry::class, ['id' => 'country_id'])
+            ->via('offerCountries');
+    }
+
+    public function getDeviceOs()
+    {
+        return $this->hasMany(OfferDeviceOs::class, ['offer_id' => 'id']);
+    }
+
+    public function getDeviceTypes()
+    {
+        return $this->hasMany(OfferDeviceType::class, ['offer_id' => 'id']);
     }
 
     public function getCategoryOffers()
@@ -233,35 +168,4 @@ class Offer extends \yii\db\ActiveRecord
 
         return join(' ', $list);
     }
-
-    public static function getOSList()
-    {
-        return [
-            static::OS_OTHER => 'Other',
-            static::OS_IOS => 'IOS',
-            static::OS_ANDROID => 'Android',
-            static::OS_WINDOWS => 'Windows',
-            static::OS_BLACKBERRY => 'BlackBerry',
-        ];
-    }
-
-    public static function getDeviceTypeList()
-    {
-        return [
-            static::DEVICE_TYPE_DESKTOP => 'Desktop',
-            static::DEVICE_TYPE_MOBILE => 'Mobile',
-            static::DEVICE_TYPE_TABLET => 'Tablet',
-        ];
-    }
-
-    public static function getOSName($osID)
-    {
-        $list = static::getOSList();
-        if (!in_array($osID, $list)) {
-            throw new InvalidConfigException('Invalid targeting OS ID (' . $osID . ')');
-        }
-
-        return $list[$osID];
-    }
-
 }

@@ -3,8 +3,12 @@
 namespace app\modules\offer\controllers;
 
 use app\modules\core\components\controllers\BackController;
+use app\modules\core\models\GeoCountry;
 use app\modules\offer\models\Category;
 use app\modules\offer\models\CategoryOffer;
+use app\modules\offer\models\OfferDeviceOs;
+use app\modules\offer\models\OfferDeviceType;
+use app\modules\offer\models\RefOfferCountry;
 use Yii;
 use app\modules\offer\models\Offer;
 use app\modules\offer\models\search\OfferSearch;
@@ -40,19 +44,39 @@ class BackendOfferController extends BackController
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
-        $categoryList = Category::getList();
+        $model          = $this->findModel($id);
+        $categoryList   = Category::getList();
+        $countriesList  = GeoCountry::getList();
+        $deviceOsList   = OfferDeviceOs::getOSList();
+        $deviceTypeList = OfferDeviceType::getDeviceTypeList();
+
         $model->categoriesBuff = ArrayHelper::getColumn($model->categories, 'id');
+        $model->newCountries = ArrayHelper::getColumn($model->geoCountries, 'id');
+        $model->newDeviceTypes = ArrayHelper::getColumn($model->deviceTypes, 'type');
+        $model->newDeviceOs = ArrayHelper::getColumn($model->deviceOs, 'os');
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $model->uploadImage();
             $model->categoriesBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'Offer.categoriesBuff');
-            $transaction = Yii::$app->db->beginTransaction();
+            $model->newCountries = ArrayHelper::getValue(Yii::$app->request->post(), 'Offer.newCountries');
+            $model->newDeviceTypes = ArrayHelper::getValue(Yii::$app->request->post(), 'Offer.newDeviceTypes');
+            $model->newDeviceOs = ArrayHelper::getValue(Yii::$app->request->post(), 'Offer.newDeviceOs');
 
+            $transaction = Yii::$app->db->beginTransaction();
             try {
                 foreach ($model->categoryOffers as $categoryOffer) {
                     $categoryOffer->delete();
                 }
+                foreach ($model->offerCountries as $relCountries) {
+                    $relCountries->delete();
+                }
+                foreach ($model->deviceTypes as $relType) {
+                    $relType->delete();
+                }
+                foreach ($model->deviceOs as $relOs) {
+                    $relOs->delete();
+                }
+
                 if (!$model->save(false)) {
                     throw new ErrorException();
                 }
@@ -66,18 +90,52 @@ class BackendOfferController extends BackController
                         }
                     }
                 }
+                if (!empty($model->newCountries)) {
+                    foreach ($model->newCountries as $countryID) {
+                        $OfferCountryModel = new RefOfferCountry();
+                        $OfferCountryModel->country_id = $countryID;
+                        $OfferCountryModel->offer_id = $model->id;
+                        if (!$OfferCountryModel->save()) {
+                            throw new ErrorException('newCountries');
+                        }
+                    }
+                }
+                if (!empty($model->newDeviceTypes)) {
+                    foreach ($model->newDeviceTypes as $type) {
+                        $OfferDeviceTypeModel = new OfferDeviceType();
+                        $OfferDeviceTypeModel->type = $type;
+                        $OfferDeviceTypeModel->offer_id = $model->id;
+                        if (!$OfferDeviceTypeModel->save()) {
+                            throw new ErrorException('newCountries');
+                        }
+                    }
+                }
+                if (!empty($model->newDeviceOs)) {
+                    foreach ($model->newDeviceOs as $os) {
+                        $OfferDeviceOsModel = new OfferDeviceOs();
+                        $OfferDeviceOsModel->os = $os;
+                        $OfferDeviceOsModel->offer_id = $model->id;
+                        if (!$OfferDeviceOsModel->save()) {
+                            throw new ErrorException('newCountries');
+                        }
+                    }
+                }
+
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Offer has been updated');
                 return $this->redirect(['index']);
             } catch (\Exception $e) {
                 $transaction->rollBack();
-                Yii::$app->session->setFlash('error', 'Could not save offer');
+                Yii::$app->session->setFlash('error', 'Could not save offer'. $e->getMessage());
             }
         }
 
         return $this->render('update', [
             'model' => $model,
-            'categoryList' => $categoryList
+            'categoryList' => $categoryList,
+            'countriesList' => $countriesList,
+            'deviceTypeList' => $deviceTypeList,
+            'deviceOsList' => $deviceOsList
         ]);
     }
 

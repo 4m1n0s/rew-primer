@@ -151,12 +151,6 @@
                                 'url' => ['/settings/index-backend/index'],
                             ],
                             [
-                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Offer Targeting'),
-                                'url' => ['/settings/index-backend/offer-targeting-countries'],
-                                'active' => $module == 'settings' && $controller == 'index-backend' &&
-                                    ($action == 'offer-targeting-countries' || $action == 'offer-targeting-devices'),
-                            ],
-                            [
                                 'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Security'),
                                 'url' => ['/settings/index-backend/security'],
                                 'active' => $module == 'settings' && $controller == 'index-backend' && $action == 'security',

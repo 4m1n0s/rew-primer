@@ -68,7 +68,6 @@ class OfferController extends ProfileController
             return $this->renderAjax('deny');
         }
 
-        $offer->initTargeting();
         $offerCollection = new OfferCollection();
         $offerCollection[] = $offer;
 

@@ -5,6 +5,8 @@ namespace app\modules\settings\controllers;
 use app\modules\core\components\controllers\BackController;
 use app\modules\core\models\GeoCountry;
 use app\modules\offer\models\Offer;
+use app\modules\offer\models\OfferDeviceOs;
+use app\modules\offer\models\OfferDeviceType;
 use app\modules\settings\forms\FormModel;
 use kartik\switchinput\SwitchInput;
 use \Yii;
@@ -111,93 +113,6 @@ class IndexBackendController extends BackController
 
         return $this->render('default', [
             'pageTitle' => 'General Settings',
-            'model' => $model
-        ]);
-    }
-
-    public function actionOfferTargetingCountries()
-    {
-        $keys = [];
-        foreach (Offer::find()->all() as $offer) {
-            $keys[$offer->getStorageKeyTargetingCountry($offer->id)] = [
-                'format' => FormModel::FORMAT_JSON,
-                'label' => $offer->name,
-                'type' => FormModel::TYPE_DROPDOWN,
-                'options' => [
-                    'multiple' => 'multiple',
-                    'class' => 'offer-targeting-country-select',
-                ],
-                'items' => Offer::getSelectedTargetingCountryList($offer->id)
-            ];
-        }
-
-        $model = Yii::createObject([
-            'class' => FormModel::class,
-            'keys' => $keys
-        ]);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Settings have been updated');
-            return $this->redirect(['/settings/index-backend/offer-targeting-countries']);
-        }
-
-        return $this->render('offer-targeting-countries', [
-            'model' => $model
-        ]);
-    }
-
-    public function actionOfferTargetingDevices()
-    {
-        $keys = [];
-        foreach (Offer::find()->all() as $offer) {
-            $keys[$offer->getStorageKeyTargetingDeviceType($offer->id)] = [
-                'format' => FormModel::FORMAT_JSON,
-                'type' => FormModel::TYPE_DROPDOWN,
-                'label' => $offer->name . ' (Type)',
-                'options' => [
-                    'multiple' => 'multiple',
-                    'class' => 'offer-targeting-device-select',
-                    'data-id' => $offer->id
-                ],
-                'labelOptions' => ['class' => 'col-md-3 control-label'],
-                'items' => Offer::getDeviceTypeList()
-
-            ];
-            $keys[$offer->getStorageKeyTargetingMobile($offer->id)] = [
-                'format' => FormModel::FORMAT_JSON,
-                'label' => $offer->name . ' (Mobile OS)',
-                'type' => FormModel::TYPE_DROPDOWN,
-                'options' => [
-                    'multiple' => 'multiple',
-                    'class' => 'offer-targeting-mobile-select',
-                    'data-id' => $offer->id
-                ],
-                'items' => Offer::getOSList()
-            ];
-            $keys[$offer->getStorageKeyTargetingTablet($offer->id)] = [
-                'format' => FormModel::FORMAT_JSON,
-                'label' => $offer->name . ' (Tablet OS)',
-                'type' => FormModel::TYPE_DROPDOWN,
-                'options' => [
-                    'multiple' => 'multiple',
-                    'class' => 'offer-targeting-tablet-select',
-                    'data-id' => $offer->id
-                ],
-                'items' => Offer::getOSList()
-            ];
-        }
-
-        $model = Yii::createObject([
-            'class' => FormModel::class,
-            'keys' => $keys
-        ]);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'Settings have been updated');
-            return $this->redirect(['/settings/index-backend/offer-targeting-devices']);
-        }
-
-        return $this->render('offer-targeting-devices', [
             'model' => $model
         ]);
     }

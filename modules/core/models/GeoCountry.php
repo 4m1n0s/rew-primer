@@ -3,6 +3,7 @@
 namespace app\modules\core\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%geo_country}}".
@@ -61,5 +62,10 @@ class GeoCountry extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \app\modules\core\models\queries\GeoCountryQuery(get_called_class());
+    }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(static::find()->all(), 'id', 'country_name');
     }
 }

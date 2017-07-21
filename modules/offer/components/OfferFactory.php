@@ -17,13 +17,17 @@ class OfferFactory
      */
     public function create($offerID, $initTargeting = false)
     {
-        $offer = OfferModel::find()->id($offerID)->one();
+        $offer = OfferModel::find()->id($offerID);
 
         if ($initTargeting) {
-            $offer->initTargeting();
+            $offer->joinWith([
+                'geoCountries',
+                'deviceTypes',
+                'deviceOs'
+            ]);
         }
 
-        return $offer;
+        return $offer->one();
     }
 
     /**
@@ -33,13 +37,18 @@ class OfferFactory
     public function createAll($initTargeting = false)
     {
         $collection = new OfferCollection();
-        $offerModels = OfferModel::find()->active()->all();
+        $offerModelsAQ = OfferModel::find()->active();
 
-        foreach ($offerModels as $idx => $offerModel) {
-            if ($initTargeting) {
-                $offerModel->initTargeting();
-            }
-            $collection[] = $offerModel;
+        if($initTargeting) {
+            $offerModelsAQ->joinWith([
+                'geoCountries',
+                'deviceTypes',
+                'deviceOs'
+            ]);
+        }
+
+        foreach ($offerModelsAQ->all() as $offer) {
+            $collection[] = $offer;
         }
 
         return $collection;
