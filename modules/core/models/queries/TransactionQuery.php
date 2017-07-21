@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\offer\models\queries;
+namespace app\modules\core\models\queries;
 use yii\web\IdentityInterface;
 
 /**
@@ -17,7 +17,7 @@ class TransactionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\modules\offer\models\Transaction[]|array
+     * @return \app\modules\core\models\Transaction[]|array
      */
     public function all($db = null)
     {
@@ -26,23 +26,13 @@ class TransactionQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\modules\offer\models\Transaction|array|null
+     * @return \app\modules\core\models\Transaction|array|null
      */
     public function one($db = null)
     {
         return parent::one($db);
     }
-
-    /**
-     * @param $externalID
-     * @param $objectType
-     * @return $this
-     */
-    public function lead($externalID, $objectType)
-    {
-        return $this->andWhere(['object_type' => $objectType, 'external_transaction_id' => $externalID]);
-    }
-
+    
     /**
      * @param IdentityInterface $user
      * @return $this
@@ -52,6 +42,10 @@ class TransactionQuery extends \yii\db\ActiveQuery
         return $this->andWhere(['user_id' => $user->getId()]);
     }
 
+    /**
+     * @param $type
+     * @return $this
+     */
     public function type($type)
     {
         return $this->andWhere(['type' => $type]);

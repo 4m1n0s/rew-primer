@@ -3,7 +3,7 @@
 namespace app\modules\profile\controllers;
 
 use app\modules\offer\components\OfferMapper;
-use app\modules\offer\models\search\TransactionSearch;
+use app\modules\core\models\search\TransactionSearch;
 use Yii;
 
 class StatsController extends ProfileController

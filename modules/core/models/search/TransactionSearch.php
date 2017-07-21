@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\offer\models\search;
+namespace app\modules\core\models\search;
 
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\IdentityInterface;
@@ -19,7 +19,6 @@ class TransactionSearch extends Transaction
     {
         return [
             [['amount'], 'number'],
-            [['name'], 'string'],
             [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d']
         ];
     }
@@ -65,10 +64,9 @@ class TransactionSearch extends Transaction
         ]);
 
         $query
-            ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from) : null])
             ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to) : null]);
-//echo $query->createCommand()->getRawSql();exit;
+
         return $dataProvider;
     }
 }

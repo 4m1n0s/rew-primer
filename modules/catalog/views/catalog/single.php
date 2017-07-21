@@ -15,7 +15,7 @@ use yii\helpers\Html;
                         <div class="product-title">
                             <h3><?php echo Html::encode($product->name) ?></h3>
                         </div>
-                        <div class="product-price"><ins>39.00</ins>
+                        <div class="product-price"><ins><?php echo Html::encode($product->price) ?></ins>
                         </div>
                         <div class="seperator m-b-10"></div>
                         <p><?php echo Html::encode($product->description) ?></p>

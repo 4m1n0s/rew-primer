@@ -4,7 +4,6 @@ namespace app\modules\user\listeners;
 
 use app\components\MandrillMailer;
 use app\models\EmailTemplate;
-use app\modules\core\components\IPNormalizer;
 use app\modules\core\components\VirtualCurrency;
 use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
@@ -56,9 +55,7 @@ class UserListener {
     
     public static function onSuccessAutoLogin(\yii\web\UserEvent $event) {
         $userID = Yii::$app->user->id;
-
-        $ip = (new IPNormalizer())->getIP();
-
+        $ip = Yii::$app->ipNormalizer->getIP();
         if ($ip) {
             UserIpLog::add($userID, $ip);
         }
@@ -126,7 +123,6 @@ class UserListener {
 
         $mandrillMailer = \Yii::$app->mandrillMailer;
         $keyStorage = \Yii::$app->keyStorage;
-        $virtualCurrency = \Yii::$app->virtualCurrency;
 
         if ($user->status !== User::STATUS_PENDING) {
             return false;
@@ -156,9 +152,10 @@ class UserListener {
         }
 
         // Free points crediting
-        $freePointsAmount = $keyStorage->get('free_points_register');
+        $freePointsAmount = floatval($keyStorage->get('free_points_register'));
+        $virtualCurrency = new VirtualCurrency($user);
 
-        if (!empty($freePointsAmount) && $freePointsAmount > 0) {
+        if ($freePointsAmount > 0) {
             $virtualCurrency->setUser($user);
             $virtualCurrency->crediting($freePointsAmount);
         }

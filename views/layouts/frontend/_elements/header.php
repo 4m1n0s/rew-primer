@@ -47,8 +47,8 @@ use yii\widgets\Menu;
                 <div class="block-header">
                     <a href="<?php echo Url::toRoute(['/profile/stats/completion-history']) ?>">
                         <span class="vertical-align-top"><img src="/images/1.png" alt=""></span>
-                        <span class="txt-bl-header"><?php echo \app\modules\offer\widgets\TransactionCount::widget([
-                            'type' => \app\modules\offer\models\Transaction::TYPE_OFFER_INCOME
+                        <span class="txt-bl-header"><?php echo \app\modules\core\widgets\TransactionCount::widget([
+                            'type' => \app\modules\core\models\Transaction::TYPE_OFFER_INCOME
                         ]) ?></span>
                     </a>
                 </div>

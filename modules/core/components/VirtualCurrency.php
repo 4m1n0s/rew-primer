@@ -4,7 +4,6 @@ namespace app\modules\core\components;
 
 use app\modules\offer\models\RedeemLimit;
 use app\modules\user\models\User;
-use yii\base\Component;
 use yii\base\ErrorException;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
@@ -15,7 +14,7 @@ use yii\helpers\Json;
  * Class VirtualCurrency
  * @package app\modules\core\components
  */
-class VirtualCurrency extends Component
+class VirtualCurrency
 {
     const ERROR_CODE_MIN_REDEEM = 1;
     const ERROR_CODE_MAX_REDEEM = 2;
@@ -24,12 +23,17 @@ class VirtualCurrency extends Component
     /**
      * @var User
      */
-    public $user;
+    protected $user;
 
     /**
      * @var int
      */
     public $scale = 5;
+
+    public function __construct(User $user)
+    {
+        $this->setUser($user);
+    }
 
     /**
      * @param User $user

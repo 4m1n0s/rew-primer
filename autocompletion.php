@@ -24,11 +24,12 @@ class Yii extends \yii\BaseYii
  * @property \app\modules\user\components\UserManager $userManager
  * @property \app\modules\user\components\AuthenticationManager $authenticationManager
  * @property yii\authclient\Collection $authClientCollection
- * @property \app\modules\core\components\VirtualCurrency $virtualCurrency
  * @property \app\modules\core\components\GlobalTexts $globalTexts
  * @property \app\modules\offer\components\OfferFactory $offerFactory
  * @property yz\shoppingcart\ShoppingCart $cart
  * @property app\modules\core\components\Export $export
+ * @property app\modules\core\components\TransactionCreator $transactionCreator
+ * @property app\modules\core\components\IPNormalizer $ipNormalizer
  */
 abstract class BaseApplication extends yii\base\Application
 {

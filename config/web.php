@@ -152,7 +152,13 @@ $config = [
         'cart' => [
             'class' => 'yz\shoppingcart\ShoppingCart',
             'cartId' => 'products',
-        ]
+        ],
+        'transactionCreator' => [
+            'class' => '\app\modules\core\components\TransactionCreator',
+        ],
+        'ipNormalizer' => [
+            'class' => '\app\modules\core\components\IPNormalizer',
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

@@ -5,7 +5,10 @@ namespace app\modules\catalog\controllers;
 use app\modules\catalog\models\Order;
 use app\modules\catalog\models\RefProductOrder;
 use app\modules\core\components\controllers\FrontController;
+use app\modules\core\components\IPNormalizer;
 use app\modules\core\components\VirtualCurrency;
+use app\modules\core\models\Transaction;
+use app\modules\user\models\User;
 use Yii;
 use yii\base\ErrorException;
 use yii\base\InvalidValueException;
@@ -17,19 +20,22 @@ class OrderController extends FrontController
         if (Yii::$app->user->isGuest) {
             return $this->redirect(['/user/account/login']);
         }
-
         if (Yii::$app->cart->isEmpty) {
             return $this->redirect(['/catalog/catalog/index']);
         }
 
         $transaction = Yii::$app->db->beginTransaction();
+        $currentUser = Yii::$app->getUser()->getIdentity();
+        /* @var User $currentUser */
 
         try {
-            $virtualCurrency = \Yii::$app->virtualCurrency;
-            $virtualCurrency->setUser(Yii::$app->user->identity);
+            $virtualCurrency = new VirtualCurrency($currentUser);
+            if (!$virtualCurrency->debiting(Yii::$app->cart->getCost())) {
+                throw new ErrorException('Funds cannot be charged');
+            }
 
             $order = new Order();
-            $order->user_id = Yii::$app->user->identity->id;
+            $order->user_id = $currentUser->getId();
             $order->status = Order::STATUS_PROCESSING;
             $order->cost = Yii::$app->cart->getCost();
             if (!$order->save()) {
@@ -46,8 +52,13 @@ class OrderController extends FrontController
                 }
             }
 
-            if (!$virtualCurrency->debiting(Yii::$app->cart->getCost())) {
-                throw new ErrorException('Funds cannot be charged');
+            if (!Yii::$app->transactionCreator->redeem(
+                Transaction::STATUS_COMPLETED,
+                Yii::$app->cart->getCost(),
+                $currentUser,
+                Yii::$app->ipNormalizer->getIP()
+            )) {
+                throw new ErrorException('Could not save transaction');
             }
 
             $transaction->commit();

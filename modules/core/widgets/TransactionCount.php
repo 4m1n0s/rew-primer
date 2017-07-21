@@ -1,8 +1,8 @@
 <?php
 
-namespace app\modules\offer\widgets;
+namespace app\modules\core\widgets;
 
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use yii\base\Widget;
 
 class TransactionCount extends Widget
