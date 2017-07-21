@@ -66,6 +66,6 @@ class GeoCountry extends \yii\db\ActiveRecord
 
     public static function getList()
     {
-        return ArrayHelper::map(static::find()->all(), 'id', 'country_name');
+        return ArrayHelper::map(static::find()->orderBy('country_name')->all(), 'id', 'country_name');
     }
 }
