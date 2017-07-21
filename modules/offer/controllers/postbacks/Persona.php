@@ -2,12 +2,13 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\core\components\VirtualCurrency;
 use app\modules\offer\models\Offer;
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\ErrorException;
-use yii\base\Exception;
+use Yii;
 
 /**
  * Class Persona
@@ -27,7 +28,7 @@ class Persona extends Action
             );
 
             if (!in_array(\Yii::$app->request->getUserIP(), $allowed_ips)) {
-                throw new Exception('IP not allowed: ' . \Yii::$app->request->getUserIP());
+                throw new ErrorException('IP not allowed: ' . \Yii::$app->request->getUserIP());
             }
 
             $user_id        = \Yii::$app->request->get('user_id');
@@ -42,35 +43,67 @@ class Persona extends Action
 
             // Create validation signature
             $validation_signature = md5($user_id . ':' . $app_hash . ':' . $secret_key); // the app_hash can be found in your app settings
-
             if ($signature != $validation_signature) {
                 // Signatures not equal - send error code
-                throw new Exception('Signature validation error: ' . $validation_signature);
+                throw new ErrorException('Signature validation error: ' . $validation_signature);
             }
-
             if (!($user = User::findOne(['id' => $user_id]))) {
-                throw new Exception('Unknown user id: ' . $user_id);
+                throw new ErrorException('Unknown user id: ' . $user_id);
             }
 
-            Transaction::initTransaction(
-                Transaction::TYPE_OFFER_INCOME,
-                Transaction::STATUS_COMPLETE,
-                $amount,
-                $user->id,
-                null,
-                Transaction::OBJECT_TYPE_PERSONA_OFFER,
-                $offer_id,
-                null,
-                $offer_name
-            );
+            $transactionDB = Yii::$app->db->beginTransaction();
+            try {
 
-            $virtualCurrency = \Yii::$app->virtualCurrency;
-            $virtualCurrency->setUser($user);
+                // Init transaction
+                if (!\Yii::$app->transactionCreator->offerIncome(
+                    Transaction::STATUS_COMPLETED,
+                    $amount,
+                    $user,
+                    null,
+                    Offer::PERSONA,
+                    null,
+                    $offer_id,
+                    $offer_name
+                )) {
+                    throw new ErrorException('Could not save offer transaction');
+                }
 
-            if (!$virtualCurrency->crediting($amount)) {
-                throw new ErrorException('Could not crediting user');
+                // Crediting funds to the user
+                $virtualCurrency = new VirtualCurrency($user);
+                if (!$virtualCurrency->crediting($amount)) {
+                    throw new ErrorException('Could not crediting user');
+                }
+
+                // Referral percents bonus
+                $keyStorage = Yii::$app->keyStorage;
+                $referralPercents = floatval($keyStorage->get('referral_percents'));
+                $sourceReferral = $user->sourceReferral;
+
+                if ($referralPercents > 0 && !is_null($sourceReferral)) {
+
+                    $referralVirtualCurrency = new VirtualCurrency($sourceReferral);
+                    $referralPercentsAmount = bcmul(bcdiv($amount, 100, $referralVirtualCurrency->scale), $referralPercents, $referralVirtualCurrency->scale);
+
+                    if (!$referralVirtualCurrency->crediting($referralPercentsAmount)) {
+                        throw new ErrorException('Referral\'s funds have not been credited');
+                    }
+
+                    if (!\Yii::$app->transactionCreator->referralIncome(
+                        Transaction::STATUS_COMPLETED,
+                        $referralPercentsAmount,
+                        $user,
+                        null,
+                        $sourceReferral
+                    )) {
+                        throw new ErrorException('Could not save referral transaction');
+                    }
+                }
+
+                $transactionDB->commit();
+            } catch (ErrorException $e) {
+                $transactionDB->rollBack();
+                throw $e;
             }
-
         } catch (\Exception $e) {
             \Yii::error([
                 'message' => $e->getMessage(),

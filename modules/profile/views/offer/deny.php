@@ -7,7 +7,7 @@
 
         <div class="row">
             <div class="col-md-9">
-                <div class="text-left col-md-offset-1">
+                <div class="text-left">
                     <h3></h3>
                 </div>
             </div>

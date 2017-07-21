@@ -2,12 +2,14 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\core\components\VirtualCurrency;
+use app\modules\core\models\RefTransactionOffer;
 use app\modules\offer\models\Offer;
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\ErrorException;
-use yii\base\Exception;
+use Yii;
 
 /**
  * Class Kiwiwall
@@ -17,10 +19,6 @@ class Kiwiwall extends Action
 {
     public $accessHash = 'f6xdcz';
 
-    /**
-     * @param $access_hash
-     * @return int
-     */
     public function run($access_hash)
     {
         try {
@@ -35,7 +33,7 @@ class Kiwiwall extends Action
             // Process only requests from KiwiWall IP addresses
             // This is optional validation
             if (!in_array(\Yii::$app->request->getUserIP(), $allowed_ips)) {
-                throw new Exception('IP not allowed: ' . \Yii::$app->request->getUserIP());
+                throw new ErrorException('IP not allowed: ' . \Yii::$app->request->getUserIP());
             }
 
             // Get parameters
@@ -53,35 +51,70 @@ class Kiwiwall extends Action
 
             // Create validation signature
             $validation_signature = md5($sub_id . ':' . $amount . ':' . $secret_key);
-
             if ($signature != $validation_signature) {
                 // Signatures not equal - send error code
-                throw new Exception('Signature validation error: ' . $validation_signature);
+                throw new ErrorException('Signature validation error: ' . $validation_signature);
             }
-
             if (!($user = User::findOne(['username' => $sub_id]))) {
-                throw new Exception('Unknown user: ' . $sub_id);
+                throw new ErrorException('Unknown user: ' . $sub_id);
+            }
+            if ($transactionOffer = RefTransactionOffer::find()->select(['id'])->lead($trans_id, Offer::KIWIWALL)->one()) {
+                throw new ErrorException('Transaction already exist: ' . $transactionOffer->id);
             }
 
-            Transaction::initTransaction(
-                Transaction::TYPE_OFFER_INCOME,
-                $status == 1 ? Transaction::STATUS_COMPLETE : Transaction::STATUS_REVERSED,
-                $amount,
-                $user->id,
-                $ip_address,
-                Transaction::OBJECT_TYPE_KIWIWALL_OFFER,
-                $offer_id,
-                $trans_id,
-                $offer_name
-            );
+            $transactionDB = Yii::$app->db->beginTransaction();
+            try {
 
-            $virtualCurrency = \Yii::$app->virtualCurrency;
-            $virtualCurrency->setUser($user);
+                // Init transaction
+                if (!\Yii::$app->transactionCreator->offerIncome(
+                    Transaction::STATUS_COMPLETED,
+                    $amount,
+                    $user,
+                    $ip_address,
+                    Offer::KIWIWALL,
+                    $trans_id,
+                    $offer_id,
+                    $offer_name
+                )) {
+                    throw new ErrorException('Could not save offer transaction');
+                }
 
-            if (!$virtualCurrency->crediting($amount)) {
-                throw new ErrorException('Could not crediting user');
+                // Crediting funds to the user
+                $virtualCurrency = new VirtualCurrency($user);
+                if (!$virtualCurrency->crediting($amount)) {
+                    throw new ErrorException('Could not crediting user');
+                }
+
+                // Referral percents bonus
+                $keyStorage = Yii::$app->keyStorage;
+                $referralPercents = floatval($keyStorage->get('referral_percents'));
+                $sourceReferral = $user->sourceReferral;
+
+                if ($referralPercents > 0 && !is_null($sourceReferral)) {
+
+                    $referralVirtualCurrency = new VirtualCurrency($sourceReferral);
+                    $referralPercentsAmount = bcmul(bcdiv($amount, 100, $referralVirtualCurrency->scale), $referralPercents, $referralVirtualCurrency->scale);
+
+                    if (!$referralVirtualCurrency->crediting($referralPercentsAmount)) {
+                        throw new ErrorException('Referral\'s funds have not been credited');
+                    }
+
+                    if (!\Yii::$app->transactionCreator->referralIncome(
+                        Transaction::STATUS_COMPLETED,
+                        $referralPercentsAmount,
+                        $user,
+                        $ip_address,
+                        $sourceReferral
+                    )) {
+                        throw new ErrorException('Could not save referral transaction');
+                    }
+                }
+
+                $transactionDB->commit();
+            } catch (ErrorException $e) {
+                $transactionDB->rollBack();
+                throw $e;
             }
-
         } catch (\Exception $e) {
             \Yii::error([
                 'message' => $e->getMessage(),

@@ -1,94 +1,25 @@
 <?php
 /* @var $this \yii\web\View */
 /* @var $content string */
-
-use yii\helpers\Html;
-use app\assets\BackendAsset;
-
-BackendAsset::register($this);
 ?>
-<?php $this->beginPage() ?>
-    <!DOCTYPE html>
-    <html lang="<?= Yii::$app->language ?>">
-    <?= $this->render('_elements/head'); ?>
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-    <?php $this->beginBody() ?>
-    <!-- BEGIN HEADER -->
-    <?= $this->render('_elements/header'); ?>
-    <!-- END HEADER -->
 
-    <!-- BEGIN HEADER & CONTENT DIVIDER -->
-    <div class="clearfix"> </div>
-    <!-- END HEADER & CONTENT DIVIDER -->
-
-    <!-- BEGIN CONTAINER -->
-    <div class="page-container">
-
-        <!-- BEGIN SIDEBAR -->
-        <?= $this->render('_elements/main-menu'); ?>
-        <!-- END SIDEBAR -->
-
-        <!-- BEGIN CONTENT -->
-        <div class="page-content-wrapper">
-            <!-- BEGIN CONTENT BODY -->
-            <div class="page-content">
-                <!-- BEGIN PAGE HEADER-->
-                <!-- BEGIN PAGE BAR -->
-                <div class="page-bar">
-                    <?php echo yii\widgets\Breadcrumbs::widget([
-                        'options' => [
-                            'class' => 'page-breadcrumb'
-                        ],
-                        'homeLink' => [
-                            'label' => 'Home',
-                            'url' => ['/dashboard/index-backend/index'],
-                        ],
-                        'itemTemplate' => '<li> {link} <i class="fa fa-circle"></i></li>',
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]) ?>
-
-                    <div class="page-toolbar"></div>
+<?php $this->beginContent('@app/views/layouts/backend/main.php') ?>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="actions">
+                        <?php if (isset($this->blocks['actions'])) {
+                            echo $this->blocks['actions'];
+                        } ?>
+                    </div>
                 </div>
-                <!-- END PAGE BAR -->
-
-                <?php if (!empty($this->params['pageTitle'])): ?>
-                    <!-- BEGIN PAGE TITLE-->
-                    <h3 class="page-title">
-                        <?= $this->params['pageTitle'] ?> <small><?= isset($this->params['pageSmallTitle']) ? $this->params['pageSmallTitle'] : '' ?></small>
-                    </h3>
-                    <!-- END PAGE TITLE-->
-                <?php endif; ?>
-                <?= \app\modules\dashboard\widgets\Alert::widget() ?>
-                <!-- END PAGE HEADER-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet">
-                            <div class="portlet-title">
-                                <div class="actions">
-                                    <?php if (isset($this->blocks['actions'])) {
-                                        echo $this->blocks['actions'];
-                                    } ?>
-                                </div>
-                            </div>
-                            <div class="portlet-body">
-                                <div class="table-container">
-                                    <?= $content ?>
-                                </div>
-                            </div>
-                        </div>
+                <div class="portlet-body">
+                    <div class="table-container">
+                        <?= $content ?>
                     </div>
                 </div>
             </div>
-            <!-- END CONTENT BODY -->
         </div>
-        <!-- END CONTENT -->
-
     </div>
-    <!-- END CONTAINER -->
-
-    <?= $this->render('_elements/footer'); ?>
-
-    <?php $this->endBody() ?>
-    </body>
-    </html>
-<?php $this->endPage() ?>
+<?php $this->endContent() ?>

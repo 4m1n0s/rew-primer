@@ -3,11 +3,11 @@
 namespace app\modules\offer\controllers\postbacks;
 
 use app\modules\offer\models\Offer;
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\ErrorException;
-use yii\base\Exception;
+use Yii;
 
 /**
  * Class Dryverlessads
@@ -28,7 +28,7 @@ class Dryverlessads extends Action
             ];
 
             if (!in_array(\Yii::$app->request->getUserIP(), $allowed_ips)) {
-                throw new Exception('IP not allowed: ' . \Yii::$app->request->getUserIP());
+                throw new ErrorException('IP not allowed: ' . \Yii::$app->request->getUserIP());
             }
 
             $apiKey = 'b9b8239e6f5045ac905f2f9b65b65b27';

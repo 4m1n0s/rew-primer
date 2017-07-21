@@ -2,12 +2,13 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\core\components\VirtualCurrency;
 use app\modules\offer\models\Offer;
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\ErrorException;
-use yii\base\Exception;
+use Yii;
 
 /**
  * Class Clixwall
@@ -33,34 +34,66 @@ class Clixwall extends Action
             if ($password != $secret_password) {
                 throw new ErrorException('Incorrect password: ' . $password);
             }
-
             if ($status != 1) {
                 throw new ErrorException('Incorrect status: ' . $status);
             }
-
             if (!($user = User::findOne(['username' => $username]))) {
-                throw new Exception('Unknown user: ' . $username);
+                throw new ErrorException('Unknown user: ' . $username);
             }
 
-            Transaction::initTransaction(
-                Transaction::TYPE_OFFER_INCOME,
-                Transaction::STATUS_COMPLETE,
-                $amount,
-                $user->id,
-                null,
-                Transaction::OBJECT_TYPE_CLIXWALL_OFFER,
-                $CampaignID,
-                null,
-                $CampaignName
-            );
+            $transactionDB = Yii::$app->db->beginTransaction();
+            try {
 
-            $virtualCurrency = \Yii::$app->virtualCurrency;
-            $virtualCurrency->setUser($user);
+                // Init transaction
+                if (!\Yii::$app->transactionCreator->offerIncome(
+                    Transaction::STATUS_COMPLETED,
+                    $amount,
+                    $user,
+                    null,
+                    Offer::CLIXWALL,
+                    null,
+                    $CampaignID,
+                    $CampaignName
+                )) {
+                    throw new ErrorException('Could not save offer transaction');
+                }
 
-            if (!$virtualCurrency->crediting($amount)) {
-                throw new ErrorException('Could not crediting user');
+                // Crediting funds to the user
+                $virtualCurrency = new VirtualCurrency($user);
+                if (!$virtualCurrency->crediting($amount)) {
+                    throw new ErrorException('User\'s funds have not been credited');
+                }
+
+                // Referral percents bonus
+                $keyStorage = Yii::$app->keyStorage;
+                $referralPercents = floatval($keyStorage->get('referral_percents'));
+                $sourceReferral = $user->sourceReferral;
+
+                if ($referralPercents > 0 && !is_null($sourceReferral)) {
+
+                    $referralVirtualCurrency = new VirtualCurrency($sourceReferral);
+                    $referralPercentsAmount = bcmul(bcdiv($amount, 100, $referralVirtualCurrency->scale), $referralPercents, $referralVirtualCurrency->scale);
+
+                    if (!$referralVirtualCurrency->crediting($referralPercentsAmount)) {
+                        throw new ErrorException('Referral\'s funds have not been credited');
+                    }
+
+                    if (!\Yii::$app->transactionCreator->referralIncome(
+                        Transaction::STATUS_COMPLETED,
+                        $referralPercentsAmount,
+                        $user,
+                        null,
+                        $sourceReferral
+                    )) {
+                        throw new ErrorException('Could not save referral transaction');
+                    }
+                }
+
+                $transactionDB->commit();
+            } catch (\Exception $e) {
+                $transactionDB->rollBack();
+                throw $e;
             }
-
         } catch (\Exception $e) {
             \Yii::error([
                 'message' => $e->getMessage(),

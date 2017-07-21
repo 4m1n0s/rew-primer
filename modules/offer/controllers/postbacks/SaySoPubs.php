@@ -3,12 +3,12 @@
 namespace app\modules\offer\controllers\postbacks;
 
 use app\modules\offer\models\Offer;
-use app\modules\offer\models\Transaction;
+use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use yii\base\Action;
 use yii\base\ErrorException;
-use yii\base\Exception;
 use yii\helpers\Json;
+use Yii;
 
 /**
  * Class SaySoPubs
