@@ -2,6 +2,7 @@
 
 namespace app\modules\core\models;
 
+use app\modules\offer\models\Offer;
 use app\modules\user\models\User;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -83,6 +84,7 @@ class Transaction extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'params' => Yii::t('app', 'Params'),
             'created_at' => Yii::t('app', 'Created At'),
+
         ];
     }
 
@@ -100,6 +102,12 @@ class Transaction extends \yii\db\ActiveRecord
     public function getRefOffer()
     {
         return $this->hasOne(RefTransactionOffer::className(), ['transaction_id' => 'id']);
+    }
+
+    public function getOffer()
+    {
+        return $this->hasOne(Offer::class, ['id' => 'offer_id'])
+            ->viaTable(RefTransactionOffer::tableName(), ['transaction_id' => 'id']);
     }
 
     /**

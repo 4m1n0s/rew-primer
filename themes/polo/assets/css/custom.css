@@ -711,7 +711,7 @@
     padding-left:0;
 }
 
-.order-history-list .form-control, .post-content .form-control {
+.order-history-list .form-control, .completion-history-list .form-control {
     padding:5px;
 }
 

@@ -8,7 +8,7 @@ use kartik\date\DatePicker;
 $this->title = Yii::t('app', 'Completion History');
 ?>
 
-<div class="table-responsive">
+<div class="completion-history-list">
     <?php \yii\widgets\Pjax::begin();
     echo \yii\grid\GridView::widget([
         'dataProvider' => $dataProvider,
@@ -21,15 +21,17 @@ $this->title = Yii::t('app', 'Completion History');
         'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
         'columns' => [
             [
+                'attribute' => 'offer_wall',
                 'label' => 'OfferWall',
-                'value' => function($row) use ($offerMapper) {
-                    return $offerMapper->getLabel($row->object_type);
+                'value' => function($row) {
+                    return $row->offer->label;
                 }
             ],
             [
+                'attribute' => 'name_campaign',
                 'label' => 'Name',
-                'value' => function($row) use ($offerMapper) {
-                    return (!empty($row->name)) ? $row->name : $offerMapper->getLabel($row->object_type);
+                'value' => function($row) {
+                    return $row->name_campaign;
                 }
             ],
             'amount',

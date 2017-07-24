@@ -2,9 +2,11 @@
 
 namespace app\modules\profile\controllers;
 
+use app\modules\core\models\Transaction;
 use app\modules\offer\components\OfferMapper;
 use app\modules\core\models\search\TransactionSearch;
 use Yii;
+use yii\helpers\VarDumper;
 
 class StatsController extends ProfileController
 {
