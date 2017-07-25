@@ -49,7 +49,7 @@ class TransactionSearch extends Transaction
     {
         $query = TransactionSearch::find()->user($user)->type(Transaction::TYPE_OFFER_INCOME);
         $query
-            ->select('`local_transaction`.*, COALESCE(`local_ref_transaction_offer`.`campaign_name`, `local_offer`.`name`) as `name_campaign`')
+            ->select('{{%transaction}}.*, COALESCE({{%ref_transaction_offer}}.`campaign_name`, {{%offer}}.`name`) as `name_campaign`')
             ->joinWith(['offer']);
 
         // add conditions that should always apply here
