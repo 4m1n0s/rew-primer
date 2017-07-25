@@ -14,16 +14,7 @@ $this->params['breadcrumbs'][] = [
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="user-group-update">
-    <div class="portlet box blue">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-reorder"></i><?= Html::encode($this->title); ?>
-            </div>
-        </div>
-        <div class="portlet-body form">
-            <?= $this->render('_form', [
-                'model' => $model,
-            ]); ?>
-        </div>
-    </div>
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]); ?>
 </div>

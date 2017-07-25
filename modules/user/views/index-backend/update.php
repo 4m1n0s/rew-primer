@@ -17,20 +17,11 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => [
 $this->params['breadcrumbs'][] = Yii::t('user', 'Update');
 ?>
 
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-reorder"></i><?= Html::encode($this->title); ?>
-        </div>
-    </div>
-    <div class="portlet-body form">
-        <?=
-        $this->render('_form', [
-            'model' => $model,
-            'roleList' => $model->getRoleList(),
-            'statusList' => $model->getStatusList(),
-//            'stateList' => $stateList,
-        ])
-        ?>
-    </div>
-</div>
+<?=
+$this->render('_form', [
+    'model' => $model,
+    'roleList' => $model->getRoleList(),
+    'statusList' => $model->getStatusList(),
+//    'stateList' => $stateList,
+])
+?>

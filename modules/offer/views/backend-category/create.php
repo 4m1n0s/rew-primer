@@ -1,8 +1,5 @@
 <?php
 
-use yii\helpers\Html;
-
-
 /* @var $this yii\web\View */
 /* @var $model app\modules\offer\models\Category */
 
@@ -13,16 +10,9 @@ $this->params['breadcrumbs'][] = [
     'template' => '<li> {link} <i class="fa fa-circle"></i></li>'
 ];
 $this->params['breadcrumbs'][] = $this->title;
+
+echo $this->render('_form', [
+    'model' => $model
+])
+
 ?>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-reorder"></i><?= Html::encode($this->title); ?>
-        </div>
-    </div>
-    <div class="portlet-body form">
-        <?= $this->render('_form', [
-            'model' => $model
-        ]) ?>
-    </div>
-</div>

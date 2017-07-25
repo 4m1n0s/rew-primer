@@ -19,14 +19,7 @@ $this->params['breadcrumbs'] = [
 ];
 ?>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="portlet">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-table"></i>Invitations
-                </div>
-                <div class="actions">
+<?php $this->beginBlock('actions')?>
                     <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Approve Selected').'</span>',
                         [
                             'title' => 'All selected emails will be approved.',
@@ -45,111 +38,104 @@ $this->params['breadcrumbs'] = [
                             'data-link' => Url::toRoute(['/invitation/index-backend/deny-all'])
                         ]
                     ) ?>
+<?php $this->endBlock()?>
+
+<?php
+$template = "
+        <div class=\"table-scrollable\">
+            {items} 
+        </div>
+        <div class=\"row\"> 
+            <div class=\"col-md-5 col-sm-12\">
+                <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
+            </div>
+            <div class=\"col-md-7 col-sm-12\">
+                <div class=\"dataTables_paginate paging_bootstrap\">
+                    {pager}
                 </div>
             </div>
-        </div>
-        <div class="portlet-body">
-            <div class="table-container">
-                <?php
-                $template = "
-                        <div class=\"table-scrollable\">
-                            {items} 
-                        </div>
-                        <div class=\"row\"> 
-                            <div class=\"col-md-5 col-sm-12\">
-                                <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
-                            </div>
-                            <div class=\"col-md-7 col-sm-12\">
-                                <div class=\"dataTables_paginate paging_bootstrap\">
-                                    {pager}
-                                </div>
-                            </div>
-                        </div>";
-                ?>
+        </div>";
+?>
 
-                <?php Pjax::begin(['id' => 'invitation-grid-pjax', 'enablePushState' => true]); ?>
-                <?= GridView::widget([
-                    'id' => 'invitation-grid',
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+<?php Pjax::begin(['id' => 'invitation-grid-pjax', 'enablePushState' => true]); ?>
+<?= GridView::widget([
+    'id' => 'invitation-grid',
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+        [
+            'class' => 'yii\grid\CheckboxColumn',
+            'cssClass' => 'invitation-selection',
+        ],
+
+        'email:email',
+        'code',
+        [
+            'attribute' => 'status',
+            'format' => 'raw',
+            'filter' => \app\modules\invitation\models\Invitation::getStatusList(),
+            'value' => function($row) {
+                return $row->getStatus(true);
+            }
+        ],
+        'create_date',
+
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => Yii::t('admin', 'Actions'),
+            'headerOptions' => [
+                'width' => '200',
+            ],
+            'buttons' => [
+                'referrals' => function($url, $model) {
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
+
+                    return Html::a('<i class="fa fa-sitemap"></i> ' . Yii::t('admin', 'Referrals'), $url, [
+                        'class' => 'btn btn-xs purple',
+                        'title' => Yii::t('admin', 'Referrals'),
+                        'data-pjax' => 0
+                    ]);
+                },
+                'edit' => function($url, $model) {
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
+
+                    return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('admin', 'Edit'), $url, [
+                        'class' => 'btn default btn-xs green',
+                        'title' => Yii::t('admin', 'Edit'),
+                        'data-pjax' => 0
+                    ]);
+                },
+                'approve' => function($url, $model) {
+                    $url = Url::to(['/invitation/index-backend/approve']);
+                    return Html::a(
+                        '<i class="fa fa-check-square-o"></i> ' . Yii::t('admin', 'Approve'),
+                        Url::to(),
                         [
-                            'class' => 'yii\grid\CheckboxColumn',
-                            'cssClass' => 'invitation-selection',
-                        ],
-
-                        'email:email',
-                        'code',
+                            'class' => 'btn default btn-xs blue',
+                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_APPROVED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
+                            'data-pjax' => 1,
+                        ]
+                    );
+                },
+                'deny' => function($url, $model) {
+                    $url = Url::to(['/invitation/index-backend/deny']);
+                    return Html::a(
+                        '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Decline'),
+                        Url::to(),
                         [
-                            'attribute' => 'status',
-                            'format' => 'raw',
-                            'filter' => \app\modules\invitation\models\Invitation::getStatusList(),
-                            'value' => function($row) {
-                                return $row->getStatus(true);
-                            }
-                        ],
-                        'create_date',
-
-                        [
-                            'class' => 'yii\grid\ActionColumn',
-                            'header' => Yii::t('admin', 'Actions'),
-                            'headerOptions' => [
-                                'width' => '200',
-                            ],
-                            'buttons' => [
-                                'referrals' => function($url, $model) {
-                                    $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
-
-                                    return Html::a('<i class="fa fa-sitemap"></i> ' . Yii::t('admin', 'Referrals'), $url, [
-                                        'class' => 'btn btn-xs purple',
-                                        'title' => Yii::t('admin', 'Referrals'),
-                                        'data-pjax' => 0
-                                    ]);
-                                },
-                                'edit' => function($url, $model) {
-                                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
-
-                                    return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('admin', 'Edit'), $url, [
-                                        'class' => 'btn default btn-xs green',
-                                        'title' => Yii::t('admin', 'Edit'),
-                                        'data-pjax' => 0
-                                    ]);
-                                },
-                                'approve' => function($url, $model) {
-                                    $url = Url::to(['/invitation/index-backend/approve']);
-                                    return Html::a(
-                                        '<i class="fa fa-check-square-o"></i> ' . Yii::t('admin', 'Approve'),
-                                        Url::to(),
-                                        [
-                                            'class' => 'btn default btn-xs blue',
-                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_APPROVED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
-                                            'data-pjax' => 1,
-                                        ]
-                                    );
-                                },
-                                'deny' => function($url, $model) {
-                                    $url = Url::to(['/invitation/index-backend/deny']);
-                                    return Html::a(
-                                        '<i class="fa fa-ban"></i> ' . Yii::t('admin', 'Decline'),
-                                        Url::to(),
-                                        [
-                                            'class' => 'btn default btn-xs red',
-                                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_DENIED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
-                                            'data-pjax' => 1
-                                        ]
-                                    );
-                                }
-                            ],
-                            'template' => '{approve} {deny}',
-                        ],
-                    ],
-                ]); ?>
-                <?php Pjax::end(); ?>
-            </div>
-        </div>
-    </div>
-</div>
+                            'class' => 'btn default btn-xs red',
+                            'onclick'=> $model->status == \app\modules\invitation\models\Invitation::STATUS_DENIED ? "return;" : "invitation_grid_module.status('$url', '$model->id')",
+                            'data-pjax' => 1
+                        ]
+                    );
+                }
+            ],
+            'template' => '{approve} {deny}',
+        ],
+    ],
+]); ?>
+<?php Pjax::end(); ?>
 
 <?php
 $this->registerJsFile('/backend/js/invitation_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);

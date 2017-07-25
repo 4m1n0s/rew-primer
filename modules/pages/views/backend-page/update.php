@@ -12,12 +12,8 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Pages'), 'url' => ['
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 
-<?php $this->beginBlock('content') ?>
 <div class="page-update">
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 </div>
-<?php $this->endBlock() ?>
-
-<?php echo \app\modules\dashboard\helpers\TemplateHelper::createPage('content') ?>

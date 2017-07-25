@@ -15,33 +15,31 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions') ?>
-<?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Product').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+
+    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Product').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+
 <?php $this->endBlock() ?>
 
-<?php $this->beginBlock('content') ?>
-    <div class="backend-product-index">
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
+<div class="backend-product-index">
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
 
-                'name',
-                'sku',
-                'price',
-                [
-                    'attribute' => 'status',
-                    'filter' => [Product::IN_STOCK => 'In Stock', Product::OUT_OF_STOCK => 'Out Of Stock'],
-                    'value' => function($row) {
-                        return $row->status == Product::IN_STOCK ? 'In Stock' : 'Out Of Stock';
-                    }
-                ],
-
-                \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+            'name',
+            'sku',
+            'price',
+            [
+                'attribute' => 'status',
+                'filter' => [Product::IN_STOCK => 'In Stock', Product::OUT_OF_STOCK => 'Out Of Stock'],
+                'value' => function($row) {
+                    return $row->status == Product::IN_STOCK ? 'In Stock' : 'Out Of Stock';
+                }
             ],
-        ]); ?>
-    </div>
-<?php $this->endBlock() ?>
 
-<?php echo \app\modules\dashboard\helpers\TemplateHelper::indexPage('content', 'actions') ?>
+            \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+        ],
+    ]); ?>
+</div>

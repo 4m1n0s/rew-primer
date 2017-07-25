@@ -17,79 +17,70 @@ $this->params['breadcrumbs'] = [
 ];
 ?>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="portlet">
-            <div class="portlet-title">
-                <div class="actions">
-                    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Category').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-container">
-                    <?php
-                    $template = "
-                        <div class=\"table-scrollable\">
-                            {items} 
-                        </div>
-                        <div class=\"row\"> 
-                            <div class=\"col-md-5 col-sm-12\">
-                                <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
-                            </div>
-                            <div class=\"col-md-7 col-sm-12\">
-                                <div class=\"dataTables_paginate paging_bootstrap\">
-                                    {pager}
-                                </div>
-                            </div>
-                        </div>";
-                    ?>
+<?php $this->beginBlock('actions')?>
 
-                    <?php Pjax::begin(['id' => 'offers-grid-pjax', 'enablePushState' => true]); ?>
-                    <?= GridView::widget([
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-                        'columns' => [
-                            ['class' => 'yii\grid\SerialColumn'],
+    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Category').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
 
-                            'name',
-                            [
-                                'attribute' => 'active',
-                                'format' => 'raw',
-                                'filter' => [1 => 'Yes', 0 => 'No'],
-                                'value' => function($row) {
-                                    return Yii::$app->formatter->asBoolean($row->active);
-                                }
-                            ],
+<?php $this->endBlock()?>
 
-                            [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => 'Actions',
-                                'headerOptions' => ['style' => 'min-width:170px;width:170px'],
-                                'buttons' => [
-                                    'update' => function($url, $model) {
-                                        return Html::a('<i class="fa fa-edit"></i> ' . 'Edit', $url, [
-                                            'class' => 'btn default btn-xs green',
-                                            'title' => 'Edit',
-                                            'data-pjax' => 0
-                                        ]);
-                                    },
-                                    'delete' => function ($url, $model, $key) {
-                                        return Html::a('<i class="fa fa-trash"></i> ' . 'Remove', $url, [
-                                            'class' => 'btn default btn-xs red',
-                                            'title' => 'Remove',
-                                            'data-method' => 'post',
-                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        ]);
-                                    },
-                                ],
-
-                                'template' => '{update} {delete}'
-                            ],
-                        ],
-                    ]); ?>
-                    <?php Pjax::end(); ?>
-                </div>
+<?php
+$template = "
+    <div class=\"table-scrollable\">
+        {items} 
+    </div>
+    <div class=\"row\"> 
+        <div class=\"col-md-5 col-sm-12\">
+            <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
+        </div>
+        <div class=\"col-md-7 col-sm-12\">
+            <div class=\"dataTables_paginate paging_bootstrap\">
+                {pager}
             </div>
         </div>
-    </div>
-</div>
+    </div>";
+?>
+
+<?php Pjax::begin(['id' => 'offers-grid-pjax', 'enablePushState' => true]); ?>
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+
+        'name',
+        [
+            'attribute' => 'active',
+            'format' => 'raw',
+            'filter' => [1 => 'Yes', 0 => 'No'],
+            'value' => function($row) {
+                return Yii::$app->formatter->asBoolean($row->active);
+            }
+        ],
+
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => 'Actions',
+            'headerOptions' => ['style' => 'min-width:170px;width:170px'],
+            'buttons' => [
+                'update' => function($url, $model) {
+                    return Html::a('<i class="fa fa-edit"></i> ' . 'Edit', $url, [
+                        'class' => 'btn default btn-xs green',
+                        'title' => 'Edit',
+                        'data-pjax' => 0
+                    ]);
+                },
+                'delete' => function ($url, $model, $key) {
+                    return Html::a('<i class="fa fa-trash"></i> ' . 'Remove', $url, [
+                        'class' => 'btn default btn-xs red',
+                        'title' => 'Remove',
+                        'data-method' => 'post',
+                        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                    ]);
+                },
+            ],
+
+            'template' => '{update} {delete}'
+        ],
+    ],
+]); ?>
+<?php Pjax::end(); ?>
