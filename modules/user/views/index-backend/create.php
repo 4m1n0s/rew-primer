@@ -15,19 +15,12 @@ $this->params['pageSmallTitle'] = Yii::t('user', 'create');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-reorder"></i><?= Html::encode($this->title); ?>
-        </div>
-    </div>
-    <div class="portlet-body form">
-        <?=
-        $this->render('_form', [
-            'model' => $model,
-            'roleList' => $model->getRoleList(),
-            'statusList' => $model->getStatusList(),
-        ])
-        ?>
-    </div>
-</div>
+
+<?=
+$this->render('_form', [
+    'model' => $model,
+    'roleList' => $model->getRoleList(),
+    'statusList' => $model->getStatusList(),
+])
+?>
+

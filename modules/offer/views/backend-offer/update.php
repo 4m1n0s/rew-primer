@@ -20,19 +20,12 @@ $this->params['breadcrumbs'][] = [
 
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="portlet box blue">
-    <div class="portlet-title">
-        <div class="caption">
-            <i class="fa fa-reorder"></i><?= Html::encode($this->title); ?>
-        </div>
-    </div>
-    <div class="portlet-body form">
-        <?= $this->render('_form', [
-            'model' => $model,
-            'categoryList' => $categoryList,
-            'countriesList' => $countriesList,
-            'deviceTypeList' => $deviceTypeList,
-            'deviceOsList' => $deviceOsList
-        ]) ?>
-    </div>
-</div>
+
+<?= $this->render('_form', [
+    'model' => $model,
+    'categoryList' => $categoryList,
+    'countriesList' => $countriesList,
+    'deviceTypeList' => $deviceTypeList,
+    'deviceOsList' => $deviceOsList
+]) ?>
+

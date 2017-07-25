@@ -10,12 +10,8 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<?php $this->beginBlock('content') ?>
-    <div class="category-product-create">
-        <?= $this->render('_form', [
-            'model' => $model,
-        ]) ?>
-    </div>
-<?php $this->endBlock() ?>
-
-<?php echo \app\modules\dashboard\helpers\TemplateHelper::createPage('content') ?>
+<div class="category-product-create">
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+</div>

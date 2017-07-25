@@ -15,10 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions') ?>
-<?= Html::a('<i class="fa fa-plus"></i> <span>'.Yii::t('user/admin', 'Create Page').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+
+    <?= Html::a('<i class="fa fa-plus"></i> <span>'.Yii::t('user/admin', 'Create Page').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+
 <?php $this->endBlock() ?>
 
-<?php $this->beginBlock('content') ?>
 <div class="page-index">
     <?php Pjax::begin(); ?>
     <?= GridView::widget([
@@ -42,6 +43,3 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 <?php Pjax::end(); ?>
 </div>
-<?php $this->endBlock() ?>
-
-<?php echo \app\modules\dashboard\helpers\TemplateHelper::indexPage('content', 'actions') ?>

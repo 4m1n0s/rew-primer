@@ -2,21 +2,19 @@
 
 namespace app\modules\core\components\controllers;
 
+use app\modules\core\filters\LayoutFilter;
 use yii\filters\AccessControl;
-
-use app\modules\core\components\controllers\Controller;
 
 /**
  * Class BackController
  *
  * @author Stableflow
  */
-class BackController extends Controller {
-    
-    public $layout = '//backend/main';
-    
-    public function behaviors() {
-        
+class BackController extends Controller
+{
+
+    public function behaviors()
+    {
         return [
             'access' => [
                 'class' => AccessControl::className(),
@@ -27,6 +25,16 @@ class BackController extends Controller {
                     ],
                 ],
             ],
+            [
+                'class' => LayoutFilter::className(),
+                'actions' => [
+                    'index' => '//backend/default-index',
+                    'view' => '//backend/default-index',
+                    'create' => '//backend/default-form',
+                    'update' => '//backend/default-form',
+                ],
+                'baseLayout' => '//backend/main'
+            ]
         ];
     }
     

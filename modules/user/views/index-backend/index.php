@@ -39,180 +39,165 @@ $this->params['breadcrumbs'] = [
 ];
 ?>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="portlet">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-table"></i><?= Yii::t('user/admin', 'User Listing'); ?>
-                </div>
-                <div class="actions">
+<?php $this->beginBlock('actions')?>
                     <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
                     <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
-                </div>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-container">
-                    <?php
-                    $template = "
-                        <div class=\"table-scrollable\">
-                            {items} 
-                        </div>
-                        <div class=\"row\"> 
-                            <div class=\"col-md-5 col-sm-12\">
-                                <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
-                            </div>
-                            <div class=\"col-md-7 col-sm-12\">
-                                <div class=\"dataTables_paginate paging_bootstrap\">
-                                    {pager}
-                                </div>
-                            </div>
-                        </div>";
-                    Pjax::begin(['id' => 'user-grid', 'enablePushState' => true]);
-                    ?>
+<?php $this->endBlock()?>
 
-                    <?=
-                    GridView::widget([
-                        'tableOptions' => [
-                            'class' => 'table table-striped table-bordered table-hover'
-                        ],
-                        'headerRowOptions' => [
-                            'class' => 'heading'
-                        ],
-                        'pager' => [
-                            'firstPageLabel' => Yii::t('user/admin', 'First'),
-                            'lastPageLabel' => Yii::t('user/admin', 'Last'),
-                        ],
-                        'layout' => $template,
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-                        'columns' => [
-                            [
-                                'attribute' => 'id',
-                                'headerOptions' => [
-                                    'width' => '100',
-                                ],
-                            ],
-                            [
-                                'attribute' => 'username',
-                                'headerOptions' => [
-                                    'width' => '200',
-                                ],
-                            ],
-                            'email:email',
-                            [
-                                'attribute' => 'status',
-                                'filter' => $statusList,
-                                'headerOptions' => ['width' => '150'],
-                                'format' => 'raw',
-                                'value' => function($model) {
-                                    return $model->getStatus(true);
-                                }
-                            ],
-                            [
-                                'attribute' => 'role',
-                                'filter' => $roleList,
-                                'headerOptions' => ['width' => '150'],
-                                'value' => function($model) {
-                                    return $model->getRoles();
-                                }
-                            ],
-                            [
-                                'attribute' => 'referral_code',
-                                'headerOptions' => [
-                                    'width' => '200',
-                                ],
-                            ],
-                            'virtual_currency',
-                            [
-                                'attribute' => 'note',
-                                'headerOptions' => [
-                                    'width' => '200',
-                                ],
-                                'format' => 'raw',
-                                'value' => function($model){
-                                    if(isset($model->metaData->note)){
-                                        $note = (strlen($model->metaData->note) > 40 ) ? substr($model->metaData->note, 0, 40).'...' : $model->metaData->note;
-                                        return "<span class=\"text-primary\" title=\"{$model->metaData->note}\">$note<span>";
-                                    }
-                                    
-                                    return '<span title="'.Yii::t('user/admin', 'Not found note').'"> none <span>';
-                                }
-                            ],
-                            [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => Yii::t('user/admin', 'Actions'),
-                                'headerOptions' => ['style' => 'min-width:230px;width:230px'],
-                                'buttons' => [
-                                    'referrals' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
-
-                                        return Html::a('<i class="fa fa-sitemap"></i> ' . Yii::t('user/admin', 'Referrals'), $url, [
-                                                'class' => 'btn btn-xs purple',
-                                                'title' => Yii::t('user/admin', 'Referrals'),
-                                                'data-pjax' => 0
-                                        ]);
-                                    },
-                                    'edit' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
-
-                                        return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('user/admin', 'Edit'), $url, [
-                                                'class' => 'btn default btn-xs green',
-                                                'title' => Yii::t('user/admin', 'Edit'),
-                                                'data-pjax' => 0
-                                        ]);
-                                    },
-                                    'toBlackList' => function($url, $model) {
-
-                                        $url = Url::to(['/user/index-backend/user-to-blacklist']);
-
-                                        if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
-                                            return Html::a(
-                                                '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Block'),
-                                                Url::to(),
-                                                [
-                                                    'title' => 'Move to black list',
-                                                    'class' => 'btn default btn-xs yellow',
-                                                    'onclick'=> "blacklist('$url', '$model->id')",
-                                                    'data-pjax' => 1
-                                                ]
-                                            );
-                                        } else {
-                                            return Html::a(
-                                                '<i class="fa fa-check"></i> ' . Yii::t('user/admin', 'Restore'),
-                                                Url::to(),
-                                                [
-                                                    'title' => 'Activate user',
-                                                    'class' => 'btn default btn-xs blue',
-                                                    'onclick'=> "blacklist('$url', '$model->id')",
-                                                    'data-pjax' => 1
-                                                ]
-                                            );
-                                        }
-                                    },
-                                    'remove' => function($url, $model) {
-                                        $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/delete', 'id' => $model->id]);
-
-                                        return Html::a('<i class="fa fa-trash"></i> ' . Yii::t('user/admin', 'Remove'), $url, [
-                                            'class' => 'btn default btn-xs red',
-                                            'title' => Yii::t('user/admin', 'Remove'),
-                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                            'data-method' => 'post',
-                                        ]);
-                                    },
-                                ],
-                                'template' => '{toBlackList} {edit} {remove}',
-                            ],
-                        ],
-                    ]);
-                    ?>
-                    <?php Pjax::end(); ?>
-                </div>
+<?php
+$template = "
+    <div class=\"table-scrollable\">
+        {items} 
+    </div>
+    <div class=\"row\"> 
+        <div class=\"col-md-5 col-sm-12\">
+            <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
+        </div>
+        <div class=\"col-md-7 col-sm-12\">
+            <div class=\"dataTables_paginate paging_bootstrap\">
+                {pager}
             </div>
         </div>
-    </div>
+    </div>";
+Pjax::begin(['id' => 'user-grid', 'enablePushState' => true]);
+?>
 
+<?=
+GridView::widget([
+    'tableOptions' => [
+        'class' => 'table table-striped table-bordered table-hover'
+    ],
+    'headerRowOptions' => [
+        'class' => 'heading'
+    ],
+    'pager' => [
+        'firstPageLabel' => Yii::t('user/admin', 'First'),
+        'lastPageLabel' => Yii::t('user/admin', 'Last'),
+    ],
+    'layout' => $template,
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        [
+            'attribute' => 'id',
+            'headerOptions' => [
+                'width' => '100',
+            ],
+        ],
+        [
+            'attribute' => 'username',
+            'headerOptions' => [
+                'width' => '200',
+            ],
+        ],
+        'email:email',
+        [
+            'attribute' => 'status',
+            'filter' => $statusList,
+            'headerOptions' => ['width' => '150'],
+            'format' => 'raw',
+            'value' => function($model) {
+                return $model->getStatus(true);
+            }
+        ],
+        [
+            'attribute' => 'role',
+            'filter' => $roleList,
+            'headerOptions' => ['width' => '150'],
+            'value' => function($model) {
+                return $model->getRoles();
+            }
+        ],
+        [
+            'attribute' => 'referral_code',
+            'headerOptions' => [
+                'width' => '200',
+            ],
+        ],
+        'virtual_currency',
+        [
+            'attribute' => 'note',
+            'headerOptions' => [
+                'width' => '200',
+            ],
+            'format' => 'raw',
+            'value' => function($model){
+                if(isset($model->metaData->note)){
+                    $note = (strlen($model->metaData->note) > 40 ) ? substr($model->metaData->note, 0, 40).'...' : $model->metaData->note;
+                    return "<span class=\"text-primary\" title=\"{$model->metaData->note}\">$note<span>";
+                }
+
+                return '<span title="'.Yii::t('user/admin', 'Not found note').'"> none <span>';
+            }
+        ],
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => Yii::t('user/admin', 'Actions'),
+            'headerOptions' => ['style' => 'min-width:230px;width:230px'],
+            'buttons' => [
+                'referrals' => function($url, $model) {
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
+
+                    return Html::a('<i class="fa fa-sitemap"></i> ' . Yii::t('user/admin', 'Referrals'), $url, [
+                            'class' => 'btn btn-xs purple',
+                            'title' => Yii::t('user/admin', 'Referrals'),
+                            'data-pjax' => 0
+                    ]);
+                },
+                'edit' => function($url, $model) {
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
+
+                    return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('user/admin', 'Edit'), $url, [
+                            'class' => 'btn default btn-xs green',
+                            'title' => Yii::t('user/admin', 'Edit'),
+                            'data-pjax' => 0
+                    ]);
+                },
+                'toBlackList' => function($url, $model) {
+
+                    $url = Url::to(['/user/index-backend/user-to-blacklist']);
+
+                    if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
+                        return Html::a(
+                            '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Block'),
+                            Url::to(),
+                            [
+                                'title' => 'Move to black list',
+                                'class' => 'btn default btn-xs yellow',
+                                'onclick'=> "blacklist('$url', '$model->id')",
+                                'data-pjax' => 1
+                            ]
+                        );
+                    } else {
+                        return Html::a(
+                            '<i class="fa fa-check"></i> ' . Yii::t('user/admin', 'Restore'),
+                            Url::to(),
+                            [
+                                'title' => 'Activate user',
+                                'class' => 'btn default btn-xs blue',
+                                'onclick'=> "blacklist('$url', '$model->id')",
+                                'data-pjax' => 1
+                            ]
+                        );
+                    }
+                },
+                'remove' => function($url, $model) {
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/delete', 'id' => $model->id]);
+
+                    return Html::a('<i class="fa fa-trash"></i> ' . Yii::t('user/admin', 'Remove'), $url, [
+                        'class' => 'btn default btn-xs red',
+                        'title' => Yii::t('user/admin', 'Remove'),
+                        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                        'data-method' => 'post',
+                    ]);
+                },
+            ],
+            'template' => '{toBlackList} {edit} {remove}',
+        ],
+    ],
+]);
+?>
+<?php Pjax::end(); ?>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal">
     <div class="modal-dialog" role="document">

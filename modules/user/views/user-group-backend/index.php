@@ -14,71 +14,56 @@ $this->params['pageTitle'] = Yii::t('user/admin', 'User Groups');
 $this->params['pageSmallTitle'] = Yii::t('user/admin', 'manage');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-group-index">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="portlet">
-                <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-table"></i><?= Yii::t('user/admin', 'User Group Listing'); ?>
-                    </div>
-                    <div class="actions">
-                        <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Group').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-                        <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
-                    </div>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-container">
-                    <?php
-                    $template = "
-                        <div class=\"table-scrollable\">
-                            {items} 
-                        </div>
-                        <div class=\"row\"> 
-                            <div class=\"col-md-5 col-sm-12\">
-                                <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
-                            </div>
-                            <div class=\"col-md-7 col-sm-12\">
-                                <div class=\"dataTables_paginate paging_bootstrap\">
-                                    {pager}
-                                </div>
-                            </div>
-                        </div>";
-                    Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]);
-                    ?>
-                    <?=
-                    GridView::widget([
-                        'tableOptions' => [
-                            'class' => 'table table-striped table-bordered table-hover'
-                        ],
-                        'headerRowOptions' => [
-                            'class' => 'heading'
-                        ],
-                        'pager' => [
-                            'firstPageLabel' => Yii::t('user/admin', 'First'),
-                            'lastPageLabel' => Yii::t('user/admin', 'Last'),
-                        ],
-                        'layout' => $template,
-                        'dataProvider' => $dataProvider,
-                        'filterModel' => $searchModel,
-                        'columns' => [
 
-                            'name',
+<?php $this->beginBlock('actions')?>
+    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Group').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+    <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
+<?php $this->endBlock()?>
 
-                            [
-                                'class' => \yii\grid\ActionColumn::class,
-                                'headerOptions' => [
-                                    'style' => 'width:50px'
-                                ],
-                                'template' => '{update} {delete}'
-                            ]
-                        ],
-                    ]);
-                    ?>
-                    <?php Pjax::end(); ?>
-                </div>
+<?php
+$template = "
+    <div class=\"table-scrollable\">
+        {items} 
+    </div>
+    <div class=\"row\"> 
+        <div class=\"col-md-5 col-sm-12\">
+            <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
+        </div>
+        <div class=\"col-md-7 col-sm-12\">
+            <div class=\"dataTables_paginate paging_bootstrap\">
+                {pager}
             </div>
         </div>
-    </div>
-</div>
+    </div>";
+Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]);
+?>
+<?=
+GridView::widget([
+    'tableOptions' => [
+        'class' => 'table table-striped table-bordered table-hover'
+    ],
+    'headerRowOptions' => [
+        'class' => 'heading'
+    ],
+    'pager' => [
+        'firstPageLabel' => Yii::t('user/admin', 'First'),
+        'lastPageLabel' => Yii::t('user/admin', 'Last'),
+    ],
+    'layout' => $template,
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+
+        'name',
+
+        [
+            'class' => \yii\grid\ActionColumn::class,
+            'headerOptions' => [
+                'style' => 'width:50px'
+            ],
+            'template' => '{update} {delete}'
+        ]
+    ],
+]);
+?>
+<?php Pjax::end(); ?>

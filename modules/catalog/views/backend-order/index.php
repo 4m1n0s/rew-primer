@@ -60,120 +60,118 @@ $this->params['breadcrumbs'][] = $this->title;
     ) ?>
 
 </div>
+
 <?php $this->endBlock() ?>
 
-<?php $this->beginBlock('content') ?>
-    <div class="order-index">
-        <?php Pjax::begin(['id' => 'order-grid-pjax', 'enablePushState' => true]) ?>
-        <?= GridView::widget([
-            'id' => 'order-grid',
-            'dataProvider' => $dataProvider,
-            'filterModel' => $searchModel,
-            'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
-            'columns' => [
-                ['class' => 'yii\grid\SerialColumn'],
-                ['class' => 'yii\grid\CheckboxColumn'],
+<div class="order-index">
+    <?php Pjax::begin(['id' => 'order-grid-pjax', 'enablePushState' => true]) ?>
+    <?= GridView::widget([
+        'id' => 'order-grid',
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
 
-                'id',
-                [
-                    'attribute' => 'user_id',
-                    'format' => 'raw',
-                    'value' => function($row) {
-                        return Html::a($row->user_id, ['/user/index-backend/edit', 'id' => $row->user_id], [
-                            'data-pajx' => 0
-                        ]);
-                    }
-                ],
-                'cost',
-                [
-                    'attribute' => 'status',
-                    'format' => 'raw',
-                    'filter' => \app\modules\catalog\models\Order::getStatusList(),
-                    'value' => function($model) {
-                        return $model->getStatus(true);
-                    }
-                ],
-                [
-                    'filter' => DatePicker::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'cr_date_from',
-                        'attribute2' => 'cr_date_to',
-                        'type' => DatePicker::TYPE_RANGE,
-                        'separator' => 'to',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'autoclose' => true
-                        ]
-                    ]),
-                    'headerOptions' => ['style' => 'min-width: 250px;'],
-                    'attribute' => 'create_date',
-                    'format' => 'datetime',
-                ],
-                [
-                    'filter' => DatePicker::widget([
-                        'model' => $searchModel,
-                        'attribute' => 'cl_date_from',
-                        'attribute2' => 'cl_date_to',
-                        'type' => DatePicker::TYPE_RANGE,
-                        'separator' => 'to',
-                        'pluginOptions' => [
-                            'format' => 'yyyy-mm-dd',
-                            'autoclose' => true
-                        ]
-                    ]),
-                    'headerOptions' => ['style' => 'min-width: 250px;'],
-                    'attribute' => 'closed_date',
-                    'format' => 'datetime',
-                ],
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'header' => Yii::t('user/admin', 'Actions'),
-                    'headerOptions' => ['style' => 'min-width:230px;width:230px'],
-                    'buttons' => [
-                        'view' => function($url, $model) {
-                            return Html::a('<i class="glyphicon glyphicon-eye-open"></i> ' . Yii::t('app', 'view'), $url, [
-                                'class' => 'btn default btn-xs green',
-                                'title' => Yii::t('app', 'Edit'),
-                                'data-pjax' => 0
-                            ]);
-                        },
-                        'status' => function($url, $model) {
-                            if ($model->status == \app\modules\catalog\models\Order::STATUS_PROCESSING) {
-                                $url = Url::to(['/catalog/backend-order/cancel']);
-                                return Html::a(
-                                    '<i class="fa fa-ban"></i> ' . Yii::t('app', 'Cancel'),
-                                    Url::to(),
-                                    [
-                                        'title' => 'Move to black list',
-                                        'class' => 'btn default btn-xs yellow',
-                                        'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
-                                        'data-pjax' => 1
-                                    ]
-                                );
-                            } elseif ($model->status == \app\modules\catalog\models\Order::STATUS_CANCELLED) {
-                                $url = Url::to(['/catalog/backend-order/restore']);
-                                return Html::a(
-                                    '<i class="fa fa-check"></i> ' . Yii::t('app', 'Restore'),
-                                    Url::to(),
-                                    [
-                                        'title' => 'Activate user',
-                                        'class' => 'btn default btn-xs blue',
-                                        'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
-                                        'data-pjax' => 1
-                                    ]
-                                );
-                            }
-                        },
-                    ],
-                    'template' => '{view} {status}',
-                ],
+            'id',
+            [
+                'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function($row) {
+                    return Html::a($row->user_id, ['/user/index-backend/edit', 'id' => $row->user_id], [
+                        'data-pajx' => 0
+                    ]);
+                }
             ],
-        ]); ?>
-        <?php Pjax::end(); ?>
-    </div>
-<?php $this->endBlock() ?>
+            'cost',
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'filter' => \app\modules\catalog\models\Order::getStatusList(),
+                'value' => function($model) {
+                    return $model->getStatus(true);
+                }
+            ],
+            [
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'cr_date_from',
+                    'attribute2' => 'cr_date_to',
+                    'type' => DatePicker::TYPE_RANGE,
+                    'separator' => 'to',
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'autoclose' => true
+                    ]
+                ]),
+                'headerOptions' => ['style' => 'min-width: 250px;'],
+                'attribute' => 'create_date',
+                'format' => 'datetime',
+            ],
+            [
+                'filter' => DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'cl_date_from',
+                    'attribute2' => 'cl_date_to',
+                    'type' => DatePicker::TYPE_RANGE,
+                    'separator' => 'to',
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'autoclose' => true
+                    ]
+                ]),
+                'headerOptions' => ['style' => 'min-width: 250px;'],
+                'attribute' => 'closed_date',
+                'format' => 'datetime',
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => Yii::t('user/admin', 'Actions'),
+                'headerOptions' => ['style' => 'min-width:230px;width:230px'],
+                'buttons' => [
+                    'view' => function($url, $model) {
+                        return Html::a('<i class="glyphicon glyphicon-eye-open"></i> ' . Yii::t('app', 'view'), $url, [
+                            'class' => 'btn default btn-xs green',
+                            'title' => Yii::t('app', 'Edit'),
+                            'data-pjax' => 0
+                        ]);
+                    },
+                    'status' => function($url, $model) {
+                        if ($model->status == \app\modules\catalog\models\Order::STATUS_PROCESSING) {
+                            $url = Url::to(['/catalog/backend-order/cancel']);
+                            return Html::a(
+                                '<i class="fa fa-ban"></i> ' . Yii::t('app', 'Cancel'),
+                                Url::to(),
+                                [
+                                    'title' => 'Move to black list',
+                                    'class' => 'btn default btn-xs yellow',
+                                    'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
+                                    'data-pjax' => 1
+                                ]
+                            );
+                        } elseif ($model->status == \app\modules\catalog\models\Order::STATUS_CANCELLED) {
+                            $url = Url::to(['/catalog/backend-order/restore']);
+                            return Html::a(
+                                '<i class="fa fa-check"></i> ' . Yii::t('app', 'Restore'),
+                                Url::to(),
+                                [
+                                    'title' => 'Activate user',
+                                    'class' => 'btn default btn-xs blue',
+                                    'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
+                                    'data-pjax' => 1
+                                ]
+                            );
+                        }
+                    },
+                ],
+                'template' => '{view} {status}',
+            ],
+        ],
+    ]); ?>
+    <?php Pjax::end(); ?>
+</div>
 
-<?php echo \app\modules\dashboard\helpers\TemplateHelper::indexPage('content', 'actions') ?>
 
 <?php
 $this->registerJsFile('/backend/js/order_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);
