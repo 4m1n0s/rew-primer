@@ -16,7 +16,6 @@ class Yii extends \yii\BaseYii
  * Class BaseApplication
  * Used for properties that are identical for both WebApplication and ConsoleApplication
  *
- * @property \app\components\MandrillMailer $mandrillMailer
  * @property \app\modules\settings\components\KeyStorage $keyStorage
  * @property \himiklab\yii2\recaptcha\ReCaptcha $reCaptcha
  * @property \app\modules\core\components\geolocation\GeoLocation $geoLocation
@@ -30,6 +29,7 @@ class Yii extends \yii\BaseYii
  * @property app\modules\core\components\Export $export
  * @property app\modules\core\components\TransactionCreator $transactionCreator
  * @property app\modules\core\components\IPNormalizer $ipNormalizer
+ * @property app\modules\core\components\mailer\MailContainer $mailContainer
  */
 abstract class BaseApplication extends yii\base\Application
 {

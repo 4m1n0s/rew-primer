@@ -31,7 +31,8 @@
         "omnilight/yii2-shopping-cart": "*",
         "kartik-v/yii2-widget-datepicker": "*",
         "kartik-v/yii2-field-range": "*",
-        "romi45/yii2-seo-behavior": "~1.0"
+        "romi45/yii2-seo-behavior": "~1.0",
+        "aws/aws-sdk-php": "^3.31"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

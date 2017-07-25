@@ -17,16 +17,6 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\DummyCache',
         ],
-        'view' => [
-            /*'theme' => [
-                'basePath' => '@app/themes/polo',
-                'baseUrl' => '@web/themes/polo',
-                'pathMap' => [
-                    '@app/views' => '@app/themes/polo',
-                    '@app/modules' => '@app/themes/polo/modules',
-                ],
-            ],*/
-        ],
         'reCaptcha' => [
             'name' => 'reCaptcha',
             'class' => 'himiklab\yii2\recaptcha\ReCaptcha',
@@ -120,9 +110,6 @@ $config = [
                 ]
             ],
         ],
-        'mandrillMailer' => [
-            'class' => 'app\components\MandrillMailer'
-        ],
         'keyStorage' => [
             'class' => '\app\modules\settings\components\KeyStorage'
         ],
@@ -140,9 +127,6 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => require(__DIR__ . '/auth-clients.php'),
         ],
-        'virtualCurrency' => [
-            'class' => '\app\modules\core\components\VirtualCurrency'
-        ],
         'globalTexts' => [
             'class' => '\app\modules\core\components\GlobalTexts'
         ],
@@ -158,6 +142,12 @@ $config = [
         ],
         'ipNormalizer' => [
             'class' => '\app\modules\core\components\IPNormalizer',
+        ],
+        'mailContainer' => [
+            'class' => '\app\modules\core\components\mailer\MailContainer',
+            'mailerClient' => function() {
+                return new \app\modules\core\components\mailer\clients\Mandrill();
+            }
         ],
     ],
     'params' => $params,

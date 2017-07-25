@@ -1,8 +1,9 @@
 <?php
 
-namespace app\models;
+namespace app\modules\core\models;
 
 use Yii;
+use app\modules\core\models\queries\EmailQueueQuery;
 
 /**
  * This is the model class for table "{{%email_queue}}".
@@ -74,10 +75,10 @@ class EmailQueue extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\models\queries\EmailQueueQuery the active query used by this AR class.
+     * @return EmailQueueQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\models\queries\EmailQueueQuery(get_called_class());
+        return new EmailQueueQuery(get_called_class());
     }
 }

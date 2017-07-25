@@ -1,11 +1,13 @@
 <?php
 
-namespace app\models\queries;
+namespace app\modules\core\models\queries;
+
+use app\modules\core\models\EmailTemplate;
 
 /**
- * This is the ActiveQuery class for [[\app\models\EmailTemplate]].
+ * This is the ActiveQuery class for [[EmailTemplate]].
  *
- * @see \app\models\EmailTemplate
+ * @see EmailTemplate
  */
 class EmailTemplateQuery extends \yii\db\ActiveQuery
 {
@@ -16,7 +18,7 @@ class EmailTemplateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\EmailTemplate[]|array
+     * @return EmailTemplate[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +27,7 @@ class EmailTemplateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\EmailTemplate|array|null
+     * @return EmailTemplate|array|null
      */
     public function one($db = null)
     {

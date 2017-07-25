@@ -1,7 +1,8 @@
 <?php
 
-namespace app\models;
+namespace app\modules\core\models;
 
+use app\modules\core\models\queries\EmailTemplateQuery;
 use Yii;
 
 /**
@@ -71,10 +72,10 @@ class EmailTemplate extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\models\queries\EmailTemplateQuery the active query used by this AR class.
+     * @return EmailTemplateQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\models\queries\EmailTemplateQuery(get_called_class());
+        return new EmailTemplateQuery(get_called_class());
     }
 }

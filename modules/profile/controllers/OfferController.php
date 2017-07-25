@@ -27,6 +27,8 @@ class OfferController extends ProfileController
      */
     public function actionList()
     {
+        
+        
         $this->layout = '//frontend/profile';
 
         $categories = Category::find()->select(['name'])->active()->asArray()->all();

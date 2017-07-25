@@ -2,8 +2,7 @@
 
 namespace app\modules\user\listeners;
 
-use app\components\MandrillMailer;
-use app\models\EmailTemplate;
+use app\modules\core\models\EmailTemplate;
 use app\modules\core\components\VirtualCurrency;
 use app\modules\invitation\models\Invitation;
 use app\modules\user\events\UserPasswordRecoveryEvent;
@@ -76,10 +75,9 @@ class UserListener {
     public static function onSuccessPasswordRecovery(\app\modules\user\events\UserPasswordRecoveryEvent $event) {
         $user = $event->getUser();
         $token = $event->getToken();
-        $mandrillMailer = \Yii::$app->get('mandrillMailer');
-        /* @var MandrillMailer $mandrillMailer */
+        $mailContainer = Yii::$app->mailContainer;
 
-        $mandrillMailer->addToQueue(
+        $mailContainer->addToQueue(
             $user->email,
             EmailTemplate::TEMPLATE_USER_PASSWORD_RECOVERY, [
             'link' => Html::a('Link', Url::toRoute([
@@ -121,14 +119,14 @@ class UserListener {
         $token  = $event->getToken();
         $form   = $event->getForm();
 
-        $mandrillMailer = \Yii::$app->mandrillMailer;
+        $mailContainer = Yii::$app->mailContainer;
         $keyStorage = \Yii::$app->keyStorage;
 
         if ($user->status !== User::STATUS_PENDING) {
             return false;
         }
 
-        $mandrillMailer->addToQueue(
+        $mailContainer->addToQueue(
             $user->email,
             EmailTemplate::TEMPLATE_REGISTER_CONFIRMATION, [
             'username' => $user->username,
@@ -142,7 +140,7 @@ class UserListener {
         $referralPercents = $keyStorage->get('referral_percents');
 
         if (!empty($referralCode) && (($sourceUser = User::getUserByReferralCode($referralCode)) !== null) && (int)$referralPercents > 0) {
-            $mandrillMailer->addToQueue(
+            $mailContainer->addToQueue(
                 $sourceUser->email,
                 EmailTemplate::TEMPLATE_REGISTER_REFERRAL_BONUS, [
                 'source_username' => $sourceUser->username,

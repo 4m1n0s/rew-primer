@@ -2,9 +2,8 @@
 
 namespace app\modules\invitation\models;
 
-use app\components\MandrillMailer;
 use app\helpers\DateHelper;
-use app\models\EmailTemplate;
+use app\modules\core\models\EmailTemplate;
 use app\modules\user\models\User;
 use Yii;
 use yii\base\Security;
@@ -172,9 +171,8 @@ class Invitation extends \yii\db\ActiveRecord
             $this->update_date = DateHelper::getCurrentDateTime();
 
             if ($this->status === static::STATUS_APPROVED) {
-                $mandrill = Yii::$app->get('mandrillMailer');
-                /* @var MandrillMailer $mandrill */
-                $mandrill->addToQueue(
+                $mailContainer = Yii::$app->mailContainer;
+                $mailContainer->addToQueue(
                     $this->email,
                     EmailTemplate::TEMPLATE_INVITATION_REQUEST_APPROVED, [
                         'invitation_code'   => $this->code,

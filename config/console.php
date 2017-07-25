@@ -48,9 +48,6 @@ return [
             'hostInfo' => $params['baseUrl']
         ],
         'db' => $db,
-        'mandrillMailer' => [
-            'class' => 'app\components\MandrillMailer'
-        ],
         'keyStorage' => [
             'class' => '\app\modules\settings\components\KeyStorage'
         ],
@@ -60,6 +57,12 @@ return [
         ],
         'offerFactory' => [
             'class' => '\app\modules\offer\components\OfferFactory',
+        ],
+        'mailContainer' => [
+            'class' => '\app\modules\core\components\mailer\MailContainer',
+            'mailerClient' => function() {
+                return new \app\modules\core\components\mailer\clients\Mandrill();
+            }
         ],
     ],
     'params' => $params,

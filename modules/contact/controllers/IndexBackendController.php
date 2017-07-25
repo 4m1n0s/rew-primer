@@ -2,8 +2,7 @@
 
 namespace app\modules\contact\controllers;
 
-use app\components\MandrillMailer;
-use app\models\EmailTemplate;
+use app\modules\core\models\EmailTemplate;
 use app\modules\contact\form\Reply;
 use Yii;
 use app\modules\contact\models\Contact;
@@ -65,10 +64,8 @@ class IndexBackendController extends BackController
         }
 
         if ($reply->load(Yii::$app->request->post()) && $reply->validate()) {
-            $mandrillMailer = \Yii::$app->get('mandrillMailer');
-            /* @var MandrillMailer $mandrillMailer */
-
-            $sent = $mandrillMailer->addToQueue(
+            $mailContainer = Yii::$app->mailContainer;
+            $sent = $mailContainer->addToQueue(
                 $model->email,
                 EmailTemplate::TEMPLATE_CONTACT_US,
                 ['message' => $reply->message]

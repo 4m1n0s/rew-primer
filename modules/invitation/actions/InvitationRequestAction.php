@@ -2,8 +2,7 @@
 
 namespace app\modules\invitation\actions;
 
-use app\components\MandrillMailer;
-use app\models\EmailTemplate;
+use app\modules\core\models\EmailTemplate;
 use app\modules\user\forms\RegistrationForm;
 use Yii;
 use yii\base\Action;
@@ -43,9 +42,8 @@ class InvitationRequestAction extends Action
                 Yii::$app->session->setFlash('error', 'Unexpected error occurred');
             }
 
-            $mandrill = Yii::$app->get('mandrillMailer');
-            /* @var MandrillMailer $mandrill */
-            $mandrill->addToQueue(
+            $mailContainer = Yii::$app->mailContainer;
+            $mailContainer->addToQueue(
                 $invitation->email,
                 EmailTemplate::TEMPLATE_INVITATION_REQUEST_RECEIVED
             );

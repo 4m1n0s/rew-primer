@@ -1,11 +1,12 @@
 <?php
 
-namespace app\models\queries;
-use app\models\EmailQueue;
+namespace app\modules\core\models\queries;
+
+use app\modules\core\models\EmailQueue;
 use yii\db\ActiveQuery;
 
 /**
- * This is the ActiveQuery class for [[\app\models\EmailQueue]].
+ * This is the ActiveQuery class for [[EmailQueue]].
  *
  * @see \app\models\EmailQueue
  */
@@ -18,7 +19,7 @@ class EmailQueueQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\EmailQueue[]|array
+     * @return EmailQueue[]|array
      */
     public function all($db = null)
     {
@@ -27,7 +28,7 @@ class EmailQueueQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\models\EmailQueue|array|null
+     * @return EmailQueue|array|null
      */
     public function one($db = null)
     {
