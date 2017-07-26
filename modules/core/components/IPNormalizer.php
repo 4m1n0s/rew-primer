@@ -12,6 +12,10 @@ class IPNormalizer
      * @var bool
      */
     public $filterProxy = true;
+    /**
+     * @var bool
+     */
+    public $expand = true;
 
     /**
      * @var string
@@ -57,6 +61,20 @@ class IPNormalizer
     }
 
     /**
+     * Expand IPv6 address
+     *
+     * @return bool|string
+     */
+    public function doExpand()
+    {
+        if (!filter_var($this->ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return false;
+        }
+        $hex = unpack("H*hex", inet_pton($this->ip));
+        return $this->ip = substr(preg_replace("/([A-f0-9]{4})/", "$1:", $hex['hex']), 0, -1);
+    }
+
+    /**
      * IP Getter
      * @return mixed
      */
@@ -64,6 +82,9 @@ class IPNormalizer
     {
         if ($this->filterProxy) {
             static::doFilterProxy();
+        }
+        if ($this->expand) {
+            static::doExpand();
         }
 
         return $this->ip;

@@ -1,11 +1,10 @@
 <?php
 
-namespace app\modules\offer\models;
+namespace app\modules\core\models;
 
 use app\modules\user\models\User;
 use Yii;
 use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
 
 /**
  * This is the model class for table "{{%redeem_limit}}".
@@ -45,7 +44,7 @@ class RedeemLimit extends \yii\db\ActiveRecord
     {
         return [
             [['user_id'], 'integer'],
-            [['amount'], 'required'],
+            [['amount', 'user_id'], 'required'],
             [['amount'], 'number'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -75,10 +74,10 @@ class RedeemLimit extends \yii\db\ActiveRecord
 
     /**
      * @inheritdoc
-     * @return \app\modules\offer\models\queries\RedeemLimitQuery the active query used by this AR class.
+     * @return \app\modules\core\models\queries\RedeemLimitQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new \app\modules\offer\models\queries\RedeemLimitQuery(get_called_class());
+        return new \app\modules\core\models\queries\RedeemLimitQuery(get_called_class());
     }
 }

@@ -2,13 +2,14 @@
 
 namespace app\modules\core\components;
 
-use app\modules\offer\models\RedeemLimit;
+use app\modules\core\models\RedeemLimit;
+use app\modules\core\models\RedeemLimitIp;
 use app\modules\user\models\User;
 use yii\base\ErrorException;
-use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\helpers\Json;
+use Yii;
 
 /**
  * Class VirtualCurrency
@@ -20,11 +21,17 @@ class VirtualCurrency
     const ERROR_CODE_MAX_REDEEM = 2;
     const ERROR_CODE_INSUFFICIENT_FUNDS = 3;
 
+    public $checkRedemptionCurrencyLimits = true;
+    public $checkRedemptionIPLimits = true;
+
+    public $redemptionMinLimit = 100;
+    public $redemptionMaxLimit = 500;
+    public $redemptionResetHours = 24;
+
     /**
      * @var User
      */
     protected $user;
-
     /**
      * @var int
      */
@@ -73,20 +80,13 @@ class VirtualCurrency
             throw new InvalidConfigException('User Model must be set');
         }
 
-        $keyStorage = \Yii::$app->keyStorage;
-        $transaction = \Yii::$app->db->beginTransaction();
-
+        $transaction = Yii::$app->db->beginTransaction();
         try {
-            $resetTime = (int)$keyStorage->get('redeem.reset') ?: '24';
-            if (!is_null($redeemLimitModel = RedeemLimit::find()->user($this->user)->lastHours($resetTime)->one())) {
-                $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
-            } else {
-                $redeemLimitModel = new RedeemLimit();
-                $redeemLimitModel->user_id = $this->user->id;
-                $redeemLimitModel->amount = $this->getRedeemLimitTotalCurrency($redeemLimitModel, $amount);
+            if ($this->checkRedemptionCurrencyLimits) {
+                $this->limitsCurrency($amount);
             }
-            if (!$redeemLimitModel->save()) {
-                throw new Exception('Could not save ' . RedeemLimit::class . ' model');
+            if ($this->checkRedemptionIPLimits) {
+                $this->limitsIP($amount);
             }
 
             $value = bcsub($this->user->virtual_currency, $amount, $this->scale);
@@ -94,7 +94,7 @@ class VirtualCurrency
                 throw new InvalidValueException('Insufficient funds', static::ERROR_CODE_INSUFFICIENT_FUNDS);
             }
             if (!$this->updateCurrency($value)) {
-                throw new Exception('Could not update user\'s currency');
+                throw new ErrorException('Could not update user\'s currency');
             }
 
             $transaction->commit();
@@ -119,7 +119,7 @@ class VirtualCurrency
         $this->user->virtual_currency = $value;
 
         if (!$this->user->save()) {
-            \Yii::error('Could not save user\'s Virtual Currency value' . PHP_EOL .
+            Yii::error('Could not save user\'s Virtual Currency value' . PHP_EOL .
                 Json::encode($this->user->getErrors())
             );
 
@@ -130,21 +130,18 @@ class VirtualCurrency
     }
 
     /**
-     * @param RedeemLimit $model
+     * @param RedeemLimit|RedeemLimitIp $model
      * @param $amount
      * @return int
      */
-    protected function getRedeemLimitTotalCurrency(RedeemLimit $model, $amount)
+    protected function getRedeemLimitTotalCurrency($model, $amount)
     {
-        $keyStorage = \Yii::$app->keyStorage;
-
-        if ($amount < $keyStorage->get('redeem.minLimit')) {
+        if ($amount < floatval($this->redemptionMinLimit)) {
             throw new InvalidValueException('Min Redeem limit', static::ERROR_CODE_MIN_REDEEM);
         }
 
         $total = bcadd($model->amount, $amount, $this->scale);
-
-        if ($total > $keyStorage->get('redeem.maxLimit')) {
+        if ($total > floatval($this->redemptionMaxLimit)) {
             throw new InvalidValueException('Max Redeem limit', static::ERROR_CODE_MAX_REDEEM);
         }
 
@@ -162,4 +159,42 @@ class VirtualCurrency
 
         return true;
     }
+
+    /**
+     * @param $amount
+     * @throws ErrorException
+     */
+    protected function limitsCurrency($amount)
+    {
+        if (!is_null($model = RedeemLimit::find()->user($this->user)->lastHours(floatval($this->redemptionResetHours))->one())) {
+            $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
+        } else {
+            $model = new RedeemLimit();
+            $model->user_id = $this->user->id;
+            $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
+        }
+        if (!$model->save()) {
+            throw new ErrorException('Could not save ' . RedeemLimit::class . ' model');
+        }
+    }
+
+    /**
+     * @param $amount
+     * @throws ErrorException
+     */
+    protected function limitsIP($amount)
+    {
+        $ip = Yii::$app->ipNormalizer->getIP();
+        if (!is_null($model = RedeemLimitIp::find()->ip($ip)->lastHours(floatval($this->redemptionResetHours))->one())) {
+            $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
+        } else {
+            $model = new RedeemLimitIp();
+            $model->ip = $ip;
+            $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
+        }
+        if (!$model->save()) {
+            throw new ErrorException('Could not save ' . RedeemLimitIp::class . ' model');
+        }
+    }
+
 }

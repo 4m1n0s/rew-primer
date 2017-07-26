@@ -1,13 +1,14 @@
 <?php
 
-namespace app\modules\offer\models\queries;
+namespace app\modules\core\models\queries;
+
 use app\modules\user\models\User;
 use yii\db\Expression;
 
 /**
- * This is the ActiveQuery class for [[\app\modules\offer\models\RedeemLimit]].
+ * This is the ActiveQuery class for [[\app\modules\core\models\RedeemLimit]].
  *
- * @see \app\modules\offer\models\RedeemLimit
+ * @see \app\modules\core\models\RedeemLimit
  */
 class RedeemLimitQuery extends \yii\db\ActiveQuery
 {
@@ -18,7 +19,7 @@ class RedeemLimitQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\modules\offer\models\RedeemLimit[]|array
+     * @return \app\modules\core\models\RedeemLimit[]|array
      */
     public function all($db = null)
     {
@@ -27,7 +28,7 @@ class RedeemLimitQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return \app\modules\offer\models\RedeemLimit|array|null
+     * @return \app\modules\core\models\RedeemLimit|array|null
      */
     public function one($db = null)
     {

@@ -5,7 +5,6 @@ namespace app\modules\catalog\controllers;
 use app\modules\catalog\models\Order;
 use app\modules\catalog\models\RefProductOrder;
 use app\modules\core\components\controllers\FrontController;
-use app\modules\core\components\IPNormalizer;
 use app\modules\core\components\VirtualCurrency;
 use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
@@ -29,7 +28,11 @@ class OrderController extends FrontController
         /* @var User $currentUser */
 
         try {
+            $keyStorage = Yii::$app->keyStorage;
             $virtualCurrency = new VirtualCurrency($currentUser);
+            $virtualCurrency->redemptionMaxLimit = $keyStorage->get('redeem.maxLimit');
+            $virtualCurrency->redemptionMinLimit = $keyStorage->get('redeem.minLimit');
+            $virtualCurrency->redemptionResetHours = $keyStorage->get('redeem.reset');
             if (!$virtualCurrency->debiting(Yii::$app->cart->getCost())) {
                 throw new ErrorException('Funds cannot be charged');
             }
@@ -81,7 +84,7 @@ class OrderController extends FrontController
                     $message = 'Unexpected error occurred. Please contact us!';
             }
             Yii::$app->session->setFlash('error', $message);
-        } catch (\ErrorException $e) {
+        } catch (\Exception $e) {
             Yii::$app->session->setFlash('error', $e->getMessage());
         }
         $transaction->rollBack();
