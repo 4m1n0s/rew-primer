@@ -38,13 +38,14 @@ composer.phar
 # auxiliary files
 /commands/CommonController.php
 
-# Yii temp directories
+# Yii temp dirs
 /web/assets/*
 /runtime/*
 
 # Yii config files
 /config/params.php
 /config/db.php
+/config/test-db.php
 /config/mailer.php
 /config/auth-clients.php
 /config/source-maxmind/
