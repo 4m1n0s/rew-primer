@@ -27,6 +27,21 @@ $urlMockup = '/images/mockup/';
 
         <?php else: ?>
 
+            <div class="form-relative text-light clearfix">
+                <div class="form-group-sm">
+                    <h3>Register New Account</h3>
+                    <p>Leave Your email</p>
+                    <div class="row">
+                        <div class="form-group">                    
+                            <input class="form-control" name="RegistrationForm[email]" placeholder="E-mail" aria-required="true" type="email">
+                        </div>  
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">Request Invite</button>                
+                        </div> 
+                    </div>
+                </div>  
+            </div>
+
         <?php endif; ?>
     </div>
 </section>
