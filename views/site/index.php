@@ -29,8 +29,8 @@ $urlMockup = '/images/mockup/';
 
             <div class="form-relative text-light clearfix">
                 <div class="form-group-sm">
-                    <h3>Register New Account</h3>
-                    <p>Leave Your email</p>
+                    <p class="title-txt-bold">Join Now to Start Earning Extra Bucks!</p>
+                    <p class="txt-sm margin-bottom-5">Leave Your email</p>
                     <div class="row">
                         <div class="form-group">                    
                             <input class="form-control" name="RegistrationForm[email]" placeholder="E-mail" aria-required="true" type="email">
