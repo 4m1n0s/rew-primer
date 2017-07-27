@@ -29,7 +29,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign Up');
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="col-md-12">
                     <h3>Register New Account</h3>
-                    <p>Leave Your email</p>
+                    <p>Leave your email below and we will invite you as soon as we can!</p>
                 </div>
                 <?php yii\widgets\Pjax::begin(['id' => 'register', 'enablePushState' => false]) ?>
 
@@ -60,7 +60,7 @@ $this->params['pageTitle'] = Yii::t('app', 'Sign Up');
                 </div>
 
                 <div class="col-md-12 form-group">
-                    <?php echo Html::submitButton(Yii::t('app', 'Request Invite'), ['class' => 'btn btn-primary']) ?>
+                    <?php echo Html::submitButton(Yii::t('app', 'Request an Invite'), ['class' => 'btn btn-primary']) ?>
                 </div>
 
                 <?php ActiveForm::end(); ?>

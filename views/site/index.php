@@ -20,28 +20,13 @@ $urlMockup = '/images/mockup/';
 <section id="page-title" class="page-title-parallax page-title-center" style="height: 500px; background-image:url(/images/large-phone-bg.jpg);">
     <div class="container">
         <?php if (!Yii::$app->keyStorage->get('invite_only_signup')): ?>
-
             <div class="form-relative clearfix">
                 <?php echo \app\modules\user\widgets\RegisterBriefForm::widget() ?>
             </div>
-
         <?php else: ?>
-
             <div class="form-relative text-light clearfix">
-                <div class="form-group-sm">
-                    <p class="title-txt-bold">Join Now to Start Earning Extra Bucks!</p>
-                    <p class="txt-sm margin-bottom-5">Leave Your email</p>
-                    <div class="row">
-                        <div class="form-group">                    
-                            <input class="form-control" name="RegistrationForm[email]" placeholder="E-mail" aria-required="true" type="email">
-                        </div>  
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-sm btn-block">Request Invite</button>                
-                        </div> 
-                    </div>
-                </div>  
+                <?php echo \app\modules\user\widgets\RegisterInviteForm::widget() ?>
             </div>
-
         <?php endif; ?>
     </div>
 </section>

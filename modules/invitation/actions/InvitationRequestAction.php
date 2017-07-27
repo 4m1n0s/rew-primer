@@ -34,7 +34,7 @@ class InvitationRequestAction extends Action
 
         $post = Yii::$app->request->post();
 
-        if ($form->load($post) && $form->validate() && $invitation->load($post, 'RegistrationForm') && $invitation->validate()) {
+        if ($form->load($post) && !$form->isWidget && $form->validate() && $invitation->load($post, 'RegistrationForm') && $invitation->validate()) {
 
             $invitation->status = Invitation::STATUS_NEW;
 
