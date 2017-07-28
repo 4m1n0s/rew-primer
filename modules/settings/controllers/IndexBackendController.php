@@ -10,7 +10,9 @@ use app\modules\offer\models\OfferDeviceType;
 use app\modules\settings\forms\FormModel;
 use kartik\switchinput\SwitchInput;
 use \Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use yii\helpers\VarDumper;
 use yii\web\ForbiddenHttpException;
 
 /**
@@ -19,6 +21,14 @@ use yii\web\ForbiddenHttpException;
 class IndexBackendController extends BackController
 {
     public $viewPath = 'app\modules\settings\views\index-backend';
+    public $layout = '//backend/default-form';
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        unset($behaviors['layoutFilter']);
+        return $behaviors;
+    }
 
     /**
      * Renders the index view for the module
@@ -182,6 +192,49 @@ class IndexBackendController extends BackController
 
         return $this->render('default', [
             'pageTitle' => 'Security Settings',
+            'model' => $model
+        ]);
+    }
+
+    public function actionSocial()
+    {
+        $model = Yii::createObject([
+            'class' => FormModel::class,
+            'keys' => [
+                'social.fb' => [
+                    'label' => 'Facebook',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Facebook'],
+                    'rules' => [['url']]
+                ],
+                'social.twitter' => [
+                    'label' => 'Twitter',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Twitter'],
+                    'rules' => [['url']]
+                ],
+                'social.google' => [
+                    'label' => 'Google+',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'Google+'],
+                    'rules' => [['url']]
+                ],
+                'social.youtube' => [
+                    'label' => 'YouTube',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'options' => ['placeholder' => 'YouTube'],
+                    'rules' => [['url']]
+                ],
+            ]
+        ]);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('success', 'Settings have been updated');
+            return $this->refresh();
+        }
+
+        return $this->render('default', [
+            'pageTitle' => 'Social Settings',
             'model' => $model
         ]);
     }

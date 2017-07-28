@@ -25,7 +25,7 @@ class BackController extends Controller
                     ],
                 ],
             ],
-            [
+            'layoutFilter' => [
                 'class' => LayoutFilter::className(),
                 'actions' => [
                     'index' => '//backend/default-index',
