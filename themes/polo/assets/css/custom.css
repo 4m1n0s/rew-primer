@@ -216,12 +216,12 @@
 
 /* offer-page */
 #offer-page-wrap {
-  height:1500px;
+  height:800px;
   width:101%; 
   overflow-x: auto;
 }
 #offer-page-wrap iframe {
-  height: 1500px !important;
+  height: 800px !important;
   width:99%; 
   border:0; 
   padding:0;
