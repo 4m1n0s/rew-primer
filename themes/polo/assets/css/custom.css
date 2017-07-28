@@ -216,19 +216,19 @@
 
 /* offer-page */
 #offer-page-wrap {
-  height:500px;
+  height:1500px;
   width:101%; 
   overflow-x: auto;
 }
 #offer-page-wrap iframe {
-  height: 500px !important;
+  height: 1500px !important;
   width:99%; 
   border:0; 
   padding:0;
   margin:0; 
 }
 
-@media only screen and (max-width: 1019px) {
+/*@media only screen and (max-width: 1019px) {
   #offer-page-wrap {
     height: 350px;
   }
@@ -244,7 +244,7 @@
   #offer-page-wrap iframe {
     height: 300px !important;
   }
-}
+}*/
 /* ANDoffer-page */
 
 
