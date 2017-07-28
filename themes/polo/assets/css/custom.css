@@ -746,5 +746,13 @@
 
 /* ANDdatepicker */
 
+@media only screen and (max-width: 480px ) {
+  .gototop-button {
+    display: none;
+  }
+  #footer .social-icons {
+      float: none;
+  }
+}
 
 
