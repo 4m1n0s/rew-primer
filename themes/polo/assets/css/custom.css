@@ -750,6 +750,9 @@
   .gototop-button {
     display: none;
   }
+  #footer .social-icons {
+      float: none;
+  }
 }
 
 
