@@ -54,8 +54,8 @@ $js = <<< JS
     $('#qty').TouchSpin({
         min: 1,
         max: 50,
-        buttondown_class: 'btn btn-default btn-sm',
-        buttonup_class: 'btn btn-default btn-sm'
+        buttondown_class: 'btn btn-grey btn-sm',
+        buttonup_class: 'btn btn-grey btn-sm'
     });
 JS;
 $this->registerJs($js);
