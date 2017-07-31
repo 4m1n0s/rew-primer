@@ -6,6 +6,7 @@ use app\helpers\DateHelper;
 use app\modules\core\components\mailer\MailerInterface;
 use app\modules\core\models\EmailQueue;
 use app\modules\core\models\EmailTemplate;
+use Aws\Credentials\Credentials;
 use Aws\Ses\Exception\SesException;
 use Aws\Ses\SesClient;
 use yii\helpers\Json;
@@ -14,9 +15,10 @@ class Amazon implements MailerInterface
 {
     public function send(EmailQueue $emailQueue, array $config = [])
     {
+        $credentials = new Credentials(\Yii::$app->params['amazon_access_key'], \Yii::$app->params['amazon_secret_key']);
         $client = SesClient::factory(array(
-            'version'=> 'latest',
-            'region' => 'us-west-2'
+            'credentials' => $credentials,
+            'region' => 'us-east-1',
         ));
 
         $request = [];
