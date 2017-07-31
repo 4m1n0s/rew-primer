@@ -1428,7 +1428,7 @@ var INSPIRO = {};
                     if ($body.hasClass('device-sm') || $body.hasClass('device-xs')) {
                         itemWidth(2, $elemContainer, itemElement, itemElementSpace);
                     } else if ($body.hasClass('device-xxs')) {
-                        itemWidth(1, $elemContainer, itemElement, itemElementSpace);
+                        itemWidth(2, $elemContainer, itemElement, itemElementSpace);
                     } else {
                         itemWidth(columns, $elemContainer, itemElement, itemElementSpace);
                     }
