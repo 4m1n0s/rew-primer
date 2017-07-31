@@ -219,6 +219,7 @@
   height:1000px;
   width:101%; 
   overflow-x: auto;
+  -webkit-overflow-scrolling:touch;
 }
 #offer-page-wrap iframe {
   height: 1000px !important;
