@@ -4,6 +4,8 @@ use yii\helpers\Html;
 ?>
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="apple-mobile-web-app-title" content="rewardbucks">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="robots" content="noindex,nofolow">
     <title><?= Html::encode($this->title) ?></title>
