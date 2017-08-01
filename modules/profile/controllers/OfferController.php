@@ -27,8 +27,6 @@ class OfferController extends ProfileController
      */
     public function actionList()
     {
-        
-        
         $this->layout = '//frontend/profile';
 
         $categories = Category::find()->select(['name'])->active()->asArray()->all();
@@ -51,6 +49,8 @@ class OfferController extends ProfileController
 
     public function actionSingle($id)
     {
+        $this->layout = '//frontend/offerwall';
+
         if (!Yii::$app->request->isAjax) {
             $this->getView()->registerAssetBundle(OfferAsset::class);
             $this->getView()->registerJs('offer_render_module.init()');

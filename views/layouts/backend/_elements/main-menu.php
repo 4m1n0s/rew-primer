@@ -155,6 +155,11 @@
                                 'url' => ['/settings/index-backend/security'],
                                 'active' => $module == 'settings' && $controller == 'index-backend' && $action == 'security',
                             ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Social'),
+                                'url' => ['/settings/index-backend/social'],
+                                'active' => $module == 'settings' && $controller == 'index-backend' && $action == 'social',
+                            ],
                         ]
                     ],
                 ]

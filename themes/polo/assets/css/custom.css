@@ -216,13 +216,14 @@
 
 /* offer-page */
 #offer-page-wrap {
-  height:500px;
-  width:101%; 
+  height:1000px;
+  width:101%;
   overflow-x: auto;
+  -webkit-overflow-scrolling:touch;
 }
 #offer-page-wrap iframe {
-  height: 500px !important;
-  width:99%; 
+  height: 1000px !important;
+  width:100%; 
   border:0; 
   padding:0;
   margin:0; 
@@ -230,19 +231,19 @@
 
 @media only screen and (max-width: 1019px) {
   #offer-page-wrap {
-    height: 350px;
+    height: 600px;
   }
   #offer-page-wrap iframe {
-    height: 350px !important;
+    height: 600px !important;
   }
 
 }
 @media only screen and (max-width: 680px) {
   #offer-page-wrap {
-    height: 300px;
+    height: 600px;
   }
   #offer-page-wrap iframe {
-    height: 300px !important;
+    height: 600px !important;
   }
 }
 /* ANDoffer-page */
@@ -746,5 +747,13 @@
 
 /* ANDdatepicker */
 
+@media only screen and (max-width: 480px ) {
+  .gototop-button {
+    display: none;
+  }
+  #footer .social-icons {
+      float: none;
+  }
+}
 
 
