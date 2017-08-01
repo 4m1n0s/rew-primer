@@ -72,6 +72,14 @@ $config = [
                     'categories' => ['offer_postback'],
                     'logVars' => [],    // Exclude next message with vars
                 ],
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning', 'info'],
+                    'categories' => ['ip_log'],
+                    'logVars' => ['_POST', '_GET', '_SERVER'],
+                    'logFile' => '@app/runtime/logs/ip_log/errors.log',
+                    'maxLogFiles' => 50,
+                ],
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
@@ -148,6 +156,13 @@ $config = [
             'mailerClient' => function() {
                 return new \app\modules\core\components\mailer\clients\Mandrill();
             }
+        ],
+        'queue' => [
+            'class' => \yii\queue\db\Queue::class,
+            'db' => 'db', // DB connection component or its config
+            'tableName' => '{{%queue}}', // Table name
+            'channel' => 'default', // Queue channel key
+            'mutex' => \yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
         ],
     ],
     'params' => $params,

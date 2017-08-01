@@ -2,7 +2,9 @@
 
 namespace app\modules\user\models;
 
+use app\modules\core\components\tasks\RiskScoreJob;
 use Yii;
+use yii\base\ErrorException;
 
 /**
  * This is the model class for table "{{%user_ip_log}}".
@@ -10,6 +12,7 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $ip
+ * @property string $risk_score
  *
  * @property User $user
  */
@@ -29,10 +32,10 @@ class UserIpLog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            ['risk_score', 'number', 'min' => '0', 'max' => '99.9'],
             [['user_id', 'ip'], 'required'],
             [['user_id'], 'integer'],
             [['ip'], 'string', 'max' => 45],
-            [['user_id', 'ip'], 'unique', 'targetAttribute' => ['user_id', 'ip'], 'message' => 'The combination of User ID and Ip has already been taken.'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -69,15 +72,35 @@ class UserIpLog extends \yii\db\ActiveRecord
      */
     public static function add($userID, $userIP)
     {
-        if (self::find()->where(['user_id' => $userID, 'ip' => $userIP])->exists()) {
-            return false;
+        try {
+            /* @var UserIpLog $model */
+            if (($model = self::find()->where(['user_id' => $userID, 'ip' => $userIP])->one())) {
+                if ($model->risk_score == 0 && (floatval(Yii::$app->keyStorage->get('security.risk_score')) > 0)) {
+                    Yii::$app->queue->push(new RiskScoreJob([
+                        'ipLogModelID' => $model->id
+                    ]));
+                }
+            } else {
+                $model = new static([
+                    'user_id' => $userID,
+                    'ip' => $userIP
+                ]);
+
+                if (!$model->save()) {
+                    throw new ErrorException('Could not save ' . UserIpLog::class . PHP_EOL . json_encode($model->errors));
+                }
+
+                if (floatval(Yii::$app->keyStorage->get('security.risk_score')) > 0) {
+                    Yii::$app->queue->push(new RiskScoreJob([
+                        'ipLogModelID' => $model->id
+                    ]));
+                }
+            }
+            return true;
+        } catch (\Exception $e) {
+            Yii::error($e->getMessage(), 'ip_log');
         }
 
-        $ipLog = new static([
-            'user_id' => $userID,
-            'ip' => $userIP
-        ]);
-
-        return $ipLog->save();
+        return false;
     }
 }

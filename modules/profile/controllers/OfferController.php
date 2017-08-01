@@ -9,6 +9,7 @@ use app\modules\offer\components\OfferCollection;
 use app\modules\offer\models\Category;
 use app\modules\offer\models\Offer;
 use app\modules\offer\assets\OfferAsset;
+use app\modules\user\models\UserIpLog;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use \Yii;
 use yii\helpers\ArrayHelper;
@@ -137,8 +138,7 @@ class OfferController extends ProfileController
         }
 
         if ($keyStorage->get('security.timezone')) {
-            $ip = YII_DEBUG ? Yii::$app->params['localIP'] : (new IPNormalizer())->getIP();
-            $client = \Yii::$app->geoLocation->process($ip);
+            $client = \Yii::$app->geoLocation->process(Yii::$app->ipNormalizer->getIP());
             $ipTimezone = $client->getTimezone();
             $ipdtz = new \DateTimeZone($ipTimezone);
             $ipTimeOffset = (new \DateTime('now', $ipdtz))->getOffset();
@@ -151,6 +151,16 @@ class OfferController extends ProfileController
             $clientLocation = ArrayHelper::getValue($clientdtz->getLocation(), 'country_code');
 
             if ($ipTimeOffset !== $clientTimeOffset) {
+                return false;
+            }
+        }
+
+        if ($riskScore = (floatval(Yii::$app->keyStorage->get('security.risk_score')) > 0)) {
+            $model = UserIpLog::find()
+                ->where(['user_id' => Yii::$app->getUser()->getId(), 'ip' => Yii::$app->ipNormalizer->getIP()])
+                ->one();
+
+            if (!$model || $model->risk_score > $riskScore) {
                 return false;
             }
         }
