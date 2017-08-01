@@ -118,7 +118,8 @@ class RegistrationForm extends Model
             ['referralCode', 'validateReferralCode', 'skipOnEmpty' => true],
 
             // Captcha
-            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'skipOnEmpty' => YII_ENV == 'test' ? true : false,
+                'secret' => Yii::$app->params['reCaptchaSecretKey'], 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
 
             // Terms
             ['terms', 'required', 'requiredValue' => 1, 'message' => 'Terms are required'],

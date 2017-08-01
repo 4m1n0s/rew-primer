@@ -2,6 +2,7 @@
 
 namespace app\modules\user\components;
 
+use app\modules\core\components\IPNormalizer;
 use \Yii;
 use \app\modules\user\models\User;
 use \app\modules\user\models\Token;
@@ -35,7 +36,7 @@ class TokenStorage extends \yii\base\Component
         $model->user_id = $user->id;
         $model->type = (int)$type;
         $model->code = Yii::$app->security->generateRandomString(rand(8, 12));
-        $model->ip = Yii::$app->getRequest()->getUserIP();
+        $model->ip = (new IPNormalizer())->getIP();
         $model->create_date = DateHelper::getCurrentDateTime();
         $model->status = Token::STATUS_NEW;
         $model->expire = DateHelper::getGTMDatetime(time() + $expire);
@@ -175,7 +176,7 @@ class TokenStorage extends \yii\base\Component
         $model->user_id = $user->id;
         $model->type = Token::TYPE_OAUTH_TEMP_USER;
         $model->code = Yii::$app->security->generateRandomString(rand(8, 12));
-        $model->ip = Yii::$app->getRequest()->getUserIP();
+        $model->ip = (new IPNormalizer())->getIP();
         $model->create_date = DateHelper::getCurrentDateTime();
         $model->status = Token::STATUS_NEW;
         $model->expire = DateHelper::getGTMDatetime(time() + $expire);

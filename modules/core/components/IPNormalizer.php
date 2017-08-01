@@ -1,12 +1,13 @@
 <?php
 
 namespace app\modules\core\components;
+use yii\base\Object;
 
 /**
  * Class IPNormalizer
  * @package app\modules\core\components
  */
-class IPNormalizer
+class IPNormalizer extends Object
 {
     /**
      * @var bool
@@ -16,6 +17,10 @@ class IPNormalizer
      * @var bool
      */
     public $expand = true;
+    /**
+     * @var bool
+     */
+    public $debug;
 
     /**
      * @var string
@@ -24,12 +29,16 @@ class IPNormalizer
 
     /**
      * IPNormalizer constructor.
+     * @param array $config
      */
-    public function __construct()
+    public function __construct(array $config = [])
     {
-        $this->ip = \Yii::$app->request->getUserIP();
+        $this->debug = YII_DEBUG;
+        $this->ip = $this->debug ? \Yii::$app->params['localIP'] : \Yii::$app->request->getUserIP();
+
+        parent::__construct($config);
     }
-    
+
     /**
      * @return null|string
      */
@@ -80,6 +89,10 @@ class IPNormalizer
      */
     public function getIP()
     {
+        if ($this->debug) {
+            return $this->ip;
+        }
+
         if ($this->filterProxy) {
             static::doFilterProxy();
         }
