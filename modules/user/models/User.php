@@ -154,6 +154,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         return $this->hasOne(Token::className(), ['user_id' => 'id']);
     }
 
+    public function getTokenByType($type)
+    {
+        return $this->getToken()
+            ->andWhere(['type' => $type])
+            ->one();
+    }
+
     /** @inheritdoc */
     public function getId() {
         return $this->getAttribute('id');

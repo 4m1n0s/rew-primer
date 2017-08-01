@@ -55,7 +55,7 @@ class UserManager extends \yii\base\Component
      * Register new user
      *
      * @param RegistrationForm $form
-     * @return User|bool
+     * @return User|false
      */
     public function createUser(RegistrationForm $form)
     {
@@ -103,6 +103,10 @@ class UserManager extends \yii\base\Component
         }
     }
 
+    /**
+     * @param RegistrationForm $form
+     * @return User|bool
+     */
     public function createTempUser(RegistrationForm $form)
     {
         $transaction = Yii::$app->db->beginTransaction();
@@ -138,7 +142,7 @@ class UserManager extends \yii\base\Component
             }
 
             $transaction->commit();
-            return $token;
+            return $user;
         } catch (\Exception $e) {
             $transaction->rollBack();
             return false;
@@ -198,7 +202,7 @@ class UserManager extends \yii\base\Component
      * Create recovery token
      *
      * @param $email
-     * @return bool
+     * @return Token|false
      * @throws ErrorException
      * @throws \yii\db\Exception
      */
@@ -225,7 +229,7 @@ class UserManager extends \yii\base\Component
                     UserEvents::SUCCESS_PASSWORD_RECOVERY, new UserPasswordRecoveryEvent($email, $user, $token)
                 );
                 $transaction->commit();
-                return true;
+                return $token;
             }
 
             throw new ErrorException(Yii::t('user', 'Password recovery error.'));

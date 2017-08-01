@@ -32,9 +32,9 @@ class VirtualCurrencyTest extends \Codeception\Test\Unit
     public function testCrediting()
     {
         $vc = new VirtualCurrency($this->user);
-        $vc->crediting(12.00001);
+        self::assertTrue($vc->crediting(12.00001));
         self::assertTrue($this->user->virtual_currency === number_format(12.00001, 5));
-        $vc->crediting(12.12345);
+        self::assertTrue($vc->crediting(12.12345));
         self::assertTrue($this->user->virtual_currency === number_format(24.12346, 5));
     }
 }

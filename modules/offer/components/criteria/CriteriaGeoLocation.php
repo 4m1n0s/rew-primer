@@ -16,7 +16,7 @@ class CriteriaGeoLocation implements CriteriaInterface
      */
     public function match(OfferCollection $collection)
     {
-        $ip = YII_DEBUG ? \Yii::$app->params['localIP'] : (new IPNormalizer())->getIP();
+        $ip = (new IPNormalizer())->getIP();
         $client = \Yii::$app->geoLocation->process($ip);
         $ISOa2 = $client->getCountryISO();
         $country = GeoCountry::find()->select(['id'])->ISOa2($ISOa2)->asArray()->one();

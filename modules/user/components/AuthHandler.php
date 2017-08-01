@@ -77,8 +77,11 @@ class AuthHandler
             $form->externalID   = $userAttributes->externalID;
             $form->clientID     = $clientID;
 
-            if ($token = Yii::$app->userManager->createTempUser($form)) {
-                return Yii::$app->response->redirect(['/user/account/email-accept', 'token' => $token->code]);
+            if ($tempUser = Yii::$app->userManager->createTempUser($form)) {
+                return Yii::$app->response->redirect([
+                    '/user/account/email-accept',
+                    'token' => $tempUser->getTokenByType(Token::TYPE_OAUTH_TEMP_USER)->code
+                ]);
             }
         }
 
