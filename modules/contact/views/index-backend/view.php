@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'disableNativeSpellChecker' => true,
             'removePlugins' => 'scayt',
         ],
-    ])->label(false) ?>
+    ])->label('Reply Message') ?>
     <?php echo Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
     <?php $form->end(); ?>
 
