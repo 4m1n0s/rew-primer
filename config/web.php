@@ -179,6 +179,14 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [
+            'crud' => [
+                'class' => 'yii\gii\generators\crud\Generator',
+                'templates' => [
+                    'rewardbucks-backend-crud' => '@app/gii-templates/backend/crud/default',
+                ]
+            ]
+        ],
     ];
 }
 
