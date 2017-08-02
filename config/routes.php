@@ -33,6 +33,7 @@ return [
 
     // Backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
+    'dashboard/email/<_a>' => 'core/email-template/<_a>',
     'dashboard/catalog/order/<_a>' => 'catalog/backend-order/<_a>',
     'dashboard/catalog/product/<_a>' => 'catalog/backend-product/<_a>',
     'dashboard/catalog/category/<_a>' => 'catalog/backend-category/<_a>',

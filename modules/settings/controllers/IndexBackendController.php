@@ -182,6 +182,12 @@ class IndexBackendController extends BackController
                         'class' => 'self-class'
                     ],
                 ],
+                'security.risk_score' => [
+                    'label' => 'Risk Score',
+                    'type' => FormModel::TYPE_TEXTINPUT,
+                    'rules' => [['number', 'min' => '0', 'max' => '99.9']],
+                    'options' => ['placeholder' => 'Risk Score']
+                ],
             ]
         ]);
 

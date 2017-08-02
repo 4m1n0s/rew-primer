@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\modules\pages\models\Page */
+/* @var $model app\modules\core\models\EmailTemplate */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="page-form">
+<div class="email-template-form">
 
     <?php $form = ActiveForm::begin([
         'options' => [
@@ -20,11 +20,9 @@ use yii\widgets\ActiveForm;
     <div class="form-body">
         <h3 class="form-section"><?= Yii::t('user', 'General details'); ?></h3>
 
-        <?= $form->field($model, 'template')->dropDownList(\app\modules\pages\models\Page::getTemplateList(), ['prompt' => '-- Select Page Template --']) ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true, 'readonly' => true]) ?>
 
-        <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
-        <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 
         <?= $form->field($model, 'content', [
             'template' => "<div class='col-xs-12'>{label}<div>{input}{error}</div></div>",
@@ -34,9 +32,9 @@ use yii\widgets\ActiveForm;
             'preset' => 'full',
             'clientOptions' => [
                 'language' => 'en',
-                'height' => '500',
+                'height' => '600',
                 'allowedContent' => true,
-                'fullPage' => false,
+                'fullPage' => true,
                 'qtBorder' => '0',
                 'startupShowBorders' => false,
                 'extraPlugins' => 'justify',
@@ -44,11 +42,6 @@ use yii\widgets\ActiveForm;
                 'removePlugins' => 'scayt',
             ],
         ]) ?>
-
-        <h3 class="form-section"><?= Yii::t('user', 'SEO'); ?></h3>
-        <?= $form->field($model, 'seoTitle')->textInput(); ?>
-        <?= $form->field($model, 'seoKeywords')->textInput(); ?>
-        <?= $form->field($model, 'seoDescription')->textarea(); ?>
     </div>
 
     <div class="form-actions fluid">
@@ -59,14 +52,5 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-</div>
 
-<?php
-$js = <<<'JS'
-var allowedTags = ['a', 'i', 'span'];
-for (var i in allowedTags) {
-    CKEDITOR.dtd.$removeEmpty[allowedTags[i]] = 0;
-}
-JS;
-$this->registerJs($js);
-?>
+</div>

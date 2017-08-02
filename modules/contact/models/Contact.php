@@ -91,7 +91,7 @@ class Contact extends \yii\db\ActiveRecord
             'status' => 'Status',
             'name' => 'Name',
             'email' => 'Email',
-            'subject' => 'Your Subject',
+            'subject' => 'Subject',
             'message' => 'Message',
             'create_date' => 'Create Date',
             'update_date' => 'Update Date',

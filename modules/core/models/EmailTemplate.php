@@ -57,7 +57,7 @@ class EmailTemplate extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Template Name',
             'content' => 'Content',
         ];
     }

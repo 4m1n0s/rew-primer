@@ -68,7 +68,7 @@ class IndexBackendController extends BackController
             $sent = $mailContainer->addToQueue(
                 $model->email,
                 EmailTemplate::TEMPLATE_CONTACT_US,
-                ['message' => $reply->message]
+                ['contact_reply_message' => $reply->message]
             );
 
             if ($sent) {

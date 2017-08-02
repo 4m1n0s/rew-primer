@@ -136,6 +136,12 @@
                     ],
 
                     [
+                        'label' => '<i class="fa fa-envelope-square"></i> <span class="title"> ' . Yii::t('app', 'Email Templates') . '</span>',
+                        'url' => ['/core/backend-email-template'],
+                        'active' => $module == 'core' && $controller == 'backend-email-template'
+                    ],
+
+                    [
                         'label' => '<i class="fa fa-gear"></i> <span class="title"> ' . Yii::t('app', 'Settings') . '</span></span><span class="arrow"></span>',
                         'url' => 'javascript:;',
                         'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
