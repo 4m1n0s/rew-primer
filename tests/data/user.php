@@ -9,7 +9,8 @@ return [
         'password' => \app\modules\user\helpers\Password::hash('SfPass123'),
         'referral_code' => Yii::$app->security->generateRandomString(12),
         'create_date' => gmdate("Y-m-d H:i:s", time()),
-        'status' => \app\modules\user\models\User::STATUS_APPROVED
+        'status' => \app\modules\user\models\User::STATUS_APPROVED,
+        'virtual_currency' => 0
     ],
     'sf_user' => [
         'id' => 2,
@@ -19,7 +20,8 @@ return [
         'password' => \app\modules\user\helpers\Password::hash('pass123123'),
         'referral_code' => Yii::$app->security->generateRandomString(12),
         'create_date' => gmdate("Y-m-d H:i:s", time()),
-        'status' => \app\modules\user\models\User::STATUS_APPROVED
+        'status' => \app\modules\user\models\User::STATUS_APPROVED,
+        'virtual_currency' => 105
     ],
     'test_name' => [
         'id' => 3,
@@ -29,5 +31,6 @@ return [
         'password' => \app\modules\user\helpers\Password::hash('qwerty'),
         'create_date' => \Faker\Provider\DateTime::date('Y-m-d H:i:s'),
         'status' => \app\modules\user\models\User::STATUS_TEMP,
+        'virtual_currency' => 0
     ],
 ];

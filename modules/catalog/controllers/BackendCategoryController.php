@@ -67,12 +67,16 @@ class BackendCategoryController extends BackController
         $model = new CategoryProduct();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'Could not save CategoryProduct');
+                return $this->redirect(['index']);
+            }
+            Yii::$app->session->setFlash('error', 'Could not save page');
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
