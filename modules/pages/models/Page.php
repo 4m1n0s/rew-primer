@@ -96,6 +96,7 @@ class Page extends \yii\db\ActiveRecord
             static::TEMPLATE_CONTACT => Yii::t('app', 'Contact'),
             static::TEMPLATE_FAQ => Yii::t('app', 'Faq'),
             static::TEMPLATE_ABOUT => Yii::t('app', 'About'),
+            static::TEMPLATE_TERMS => Yii::t('app', 'Terms'),
         ];
     }
 
@@ -113,6 +114,8 @@ class Page extends \yii\db\ActiveRecord
                 return $templateList[static::TEMPLATE_FAQ];
             case static::TEMPLATE_ABOUT:
                 return $templateList[static::TEMPLATE_ABOUT];
+            case static::TEMPLATE_TERMS:
+                return $templateList[static::TEMPLATE_TERMS];
             default:
                 return 'unknown';
         }
