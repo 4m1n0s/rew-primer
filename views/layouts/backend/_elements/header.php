@@ -8,8 +8,7 @@ use yii\helpers\Html;
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="/">
-<!--                <img src="/backend/global/img/logo.png" alt="logo" class="logo-default" style="height: 25px" /> -->
-                <h4><?= Yii::$app->name ?></h4>
+                <img src="/images/rewardbuckslogo.png" alt="logo" class="logo-default" style="height: 25px" />
             </a>
             <div class="menu-toggler sidebar-toggler"> </div>
         </div>
