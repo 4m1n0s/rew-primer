@@ -57,7 +57,7 @@ class Page extends \yii\db\ActiveRecord
             [['template', 'created_at'], 'integer'],
             [['description', 'content'], 'string'],
             [['title'], 'string', 'max' => 255],
-            [['template'], 'unique'],
+            [['template'], 'unique', 'message' => 'Template already used'],
             [['seoTitle', 'seoKeywords', 'seoDescription'], 'safe'],
         ];
     }
