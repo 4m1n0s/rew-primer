@@ -21,6 +21,7 @@ class Page extends \yii\db\ActiveRecord
     const TEMPLATE_CONTACT  = 1;
     const TEMPLATE_FAQ      = 2;
     const TEMPLATE_ABOUT    = 3;
+    const TEMPLATE_TERMS    = 4;
 
     /**
      * @inheritdoc

@@ -79,6 +79,10 @@ class SiteController extends FrontController
 
     public function actionTerms()
     {
-        return $this->render('terms');
+        $page = Page::find()->template(Page::TEMPLATE_ABOUT)->one() ?: new Page();
+        
+        return $this->render('terms', [
+            'page' => $page
+        ]);
     }
 }
