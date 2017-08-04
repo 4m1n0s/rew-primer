@@ -50,36 +50,5 @@ class GridViewTemplateHelper
                 ]);
             },
         ];
-
-        return [
-            'class' => 'yii\grid\ActionColumn',
-            'header' => 'Actions',
-            'headerOptions' => ['style' => 'min-width:170px;width:170px'],
-            'buttons' => [
-                'view' => function($url, $model, $key) {
-                    return Html::a('<i class="fa fa-eye"></i>', $url, [
-                        'class' => 'btn did btn-outline view-modal-btn',
-                        'title' => 'View'
-                    ]);
-                },
-                'update' => function($url, $model) {
-                    return Html::a('<i class="fa fa-edit"></i> ' . 'Edit', $url, [
-                        'class' => 'btn default btn-xs green',
-                        'title' => 'Edit',
-                        'data-pjax' => 0
-                    ]);
-                },
-                'delete' => function ($url, $model, $key) {
-                    return Html::a('<i class="fa fa-trash"></i> ' . 'Remove', $url, [
-                        'class' => 'btn default btn-xs red',
-                        'title' => 'Remove',
-                        'data-method' => 'post',
-                        'data-confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
-                    ]);
-                },
-            ],
-
-            'template' => '{update} {delete}'
-        ];
     }
 }
