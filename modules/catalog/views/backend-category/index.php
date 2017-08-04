@@ -37,7 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => [1 => 'Yes', 0 => 'No']
             ],
 
-            'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => Yii::t('user/admin', 'Actions'),
+                'headerOptions' => ['style' => 'min-width:80px;width:80px'],
+                'buttons' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+                'template' => '{update} {delete}',
+            ]
         ],
     ]); ?>
 

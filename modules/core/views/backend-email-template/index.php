@@ -24,9 +24,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'name',
         'subject',
 
-        \yii\helpers\ArrayHelper::merge(\app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
-            'template' => '{update}'
-        ])
+        [
+            'class' => 'yii\grid\ActionColumn',
+            'header' => Yii::t('user/admin', 'Actions'),
+            'headerOptions' => ['style' => 'min-width:40px;width:40px'],
+            'buttons' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+            'template' => '{update}',
+        ]
     ],
 ]); ?>
 <?php Pjax::end(); ?>

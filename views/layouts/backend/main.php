@@ -61,6 +61,12 @@ BackendAsset::register($this);
                     <?= \app\modules\dashboard\widgets\Alert::widget() ?>
                     <!-- END PAGE HEADER-->
                     <?= $content ?>
+                    <?php yii\bootstrap\Modal::begin([
+                        'header' => '',
+                        'size' => \yii\bootstrap\Modal::SIZE_LARGE,
+                        'id' =>'view-modal',
+                    ]);
+                    yii\bootstrap\Modal::end(); ?>
                 </div> 
                 <!-- END CONTENT BODY -->
             </div>

@@ -277,7 +277,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
                         $status = 'primary';
                         break;
                     case static::STATUS_BLACKLIST:
-                        $status = 'default';
+                        $status = 'warning';
                         break;
                 }
                 return "<span class=\"label label-sm label-$status\">{$data[$this->status]}</span>";

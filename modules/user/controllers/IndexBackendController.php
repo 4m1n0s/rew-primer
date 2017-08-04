@@ -104,6 +104,24 @@ class IndexBackendController extends BackController
         ]);
     }
 
+    public function actionView($id)
+    {
+        if (($model = BackUsersForm::findOne($id)) === null) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
+        sleep(1);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('view', [
+                'model' => $model
+            ]);
+        }
+
+        return $this->render('view', [
+            'model' => $model
+        ]);
+    }
+
     public function actionIndex()
     {
         $searchModel = new UsersSearch();

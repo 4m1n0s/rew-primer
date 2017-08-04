@@ -111,8 +111,37 @@ GridView::widget([
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => Yii::t('user/admin', 'Actions'),
-            'headerOptions' => ['style' => 'min-width:230px;width:230px'],
-            'buttons' => [
+            'headerOptions' => ['style' => 'min-width:150px;width:150px'],
+            'buttons' => \yii\helpers\ArrayHelper::merge(
+                \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
+                'toBlackList' => function($url, $model) {
+                    $url = Url::to(['/user/index-backend/user-to-blacklist']);
+                    if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
+                        return Html::a(
+                            '<i class="fa fa-ban"></i>',
+                            Url::to(),
+                            [
+                                'title' => 'Move to blacklist',
+                                'class' => 'btn default btn-xs yellow-mint',
+                                'onclick'=> "blacklist('$url', '$model->id')",
+                                'data-pjax' => 1
+                            ]
+                        );
+                    } else {
+                        return Html::a(
+                            '<i class="fa fa-check-square-o"></i>',
+                            Url::to(),
+                            [
+                                'title' => 'Remove from blacklist',
+                                'class' => 'btn default btn-xs green-haze',
+                                'onclick'=> "blacklist('$url', '$model->id')",
+                                'data-pjax' => 1
+                            ]
+                        );
+                    }
+                },
+            ]),
+                /*[
                 'referrals' => function($url, $model) {
                     $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
 
@@ -169,8 +198,9 @@ GridView::widget([
                         'data-method' => 'post',
                     ]);
                 },
-            ],
-            'template' => '{toBlackList} {edit} {remove}',
+            ],*/
+//            'template' => '{toBlackList} {edit} {remove}',
+            'template' => '{toBlackList} {view} {update} {delete}',
         ],
     ],
 ]);
