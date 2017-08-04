@@ -2,6 +2,7 @@
 
 namespace app\modules\user\controllers;
 
+use app\modules\catalog\models\search\OrderSearch;
 use app\modules\user\forms\BackUsersForm;
 use app\modules\user\models\UsersSearch;
 use Yii;
@@ -110,7 +111,6 @@ class IndexBackendController extends BackController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
-        sleep(1);
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax('view', [
                 'model' => $model
@@ -215,5 +215,25 @@ class IndexBackendController extends BackController
         $model->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionOrders($id)
+    {
+        $searchModel = new OrderSearch();
+        $params = \Yii::$app->request->queryParams;
+        $params['OrderSearch']['user_id'] = $id;
+        $dataProvider = $searchModel->search($params);
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('orders', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
+
+        return $this->render('orders', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 }

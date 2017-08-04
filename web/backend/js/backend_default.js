@@ -24,7 +24,7 @@
                 App.unblockUI($globalModal.find('.modal-dialog'));
             });
         });
-        $document.on('show.bs.modal', $globalModal, function (e) {
+        $document.on('hidden.bs.modal', $globalModal, function (e) {
             $(this).find('.modal-body').html('');
         })
     };

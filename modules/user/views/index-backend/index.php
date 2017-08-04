@@ -36,8 +36,7 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <?php $this->beginBlock('actions')?>
-                    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-                    <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
+<?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
 <?php $this->endBlock()?>
 
 <?php
@@ -55,7 +54,7 @@ $template = "
             </div>
         </div>
     </div>";
-Pjax::begin(['id' => 'user-grid', 'enablePushState' => true]);
+Pjax::begin(['id' => 'user-grid', 'enablePushState' => false]);
 ?>
 
 <?=
@@ -111,9 +110,16 @@ GridView::widget([
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => Yii::t('user/admin', 'Actions'),
-            'headerOptions' => ['style' => 'min-width:150px;width:150px'],
+            'headerOptions' => ['style' => 'min-width:180px;width:180px'],
             'buttons' => \yii\helpers\ArrayHelper::merge(
-                \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
+               \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
+                'orders' => function($url, $model) {
+                    return Html::a('<i class="fa fa-shopping-cart"></i>', $url,  [
+                        'title' => 'Orders',
+                        'class' => 'btn default btn-xs blue-hoki',
+                        'data-pjax' => 0
+                    ]);
+                },
                 'toBlackList' => function($url, $model) {
                     $url = Url::to(['/user/index-backend/user-to-blacklist']);
                     if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
@@ -141,66 +147,7 @@ GridView::widget([
                     }
                 },
             ]),
-                /*[
-                'referrals' => function($url, $model) {
-                    $url = Yii::$app->getUrlManager()->createUrl(['user/user-backend/referrals', 'id' => $model->id]);
-
-                    return Html::a('<i class="fa fa-sitemap"></i> ' . Yii::t('user/admin', 'Referrals'), $url, [
-                            'class' => 'btn btn-xs purple',
-                            'title' => Yii::t('user/admin', 'Referrals'),
-                            'data-pjax' => 0
-                    ]);
-                },
-                'edit' => function($url, $model) {
-                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/update', 'id' => $model->id]);
-
-                    return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('user/admin', 'Edit'), $url, [
-                            'class' => 'btn default btn-xs green',
-                            'title' => Yii::t('user/admin', 'Edit'),
-                            'data-pjax' => 0
-                    ]);
-                },
-                'toBlackList' => function($url, $model) {
-
-                    $url = Url::to(['/user/index-backend/user-to-blacklist']);
-
-                    if ($model->status != app\modules\user\models\User::STATUS_BLACKLIST) {
-                        return Html::a(
-                            '<i class="fa fa-ban"></i> ' . Yii::t('user/admin', 'Block'),
-                            Url::to(),
-                            [
-                                'title' => 'Move to black list',
-                                'class' => 'btn default btn-xs yellow',
-                                'onclick'=> "blacklist('$url', '$model->id')",
-                                'data-pjax' => 1
-                            ]
-                        );
-                    } else {
-                        return Html::a(
-                            '<i class="fa fa-check"></i> ' . Yii::t('user/admin', 'Restore'),
-                            Url::to(),
-                            [
-                                'title' => 'Activate user',
-                                'class' => 'btn default btn-xs blue',
-                                'onclick'=> "blacklist('$url', '$model->id')",
-                                'data-pjax' => 1
-                            ]
-                        );
-                    }
-                },
-                'remove' => function($url, $model) {
-                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/delete', 'id' => $model->id]);
-
-                    return Html::a('<i class="fa fa-trash"></i> ' . Yii::t('user/admin', 'Remove'), $url, [
-                        'class' => 'btn default btn-xs red',
-                        'title' => Yii::t('user/admin', 'Remove'),
-                        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                        'data-method' => 'post',
-                    ]);
-                },
-            ],*/
-//            'template' => '{toBlackList} {edit} {remove}',
-            'template' => '{toBlackList} {view} {update} {delete}',
+            'template' => '{toBlackList} {orders} {view} {update} {delete}',
         ],
     ],
 ]);
