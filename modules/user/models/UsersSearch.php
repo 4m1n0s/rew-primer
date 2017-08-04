@@ -14,8 +14,8 @@ use app\helpers\DateHelper;
  * @author Stableflow
  * 
  */
-class UsersSearch extends User {
-
+class UsersSearch extends User
+{
     public $dateFrom;
     public $dateTo;
 
@@ -25,6 +25,7 @@ class UsersSearch extends User {
     public function rules() {
         return [
             [['id', 'status', 'role'], 'integer'],
+            [['virtual_currency'], 'number'],
             [['email', 'dateFrom', 'dateTo', 'username', 'referral_code'], 'safe'],
         ];
     }
@@ -65,6 +66,7 @@ class UsersSearch extends User {
             'id' => $this->id,
             'status' => $this->status,
             'role' => $this->role,
+            'virtual_currency' => $this->virtual_currency,
         ]);
 
 

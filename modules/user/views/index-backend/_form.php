@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'status')->dropDownList($statusList); ?>
         <?= $form->field($model, 'role')->dropDownList($roleList); ?>
 
-        <h3 class="form-section"><?= Yii::t('user', 'Billing details'); ?></h3>
+        <h3 class="form-section"><?= Yii::t('user', 'Personal details'); ?></h3>
         <?= $form->field($model, 'last_name')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('last_name')]) ?>
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('first_name')]) ?>
 

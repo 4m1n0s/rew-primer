@@ -23,9 +23,10 @@ use yii\helpers\ArrayHelper;
  * @author Stableflow
  * 
  */
-class IndexBackendController extends BackController {
-
-    public function behaviors() {
+class IndexBackendController extends BackController
+{
+    public function behaviors()
+    {
         return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -103,8 +104,8 @@ class IndexBackendController extends BackController {
         ]);
     }
 
-    public function actionIndex() {
-
+    public function actionIndex()
+    {
         $searchModel = new UsersSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->get());
 
@@ -142,14 +143,13 @@ class IndexBackendController extends BackController {
         return false;
     }
 
-    public function actionEdit($id) {
-
+    public function actionUpdate($id)
+    {
         if (($model = BackUsersForm::findOne($id)) === null) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
         $model->scenario = BackUsersForm::EDIT_SCENARIO;
-
         $post = Yii::$app->request->post();
 
         if ($post != null && $model->load($post) && $model->validate()) {
@@ -164,11 +164,10 @@ class IndexBackendController extends BackController {
 
     }
 
-    public function actionCreate(){
+    public function actionCreate()
+    {
         $model = new BackUsersForm();
-
         $model->scenario = BackUsersForm::SIGNUP_SCENARIO;
-
         $post = Yii::$app->request->post();
 
         if ($post != null && $model->load($post) && $model->validate()) {

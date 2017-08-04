@@ -16,11 +16,7 @@ $this->registerJs("
                         rtl: App.isRTL(),
                         autoclose: true
                 });
-                $(document).on('pjax:send', function() {
-                    App.blockUI({target: $('.portlet').children('.portlet-body'), iconOnly: true});
-                });
                 $(document).on('pjax:complete', function() {
-                    App.unblockUI($('.portlet').children('.portlet-body'));
                     $('.date-picker').datepicker({
                         rtl: App.isRTL(),
                         autoclose: true
@@ -92,13 +88,8 @@ GridView::widget([
         ],
         'email:email',
         [
-            'attribute' => 'status',
-            'filter' => $statusList,
-            'headerOptions' => ['width' => '150'],
-            'format' => 'raw',
-            'value' => function($model) {
-                return $model->getStatus(true);
-            }
+            'label' => 'Balance',
+            'attribute' =>  'virtual_currency',
         ],
         [
             'attribute' => 'role',
@@ -109,25 +100,12 @@ GridView::widget([
             }
         ],
         [
-            'attribute' => 'referral_code',
-            'headerOptions' => [
-                'width' => '200',
-            ],
-        ],
-        'virtual_currency',
-        [
-            'attribute' => 'note',
-            'headerOptions' => [
-                'width' => '200',
-            ],
+            'attribute' => 'status',
+            'filter' => $statusList,
+            'headerOptions' => ['width' => '150'],
             'format' => 'raw',
-            'value' => function($model){
-                if(isset($model->metaData->note)){
-                    $note = (strlen($model->metaData->note) > 40 ) ? substr($model->metaData->note, 0, 40).'...' : $model->metaData->note;
-                    return "<span class=\"text-primary\" title=\"{$model->metaData->note}\">$note<span>";
-                }
-
-                return '<span title="'.Yii::t('user/admin', 'Not found note').'"> none <span>';
+            'value' => function($model) {
+                return $model->getStatus(true);
             }
         ],
         [
@@ -145,7 +123,7 @@ GridView::widget([
                     ]);
                 },
                 'edit' => function($url, $model) {
-                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/edit', 'id' => $model->id]);
+                    $url = Yii::$app->getUrlManager()->createUrl(['user/index-backend/update', 'id' => $model->id]);
 
                     return Html::a('<i class="fa fa-edit"></i> ' . Yii::t('user/admin', 'Edit'), $url, [
                             'class' => 'btn default btn-xs green',
