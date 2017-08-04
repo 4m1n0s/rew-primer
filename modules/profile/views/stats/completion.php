@@ -3,7 +3,6 @@
 use kartik\date\DatePicker;
 
 /* @var \yii\web\View $this */
-/* @var \app\modules\offer\components\OfferMapper $offerMapper */
 
 $this->title = Yii::t('app', 'Completion History');
 ?>
