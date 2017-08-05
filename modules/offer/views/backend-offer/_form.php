@@ -35,7 +35,30 @@ $form = ActiveForm::begin([
             ->label($model->getAttributeLabel('name') . ' <i class="fa fa-question-circle" title="Unique identifier in the application" aria-hidden="true"></i>') ?>
         <?= $form->field($model, 'label')->textInput(['maxlength' => true])
             ->label($model->getAttributeLabel('label') . ' <i class="fa fa-question-circle" title="Will be shown for end Users" aria-hidden="true"></i>') ?>
-        <?= $form->field($model, 'imageFile')->fileInput() ?>
+
+        <div class="form-group last">
+            <label class="control-label col-md-3">Image</label>
+            <div class="col-md-9">
+                <div class="fileinput fileinput-<?php echo empty($model->img) ? 'new' : 'exists' ?>" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;">
+                        <img src="<?= $model->img ?>" alt="<?= Yii::t('admin', 'offer') ?>">
+                    </div>
+                    <div>
+                        <span class="btn default btn-file">
+                            <span class="fileinput-new"> Select image </span>
+                            <span class="fileinput-exists"> Change </span>
+                            <?= Html::activeFileInput($model, 'imageFile') ?>
+                            <?= Html::activeHiddenInput($model, 'imageFile') ?>
+                        </span>
+                        <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <?= $form->field($model, 'active')->dropDownList([1 => 'Yes', 0 => 'No']) ?>
         <h3 class="form-section"><?= Yii::t('user', 'Additionally'); ?></h3>
         <?= $form->field($model, 'categoriesBuff')->dropDownList($categoryList, ['id' => 'offer-category-select', 'multiple' => 'multiple'])->label('Categories') ?>
@@ -57,6 +80,7 @@ $form = ActiveForm::begin([
 
 <?php
 $this->registerAssetBundle(\app\assets\SelectAsset::class);
+$this->registerAssetBundle(\app\assets\FileInputAsset::class);
 $this->registerAssetBundle(\app\modules\offer\assets\BackendOfferAsset::class);
-$this->registerJs('offer_display_device_os_module.init({width: "100%", theme: "classic", allowClear: true})');
+$this->registerJs('offer_display_device_os_module.init({select2:{width: "100%", theme: "classic", allowClear: true}})');
 ?>

@@ -7,8 +7,8 @@ use yii\web\AssetBundle;
  *
  * @author Stableflow
  */
-class BackendAsset extends AssetBundle {
-    
+class BackendAsset extends AssetBundle
+{
     public $basePath = '@webroot';
     public $baseUrl = '@web';
 
@@ -21,14 +21,13 @@ class BackendAsset extends AssetBundle {
         '/backend/global/plugins/datatables/datatables.min.css',
         '/backend/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css',
         '/backend/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css',
-        
+
         '/backend/global/plugins/morris/morris.css',
         '/backend/global/plugins/fullcalendar/fullcalendar.min.css',
         '/backend/global/plugins/jqvmap/jqvmap/jqvmap.css',
 
         '/backend/global/css/components.min.css',
         '/backend/global/css/plugins.min.css',
-        
         
         '/backend/layouts/layout/css/layout.min.css',
         '/backend/layouts/layout/css/themes/darkblue.min.css',
@@ -47,7 +46,7 @@ class BackendAsset extends AssetBundle {
         
         '/backend/global/plugins/morris/morris.min.js', 
         '/backend/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
-        
+
         '/backend/global/scripts/app.min.js',
 
         '/backend/layouts/layout/scripts/layout.min.js',

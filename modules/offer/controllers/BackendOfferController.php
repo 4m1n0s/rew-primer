@@ -130,6 +130,8 @@ class BackendOfferController extends BackController
             }
         }
 
+        var_dump($model->errors);
+
         return $this->render('update', [
             'model' => $model,
             'categoryList' => $categoryList,

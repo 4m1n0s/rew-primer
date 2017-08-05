@@ -19,8 +19,8 @@ var offer_display_device_os_module = function($) {
     };
 
     return {
-        init: function(select2Config) {
-            initSelect2(select2Config);
+        init: function(config) {
+            initSelect2(config.select2);
             display();
             device_type_select.on('change', display);
         }

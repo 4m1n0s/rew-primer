@@ -80,7 +80,7 @@ class Offer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'name', 'img', 'label'], 'required'],
+            [['id', 'name', 'label'], 'required'],
             [['id', 'active'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['img'], 'string', 'max' => 255],
