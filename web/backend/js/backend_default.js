@@ -4,7 +4,13 @@
         $document = $(document),
         $body = $('body'),
         $globalModal = $('#view-modal'),
-        modalToggleBtn = '.view-modal-btn';
+        globalModalToggleBtn = '.view-modal-btn';
+
+    var initPjaxDefaults = function () {
+        if ($.pjax) {
+            $.pjax.defaults.timeout = 5000;
+        }
+    };
 
     var initGridPjaxBlock = function () {
         $document.on('pjax:send', function() {
@@ -16,7 +22,7 @@
     };
 
     var initGlobalModal = function () {
-        $document.on('click', modalToggleBtn, function (e) {
+        $document.on('click', globalModalToggleBtn, function (e) {
             e.preventDefault();
             e.stopPropagation();
             App.blockUI({target: $globalModal.find('.modal-dialog'), iconOnly: true});
@@ -26,10 +32,11 @@
         });
         $document.on('hidden.bs.modal', $globalModal, function (e) {
             $(this).find('.modal-body').html('');
-        })
+        });
     };
 
     $document.ready(function (e) {
+        initPjaxDefaults();
         initGridPjaxBlock();
         initGlobalModal();
     });
