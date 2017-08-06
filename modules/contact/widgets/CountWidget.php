@@ -11,6 +11,6 @@ class CountWidget extends Widget
 
     public function run()
     {
-        return Contact::find()->status($this->status)->count() ?: null;
+        return Contact::find()->status($this->status)->count();
     }
 }

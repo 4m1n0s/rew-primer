@@ -1,1 +1,15 @@
-/* here you can put your own css to customize and override the theme */
+.page-header.navbar .page-logo {
+    background: #2C3E50 !important;
+}
+.page-sidebar .page-sidebar-menu>li>a,
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a {
+    min-height: 68px;
+    padding: 14px 15px 10px;
+}
+@media (max-width: 767px) {
+    /* 767px */
+    .page-header.navbar {
+        background: #2C3E50 !important;
+        /* Top menu */
+    }
+}

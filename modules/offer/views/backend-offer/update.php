@@ -15,7 +15,6 @@ $this->title = Yii::t('app', 'Update {modelClass}: ', [
 $this->params['breadcrumbs'][] = [
     'label' => Yii::t('app', 'Offers'),
     'url' => ['index'],
-    'template' => '<li> {link} <i class="fa fa-circle"></i></li>'
 ];
 
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');

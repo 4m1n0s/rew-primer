@@ -11,7 +11,7 @@ BackendAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <?= $this->render('_elements/head'); ?>
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
         <?php $this->beginBody() ?>
         <!-- BEGIN HEADER -->
         <?= $this->render('_elements/header'); ?>
@@ -33,6 +33,13 @@ BackendAsset::register($this);
                 <!-- BEGIN CONTENT BODY -->
                 <div class="page-content">
                     <!-- BEGIN PAGE HEADER-->
+                    <?php if (!empty($this->params['pageTitle'])): ?>
+                        <!-- BEGIN PAGE TITLE-->
+                        <h3 class="page-title">
+                            <?= $this->params['pageTitle'] ?> <small><?= isset($this->params['pageSmallTitle']) ? $this->params['pageSmallTitle'] : '' ?></small>
+                        </h3>
+                        <!-- END PAGE TITLE-->
+                    <?php endif; ?>
                     <!-- BEGIN PAGE BAR -->
                     <div class="page-bar">
                         <?php echo yii\widgets\Breadcrumbs::widget([
@@ -43,21 +50,16 @@ BackendAsset::register($this);
                                 'label' => 'Home',
                                 'url' => ['/dashboard/index-backend/index'],
                             ],
-                            'itemTemplate' => '<li> {link} <i class="fa fa-circle"></i></li>',
+                            'itemTemplate' => '<li> {link} <i class="fa fa-angle-right"></i></li>',
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        ]) ?>
+                        ]);
+//                                                    var_dump($this->params['breadcrumbs']); exit
+                        ?>
 
                         <div class="page-toolbar"></div>
                     </div>
                     <!-- END PAGE BAR -->
 
-                    <?php if (!empty($this->params['pageTitle'])): ?>
-                        <!-- BEGIN PAGE TITLE-->
-                        <h3 class="page-title">
-                            <?= $this->params['pageTitle'] ?> <small><?= isset($this->params['pageSmallTitle']) ? $this->params['pageSmallTitle'] : '' ?></small>
-                        </h3>
-                        <!-- END PAGE TITLE-->
-                    <?php endif; ?>
                     <?= \app\modules\dashboard\widgets\Alert::widget() ?>
                     <!-- END PAGE HEADER-->
                     <?= $content ?>

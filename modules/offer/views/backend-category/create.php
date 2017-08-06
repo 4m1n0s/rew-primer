@@ -7,7 +7,6 @@ $this->title = Yii::t('app', 'Create Category');
 $this->params['breadcrumbs'][] = [
     'label' => Yii::t('app', 'Categories'),
     'url' => ['index'],
-    'template' => '<li> {link} <i class="fa fa-circle"></i></li>'
 ];
 $this->params['breadcrumbs'][] = $this->title;
 

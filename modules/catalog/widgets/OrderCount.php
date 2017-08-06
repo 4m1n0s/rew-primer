@@ -11,6 +11,6 @@ class OrderCount extends Widget
 
     public function run()
     {
-        return Order::find()->status($this->status)->count() ?: null;
+        return Order::find()->status($this->status)->count();
     }
 }

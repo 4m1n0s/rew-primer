@@ -10,7 +10,6 @@ $this->title = 'Create User Group';
 $this->params['breadcrumbs'][] = [
     'label' => 'User Groups',
     'url' => ['index'],
-    'template' => '<li> {link} <i class="fa fa-circle"></i></li>'
 ];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

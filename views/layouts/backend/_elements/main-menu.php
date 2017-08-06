@@ -27,7 +27,6 @@
                     'class' => 'page-sidebar-menu  page-header-fixed',
                     'data-auto-scroll' => 'true',
                     'data-slide-speed' => 200,
-                    'style' => 'padding-top: 20px',
                     'data-keep-expanded' => false,
                 ],
                 'items' => [
@@ -41,20 +40,9 @@
                     ],
 
                     [
-                        'label' => '<i class="fa fa-shopping-cart"></i> <span class="title"> ' . Yii::t('app', 'Orders') . '</span><span class="badge badge-info">' . \app\modules\catalog\widgets\OrderCount::widget(['status' => \app\modules\catalog\models\Order::STATUS_PROCESSING]) . '</span>',
-                        'url' => ['/catalog/backend-order/index'],
-                        'active' => $module == 'catalog' && $controller == 'backend-order'
-                    ],
-
-                    [
-                        'label' => '<i class="fa fa-envelope-o"></i> <span class="title"> ' . Yii::t('app', 'Contact Messages') . '</span><span class="badge badge-info">' . \app\modules\contact\widgets\CountWidget::widget(['status' => \app\modules\contact\models\Contact::STATUS_NEW]) . '</span>',
+                        'label' => '<i class="fa fa-envelope-o"></i> <span class="title"> ' . Yii::t('app', 'Contact Messages') . '</span>',
                         'url' => ['/contact/index-backend/index'],
                         'active' => $module == 'contact' && $controller == 'index-backend'
-                    ],
-
-                    [
-                        'label' => '<i class="fa fa-user-plus"></i> <span class="title"> ' . Yii::t('app', 'Invites') . '</span><span class="badge badge-info">' . \app\modules\invitation\widgets\CountWidget::widget(['status' => \app\modules\invitation\models\Invitation::STATUS_NEW]) . '</span>',
-                        'url' => ['/invitation/index-backend/index'],
                     ],
 
                     [
@@ -93,6 +81,11 @@
                                 'class' => 'sub-menu'
                             ],
                             [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Orders'),
+                                'url' => ['/catalog/backend-order/index'],
+                                'active' => $module == 'catalog' && $controller == 'backend-order',
+                            ],
+                            [
                                 'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Products'),
                                 'url' => ['/catalog/backend-product/index'],
                                 'active' => $module == 'catalog' && $controller == 'backend-product'
@@ -126,19 +119,36 @@
                                 'url' => ['/user/user-group-backend/index'],
                                 'active' => $module == 'user' && $controller == 'user-group-backend'
                             ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Invite Requests'),
+                                'url' => ['/invitation/index-backend/index'],
+                                'active' => $module == 'invitation' && $controller == 'index-backend'
+                            ],
                         ]
                     ],
 
                     [
-                        'label' => '<i class="fa fa-file-text-o"></i> <span class="title"> ' . Yii::t('app', 'Pages') . '</span>',
-                        'url' => ['/pages/backend-page/index'],
-                        'active' => $module == 'pages' && $controller == 'backend-page'
-                    ],
-
-                    [
-                        'label' => '<i class="fa fa-envelope-square"></i> <span class="title"> ' . Yii::t('app', 'Email Templates') . '</span>',
-                        'url' => ['/core/backend-email-template'],
-                        'active' => $module == 'core' && $controller == 'backend-email-template'
+                        'label' => '<i class="icon-layers"></i> <span class="title"> ' . Yii::t('app', 'Templates') . '</span></span><span class="arrow"></span>',
+                        'url' => 'javascript:;',
+                        'template' => '<a href="{url}" class="nav-link nav-toggle">{label}</a>',
+                        'options' => [
+                            'class' => 'nav-item'
+                        ],
+                        'items' => [
+                            'options' => [
+                                'class' => 'sub-menu'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Pages'),
+                                'url' => ['/pages/backend-page/index'],
+                                'active' => $module == 'pages' && $controller == 'backend-page'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Emails'),
+                                'url' => ['/core/backend-email-template'],
+                                'active' => $module == 'core' && $controller == 'backend-email-template'
+                            ],
+                        ]
                     ],
 
                     [

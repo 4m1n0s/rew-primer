@@ -6,7 +6,7 @@
 <?php $this->beginContent('@app/views/layouts/backend/main.php') ?>
     <div class="row">
         <div class="col-md-12">
-            <div class="portlet">
+            <div class="portlet light bordered">
                 <?php if (isset($this->blocks['title'])): ?>
                     <div class="portlet-title">
                         <div class="caption">

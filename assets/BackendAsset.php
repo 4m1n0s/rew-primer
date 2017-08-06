@@ -29,9 +29,9 @@ class BackendAsset extends AssetBundle
         '/backend/global/css/components.min.css',
         '/backend/global/css/plugins.min.css',
         
-        '/backend/layouts/layout/css/layout.min.css',
-        '/backend/layouts/layout/css/themes/darkblue.min.css',
-        '/backend/layouts/layout/css/custom.min.css',
+        '/backend/layouts/layout2/css/layout.min.css',
+        '/backend/layouts/layout2/css/themes/blue.min.css',
+        '/backend/layouts/layout2/css/custom.css',
 
         '/css/backend.css'
     ];
@@ -49,8 +49,8 @@ class BackendAsset extends AssetBundle
 
         '/backend/global/scripts/app.min.js',
 
-        '/backend/layouts/layout/scripts/layout.min.js',
-        '/backend/layouts/layout/scripts/demo.min.js',
+        '/backend/layouts/layout2/scripts/layout.min.js',
+        '/backend/layouts/layout2/scripts/demo.min.js',
         '/backend/layouts/global/scripts/quick-sidebar.min.js',
 
         '/backend/js/backend_default.js'

@@ -22,7 +22,6 @@ class DbTargetPostback extends DbTarget
         foreach ($this->messages as $message) {
             list($text, $level, $category, $timestamp) = $message;
             if (is_array($text)) {
-                var_dump($text);
                 $offerID = !empty($text['offer_id']) ? $text['offer_id'] : null;
                 $text = !empty($text['message']) ? $text['message'] : null;
             } elseif (!is_string($text)) {
