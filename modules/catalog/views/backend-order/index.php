@@ -71,10 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
             ['class' => 'yii\grid\CheckboxColumn'],
 
-            'id',
+            [
+                'attribute' => 'id',
+                'label' => 'Order #'
+            ],
             [
                 'attribute' => 'user_id',
                 'format' => 'raw',
@@ -86,14 +88,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'cost',
-            [
-                'attribute' => 'status',
-                'format' => 'raw',
-                'filter' => \app\modules\catalog\models\Order::getStatusList(),
-                'value' => function($model) {
-                    return $model->getStatus(true);
-                }
-            ],
             [
                 'filter' => DatePicker::widget([
                     'model' => $searchModel,
@@ -125,6 +119,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'min-width: 250px;'],
                 'attribute' => 'closed_date',
                 'format' => 'datetime',
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'filter' => \app\modules\catalog\models\Order::getStatusList(),
+                'value' => function($model) {
+                    return $model->getStatus(true);
+                }
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
