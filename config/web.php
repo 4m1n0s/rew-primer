@@ -7,6 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => [
         'log',
+        'app\modules\core\Bootstrap',
         'app\modules\user\Bootstrap',
     ],
     'name' => 'RewardBucks',

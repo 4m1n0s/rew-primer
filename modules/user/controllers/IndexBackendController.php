@@ -224,13 +224,6 @@ class IndexBackendController extends BackController
         $params['OrderSearch']['user_id'] = $id;
         $dataProvider = $searchModel->search($params);
 
-        if (Yii::$app->request->isAjax) {
-            return $this->renderAjax('orders', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]);
-        }
-
         return $this->render('orders', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

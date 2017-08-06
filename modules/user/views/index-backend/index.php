@@ -117,7 +117,8 @@ GridView::widget([
                     return Html::a('<i class="fa fa-shopping-cart"></i>', $url,  [
                         'title' => 'Orders',
                         'class' => 'btn default btn-xs blue-hoki',
-                        'data-pjax' => 0
+                        'data-pjax' => 0,
+                        'target' => '_blank',
                     ]);
                 },
                 'toBlackList' => function($url, $model) {

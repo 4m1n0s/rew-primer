@@ -10,12 +10,7 @@ $this->title = 'Order history';
 ?>
 
 <div class="order-history-list">
-    <?php
-    \yii\widgets\Pjax::begin(['id' => 'pjax-user-order-grid', 'enablePushState' => false,
-        'clientOptions' => [
-            'replaceRedirect' => false
-        ]])
-    ?>
+    <?php \yii\widgets\Pjax::begin(['id' => 'pjax-user-order-grid']) ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,

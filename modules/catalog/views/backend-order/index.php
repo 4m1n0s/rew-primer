@@ -79,8 +79,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'user_id',
                 'format' => 'raw',
                 'value' => function($row) {
-                    return Html::a($row->user_id, ['/user/index-backend/edit', 'id' => $row->user_id], [
-                        'data-pajx' => 0
+                    return Html::a($row->user_id, ['/user/index-backend/view', 'id' => $row->user_id], [
+                        'data-pjax' => 0,
+                        'class' => 'view-modal-btn'
                     ]);
                 }
             ],
