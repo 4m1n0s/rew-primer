@@ -150,7 +150,7 @@ DatePickerAsset::register($this);
                             <div class="form-group">
                                 <?php echo $form->field($model, 'terms')->checkbox([
                                     'placeholder' => Yii::t('app', 'Referral Code'),
-                                    'template' => "<div class='checkbox'>\n<div>You must agree and have read our <a onclick='window.open(\"/terms\")' href='javascript:void(0)'>Terms of Service and Privacy Policy</a>.</div>{beginLabel}\n{input}\n{labelTitle}\n{endLabel}\n{error}\n{hint}\n</div>"
+                                    'template' => "<div class='checkbox'>\n<div>You must agree and have read our <span class='terms-privacy-links'><a onclick='window.open(\"/terms\")' href='javascript:void(0)'>Terms of Service and Privacy Policy</a></span>.</div>{beginLabel}\n{input}\n{labelTitle}\n{endLabel}\n{error}\n{hint}\n</div>"
                                 ])->label('I Agree') ?>
                             </div>
                         </div>
