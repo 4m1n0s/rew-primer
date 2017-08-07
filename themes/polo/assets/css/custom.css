@@ -773,6 +773,12 @@
     text-align: center;
   }
 
+  .social-icons li {
+      float: none;
+      display: inline-block;
+   }
+
+
 }
 
 @media only screen and (max-width: 480px ) {
