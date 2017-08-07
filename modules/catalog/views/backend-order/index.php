@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions') ?>
-
 <div class="btn-groups">
     <div class="row hidden">
         <?= Html::beginForm(['import'], 'post', [
@@ -60,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ) ?>
 
 </div>
-
 <?php $this->endBlock() ?>
 
 <div class="order-index">

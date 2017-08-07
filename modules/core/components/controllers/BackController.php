@@ -29,8 +29,7 @@ class BackController extends Controller
             'layoutFilter' => [
                 'class' => LayoutFilter::className(),
                 'actions' => [
-                    'index' => '//backend/default-index',
-                    'view' => '//backend/default-index',
+                    'index' => '//backend/default-grid',
                     'create' => '//backend/default-form',
                     'update' => '//backend/default-form',
                 ],
@@ -55,12 +54,17 @@ class BackController extends Controller
                 'lastPageLabel' => Yii::t('app', 'Last'),
             ],
             'layout' => GridViewTemplateHelper::baseLayout(),
+            'filterSelector' => 'select[name="per-page"]',
         ]);
         Yii::$container->set('yii\grid\ActionColumn', [
             'header' => Yii::t('app', 'Actions'),
             'headerOptions' => ['style' => 'min-width:100px;width:auto'],
             'buttons' => GridViewTemplateHelper::baseActionButtons(),
             'template' => '{update} {delete}',
+        ]);
+        Yii::$container->set('yii\data\Pagination', [
+            'pageSize' => 20,
+            'pageSizeLimit' => [1, 500]
         ]);
     }
 }

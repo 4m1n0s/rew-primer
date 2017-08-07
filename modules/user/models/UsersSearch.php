@@ -53,9 +53,6 @@ class UsersSearch extends User
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 15,
-            ],
         ]);
 
         if (!($this->load($params) && $this->validate())) {
