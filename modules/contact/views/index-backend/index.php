@@ -37,24 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ) ?>
 
 <?php $this->endBlock()?>
-<?php
-$template = "
-    <div class=\"table-scrollable\">
-        {items} 
-    </div>
-    <div class=\"row\"> 
-        <div class=\"col-md-5 col-sm-12\">
-            <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
-        </div>
-        <div class=\"col-md-7 col-sm-12\">
-            <div class=\"dataTables_paginate paging_bootstrap\">
-                {pager}
-            </div>
-        </div>
-    </div>";
-?>
 
-<?php Pjax::begin(['id' => 'contact-grid-pjax', 'enablePushState' => true]); ?>
+<?php //Pjax::begin(['id' => 'contact-grid-pjax', 'enablePushState' => true]); ?>
 <?= GridView::widget([
     'id' => 'contact-grid',
     'dataProvider' => $dataProvider,
@@ -72,6 +56,12 @@ $template = "
             }
         ],
         [
+            'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::dateRange($searchModel, 'cr_date_from', 'cr_date_to'),
+            'headerOptions' => ['style' => 'width: 180px;min-width: 180px;'],
+            'attribute' => 'create_date',
+            'format' => 'datetime',
+        ],
+        [
             'attribute' => 'status',
             'format' => 'raw',
             'filter' => \app\modules\contact\models\Contact::getStatusList(),
@@ -79,15 +69,23 @@ $template = "
                 return $model->getStatus(true);
             }
         ],
-        'create_date:date',
 
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{view} {delete}'
+            'buttons' => \yii\helpers\ArrayHelper::merge(\app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
+                'reply' => function($url, $model) {
+                    return Html::a('<i class="fa fa-reply"></i>', $url, [
+                        'class' => 'btn btn-sm btn-default btn-circle btn-editable',
+                        'title' => Yii::t('app', 'Reply'),
+                        'data-pjax' => 0
+                    ]);
+                },
+            ]),
+            'template' => '{reply} {delete}'
         ],
     ],
 ]); ?>
-<?php Pjax::end(); ?>
+<?php //Pjax::end(); ?>
 
 <?php
 $this->registerJsFile('/backend/js/contact_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);

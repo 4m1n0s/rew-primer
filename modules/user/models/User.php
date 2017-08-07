@@ -78,6 +78,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             'password'          => Yii::t('app', 'Password'),
             'create_date'       => Yii::t('app', 'Registration time'),
             'status'            => Yii::t('app', 'Status'),
+            'virtual_currency'  => Yii::t('app', 'Balance'),
         ];
     }
 

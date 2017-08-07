@@ -2,6 +2,7 @@
 
 namespace app\modules\contact\models\search;
 
+use app\helpers\DateHelper;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -12,6 +13,9 @@ use app\modules\contact\models\Contact;
  */
 class ContactSearch extends Contact
 {
+    public $cr_date_from;
+    public $cr_date_to;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +23,8 @@ class ContactSearch extends Contact
     {
         return [
             [['id', 'status'], 'integer'],
-            [['name', 'email', 'subject', 'message', 'create_date', 'update_date'], 'safe'],
+            [['name', 'email', 'subject', 'message'], 'safe'],
+            [['cr_date_from', 'cr_date_to'], 'date', 'format' => 'mm/dd/yyyy']
         ];
     }
 
@@ -72,6 +77,14 @@ class ContactSearch extends Contact
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'subject', $this->subject])
             ->andFilterWhere(['like', 'message', $this->message]);
+
+        if (!empty($this->cr_date_from)) {
+            $query->andWhere('create_date >= :dateFrom', [':dateFrom' => date('Y-m-d H:i:s', strtotime($this->cr_date_from))]);
+        }
+
+        if (!empty($this->cr_date_to)) {
+            $query->andWhere('create_date <= :dateTo', [':dateTo' => date('Y-m-d H:i:s', strtotime($this->cr_date_to))]);
+        }
 
         return $dataProvider;
     }

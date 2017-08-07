@@ -41,10 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('user/admin', 'Actions'),
-                'headerOptions' => ['style' => 'min-width:90px;width:90px'],
-                'buttons' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
-                'template' => '{update} {delete}',
+                'headerOptions' => ['style' => 'min-width:100px;width:100px'],
             ]
         ],
     ]); ?>

@@ -2,6 +2,8 @@
 
 namespace app\modules\user\forms;
 
+use app\modules\user\models\Token;
+use app\modules\user\models\UserMeta;
 use Yii;
 use app\modules\user\models\User;
 use yii\base\Security;
@@ -128,6 +130,7 @@ class BackUsersForm extends User
             'update_date' => 'Update Date',
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
+            'virtual_currency' => 'Balance',
         ];
     }
 }

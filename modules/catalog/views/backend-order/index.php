@@ -64,12 +64,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php $this->endBlock() ?>
 
 <div class="order-index">
-    <?php Pjax::begin(['id' => 'order-grid-pjax', 'enablePushState' => true]) ?>
+    <?php Pjax::begin(['id' => 'order-grid-pjax']) ?>
     <?= GridView::widget([
         'id' => 'order-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
         'columns' => [
             ['class' => 'yii\grid\CheckboxColumn'],
 
@@ -78,45 +77,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Order #'
             ],
             [
+                'label' => 'Customer',
                 'attribute' => 'user_id',
                 'format' => 'raw',
                 'value' => function($row) {
-                    return Html::a($row->user_id, ['/user/index-backend/view', 'id' => $row->user_id], [
+                    $user = $row->user;
+                    if (!$user) {
+                        return null;
+                    }
+                    return Html::a($user->name . ' (#' . $user->id . ')', ['/user/index-backend/view', 'id' => $row->user_id], [
                         'data-pjax' => 0,
                         'class' => 'view-modal-btn'
                     ]);
                 }
             ],
-            'cost',
             [
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'cr_date_from',
-                    'attribute2' => 'cr_date_to',
-                    'type' => DatePicker::TYPE_RANGE,
-                    'separator' => 'to',
-                    'pluginOptions' => [
-                        'format' => 'yyyy-mm-dd',
-                        'autoclose' => true
-                    ]
-                ]),
-                'headerOptions' => ['style' => 'min-width: 250px;'],
+                'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
+                'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'cost_from', 'cost_to'),
+                'attribute' => 'cost',
+            ],
+            [
+                'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::dateRange($searchModel, 'cr_date_from', 'cr_date_to'),
+                'headerOptions' => ['style' => 'width: 180px;min-width: 180px;'],
                 'attribute' => 'create_date',
                 'format' => 'datetime',
             ],
             [
-                'filter' => DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'cl_date_from',
-                    'attribute2' => 'cl_date_to',
-                    'type' => DatePicker::TYPE_RANGE,
-                    'separator' => 'to',
-                    'pluginOptions' => [
-                        'format' => 'yyyy-mm-dd',
-                        'autoclose' => true
-                    ]
-                ]),
-                'headerOptions' => ['style' => 'min-width: 250px;'],
+                'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::dateRange($searchModel, 'cl_date_from', 'cl_date_to'),
+                'headerOptions' => ['style' => 'width: 180px;min-width: 180px;'],
                 'attribute' => 'closed_date',
                 'format' => 'datetime',
             ],
@@ -130,45 +118,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('user/admin', 'Actions'),
-                'headerOptions' => ['style' => 'min-width:230px;width:230px'],
-                'buttons' => [
-                    'view' => function($url, $model) {
-                        return Html::a('<i class="glyphicon glyphicon-eye-open"></i> ' . Yii::t('app', 'view'), $url, [
-                            'class' => 'btn default btn-xs green',
-                            'title' => Yii::t('app', 'Edit'),
-                            'data-pjax' => 0
-                        ]);
-                    },
-                    'status' => function($url, $model) {
-                        if ($model->status == \app\modules\catalog\models\Order::STATUS_PROCESSING) {
-                            $url = Url::to(['/catalog/backend-order/cancel']);
-                            return Html::a(
-                                '<i class="fa fa-ban"></i> ' . Yii::t('app', 'Cancel'),
-                                Url::to(),
-                                [
-                                    'title' => 'Move to black list',
-                                    'class' => 'btn default btn-xs yellow',
-                                    'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
-                                    'data-pjax' => 1
-                                ]
-                            );
-                        } elseif ($model->status == \app\modules\catalog\models\Order::STATUS_CANCELLED) {
-                            $url = Url::to(['/catalog/backend-order/restore']);
-                            return Html::a(
-                                '<i class="fa fa-check"></i> ' . Yii::t('app', 'Restore'),
-                                Url::to(),
-                                [
-                                    'title' => 'Activate user',
-                                    'class' => 'btn default btn-xs blue',
-                                    'onclick'=> "order_grid_module.orderStatus('$url', '$model->id')",
-                                    'data-pjax' => 1
-                                ]
-                            );
-                        }
-                    },
-                ],
-                'template' => '{view} {status}',
+                'headerOptions' => ['style' => 'min-width:40px;width:40px'],
+                'template' => '{view}',
             ],
         ],
     ]); ?>

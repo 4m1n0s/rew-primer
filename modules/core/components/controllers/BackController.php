@@ -3,7 +3,9 @@
 namespace app\modules\core\components\controllers;
 
 use app\modules\core\filters\LayoutFilter;
+use app\modules\dashboard\helpers\GridViewTemplateHelper;
 use yii\filters\AccessControl;
+use Yii;
 
 /**
  * Class BackController
@@ -12,7 +14,6 @@ use yii\filters\AccessControl;
  */
 class BackController extends Controller
 {
-
     public function behaviors()
     {
         return [
@@ -38,4 +39,28 @@ class BackController extends Controller
         ];
     }
     
+    public function init()
+    {
+        parent::init();
+
+        Yii::$container->set('yii\grid\GridView', [
+            'tableOptions' => [
+                'class' => 'table table-striped table-bordered table-hover'
+            ],
+            'headerRowOptions' => [
+                'class' => 'heading'
+            ],
+            'pager' => [
+                'firstPageLabel' => Yii::t('app', 'First'),
+                'lastPageLabel' => Yii::t('app', 'Last'),
+            ],
+            'layout' => GridViewTemplateHelper::baseLayout(),
+        ]);
+        Yii::$container->set('yii\grid\ActionColumn', [
+            'header' => Yii::t('app', 'Actions'),
+            'headerOptions' => ['style' => 'min-width:100px;width:auto'],
+            'buttons' => GridViewTemplateHelper::baseActionButtons(),
+            'template' => '{update} {delete}',
+        ]);
+    }
 }

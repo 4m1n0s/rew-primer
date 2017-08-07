@@ -53,7 +53,7 @@ class IndexBackendController extends BackController
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionReply($id)
     {
         $model = $this->findModel($id);
         $model->setScenario(Contact::SCENARIO_STATUS);
