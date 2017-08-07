@@ -31,7 +31,7 @@
                 <div class="copyright-text col-md-4"> © 2017 RewardBucks.</div>
                 <div class="col-privacy-links col-md-4">
                     <span class="terms-privacy-links clearfix">
-                        <a href="<?= \yii\helpers\Url::to(['site/terms', '#' => 'terms']); ?>">Terms</a> and
+                        <a href="<?= \yii\helpers\Url::to(['site/terms', '#' => 'terms']); ?>">Terms</a> 
                         <a href="<?= \yii\helpers\Url::to(['site/terms', '#' => 'Privacy_policy']); ?>">Privacy Policy</a>
                     </span>
                 </div>
