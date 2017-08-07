@@ -747,15 +747,6 @@
 
 /* ANDdatepicker */
 
-@media only screen and (max-width: 480px ) {
-  .gototop-button {
-    display: none;
-  }
-  #footer .social-icons {
-      float: none;
-  }
-}
-
 
 .col-privacy-links {
   padding-top: 10px;
@@ -765,3 +756,34 @@
 .col-privacy-links .terms-privacy-links a{
     color: #1a8422 !important;
 }
+
+ @media only screen and (max-width: 991px ) {
+  .col-privacy-links {
+    text-align: left;
+  }
+
+  #footer .social-icons {
+      float: none;
+  }
+
+ .copyright-content .col-md-4 {
+    width: 100%;
+ }
+
+}
+
+@media only screen and (max-width: 480px ) {
+  .gototop-button {
+    display: none;
+  }
+  #footer .social-icons {
+      float: none;
+  }
+  .col-privacy-links {
+    padding-top: 10px;
+    text-align: left;
+  }
+
+}
+
+
