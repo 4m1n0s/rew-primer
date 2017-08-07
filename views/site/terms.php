@@ -17,5 +17,9 @@ use yii\helpers\Html;
 </section>
 <!-- END: PAGE TITLE -->
 <!-- SECTION -->
-<?php echo $page->content ?>
+<section>
+    <div class="container">
+        <?php echo $page->content ?>
+    </div>
+</section>
 <!-- END: SECTION -->
