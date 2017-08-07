@@ -79,6 +79,10 @@ $urlMockup = '/images/mockup/';
         </div>
         <div class="text-center">
             <a class="button btn-primary button-3d effect fill" href="/sign-up"><span>Sign up & get "Bucks" today</span></a>
+            <span class="terms-privacy-links clearfix">
+                <a href="<?= \yii\helpers\Url::to(['site/terms', '#' => 'terms']); ?>">Terms</a> and
+                <a href="<?= \yii\helpers\Url::to(['site/terms', '#' => 'Privacy_policy']); ?>">Privacy Policy</a>
+            </span>
         </div>
     </div>
 </section>
