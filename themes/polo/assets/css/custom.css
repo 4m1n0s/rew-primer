@@ -756,6 +756,12 @@
   }
 }
 
-.terms-privacy-links a{
-    color: #1a8422;
+
+.col-privacy-links {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.col-privacy-links .terms-privacy-links a{
+    color: #1a8422 !important;
 }
