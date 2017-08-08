@@ -16,13 +16,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            [
+                'label' => 'User #',
+                'attribute' => 'id'
+            ],
             'username',
             'email',
             'virtual_currency',
+            /*[
+                'label' => 'Balance',
+                'attribute' => 'virtual_currency'
+            ],*/
             [
                 'attribute' => 'role',
-                'filter' => User::getRoleList(),
                 'headerOptions' => ['width' => '150'],
                 'value' => function($model) {
                     return $model->getRoles();
@@ -30,7 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status',
-                'filter' => User::getStatusList(),
                 'headerOptions' => ['width' => '150'],
                 'format' => 'raw',
                 'value' => function($model) {
@@ -42,7 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'birthday',
             [
                 'attribute' => 'gender',
-                'filter' => User::getStatusList(),
                 'headerOptions' => ['width' => '150'],
                 'format' => 'raw',
                 'value' => function($model) {

@@ -21,3 +21,11 @@
 .device-os {
     display: none;
 }
+
+tr.heading {
+    background-color: #f9f9f9;
+}
+
+table thead {
+    border-bottom: 3px solid #e7ecf1;
+}

@@ -36,6 +36,14 @@ class IndexBackendController extends BackController
                     'user-to-blacklist' => ['POST'],
                 ],
             ],
+            'layoutFilter' => [
+                'actions' => [
+                    'index' => '//backend/default-grid',
+                    'create' => '//backend/default-form',
+                    'update' => '//backend/default-form',
+                    'orders' => '//backend/default-grid',
+                ],
+            ]
         ]);
     }
 
@@ -96,12 +104,10 @@ class IndexBackendController extends BackController
                 return $this->redirect(['profile']);
             }
         }
-        
-        
-        
+
         return $this->render('profile', [
-                    'model' => $model,
-                    'user' => $user
+            'model' => $model,
+            'user' => $user
         ]);
     }
 
@@ -219,14 +225,19 @@ class IndexBackendController extends BackController
 
     public function actionOrders($id)
     {
+        if (!$user = User::findIdentity($id)) {
+            throw new NotFoundHttpException;
+        }
         $searchModel = new OrderSearch();
         $params = \Yii::$app->request->queryParams;
         $params['OrderSearch']['user_id'] = $id;
         $dataProvider = $searchModel->search($params);
 
+
         return $this->render('orders', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'user' => $user
         ]);
     }
 }

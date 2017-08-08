@@ -747,15 +747,50 @@
 
 /* ANDdatepicker */
 
+
+.col-privacy-links {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.col-privacy-links .terms-privacy-links a {
+    color: #1c9355 !important;
+    margin: 0 10px;
+}
+
+ @media only screen and (max-width: 991px ) {
+
+ .copyright-content .col-md-4 {
+    width: 100%;
+    text-align: center;
+ }
+
+  #footer .social-icons {
+      float: none;
+      margin-top: 20px;
+  }
+
+   #footer .social-icons ul {
+    text-align: center;
+  }
+
+  .social-icons li {
+      float: none;
+      display: inline-block;
+   }
+
+  .social-icons li a {
+    margin: 0 4px 8px 4px;  
+  }
+
+
+}
+
 @media only screen and (max-width: 480px ) {
   .gototop-button {
     display: none;
   }
-  #footer .social-icons {
-      float: none;
-  }
+
 }
 
-.terms-privacy-links a{
-    color: #1a8422;
-}
+

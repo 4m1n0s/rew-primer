@@ -19,6 +19,9 @@ class OrderSearch extends Order
     public $cl_date_from;
     public $cl_date_to;
 
+    public $cost_from;
+    public $cost_to;
+
     /**
      * @inheritdoc
      */
@@ -26,9 +29,9 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
-            ['cost', 'number'],
+            [['cost_from', 'cost_to'], 'number'],
             [['note'], 'safe'],
-            [['cr_date_from', 'cr_date_to', 'cl_date_from', 'cl_date_to'], 'date', 'format' => 'php:Y-m-d']
+            [['cr_date_from', 'cr_date_to', 'cl_date_from', 'cl_date_to'], 'date', 'format' => 'mm/dd/yyyy']
         ];
     }
 
@@ -115,8 +118,10 @@ class OrderSearch extends Order
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['=', 'o.status', $this->status])
             ->andFilterWhere(['=', 'o.id', $this->id])
-            ->andFilterWhere(['>=', 'o.create_date', $this->cl_date_from ? strtotime($this->cl_date_from) : null])
-            ->andFilterWhere(['<=', 'o.create_date', $this->cl_date_to ? strtotime($this->cl_date_to) : null])
+            ->andFilterWhere(['>=', 'o.cost', $this->cost_from])
+            ->andFilterWhere(['<=', 'o.cost', $this->cost_to])
+            ->andFilterWhere(['>=', 'o.closed_date', $this->cl_date_from ? strtotime($this->cl_date_from) : null])
+            ->andFilterWhere(['<=', 'o.closed_date', $this->cl_date_to ? strtotime($this->cl_date_to) : null])
             ->andFilterWhere(['>=', 'o.create_date', $this->cr_date_from ? strtotime($this->cr_date_from) : null])
             ->andFilterWhere(['<=', 'o.create_date', $this->cr_date_to ? strtotime($this->cr_date_to) : null]);
 

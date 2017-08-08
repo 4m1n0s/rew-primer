@@ -35,10 +35,21 @@
         });
     };
 
+    var initDatePickers = function ($config) {
+        $('.date-picker').datepicker($config);
+        $document.on('pjax:complete', function() {
+            $('.date-picker').datepicker($config);
+        });
+    };
+
     $document.ready(function (e) {
         initPjaxDefaults();
         initGridPjaxBlock();
         initGlobalModal();
+        initDatePickers({
+            autoclose: true,
+            clearBtn: true
+        });
     });
 
 })(jQuery);

@@ -39,17 +39,6 @@ Pjax::begin(['id' => 'invitation-grid', 'enablePushState' => true]);
 ?>
 <?=
 GridView::widget([
-    'tableOptions' => [
-        'class' => 'table table-striped table-bordered table-hover'
-    ],
-    'headerRowOptions' => [
-        'class' => 'heading'
-    ],
-    'pager' => [
-        'firstPageLabel' => Yii::t('user/admin', 'First'),
-        'lastPageLabel' => Yii::t('user/admin', 'Last'),
-    ],
-    'layout' => $template,
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'columns' => [
@@ -58,9 +47,7 @@ GridView::widget([
 
         [
             'class' => \yii\grid\ActionColumn::class,
-            'headerOptions' => [
-                'style' => 'width:50px'
-            ],
+            'headerOptions' => ['style' => 'min-width:100px;width:100px'],
             'template' => '{update} {delete}'
         ]
     ],

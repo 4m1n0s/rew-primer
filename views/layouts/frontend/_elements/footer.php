@@ -28,8 +28,14 @@
     <div class="copyright-content">
         <div class="container">
             <div class="row">
-                <div class="copyright-text col-md-6"> © 2017 RewardBucks.</div>
-                <div class="col-md-6">
+                <div class="copyright-text col-md-4"> © 2017 RewardBucks.</div>
+                <div class="col-privacy-links col-md-4">
+                    <span class="terms-privacy-links clearfix">
+                        <a href="<?= \yii\helpers\Url::to(['/site/terms', '#' => 'terms']); ?>">Terms</a>
+                        <a href="<?= \yii\helpers\Url::to(['/site/terms', '#' => 'Privacy_policy']); ?>">Privacy Policy</a>
+                    </span>
+                </div>
+                <div class="col-md-4">
                     <div class="social-icons">
                         <ul>
                             <li class="social-facebook" ><a href="<?= Yii::$app->keyStorage->get('social.fb', '#') ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>

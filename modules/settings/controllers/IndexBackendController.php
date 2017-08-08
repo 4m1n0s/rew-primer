@@ -12,7 +12,6 @@ use kartik\switchinput\SwitchInput;
 use \Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
-use yii\helpers\VarDumper;
 use yii\web\ForbiddenHttpException;
 
 /**

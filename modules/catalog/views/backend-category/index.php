@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -39,9 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'header' => Yii::t('user/admin', 'Actions'),
-                'headerOptions' => ['style' => 'min-width:80px;width:80px'],
-                'buttons' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(),
+                'headerOptions' => ['style' => 'min-width:100px;width:100px'],
                 'template' => '{update} {delete}',
             ]
         ],

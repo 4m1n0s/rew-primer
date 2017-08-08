@@ -61,6 +61,12 @@ class BackendOrderController extends BackController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('view', [
+                'model' => $model,
+            ]);
+        }
+
         return $this->render('view', [
             'model' => $model,
         ]);
