@@ -16,17 +16,23 @@
     <div class="row">
         <div class="col-md-12">
             <div class="portlet light bordered portlet-datatable ">
-                <?php if (isset($this->blocks['actions'])): ?>
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="fa fa-table font-green"></i>
-                            <span class="caption-subject font-green sbold uppercase"><?php echo $this->title ?></span>
-                        </div>
-                        <div class="actions">
-                            <?php echo $this->blocks['actions'] ?>
-                        </div>
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject font-green sbold uppercase">
+                        <?php if (isset($this->blocks['caption'])) {
+                            echo $this->blocks['caption'];
+                        } else {
+                            echo "<i class=\"fa fa-table font-green\"></i>&nbsp;" . $this->title;
+                        } ?>
+                        </span>
                     </div>
-                <?php endif; ?>
+                    <div class="actions">
+                        <?php if (isset($this->blocks['actions'])): ?>
+                            <?php echo $this->blocks['actions'] ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
                 <div class="portlet-body">
                     <div class="table-container">
                         <div class="row">

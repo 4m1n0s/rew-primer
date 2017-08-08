@@ -2,10 +2,14 @@
 
 namespace app\modules\core\models\search;
 
+use app\modules\core\models\RefTransactionReferral;
 use app\modules\core\models\Transaction;
 use app\modules\offer\models\Offer;
+use app\modules\user\models\Referral;
+use app\modules\user\models\User;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use yii\db\Query;
 use yii\web\IdentityInterface;
 
 class TransactionSearch extends Transaction
@@ -13,8 +17,16 @@ class TransactionSearch extends Transaction
     public $date_from;
     public $date_to;
 
+    public $total_amount;
+    public $total_amount_from;
+    public $total_amount_to;
+    public $amount_from;
+    public $amount_to;
+
     public $offer_wall;
     public $name_campaign;
+
+    public $referral_username;
 
     /**
      * @inheritdoc
@@ -22,9 +34,8 @@ class TransactionSearch extends Transaction
     public function rules()
     {
         return [
-            [['amount'], 'number'],
-            [['date_from', 'date_to'], 'date', 'format' => 'php:Y-m-d'],
-            [['offer_wall', 'name_campaign'], 'safe']
+            [['amount', 'amount_from', 'amount_to', 'total_amount', 'total_amount_from', 'total_amount_to'], 'number'],
+            [['date_from', 'date_to', 'offer_wall', 'name_campaign', 'referral_username'], 'safe']
         ];
     }
 
@@ -94,8 +105,55 @@ class TransactionSearch extends Transaction
         $query
             ->andFilterWhere(['>=', 'created_at', $this->date_from ? strtotime($this->date_from) : null])
             ->andFilterWhere(['<=', 'created_at', $this->date_to ? strtotime($this->date_to) : null])
+            ->andFilterWhere(['>=', 'amount', $this->amount_from])
+            ->andFilterWhere(['<=', 'amount', $this->amount_to])
             ->andFilterWhere(['like', 'name', $this->offer_wall])
             ->filterHaving(['like', 'name_campaign', $this->name_campaign]);
+
+        return $dataProvider;
+    }
+
+    public function searchReferrals($params, IdentityInterface $user)
+    {
+        $query = (new Query())
+            ->select(['s.id', 's.username', 'sum(t.amount) as total_amount'])
+            ->from(['s' => User::tableName()])
+            ->innerJoin(['referral' => Referral::tableName()], 's.id = referral.target_user_id')
+            ->innerJoin(['r' => User::tableName()], 'r.id = referral.source_user_id')
+            ->leftJoin(['tr' => RefTransactionReferral::tableName()], 'tr.user_id = s.id')
+            ->leftJoin(['t' => Transaction::tableName()], 'tr.transaction_id = t.id')
+            ->where(['r.id' => $user->getId()])
+            ->groupBy('s.id');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $dataProvider->setSort([
+            'attributes' => [
+                'referral_username' => [
+                    'asc' => ['id' => SORT_ASC],
+                    'desc' => ['id' => SORT_DESC],
+                ],
+                'total_amount' => [
+                    'asc' => ['total_amount' => SORT_ASC],
+                    'desc' => ['total_amount' => SORT_DESC],
+                ],
+            ],
+        ]);
+
+        if (!($this->load($params) && $this->validate())) {
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            's.id' => $this->id,
+        ]);
+
+        $query
+            ->andFilterWhere(['like', 's.username', $this->referral_username])
+            ->andFilterHaving(['>=', 'total_amount', $this->total_amount_from])
+            ->andFilterHaving(['<=', 'total_amount', $this->total_amount_to]);
 
         return $dataProvider;
     }

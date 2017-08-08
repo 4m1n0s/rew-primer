@@ -3,6 +3,7 @@
 namespace app\modules\user\controllers;
 
 use app\modules\catalog\models\search\OrderSearch;
+use app\modules\core\models\search\TransactionSearch;
 use app\modules\user\forms\BackUsersForm;
 use app\modules\user\models\UsersSearch;
 use Yii;
@@ -42,6 +43,8 @@ class IndexBackendController extends BackController
                     'create' => '//backend/default-form',
                     'update' => '//backend/default-form',
                     'orders' => '//backend/default-grid',
+                    'offers' => '//backend/default-grid',
+                    'referrals' => '//backend/default-grid',
                 ],
             ]
         ]);
@@ -235,6 +238,38 @@ class IndexBackendController extends BackController
 
 
         return $this->render('orders', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'user' => $user
+        ]);
+    }
+
+    public function actionOffers($id)
+    {
+        if (!$user = User::findIdentity($id)) {
+            throw new NotFoundHttpException;
+        }
+        $searchModel = new TransactionSearch();
+        $params = \Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->searchCompletion($params, $user);
+
+        return $this->render('offers', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'user' => $user
+        ]);
+    }
+
+    public function actionReferrals($id)
+    {
+        if (!$user = User::findIdentity($id)) {
+            throw new NotFoundHttpException;
+        }
+        $searchModel = new TransactionSearch();
+        $params = \Yii::$app->request->queryParams;
+        $dataProvider = $searchModel->searchReferrals($params, $user);
+
+        return $this->render('referrals', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'user' => $user

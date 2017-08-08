@@ -14,7 +14,7 @@
 
     var initGridPjaxBlock = function () {
         $document.on('pjax:send', function() {
-            App.blockUI({target: $('.portlet').find('.portlet-body'), iconOnly: true});
+            App.blockUI({target: $('.portlet').find('.portlet-body')});
         });
         $document.on('pjax:complete', function() {
             App.unblockUI($('.portlet').find('.portlet-body'));
@@ -25,7 +25,7 @@
         $document.on('click', globalModalToggleBtn, function (e) {
             e.preventDefault();
             e.stopPropagation();
-            App.blockUI({target: $globalModal.find('.modal-dialog'), iconOnly: true});
+            App.blockUI({target: $globalModal.find('.modal-dialog')});
             $globalModal.modal('show').find('.modal-body').load($(this).attr('href'), function () {
                 App.unblockUI($globalModal.find('.modal-dialog'));
             });

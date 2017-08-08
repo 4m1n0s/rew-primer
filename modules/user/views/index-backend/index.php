@@ -66,7 +66,7 @@ GridView::widget([
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => Yii::t('user/admin', 'Actions'),
-            'headerOptions' => ['style' => 'min-width:100px;width:auto'],
+            'headerOptions' => ['style' => 'min-width:110px;width:auto'],
             'buttons' => \yii\helpers\ArrayHelper::merge(
                \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
                 'orders' => function($url, $model) {
@@ -77,8 +77,24 @@ GridView::widget([
                         'target' => '_blank',
                     ]);
                 },
+                'offers' => function($url, $model) {
+                    return Html::a('<i class="fa fa-cubes"></i>', $url,  [
+                        'title' => 'Offers',
+                        'class' => 'btn btn-sm btn-default btn-circle btn-editable',
+                        'data-pjax' => 0,
+                        'target' => '_blank',
+                    ]);
+                },
+                'referrals' => function($url, $model) {
+                    return Html::a('<i class="icon-user-following"></i>', $url,  [
+                        'title' => 'Referrals',
+                        'class' => 'btn btn-sm btn-default btn-circle btn-editable',
+                        'data-pjax' => 0,
+                        'target' => '_blank',
+                    ]);
+                },
             ]),
-            'template' => '{orders} {view} {update} {delete}',
+            'template' => '{referrals} {offers} {orders} {view} {update} {delete}',
         ],
     ],
 ]);

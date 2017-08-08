@@ -30,8 +30,7 @@ class OrderSearch extends Order
         return [
             [['id', 'user_id', 'status', 'closed_user_id', 'closed_date', 'create_date', 'update_date'], 'integer'],
             [['cost_from', 'cost_to'], 'number'],
-            [['note'], 'safe'],
-            [['cr_date_from', 'cr_date_to', 'cl_date_from', 'cl_date_to'], 'date', 'format' => 'mm/dd/yyyy']
+            [['note', 'cr_date_from', 'cr_date_to', 'cl_date_from', 'cl_date_to'], 'safe']
         ];
     }
 

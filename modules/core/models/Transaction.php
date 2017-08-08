@@ -23,6 +23,8 @@ use yii\behaviors\TimestampBehavior;
  * @property User $user
  * @property RefTransactionOffer $refOffer
  * @property RefTransactionReferral $refReferral
+ * @property Offer $offer
+ * @property User $referral
  */
 class Transaction extends \yii\db\ActiveRecord
 {
@@ -104,6 +106,9 @@ class Transaction extends \yii\db\ActiveRecord
         return $this->hasOne(RefTransactionOffer::className(), ['transaction_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getOffer()
     {
         return $this->hasOne(Offer::class, ['id' => 'offer_id'])
@@ -116,6 +121,15 @@ class Transaction extends \yii\db\ActiveRecord
     public function getRefReferral()
     {
         return $this->hasOne(RefTransactionReferral::className(), ['transaction_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReferral()
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id'])
+            ->viaTable(RefTransactionReferral::tableName(), ['transaction_id' => 'id']);
     }
 
     /**

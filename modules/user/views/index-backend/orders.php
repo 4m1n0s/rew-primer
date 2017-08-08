@@ -8,8 +8,14 @@ use yii\grid\GridView;
 use app\modules\dashboard\helpers\GridViewTemplateHelper;
 
 $this->title = 'Order history';
+
+$this->params['pageTitle'] = Yii::t('user/admin', 'User\'s');
+$this->params['pageSmallTitle'] = Yii::t('user/admin', 'orders');
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('user', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php $this->beginBlock('header') ?>
+<?php $this->beginBlock('caption') ?>
 <h3><?php echo Html::a($user->username  . ' (#' . $user->id . ')',
         ['/user/index-backend/view', 'id' => $user->id],
         ['class' => 'view-modal-btn'])
@@ -29,7 +35,7 @@ $this->title = 'Order history';
                 'label' => 'Order #'
             ],
             [
-                'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
+                'headerOptions' => ['style' => 'width: 80px;min-width: 80px;'],
                 'filter' => GridViewTemplateHelper::textRange($searchModel, 'cost_from', 'cost_to'),
                 'attribute' => 'cost',
             ],
