@@ -28,19 +28,13 @@ class OrderController extends FrontController
         /* @var User $currentUser */
 
         try {
-            $keyStorage = Yii::$app->keyStorage;
-            $virtualCurrency = new VirtualCurrency($currentUser);
-            $virtualCurrency->redemptionMaxLimit = $keyStorage->get('redeem.maxLimit');
-            $virtualCurrency->redemptionMinLimit = $keyStorage->get('redeem.minLimit');
-            $virtualCurrency->redemptionResetHours = $keyStorage->get('redeem.reset');
-            if (!$virtualCurrency->debiting(Yii::$app->cart->getCost())) {
-                throw new ErrorException('Funds cannot be charged');
-            }
+            $cartTotalCost = Yii::$app->cart->getCost();
 
+            // Init Order
             $order = new Order();
             $order->user_id = $currentUser->getId();
             $order->status = Order::STATUS_PROCESSING;
-            $order->cost = Yii::$app->cart->getCost();
+            $order->cost = $cartTotalCost;
             if (!$order->save()) {
                 throw new ErrorException('Could not save order');
             }
@@ -55,14 +49,20 @@ class OrderController extends FrontController
                 }
             }
 
-            if (!Yii::$app->transactionCreator->redeem(
+            // Init Transaction
+            Yii::$app->transactionCreator->redeem(
                 Transaction::STATUS_COMPLETED,
-                Yii::$app->cart->getCost(),
+                $cartTotalCost,
                 $currentUser,
                 Yii::$app->ipNormalizer->getIP()
-            )) {
-                throw new ErrorException('Could not save transaction');
-            }
+            );
+
+            $keyStorage = Yii::$app->keyStorage;
+            $virtualCurrency = new VirtualCurrency($currentUser);
+            $virtualCurrency->redemptionMaxLimit = $keyStorage->get('redeem.maxLimit');
+            $virtualCurrency->redemptionMinLimit = $keyStorage->get('redeem.minLimit');
+            $virtualCurrency->redemptionResetHours = $keyStorage->get('redeem.reset');
+            $virtualCurrency->debiting($cartTotalCost);
 
             $transaction->commit();
             Yii::$app->cart->removeAll();
@@ -85,7 +85,8 @@ class OrderController extends FrontController
             }
             Yii::$app->session->setFlash('error', $message);
         } catch (\Exception $e) {
-            Yii::$app->session->setFlash('error', $e->getMessage());
+            Yii::error('Order create exception' . PHP_EOL . $e->getMessage(), 'transaction');
+            Yii::$app->session->setFlash('error', 'Could not create the order');
         }
         $transaction->rollBack();
         return $this->redirect(['/catalog/cart/view']);

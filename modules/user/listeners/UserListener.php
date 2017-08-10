@@ -2,6 +2,7 @@
 
 namespace app\modules\user\listeners;
 
+use app\modules\core\components\ReferralBonus;
 use app\modules\core\models\EmailTemplate;
 use app\modules\core\components\VirtualCurrency;
 use app\modules\invitation\models\Invitation;
@@ -139,24 +140,7 @@ class UserListener {
         $referralCode = $form->referralCode;
         $referralPercents = $keyStorage->get('referral_percents');
 
-        if (!empty($referralCode) && (($sourceUser = User::getUserByReferralCode($referralCode)) !== null) && (int)$referralPercents > 0) {
-            $mailContainer->addToQueue(
-                $sourceUser->email,
-                EmailTemplate::TEMPLATE_REGISTER_REFERRAL_BONUS, [
-                'source_username' => $sourceUser->username,
-                'target_username' => $user->username,
-                'referral_percents' => $referralPercents
-            ]);
-        }
 
-        // Free points crediting
-        $freePointsAmount = floatval($keyStorage->get('free_points_register'));
-        $virtualCurrency = new VirtualCurrency($user);
-
-        if ($freePointsAmount > 0) {
-            $virtualCurrency->setUser($user);
-            $virtualCurrency->crediting($freePointsAmount);
-        }
     }
 
     /**
@@ -179,7 +163,11 @@ class UserListener {
             $inv->delete();
         }
 
-//        $token->delete();
+        $keyStorage = \Yii::$app->keyStorage;
+        $rb = new ReferralBonus($user);
+        $rb->generalPercents = floatval($keyStorage->get('referral_percents'));
+        $rb->generalRegisterValue = floatval($keyStorage->get('free_points_register'));
+        $rb->addRegisterValue();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace app\modules\user\controllers;
 use app\modules\catalog\models\search\OrderSearch;
 use app\modules\core\models\search\TransactionSearch;
 use app\modules\user\forms\BackUsersForm;
+use app\modules\user\helpers\Password;
 use app\modules\user\models\UsersSearch;
 use Yii;
 use yii\filters\VerbFilter;
@@ -176,30 +177,41 @@ class IndexBackendController extends BackController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
-        $model->scenario = BackUsersForm::EDIT_SCENARIO;
-        $post = Yii::$app->request->post();
+        $model->referral_percents = isset($model->metaData->referral_percents) ? $model->metaData->referral_percents : null;
+        $model->referral_register_value = isset($model->metaData->referral_register_value) ? $model->metaData->referral_register_value : null;
 
-        if ($post != null && $model->load($post) && $model->validate()) {
-            if ($model->update()) {
-                $this->redirect('index');
+        if ($model->role == User::ROLE_PARTNER) {
+            $model->scenario = BackUsersForm::EDIT_AFFILIATE_SCENARIO;
+        } else {
+            $model->scenario = BackUsersForm::EDIT_SCENARIO;
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->update(false) && $model->updateMetaData()) {
+                return $this->redirect(['index']);
             }
         }
 
         return $this->render('update', [
             'model' => $model,
         ]);
-
     }
 
-    public function actionCreate()
+    public function actionCreate($role = null)
     {
         $model = new BackUsersForm();
-        $model->scenario = BackUsersForm::SIGNUP_SCENARIO;
-        $post = Yii::$app->request->post();
+        if ($role == User::ROLE_PARTNER) {
+            $model->scenario = BackUsersForm::SIGNUP_AFFILIATE_SCENARIO;
+            $model->role = User::ROLE_PARTNER;
+        } else {
+            $model->scenario = BackUsersForm::SIGNUP_SCENARIO;
+        }
 
-        if ($post != null && $model->load($post) && $model->validate()) {
-            if ($model->save()) {
-                $this->redirect('index');
+        if ($model->load($post = Yii::$app->request->post()) && $model->validate()) {
+            $model->password = Password::hash($model->password);
+            $model->referral_code = (empty($model->referral_code)) ? Yii::$app->security->generateRandomString(rand(8, 12)) : $model->referral_code;
+            if ($model->save(false) && $model->updateMetaData()) {
+                return $this->redirect(['index']);
             }
         }
 
@@ -235,8 +247,7 @@ class IndexBackendController extends BackController
         $params = \Yii::$app->request->queryParams;
         $params['OrderSearch']['user_id'] = $id;
         $dataProvider = $searchModel->search($params);
-
-
+        
         return $this->render('orders', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

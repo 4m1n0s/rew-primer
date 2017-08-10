@@ -38,9 +38,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
     const ROLE_ADMIN        = 1;
     const ROLE_USER         = 2;
-    const ROLE_PARTNER      = 3;
+    const ROLE_PARTNER      = 3;    // Affiliate
     const ROLE_MOBILE_USER  = 4;
-    
+
     const STATUS_PENDING    = 0;
     const STATUS_APPROVED   = 1;
     const STATUS_BLOCKED    = 2;
@@ -57,12 +57,11 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     const SCENARIO_UPDATE_PERSONAL      = 'update_personal';
     const SCENARIO_UPDATE_CURRENCY      = 'update_currency';
 
-    protected $metaData;
-    public $newPassword;
-
     const MALE = 1;
     const FEMALE = 2;
 
+    protected $metaData;
+    public $newPassword;
 
     /** @inheritdoc */
     public static function tableName() {
@@ -90,6 +89,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             static::SCENARIO_REGISTER_TEMP_OAUTH    => ['first_name', 'last_name', 'role', 'create_date', 'status', 'gender'],
             static::SCENARIO_REGISTER_OAUTH         => ['username', 'email', 'first_name', 'last_name', 'role',
                                                         'create_date', 'status', 'password'],
+            static::SCENARIO_REGISTER_OAUTH         => ['username', 'email', 'first_name', 'last_name', 'role',
+                'create_date', 'status', 'password'],
             static::SCENARIO_UPDATE_STATUS          => ['status'],
             static::SCENARIO_UPDATE_LOGIN           => ['username', 'email'],
             static::SCENARIO_UPDATE_PASSWORD        => ['password'],
@@ -250,7 +251,6 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             static::STATUS_APPROVED     => Yii::t('app', 'Approved'),
             static::STATUS_BLOCKED      => Yii::t('app', 'Blocked'),
             static::STATUS_PENDING      => Yii::t('app', 'Pending'),
-            static::STATUS_TRANSFER     => Yii::t('app', 'Transfer'),
             static::STATUS_BLACKLIST    => Yii::t('app', 'Blacklist'),
         ];
     }
@@ -301,11 +301,23 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * Get full role list
+     * @return array
+     */
+    public static function getFullRoleList() {
+        return [
+            static::ROLE_USER   => Yii::t('app', 'User'),
+            static::ROLE_ADMIN  => Yii::t('app', 'Admin'),
+            static::ROLE_PARTNER  => Yii::t('app', 'Affiliate'),
+        ];
+    }
+
+    /**
      * Get role
      * @return string Description
      */
     public function getRoles() {
-        $roles = static::getRoleList();
+        $roles = static::getFullRoleList();
 
         if (isset($roles[$this->role]))
             return $roles[$this->role];
@@ -426,6 +438,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     
     public function getInterests() {
         return isset($this->metaData->interests) ? $this->metaData->interests : null;
+    }
+
+    public function getReferralPercents() {
+        return isset($this->metaData->referral_percents) ? $this->metaData->referral_percents : null;
+    }
+
+    public function getReferralRegisterValue() {
+        return isset($this->metaData->referral_register_value) ? $this->metaData->referral_register_value : null;
     }
 
     public static function getGender(){

@@ -2,6 +2,7 @@
 
 namespace app\modules\offer\controllers\postbacks;
 
+use app\modules\core\components\ReferralBonus;
 use app\modules\core\components\VirtualCurrency;
 use app\modules\core\models\RefTransactionOffer;
 use app\modules\offer\models\Offer;
@@ -44,9 +45,6 @@ class CpaLead extends Action
             if ($postback_password != $password) {
                 throw new ErrorException('Wrong password: ' . $password);
             }
-            if ($transactionOffer = RefTransactionOffer::find()->select(['id'])->lead($lead_id, Offer::CPALEAD)->one()) {
-                throw new ErrorException('Transaction already exist: ' . $transactionOffer->id);
-            }
             if (!($user = User::findOne(['username' => $subid]))) {
                 throw new ErrorException('Unknown user: ' . $subid);
             }
@@ -55,7 +53,7 @@ class CpaLead extends Action
             try {
 
                 // Init transaction
-                if (!\Yii::$app->transactionCreator->offerIncome(
+                \Yii::$app->transactionCreator->offerIncome(
                     Transaction::STATUS_COMPLETED,
                     $virtual_currency,
                     $user,
@@ -64,40 +62,17 @@ class CpaLead extends Action
                     $lead_id,
                     $campaign_id,
                     $campaign_name
-                )) {
-                    throw new ErrorException('Could not save offer transaction');
-                }
+                );
 
                 // Crediting funds to the user
                 $virtualCurrency = new VirtualCurrency($user);
-                if (!$virtualCurrency->crediting($virtual_currency)) {
-                    throw new ErrorException('Could not crediting user');
-                }
+                $virtualCurrency->crediting($virtual_currency);
 
                 // Referral percents bonus
                 $keyStorage = Yii::$app->keyStorage;
-                $referralPercents = floatval($keyStorage->get('referral_percents'));
-                $sourceReferral = $user->sourceReferral;
-
-                if ($referralPercents > 0 && !is_null($sourceReferral)) {
-
-                    $referralVirtualCurrency = new VirtualCurrency($sourceReferral);
-                    $referralPercentsAmount = bcmul(bcdiv($virtual_currency, 100, $referralVirtualCurrency->scale), $referralPercents, $referralVirtualCurrency->scale);
-
-                    if (!$referralVirtualCurrency->crediting($referralPercentsAmount)) {
-                        throw new ErrorException('Referral\'s funds have not been credited');
-                    }
-
-                    if (!\Yii::$app->transactionCreator->referralIncome(
-                        Transaction::STATUS_COMPLETED,
-                        $referralPercentsAmount,
-                        $user,
-                        $ip_address,
-                        $sourceReferral
-                    )) {
-                        throw new ErrorException('Could not save referral transaction');
-                    }
-                }
+                $referralBonus = new ReferralBonus($user);
+                $referralBonus->generalPercents = floatval($keyStorage->get('referral_percents'));
+                $referralBonus->addPercents($virtual_currency);
 
                 $transactionDB->commit();
             } catch (ErrorException $e) {

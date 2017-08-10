@@ -19,7 +19,8 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <?php $this->beginBlock('actions')?>
-<?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+<?= Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New User').'</span>', ['create'], ['class' => 'btn btn-info btn-circle']); ?>
+<?= '&nbsp;' . Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New Affiliate').'</span>', ['create', 'role' => \app\modules\user\models\User::ROLE_PARTNER], ['class' => 'btn btn-circle btn-info']); ?>
 <?php $this->endBlock()?>
 
 <?php Pjax::begin(['id' => 'user-grid', 'enablePushState' => false]); ?>
@@ -43,16 +44,24 @@ GridView::widget([
         ],
         'email:email',
         [
-            'label' => 'Balance',
-            'attribute' =>  'virtual_currency',
-        ],
-        [
             'attribute' => 'role',
-            'filter' => $roleList,
+            'filter' => \app\modules\user\models\User::getFullRoleList(),
             'headerOptions' => ['width' => '150'],
             'value' => function($model) {
                 return $model->getRoles();
             }
+        ],
+        [
+            'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'virtual_currency_from', 'virtual_currency_to'),
+            'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
+            'label' => 'Balance',
+            'attribute' => 'virtual_currency',
+        ],
+        [
+            'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::dateRange($searchModel, 'dateFrom', 'dateTo'),
+            'headerOptions' => ['style' => 'width: 220px;min-width: 220px;'],
+            'attribute' => 'create_date',
+            'format' => 'datetime'
         ],
         [
             'attribute' => 'status',
@@ -66,10 +75,13 @@ GridView::widget([
         [
             'class' => 'yii\grid\ActionColumn',
             'header' => Yii::t('user/admin', 'Actions'),
-            'headerOptions' => ['style' => 'min-width:110px;width:auto'],
+            'headerOptions' => ['style' => 'min-width:150px;width:150px'],
             'buttons' => \yii\helpers\ArrayHelper::merge(
                \app\modules\dashboard\helpers\GridViewTemplateHelper::baseActionButtons(), [
                 'orders' => function($url, $model) {
+                    if ($model->role == \app\modules\user\models\User::ROLE_PARTNER) {
+                        return null;
+                    }
                     return Html::a('<i class="fa fa-shopping-cart"></i>', $url,  [
                         'title' => 'Orders',
                         'class' => 'btn btn-sm btn-default btn-circle btn-editable',
@@ -78,6 +90,9 @@ GridView::widget([
                     ]);
                 },
                 'offers' => function($url, $model) {
+                    if ($model->role == \app\modules\user\models\User::ROLE_PARTNER) {
+                        return null;
+                    }
                     return Html::a('<i class="fa fa-cubes"></i>', $url,  [
                         'title' => 'Offers',
                         'class' => 'btn btn-sm btn-default btn-circle btn-editable',
@@ -94,7 +109,7 @@ GridView::widget([
                     ]);
                 },
             ]),
-            'template' => '{referrals} {offers} {orders} {view} {update} {delete}',
+            'template' => '{referrals} {orders} {offers} {view} {update} {delete}',
         ],
     ],
 ]);

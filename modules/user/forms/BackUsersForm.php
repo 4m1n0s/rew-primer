@@ -9,7 +9,6 @@ use app\modules\user\models\User;
 use yii\base\Security;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use app\modules\user\helpers\Password;
 
 /**
  * This is the model class for table "sf_users".
@@ -33,16 +32,25 @@ use app\modules\user\helpers\Password;
  */
 class BackUsersForm extends User
 {
+    const SIGNUP_SCENARIO = 'signup';
+    const SIGNUP_AFFILIATE_SCENARIO = 'signup_affiliate';
+    const EDIT_SCENARIO = 'edit';
+    const EDIT_AFFILIATE_SCENARIO = 'edit_affiliate';
 
     public $confirmPassword;
 
-    const SIGNUP_SCENARIO = 'signup';
-    const EDIT_SCENARIO = 'edit';
+    public $referral_percents;
+    public $referral_register_value;
 
-    public function scenarios() {
+    public function scenarios()
+    {
         return [
-            self::SIGNUP_SCENARIO => ['username', 'email', 'newPassword', 'confirmPassword', 'role', 'status', 'last_name', 'first_name'],
-            self::EDIT_SCENARIO => ['username', 'email', 'role', 'status', 'last_name', 'first_name']
+            self::SIGNUP_SCENARIO => ['username', 'email', 'role', 'status', 'last_name', 'first_name', 'password', 'confirmPassword'],
+            self::EDIT_SCENARIO => ['username', 'email', 'role', 'status', 'last_name', 'first_name'],
+            self::SIGNUP_AFFILIATE_SCENARIO => ['username', 'email', 'status', 'referral_code', 'referral_percents',
+                'referral_register_value', 'password', 'confirmPassword'],
+            self::EDIT_AFFILIATE_SCENARIO => ['username', 'email', 'status', 'referral_code', 'referral_percents',
+                'referral_register_value'],
         ];
     }
 
@@ -70,7 +78,7 @@ class BackUsersForm extends User
             [['role', 'status'], 'required'],
             [['role', 'status'], 'integer'],
 
-            [['create_date', 'update_date', 'confirmPassword', 'newPassword'], 'safe'],
+            [['create_date', 'update_date'], 'safe'],
 
             ['username', 'required'],
             ['username', 'unique'],
@@ -84,33 +92,23 @@ class BackUsersForm extends User
             ['email', 'unique'],
             ['email', 'trim'],
 
-            [['password'], 'string', 'max' => 64, 'min' => 3],
+            /*[['password'], 'string', 'max' => 64, 'min' => 3],
             [['newPassword'], 'validateNewPassword'],
-            ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword'],
+            ['confirmPassword', 'compare', 'compareAttribute' => 'newPassword'],*/
+
+            [['password', 'newPassword', 'confirmPassword'], 'required'],
+            [['password', 'newPassword', 'confirmPassword'], 'string', 'min' => 6, 'max' => 64],
+            ['confirmPassword', 'compare', 'compareAttribute' => 'password'],
 
             [['referral_code'], 'string', 'max' => 12],
             [['referral_code'], 'unique'],
+            [['referral_code'], 'required', 'on' => [self::SIGNUP_AFFILIATE_SCENARIO, self::EDIT_AFFILIATE_SCENARIO]],
 
             [['first_name', 'last_name'], 'string', 'max' => 255],
 
+            [['referral_register_value', 'referral_percents'], 'required'],
+            [['referral_register_value', 'referral_percents'], 'number'],
         ];
-    }
-
-    public function validateCurrentPassword($attribute, $params){
-        if (!$this->hasErrors()) {
-            if(!Password::validate($this->$attribute, Yii::$app->user->identity->password)){
-                $this->addError($attribute, 'Incorrect password.');
-            }
-        }
-    }
-
-    public function validateNewPassword($attribute, $params){
-        if (!$this->hasErrors()) {
-            $this->password = Password::hash($this->$attribute);
-//            if(empty($this->currentPassword)){
-//                $this->addError('currentPassword', "Current Password cannot be blank.");
-//            }
-        }
     }
 
     /**
@@ -132,5 +130,17 @@ class BackUsersForm extends User
             'last_name' => 'Last Name',
             'virtual_currency' => 'Balance',
         ];
+    }
+
+    /**
+     * Update user meta
+     */
+    public function updateMetaData()
+    {
+        if ($this->getScenario() == self::SIGNUP_AFFILIATE_SCENARIO || $this->getScenario() == self::EDIT_AFFILIATE_SCENARIO) {
+            UserMeta::updateUserMeta($this->id, 'referral_percents', $this->referral_percents);
+            UserMeta::updateUserMeta($this->id, 'referral_register_value', $this->referral_register_value);
+            return true;
+        }
     }
 }

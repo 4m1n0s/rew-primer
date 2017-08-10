@@ -55,12 +55,13 @@ class VirtualCurrency
      *
      * @param $amount
      * @return bool
+     * @throws ErrorException
      * @throws InvalidConfigException
      */
     public function crediting($amount)
     {
         if (!$this->isValidUser()) {
-            throw new InvalidConfigException('User Model must be set');
+            throw new InvalidConfigException(User::class . ' Model must be set');
         }
 
         $value = bcadd($this->user->virtual_currency, $amount, $this->scale);
@@ -73,15 +74,18 @@ class VirtualCurrency
      * @param $amount
      * @return bool
      * @throws InvalidConfigException
+     * @throws \Exception
+     * @throws \yii\db\Exception
      */
     public function debiting($amount)
     {
         if (!$this->isValidUser()) {
-            throw new InvalidConfigException('User Model must be set');
+            throw new InvalidConfigException(User::class . ' Model must be set');
         }
 
         $transaction = Yii::$app->db->beginTransaction();
         try {
+            // Check redemption limits
             if ($this->checkRedemptionCurrencyLimits) {
                 $this->limitsCurrency($amount);
             }
@@ -93,19 +97,16 @@ class VirtualCurrency
             if ($value < 0) {
                 throw new InvalidValueException('Insufficient funds', static::ERROR_CODE_INSUFFICIENT_FUNDS);
             }
-            if (!$this->updateCurrency($value)) {
-                throw new ErrorException('Could not update user\'s currency');
-            }
-
+            $this->updateCurrency($value);
             $transaction->commit();
-            return true;
         } catch (InvalidValueException $e) {
             $transaction->rollBack();
             throw $e;
         } catch (\Exception $e) {
             $transaction->rollBack();
-            return false;
+            throw $e;
         }
+        return true;
     }
 
     /**
@@ -117,13 +118,8 @@ class VirtualCurrency
     {
         $this->user->setScenario(User::SCENARIO_UPDATE_CURRENCY);
         $this->user->virtual_currency = $value;
-
         if (!$this->user->save()) {
-            Yii::error('Could not save user\'s Virtual Currency value' . PHP_EOL .
-                Json::encode($this->user->getErrors())
-            );
-
-            return false;
+            throw new ErrorException('Could not save user\'s Virtual Currency value' . PHP_EOL . Json::encode($this->user->getErrors()));
         }
 
         return true;
@@ -174,7 +170,7 @@ class VirtualCurrency
             $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
         }
         if (!$model->save()) {
-            throw new ErrorException('Could not save ' . RedeemLimit::class . ' model');
+            throw new ErrorException('Could not save ' . RedeemLimit::class . ' model' . PHP_EOL . $model->getErrors());
         }
     }
 
@@ -193,7 +189,7 @@ class VirtualCurrency
             $model->amount = $this->getRedeemLimitTotalCurrency($model, $amount);
         }
         if (!$model->save()) {
-            throw new ErrorException('Could not save ' . RedeemLimitIp::class . ' model');
+            throw new ErrorException('Could not save ' . RedeemLimitIp::class . ' model' . PHP_EOL . $model->getErrors());
         }
     }
 

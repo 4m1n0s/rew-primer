@@ -104,6 +104,8 @@ class UserManager extends \yii\base\Component
     }
 
     /**
+     * Register temp user through oauth
+     *
      * @param RegistrationForm $form
      * @return User|bool
      */
@@ -261,7 +263,11 @@ class UserManager extends \yii\base\Component
             return false;
         }
 
-        $userModel = User::find()->where('status NOT IN (:status) AND id = :user_id', [':status' => implode(',', [User::STATUS_BLOCKED, User::STATUS_PENDING]), ':user_id' => $tokenModel->user_id])->one();
+        $userModel = User::find()
+            ->where('id = :user_id AND status NOT IN (:status)', [
+                ':user_id' => $tokenModel->user_id,
+                ':status' => implode(',', [User::STATUS_BLOCKED, User::STATUS_PENDING, User::STATUS_BLACKLIST])]
+            )->one();
         /* @var User $userModel */
 
         if (null === $userModel) {

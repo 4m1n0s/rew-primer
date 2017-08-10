@@ -58,7 +58,7 @@ class BackController extends Controller
         ]);
         Yii::$container->set('yii\grid\ActionColumn', [
             'header' => Yii::t('app', 'Actions'),
-            'headerOptions' => ['style' => 'min-width:110px;width:auto'],
+            'headerOptions' => ['style' => 'min-width:110px;width:110px'],
             'buttons' => GridViewTemplateHelper::baseActionButtons(),
             'template' => '{update} {delete}',
         ]);

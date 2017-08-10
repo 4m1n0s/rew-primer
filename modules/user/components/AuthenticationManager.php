@@ -43,6 +43,7 @@ class AuthenticationManager extends Component
 
         switch ($user->status) {
             case User::STATUS_BLOCKED:
+            case User::STATUS_BLACKLIST:
                 Yii::$app->session->setFlash('error', 'Your account was blocked.');
                 return false;
                 break;
@@ -56,6 +57,8 @@ class AuthenticationManager extends Component
                 Yii::$app->eventManager->fire(UserEvents::SUCCESS_LOGIN, new UserLoginEvent($form, $user));
                 return true;
                 break;
+            default:
+                Yii::$app->session->setFlash('error', 'Your account is not available.');
         }
 
         return false;

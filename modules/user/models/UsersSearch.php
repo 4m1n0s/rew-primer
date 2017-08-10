@@ -19,13 +19,16 @@ class UsersSearch extends User
     public $dateFrom;
     public $dateTo;
 
+    public $virtual_currency_from;
+    public $virtual_currency_to;
+
     /**
      * @inheritdoc
      */
     public function rules() {
         return [
             [['id', 'status', 'role'], 'integer'],
-            [['virtual_currency'], 'number'],
+            [['virtual_currency', 'virtual_currency_from', 'virtual_currency_to'], 'number'],
             [['email', 'dateFrom', 'dateTo', 'username', 'referral_code'], 'safe'],
         ];
     }
@@ -68,16 +71,18 @@ class UsersSearch extends User
 
 
         if (!empty($this->dateFrom)) {
-            $query->andWhere('create_date >= :dateFrom', [':dateFrom' => DateHelper::getGTMDatetime($this->dateFrom, Yii::$app->formatter->timeZone)]);
+            $query->andWhere('create_date >= :dateFrom', [':dateFrom' => date('Y-m-d H:i:s', strtotime($this->dateFrom))]);
         }
 
         if (!empty($this->dateTo)) {
-            $query->andWhere('create_date <= :dateTo', [':dateTo' => DateHelper::getGTMDatetime($this->dateTo, Yii::$app->formatter->timeZone)]);
+            $query->andWhere('create_date <= :dateTo', [':dateTo' => date('Y-m-d H:i:s', strtotime($this->dateTo))]);
         }
 
         $query->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'referral_code', $this->referral_code]);
+            ->andFilterWhere(['like', 'referral_code', $this->referral_code])
+            ->andFilterWhere(['>=', 'virtual_currency', $this->virtual_currency_from])
+            ->andFilterWhere(['<=', 'virtual_currency', $this->virtual_currency_to]);
 
         return $dataProvider;
     }

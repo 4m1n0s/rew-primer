@@ -21,7 +21,7 @@ class ProfileController extends FrontController
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => ['USER', 'admin', 'MOBILE_USER'],
+                        'roles' => ['USER', 'admin', 'MOBILE_USER', 'PARTNER'],
                     ],
                 ],
             ],
