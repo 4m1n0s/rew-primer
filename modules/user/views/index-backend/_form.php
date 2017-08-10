@@ -41,7 +41,7 @@ use app\modules\user\models\User;
             <h3 class="form-section"><?= Yii::t('user', 'Affiliate specific'); ?></h3>
             <?= $form->field($model, 'referral_code')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('referral_code')]) ?>
             <?= $form->field($model, 'referral_percents')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => 'Referral Percents']) ?>
-            <?= $form->field($model, 'referral_register_value')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => 'Referral Register Value']) ?>
+            <?= $form->field($model, 'referral_register_value')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => 'Referral Sign up Payout']) ?>
         <?php endif; ?>
 
         <?php

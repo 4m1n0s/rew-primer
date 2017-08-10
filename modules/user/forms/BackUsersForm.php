@@ -129,6 +129,8 @@ class BackUsersForm extends User
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
             'virtual_currency' => 'Balance',
+            'referral_percents' => Yii::t('app', 'Referral Percents'),
+            'referral_register_value' => Yii::t('app', 'Referral Sign up Payout'),
         ];
     }
 

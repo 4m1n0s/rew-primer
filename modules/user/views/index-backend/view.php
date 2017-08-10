@@ -19,13 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
     if ($model->role == User::ROLE_PARTNER) {
         $specificData = [
             [
-                'label' => 'referral_percents',
+                'label' => 'Referral Percents',
                 'value' => function($model) {
                     return $model->getReferralPercents();
                 }
             ],
             [
-                'label' => 'referral_percents_value',
+                'label' => 'Referral Sign up Payout',
                 'value' => function($model) {
                     return $model->getReferralRegisterValue();
                 }
