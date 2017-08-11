@@ -3,8 +3,11 @@
 namespace app\modules\user\controllers;
 
 use app\modules\catalog\models\search\OrderSearch;
+use app\modules\core\components\VirtualCurrency;
 use app\modules\core\models\search\TransactionSearch;
+use app\modules\core\models\Transaction;
 use app\modules\user\forms\BackUsersForm;
+use app\modules\user\forms\RedeemForm;
 use app\modules\user\helpers\Password;
 use app\modules\user\models\UsersSearch;
 use Yii;
@@ -46,6 +49,7 @@ class IndexBackendController extends BackController
                     'orders' => '//backend/default-grid',
                     'offers' => '//backend/default-grid',
                     'referrals' => '//backend/default-grid',
+                    'redeem' => '//backend/default-form',
                 ],
             ]
         ]);
@@ -283,6 +287,46 @@ class IndexBackendController extends BackController
         return $this->render('referrals', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'user' => $user
+        ]);
+    }
+
+    public function actionRedeem($id)
+    {
+        if (!$user = User::findIdentity($id)) {
+            throw new NotFoundHttpException;
+        }
+
+        $model = new RedeemForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                // Init Transaction
+                Yii::$app->transactionCreator->redeem(
+                    Transaction::STATUS_COMPLETED,
+                    $model->amount,
+                    $user,
+                    Yii::$app->ipNormalizer->getIP(),
+                    'custom redemption'
+                );
+
+                $virtualCurrency = new VirtualCurrency($user);
+                $virtualCurrency->checkRedemptionCurrencyLimits = false;
+                $virtualCurrency->checkRedemptionIPLimits = false;
+                $virtualCurrency->debiting($model->amount);
+
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', 'Funds have been withdrawn from the account. Balance: ' . $user->virtual_currency);
+                return $this->redirect(['redeem', 'id' => $id]);
+            } catch (\Exception $e) {
+                Yii::$app->session->setFlash('error', $e->getMessage());
+                $transaction->rollBack();
+            }
+        }
+
+        return $this->render('redeem', [
+            'model' => $model,
             'user' => $user
         ]);
     }

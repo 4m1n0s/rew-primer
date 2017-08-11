@@ -108,8 +108,19 @@ GridView::widget([
                         'target' => '_blank',
                     ]);
                 },
+                'redeem' => function($url, $model) {
+                    if ($model->role != \app\modules\user\models\User::ROLE_PARTNER) {
+                        return null;
+                    }
+                    return Html::a('<i class="icon-credit-card"></i>', $url,  [
+                        'title' => 'Orders',
+                        'class' => 'btn btn-sm btn-default btn-circle btn-editable',
+                        'data-pjax' => 0,
+                        'target' => '_blank',
+                    ]);
+                },
             ]),
-            'template' => '{referrals} {orders} {offers} {view} {update} {delete}',
+            'template' => '{redeem} {referrals} {orders} {offers} {view} {update} {delete}',
         ],
     ],
 ]);

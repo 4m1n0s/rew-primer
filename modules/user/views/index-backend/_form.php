@@ -29,7 +29,7 @@ use app\modules\user\models\User;
         <?= $form->field($model, 'email')->textInput(['maxlength' => 100, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('email')]) ?>
         <?= $form->field($model, 'status')->dropDownList($statusList); ?>
 
-        <? if ($model->role != User::ROLE_PARTNER): ?>
+        <?php if ($model->role != User::ROLE_PARTNER): ?>
         <?= $form->field($model, 'role')->dropDownList($roleList); ?>
 
         <h3 class="form-section"><?= Yii::t('user', 'Personal details'); ?></h3>
@@ -37,7 +37,7 @@ use app\modules\user\models\User;
         <?= $form->field($model, 'first_name')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('first_name')]) ?>
         <?php endif; ?>
 
-        <? if ($model->role == User::ROLE_PARTNER): ?>
+        <?php if ($model->role == User::ROLE_PARTNER): ?>
             <h3 class="form-section"><?= Yii::t('user', 'Affiliate specific'); ?></h3>
             <?= $form->field($model, 'referral_code')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => $model->getAttributeLabel('referral_code')]) ?>
             <?= $form->field($model, 'referral_percents')->textInput(['maxlength' => 255, 'autocomplete' => 'off', 'placeholder' => 'Referral Percents']) ?>
