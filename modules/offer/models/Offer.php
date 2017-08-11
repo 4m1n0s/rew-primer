@@ -43,6 +43,7 @@ class Offer extends \yii\db\ActiveRecord
     const PAYMENTWALL = 22;
     const SAYSOPUBS = 23;
     const DRYVERLESSADS = 24;
+    const MOBILEAVENUE = 25;
 
     /**
      * @var UploadedFile

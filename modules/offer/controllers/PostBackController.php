@@ -10,6 +10,7 @@ use app\modules\offer\controllers\postbacks\Dryverlessads;
 use app\modules\offer\controllers\postbacks\Fyber;
 use app\modules\offer\controllers\postbacks\Kiwiwall;
 use app\modules\offer\controllers\postbacks\MinuteStaff;
+use app\modules\offer\controllers\postbacks\MobileAvenue;
 use app\modules\offer\controllers\postbacks\OfferDaddy;
 use app\modules\offer\controllers\postbacks\OfferToro;
 use app\modules\offer\controllers\postbacks\PaymentWall;
@@ -69,6 +70,9 @@ class PostBackController extends Controller
             ],
             'dla' => [
                 'class' => Dryverlessads::class
+            ],
+            'ma' => [
+                'class' => MobileAvenue::class
             ],
         ];
     }

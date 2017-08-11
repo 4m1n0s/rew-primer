@@ -118,6 +118,8 @@ class OfferController extends ProfileController
                 return $this->saysopubs();
             case Offer::DRYVERLESSADS:
                 return $this->dryverlessads();
+            case Offer::MOBILEAVENUE:
+                return $this->mobileavenue();
         }
     }
 
@@ -373,6 +375,20 @@ class OfferController extends ProfileController
         $offerFrameUrl = strtr($offerUrl, $replace);
 
         return $this->renderAjax('dryverlessads', [
+            'offerFrameUrl' => $offerFrameUrl
+        ]);
+    }
+
+    public function mobileavenue()
+    {
+        $offerUrl = 'http://platform.mobileavenue.com/iframe/31/{appID}/?affSub={userID}'; // TODO: Store it somewhere else
+        $replace = [
+            '{appID}' => 'kloid53ea292230236541988f5bea665591ab569',
+            '{userID}' => \Yii::$app->user->identity->id,
+        ];
+        $offerFrameUrl = strtr($offerUrl, $replace);
+
+        return $this->renderAjax('mobileavenue', [
             'offerFrameUrl' => $offerFrameUrl
         ]);
     }

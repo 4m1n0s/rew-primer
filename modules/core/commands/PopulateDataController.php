@@ -92,8 +92,9 @@ class PopulateDataController extends Controller
             [Offer::FYBER, 1, 'Fyber', 'Fyber', '/images/offer-providers/fyber_logo.png'],
             [Offer::POLLFISH, 1, 'PollFish', 'PollFish', '/images/offer-providers/pollfish.png'],
             [Offer::PAYMENTWALL, 1, 'PaymentWall', 'PaymentWall', '/images/offer-providers/paymentwall-logo.jpg'],
-            [Offer::SAYSOPUBS, 1, 'SaySoPubs', 'SaySoPubs', '/images/no-image-default'],
-            [Offer::DRYVERLESSADS, 1, 'DryverlessAds', 'DryverlessAds', '/images/no-image-default'],
+            [Offer::SAYSOPUBS, 1, 'SaySoPubs', 'SaySoPubs', '/images/no-image-default.png'],
+            [Offer::DRYVERLESSADS, 1, 'DryverlessAds', 'DryverlessAds', '/images/no-image-default.png'],
+            [Offer::MOBILEAVENUE, 1, 'MobileAvenue', 'MobileAvenue', '/images/no-image-default.png'],
         ])->execute();
     }
 
