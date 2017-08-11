@@ -29,7 +29,7 @@ use yii\behaviors\TimestampBehavior;
 class Transaction extends \yii\db\ActiveRecord
 {
     const TYPE_OFFER_INCOME         = 1;
-    const TYPE_REFERRAL_PERCENTS    = 2;
+    const TYPE_REFERRAL_BONUS       = 2;
     const TYPE_REDEEM               = 3;
 
     const STATUS_PENDING    = 1;

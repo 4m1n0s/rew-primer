@@ -33,4 +33,24 @@ return [
         'status' => \app\modules\user\models\User::STATUS_TEMP,
         'virtual_currency' => 0
     ],
+    'simple_user_1' => [
+        'id' => 4,
+        'username' => 'test_simple_name_1',
+        'email' => 'test-simple_email_1@mail.com',
+        'role' => \app\modules\user\models\User::ROLE_USER,
+        'password' => \app\modules\user\helpers\Password::hash('qwerty'),
+        'create_date' => \Faker\Provider\DateTime::date('Y-m-d H:i:s'),
+        'status' => \app\modules\user\models\User::STATUS_APPROVED,
+        'virtual_currency' => 0
+    ],
+    'affiliate' => [
+        'id' => 5,
+        'username' => 'test_affiliate',
+        'email' => 'test-email-affiliate@mail.com',
+        'role' => \app\modules\user\models\User::ROLE_PARTNER,
+        'password' => \app\modules\user\helpers\Password::hash('qwerty'),
+        'create_date' => \Faker\Provider\DateTime::date('Y-m-d H:i:s'),
+        'status' => \app\modules\user\models\User::STATUS_APPROVED,
+        'virtual_currency' => 0
+    ]
 ];

@@ -46,6 +46,7 @@ class ReferralBonus
      * Add certain percents to user's referral
      *
      * @param $sum
+     * @return boolean
      * @throws ErrorException
      * @throws \yii\base\InvalidConfigException
      */
@@ -53,7 +54,7 @@ class ReferralBonus
     {
         $sourceReferral = $this->user->sourceReferral;
         if (is_null($sourceReferral)) {
-            return;
+            return false;
         }
         $sourceReferralVC = new VirtualCurrency($sourceReferral);
         if ($sourceReferral->role == User::ROLE_PARTNER) {
@@ -62,7 +63,7 @@ class ReferralBonus
             $referralPercentsAmount = bcmul(bcdiv($sum, 100, $sourceReferralVC->scale), $this->generalPercents, $sourceReferralVC->scale);
         }
         if ($referralPercentsAmount <= 0) {
-            return;
+            return false;
         }
 
         $sourceReferralVC->crediting($referralPercentsAmount);
@@ -74,6 +75,8 @@ class ReferralBonus
             $this->user,
             'percents'
         );
+
+        return true;
     }
 
     /**

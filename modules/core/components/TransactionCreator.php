@@ -87,7 +87,7 @@ class TransactionCreator
         $transactionDB = Yii::$app->db->beginTransaction();
         try {
             $transactionModel = new Transaction();
-            $transactionModel->type = Transaction::TYPE_REFERRAL_PERCENTS;
+            $transactionModel->type = Transaction::TYPE_REFERRAL_BONUS;
             $transactionModel->status = $status;
             $transactionModel->amount = $amount;
             $transactionModel->user_id = $user->id;

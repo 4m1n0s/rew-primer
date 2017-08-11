@@ -15,6 +15,7 @@ class TransactionCreatorTest extends DbTestCase
 
     protected function _before() {
         \app\modules\core\models\RefTransactionOffer::deleteAll();
+        \app\modules\core\models\RefTransactionReferral::deleteAll();
         \app\modules\core\models\Transaction::deleteAll();
 
         \Yii::configure(\Yii::$app, [
