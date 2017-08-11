@@ -15,7 +15,7 @@ class DbTargetPostback extends DbTarget
      */
     public function export()
     {
-        echo $tableName = $this->db->quoteTableName($this->logTable);
+        $tableName = $this->db->quoteTableName($this->logTable);
         $sql = "INSERT INTO $tableName ([[level]], [[category]], [[offer_id]], [[prefix]], [[message]], [[log_vars]], [[log_time]])
                 VALUES (:level, :category, :offer_id, :prefix, :message, :log_vars, :log_time)";
         $command = $this->db->createCommand($sql);
