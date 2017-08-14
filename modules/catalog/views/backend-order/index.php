@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php $this->beginBlock('actions') ?>
 <div class="btn-groups">
+    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span>' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
+
     <div class="row hidden">
         <?= Html::beginForm(['import'], 'post', [
             'enctype' => 'multipart/form-data',
@@ -28,37 +30,33 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);?>
         <?= Html::endForm();?>
     </div>
-    <?= Html::button('<i class="fa fa-cloud-upload"></i> <span>' . Yii::t('app', 'Import') . '</span>', ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
     <form action="<?= Url::toRoute('/catalog/backend-order/export-all') ?>"
           method="post"
           id="order-export-form">
-        <?= Html :: hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []);?>
+        <?= Html::hiddenInput(\Yii::$app->getRequest()->csrfParam, \Yii::$app->getRequest()->getCsrfToken(), []);?>
         <?= Html::hiddenInput('ids', null, ['id' => 'export-ids']) ?>
         <button type="submit" class="btn yellow">
             <i class="fa fa-file-o"></i>&nbsp;Export Selected
         </button>
     </form>
-    <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Processing Selected').'</span>',
-        [
-            'title' => 'All selected orders will be marked as processing.',
-            'id' => 'processing-all',
-            'class' => 'btn blue',
-            'data-confirm' => 'Confirm the action',
-            'data-link' => Url::toRoute(['/catalog/backend-order/processing-all']),
-
-        ]
-    ) ?>
-    <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Mark as Canceled Selected').'</span>',
-        [
-            'title' => 'All selected orders will be marked as canceled.',
-            'id' => 'canceled-all',
-            'class' => 'btn red',
-            'data-confirm' => 'Confirm the action',
-            'data-link' => Url::toRoute(['/catalog/backend-order/canceled-all']),
-        ]
-    ) ?>
-
 </div>
+<?php $this->endBlock() ?>
+
+<?php $this->beginBlock('group-actions') ?>
+<?php echo \app\modules\core\widgets\GroupActions::widget([
+    'items' => [
+        [
+            'label' => 'Mark as Processing',
+            'action' => Url::toRoute(['/catalog/backend-order/processing-all']),
+        ],
+        [
+            'label' => 'Mark as Canceled',
+            'action' => Url::toRoute(['/catalog/backend-order/canceled-all']),
+        ],
+    ],
+    'grid' => '#order-grid',
+    'pjaxContainer' => '#order-grid-pjax'
+]) ?>
 <?php $this->endBlock() ?>
 
 <div class="order-index">
@@ -123,7 +121,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end(); ?>
 </div>
-
 
 <?php
 $this->registerJsFile('/backend/js/order_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);

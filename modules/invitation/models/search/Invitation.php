@@ -12,6 +12,9 @@ use app\modules\invitation\models\Invitation as InvitationModel;
  */
 class Invitation extends InvitationModel
 {
+    public $cr_date_from;
+    public $cr_date_to;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class Invitation extends InvitationModel
     {
         return [
             [['id', 'status'], 'integer'],
-            [['email', 'code', 'create_date', 'update_date'], 'safe'],
+            [['email', 'code', 'create_date', 'update_date', 'cr_date_from', 'cr_date_to'], 'safe'],
         ];
     }
 
@@ -69,7 +72,9 @@ class Invitation extends InvitationModel
         ]);
 
         $query->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'code', $this->code]);
+            ->andFilterWhere(['like', 'code', $this->code])
+            ->andFilterWhere(['>=', 'create_date', $this->cr_date_from ? strtotime($this->cr_date_from) : null])
+            ->andFilterWhere(['<=', 'create_date', $this->cr_date_to ? strtotime($this->cr_date_to) : null]);
 
         return $dataProvider;
     }

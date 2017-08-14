@@ -14,31 +14,24 @@ $this->params['pageTitle'] = Yii::t('admin', 'Contacts');
 $this->params['pageSmallTitle'] = Yii::t('admin', 'manage');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<?php $this->beginBlock('actions')?>
-
-    <?= Html::button('<i class="fa fa-check-square-o"></i> <span>'.\Yii::t('admin', 'Mark as Read Selected').'</span>',
+<?php $this->beginBlock('group-actions') ?>
+<?php echo \app\modules\core\widgets\GroupActions::widget([
+    'items' => [
         [
-            'title' => 'All selected messages will be approved.',
-            'id' => 'read-all',
-            'class' => 'btn blue',
-            'data-confirm' => 'Confirm the action',
-            'data-link' => Url::toRoute(['/contact/index-backend/read-all']),
-
-        ]
-    ) ?>
-    <?= Html::button('<i class="fa fa-ban"></i> <span>'.\Yii::t('admin', 'Remove Selected').'</span>',
+            'label' => 'Mark as Read',
+            'action' => Url::toRoute(['/contact/index-backend/read-all']),
+        ],
         [
-            'title' => 'All selected messages will be declined.',
-            'id' => 'delete-all',
-            'class' => 'btn red',
-            'data-confirm' => 'Confirm the action',
-            'data-link' => Url::toRoute(['/contact/index-backend/delete-all']),
-        ]
-    ) ?>
+            'label' => 'Remove',
+            'action' => Url::toRoute(['/contact/index-backend/delete-all']),
+        ],
+    ],
+    'grid' => '#contact-grid',
+    'pjaxContainer' => '#contact-grid-pjax'
+]) ?>
+<?php $this->endBlock() ?>
 
-<?php $this->endBlock()?>
-
-<?php //Pjax::begin(['id' => 'contact-grid-pjax', 'enablePushState' => true]); ?>
+<?php Pjax::begin(['id' => 'contact-grid-pjax']); ?>
 <?= GridView::widget([
     'id' => 'contact-grid',
     'dataProvider' => $dataProvider,
@@ -85,9 +78,4 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ],
 ]); ?>
-<?php //Pjax::end(); ?>
-
-<?php
-$this->registerJsFile('/backend/js/contact_grid_module.js', ['depends' => \app\assets\BackendAsset::class]);
-$this->registerJs('contact_grid_module.init()');
-?>
+<?php Pjax::end(); ?>
