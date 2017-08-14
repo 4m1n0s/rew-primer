@@ -116,7 +116,7 @@ class TransactionSearch extends Transaction
     public function searchReferrals($params, IdentityInterface $user)
     {
         $query = (new Query())
-            ->select(['s.id', 's.username', 's.status', 'sum(t.amount) as total_amount'])
+            ->select(['s.id', 's.username', 's.email', 'sum(t.amount) as total_amount'])
             ->from(['s' => User::tableName()])
             ->innerJoin(['referral' => Referral::tableName()], 's.id = referral.target_user_id')
             ->innerJoin(['r' => User::tableName()], 'r.id = referral.source_user_id')

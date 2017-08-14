@@ -1,6 +1,10 @@
 <?php
 /* @var \yii\web\View $this */
 
+use yii\helpers\Html;
+use app\modules\dashboard\helpers\GridViewTemplateHelper;
+use yii\helpers\ArrayHelper;
+
 $this->title = Yii::t('app', 'Referral Program');
 ?>
 
@@ -32,10 +36,25 @@ $this->title = Yii::t('app', 'Referral Program');
                             'class' => 'table table-striped',
                         ],
                         'columns' => [
-                            'username',
-                            'first_name',
-                            'last_name',
-                            'email:email'
+                            [
+                                'label' => 'Username',
+                                'value' => function($row) {
+                                    return ArrayHelper::getValue($row, 'username');
+                                }
+                            ],
+                            [
+                                'label' => 'Email',
+                                'value' => function($row) {
+                                    return ArrayHelper::getValue($row, 'email');
+                                }
+                            ],
+                            [
+                                'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
+                                'attribute' => 'total_amount',
+                                'value' => function($row) {
+                                    return intval(ArrayHelper::getValue($row, 'total_amount'));
+                                }
+                            ]
                         ]
                     ]);
                     \yii\widgets\Pjax::end(); ?>
