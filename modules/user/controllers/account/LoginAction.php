@@ -2,11 +2,10 @@
 
 namespace app\modules\user\controllers\account;
 
+use app\modules\user\models\User;
 use Yii;
 use yii\base\Action;
 use app\modules\user\forms\LoginForm;
-use app\modules\setting\helpers\SettingHelper;
-use yii\base\ErrorException;
 
 /**
  * Description of LoginAction
@@ -24,7 +23,10 @@ class LoginAction extends Action
         if ($form->load(Yii::$app->request->post())) {
 
             if ($form->validate() && Yii::$app->authenticationManager->login($form, Yii::$app->getRequest())) {
-                return $this->controller->redirect([Yii::$app->user->identity->returnUrl]);
+                $user = Yii::$app->getUser()->getIdentity();
+                return $user->role == User::ROLE_ADMIN ?
+                    $this->controller->redirect(['/dashboard/index-backend/index']) :
+                    $this->controller->redirect([$user->getReturnUrl()]);
             } else {
                 if ($form->hasErrors('password')) {
 //                    $errors = $form->getErrors('password');

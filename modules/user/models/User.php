@@ -381,12 +381,10 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getReturnUrl() {
         switch ($this->role) {
-            case static::ROLE_ADMIN:
-                $url = Url::toRoute(['/dashboard/index-backend/index']);
-                break;
             case static::ROLE_PARTNER:
                 $url = Url::toRoute(['/profile/stats/index']);
                 break;
+            case static::ROLE_ADMIN:
             case static::ROLE_USER:
             case static::ROLE_MOBILE_USER:
             default :
