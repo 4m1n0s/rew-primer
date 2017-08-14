@@ -18,9 +18,8 @@ $this->params['breadcrumbs'] = [
 ?>
 
 <?php $this->beginBlock('actions')?>
-    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Category').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
+<?= Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New Category').'</span>', ['create'], ['class' => 'btn btn-info btn-circle']); ?>
 <?php $this->endBlock()?>
-
 
 <?php Pjax::begin(['id' => 'offers-grid-pjax', 'enablePushState' => true]); ?>
 <?= GridView::widget([

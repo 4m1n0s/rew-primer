@@ -16,8 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions')?>
-    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Group').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-    <?php //echo Html::a('<i class="fa  fa-cloud-download"></i> <span class="hidden-480">' . Yii::t('user/admin', 'Export All') . '</span>', ['export'], ['class' => 'btn default yellow-stripe', 'id' => 'jsf-import-button']); ?>
+<?= Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New Group').'</span>', ['create'], ['class' => 'btn btn-info btn-circle']); ?>
 <?php $this->endBlock()?>
 
 <?php

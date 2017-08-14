@@ -15,9 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php $this->beginBlock('actions') ?>
-
-    <?= Html::a('<i class="fa fa-plus"></i> <span class="hidden-480">'.Yii::t('user/admin', 'New Product').'</span>', ['create'], ['class' => 'btn default yellow-stripe']); ?>
-
+<?= Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New Product').'</span>', ['create'], ['class' => 'btn btn-info btn-circle']); ?>
 <?php $this->endBlock() ?>
 
 <div class="backend-product-index">
