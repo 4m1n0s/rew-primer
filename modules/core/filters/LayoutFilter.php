@@ -2,16 +2,11 @@
 
 namespace app\modules\core\filters;
 
+use app\modules\user\models\User;
 use yii\base\ActionFilter;
-use yii\base\InvalidConfigException;
 
 class LayoutFilter extends ActionFilter
 {
-    /**
-     * @var array $actions
-     */
-    public $actions;
-
     /**
      * @var string $baseLayout
      */
@@ -23,16 +18,24 @@ class LayoutFilter extends ActionFilter
             return false;
         }
 
-        if (!is_array($this->actions)) {
-            throw new InvalidConfigException('Expected parameter array, ' . gettype($this->actions) . ' given.');
+        if (\Yii::$app->getUser()->getIsGuest()) {
+            return false;
         }
 
-        $action->controller->layout = $this->baseLayout;
+        $user = \Yii::$app->getUser()->getIdentity();
+        /* @var User $user */
 
-        foreach ($this->actions as $actionName => $layout) {
-            if ($actionName == $action->id) {
-                $action->controller->layout = $layout;
-            }
+        switch ($user->role) {
+            case User::ROLE_ADMIN:
+            case User::ROLE_USER:
+            case User::ROLE_MOBILE_USER:
+                $action->controller->layout = '//frontend/profile';
+                break;
+            case User::ROLE_PARTNER:
+                $action->controller->layout = '//frontend/profile-partner';
+                break;
+            default:
+                $action->controller->layout = '//frontend/main';
         }
 
         return true;

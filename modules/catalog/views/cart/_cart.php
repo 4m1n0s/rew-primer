@@ -9,7 +9,6 @@ use yii\helpers\Html;
 ?>
 <div class="container">
     <div class="shop-cart">
-        <h3 class="text-justify">Cart</h3>
         <?php if (empty($positions)): ?>
             <div class="p-t-10 m-b-20 text-center">
                 <div class="heading-fancy heading-line text-center">

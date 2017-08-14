@@ -210,6 +210,13 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     }
 
     /**
+     * @return boolean Whether the user is partner or not.
+     */
+    public function getIsPartner() {
+        return $this->role == self::ROLE_PARTNER;
+    }
+
+    /**
      * Finds a user by the given username or email.
      *
      * @param  string      $usernameOrEmail Username or email to be used on search.
@@ -376,6 +383,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         switch ($this->role) {
             case static::ROLE_ADMIN:
                 $url = Url::toRoute(['/dashboard/index-backend/index']);
+                break;
+            case static::ROLE_PARTNER:
+                $url = Url::toRoute(['/profile/stats/index']);
                 break;
             case static::ROLE_USER:
             case static::ROLE_MOBILE_USER:

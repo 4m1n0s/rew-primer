@@ -2,7 +2,7 @@
 
 namespace app\modules\core\components\controllers;
 
-use app\modules\core\filters\LayoutFilter;
+use app\modules\core\filters\BackendLayoutFilter;
 use app\modules\dashboard\helpers\GridViewTemplateHelper;
 use yii\filters\AccessControl;
 use Yii;
@@ -27,7 +27,7 @@ class BackController extends Controller
                 ],
             ],
             'layoutFilter' => [
-                'class' => LayoutFilter::className(),
+                'class' => BackendLayoutFilter::className(),
                 'actions' => [
                     'index' => '//backend/default-grid',
                     'create' => '//backend/default-form',

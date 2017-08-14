@@ -53,7 +53,7 @@ class SiteController extends FrontController
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->redirect(['/profile/offer/list']);
+            return $this->redirect(Yii::$app->getUser()->getIdentity()->getReturnUrl());
         }
 
         return $this->render('index');

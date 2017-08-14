@@ -45,6 +45,7 @@ use yii\widgets\Menu;
                             </div>
                         </a>
                     </div>
+                    <?php if (!Yii::$app->getUser()->getIdentity()->getIsPartner()): ?>
                     <div class="block-header">
                         <a href="<?php echo Url::toRoute(['/profile/stats/completion-history']) ?>">
                             <span class="vertical-align-top"><img src="/images/1.png" alt=""></span>
@@ -53,6 +54,7 @@ use yii\widgets\Menu;
                             ]) ?></span>
                         </a>
                     </div>
+                    <?php endif ?>
                 </div>
             <?php endif ?>
         </div>

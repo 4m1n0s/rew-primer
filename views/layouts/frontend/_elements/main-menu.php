@@ -1,3 +1,6 @@
+<?php
+use app\modules\user\models\User;
+?>
 <nav id="mainMenu" class="main-menu mega-menu">
     <?php
     $module = Yii::$app->controller->module->id;
@@ -36,18 +39,25 @@
                         [
                             'label' => \Yii::t('app', 'Offer Walls'),
                             'url' => ['/profile/offer/list'],
+                            'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
                         ],
                         [
                             'label' => \Yii::t('app', 'Cart') . ' (' . \app\modules\catalog\widgets\CartCount::widget() . ')',
                             'url' => ['/catalog/cart/view'],
+                            'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
+
                         ],
                         [
                             'label' => \Yii::t('app', 'Orders History'),
                             'url' => ['/catalog/order-history/list'],
+                            'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
+
                         ],
                         [
                             'label' => \Yii::t('app', 'Completion History'),
                             'url' => ['/profile/stats/completion-history'],
+                            'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
+
                         ],
                         [
                             'label' => \Yii::t('app', 'Stats'),

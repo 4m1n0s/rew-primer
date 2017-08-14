@@ -36,7 +36,7 @@ $config = [
         ],
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
-            'defaultRoles' => ['admin', 'USER'],
+            'defaultRoles' => ['admin', 'USER', 'PARTNER'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
