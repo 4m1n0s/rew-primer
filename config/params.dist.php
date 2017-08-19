@@ -12,4 +12,5 @@ return [
     'amazon_secret_key' => 'hash',
     'maxmind_user' => 'hash',
     'maxmind_pwd' => 'hash',
+    'tangocards_auth' => 'base64_hash',
 ];

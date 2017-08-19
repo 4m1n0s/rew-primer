@@ -63,7 +63,7 @@ class BackController extends Controller
             'template' => '{update} {delete}',
         ]);
         Yii::$container->set('yii\data\Pagination', [
-            'pageSize' => 20,
+            'pageSize' => Yii::$app->request->get('per-page', 20),
             'pageSizeLimit' => [1, 500]
         ]);
     }

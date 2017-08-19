@@ -3,40 +3,40 @@
 namespace app\modules\catalog\controllers;
 
 use Yii;
-use app\modules\catalog\models\CategoryProduct;
-use app\modules\catalog\models\search\CategoryProductSearch;
+use app\modules\catalog\models\CategoryProductGroup;
+use app\modules\catalog\models\search\CategoryProductGroupSearch;
 use app\modules\core\components\controllers\BackController;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
- * BackendCategoryController implements the CRUD actions for CategoryProduct model.
+ * BackendCategoryGroupController implements the CRUD actions for CategoryProductGroup model.
  */
-class BackendCategoryController extends BackController
+class BackendCategoryGroupController extends BackController
 {
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-        return ArrayHelper::merge([
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
-        ], parent::behaviors());
+        ]);
     }
 
     /**
-     * Lists all CategoryProduct models.
+     * Lists all CategoryProductGroup models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CategoryProductSearch();
+        $searchModel = new CategoryProductGroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +46,7 @@ class BackendCategoryController extends BackController
     }
 
     /**
-     * Displays a single CategoryProduct model.
+     * Displays a single CategoryProductGroup model.
      * @param integer $id
      * @return mixed
      */
@@ -58,20 +58,20 @@ class BackendCategoryController extends BackController
     }
 
     /**
-     * Creates a new CategoryProduct model.
+     * Creates a new CategoryProductGroup model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CategoryProduct();
+        $model = new CategoryProductGroup();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->save()) {
-                Yii::$app->session->setFlash('success', 'Category has been saved');
+                Yii::$app->session->setFlash('success', 'CategoryProductGroup has been created');
                 return $this->redirect(['index']);
             }
-            Yii::$app->session->setFlash('error', 'Could not save category');
+            Yii::$app->session->setFlash('error', 'Could not save CategoryProductGroup');
         }
 
         return $this->render('create', [
@@ -80,7 +80,7 @@ class BackendCategoryController extends BackController
     }
 
     /**
-     * Updates an existing CategoryProduct model.
+     * Updates an existing CategoryProductGroup model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -89,17 +89,21 @@ class BackendCategoryController extends BackController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', 'CategoryProductGroup has been updated');
+                return $this->redirect(['index']);
+            }
+            Yii::$app->session->setFlash('error', 'Could not update CategoryProductGroup');
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**
-     * Deletes an existing CategoryProduct model.
+     * Deletes an existing CategoryProductGroup model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -112,15 +116,15 @@ class BackendCategoryController extends BackController
     }
 
     /**
-     * Finds the CategoryProduct model based on its primary key value.
+     * Finds the CategoryProductGroup model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CategoryProduct the loaded model
+     * @return CategoryProductGroup the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CategoryProduct::findOne($id)) !== null) {
+        if (($model = CategoryProductGroup::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -27,9 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= '<?php ' ?>$this->beginBlock('actions') ?>
-
-<?= '<?= ' ?> Html::a(<?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn default yellow-stripe']); ?>
-
+<?= '<?= ' ?> Html::a(\yii\helpers\Html::tag('i', '', ['class' => 'fa fa-plus']) . ' ' . <?= $generator->generateString('New ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>, ['create'], ['class' => 'btn btn-info btn-circle']); ?>
 <?= '<?php' ?> $this->endBlock() ?>
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">

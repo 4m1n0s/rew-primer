@@ -37,6 +37,8 @@ return [
     'dashboard/catalog/order/<_a>' => 'catalog/backend-order/<_a>',
     'dashboard/catalog/product/<_a>' => 'catalog/backend-product/<_a>',
     'dashboard/catalog/category/<_a>' => 'catalog/backend-category/<_a>',
+    'dashboard/catalog/product-group/<_a>' => 'catalog/backend-product-group/<_a>',
+    'dashboard/catalog/group-category/<_a>' => 'catalog/backend-category-group/<_a>',
     'dashboard/offer/<_a>' => 'offer/backend-offer/<_a>',
     'dashboard/category/<_a>' => 'offer/backend-category/<_a>',
     'dashboard/settings/<_a>' => 'settings/index-backend/<_a>',

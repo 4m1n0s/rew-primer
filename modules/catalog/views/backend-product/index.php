@@ -18,22 +18,55 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= Html::a('<i class="fa fa-plus"></i> <span class="">'.Yii::t('user/admin', 'New Product').'</span>', ['create'], ['class' => 'btn btn-info btn-circle']); ?>
 <?php $this->endBlock() ?>
 
+<?php $this->beginBlock('group-actions') ?>
+<?php echo \app\modules\core\widgets\GroupActions::widget([
+    'items' => [
+        [
+            'label' => 'Delete',
+            'action' => \yii\helpers\Url::toRoute(['/catalog/backend-product/delete-all']),
+        ],
+    ],
+    'grid' => '#product-grid',
+    'pjaxContainer' => '#product-grid-pjax'
+]) ?>
+<?php $this->endBlock() ?>
+
 <div class="backend-product-index">
+    <?php \yii\widgets\Pjax::begin(['id' => 'product-grid-pjax']) ?>
     <?= GridView::widget([
+        'id' => 'product-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'layout' => \app\modules\dashboard\helpers\GridViewTemplateHelper::baseLayout(),
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
 
-            'name',
+            [
+                'attribute' => 'vendor',
+                'filter' => Product::getVendorList(),
+                'value' => function($row) {
+                    return $row->getVendorLabel();
+                }
+            ],
+            [
+                'attribute' => 'type',
+                'filter' => Product::getTypeList(),
+                'value' => function($row) {
+                    return $row->getTypeLabel();
+                }
+            ],
             'sku',
-            'price',
+            'name',
+            [
+                'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
+                'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'price_from', 'price_to'),
+                'attribute' => 'price',
+            ],
             [
                 'attribute' => 'status',
-                'filter' => [Product::IN_STOCK => 'In Stock', Product::OUT_OF_STOCK => 'Out Of Stock'],
+                'filter' => Product::getStatusList(),
                 'value' => function($row) {
-                    return $row->status == Product::IN_STOCK ? 'In Stock' : 'Out Of Stock';
+                    return $row->getStatusLabel();
                 }
             ],
 
@@ -43,4 +76,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ]
         ],
     ]); ?>
+    <?php \yii\widgets\Pjax::end() ?>
 </div>

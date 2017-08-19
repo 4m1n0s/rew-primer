@@ -30,7 +30,11 @@ var group_actions_module = function($) {
             data: {
                 ids: selectedIds
             },
+            beforeSend: function () {
+                App.blockUI({target: $(config.pjaxContainer)});
+            },
             success: function(data) {
+                App.unblockUI($(config.pjaxContainer));
                 if (data == true) {
                     $.pjax.reload({container: $(config.pjaxContainer)});
                 }

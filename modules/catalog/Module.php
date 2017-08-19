@@ -2,6 +2,8 @@
 
 namespace app\modules\catalog;
 
+use yii\console\Application as ConsoleApplication;
+
 /**
  * catalog module definition class
  */
@@ -19,6 +21,8 @@ class Module extends \yii\base\Module
     {
         parent::init();
 
-        // custom initialization code goes here
+        if (\Yii::$app instanceof ConsoleApplication) {
+            $this->controllerNamespace = 'app\modules\catalog\commands';
+        }
     }
 }

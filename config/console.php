@@ -30,6 +30,9 @@ return [
         'core' => [
             'class' => 'app\modules\core\Module',
         ],
+        'catalog' => [
+            'class' => 'app\modules\catalog\Module',
+        ],
     ],
     'components' => [
         'cache' => [

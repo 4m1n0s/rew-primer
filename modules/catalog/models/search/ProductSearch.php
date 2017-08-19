@@ -14,15 +14,18 @@ class ProductSearch extends Product
 {
     public $category;
 
+    public $price_from;
+    public $price_to;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'category'], 'integer'],
-            [['name', 'sku', 'description'], 'safe'],
-            [['price'], 'number'],
+            [['id', 'status', 'created_at', 'category', 'type', 'vendor'], 'integer'],
+            [['name', 'description', 'sku'], 'safe'],
+            [['price', 'price_from', 'price_to'], 'number'],
         ];
     }
 
@@ -63,11 +66,15 @@ class ProductSearch extends Product
         $query->andFilterWhere([
             'id' => $this->id,
             'price' => $this->price,
-            'status' => $this->status
+            'status' => $this->status,
+            'type' => $this->type,
+            'vendor' => $this->vendor,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'sku', $this->sku])
+            ->andFilterWhere(['>=', 'price', $this->price_from])
+            ->andFilterWhere(['<=', 'price', $this->price_to])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;

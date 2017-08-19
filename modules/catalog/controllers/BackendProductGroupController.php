@@ -2,46 +2,44 @@
 
 namespace app\modules\catalog\controllers;
 
-use app\modules\catalog\models\CategoryProduct;
-use app\modules\catalog\models\RefProductCategory;
-use app\modules\catalog\models\RefProductGroup;
+use app\modules\catalog\models\RefProductGroupCategory;
 use Yii;
-use app\modules\catalog\models\Product;
-use app\modules\catalog\models\search\ProductSearch;
+use app\modules\catalog\models\ProductGroup;
+use app\modules\catalog\models\search\ProductGroupSearch;
 use app\modules\core\components\controllers\BackController;
 use yii\base\ErrorException;
-use yii\helpers\ArrayHelper;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
- * BackendProductController implements the CRUD actions for Product model.
+ * BackendProductGroupController implements the CRUD actions for ProductGroup model.
  */
-class BackendProductController extends BackController
+class BackendProductGroupController extends BackController
 {
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
-        return ArrayHelper::merge([
+        return ArrayHelper::merge(parent::behaviors(), [
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
-        ], parent::behaviors());
+        ]);
     }
 
     /**
-     * Lists all Product models.
+     * Lists all ProductGroup models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
+        $searchModel = new ProductGroupSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -51,7 +49,7 @@ class BackendProductController extends BackController
     }
 
     /**
-     * Displays a single Product model.
+     * Displays a single ProductGroup model.
      * @param integer $id
      * @return mixed
      */
@@ -63,51 +61,37 @@ class BackendProductController extends BackController
     }
 
     /**
-     * Creates a new Product model.
+     * Creates a new ProductGroup model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Product();
-        $categoryList = CategoryProduct::getList();
+        $model = new ProductGroup();
         $model->categoriesBuff = ArrayHelper::getColumn($model->categories, 'id');
-        $model->groupsBuff = ArrayHelper::getColumn($model->groups, 'id');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->categoriesBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'Product.categoriesBuff');
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->categoriesBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'ProductGroup.categoriesBuff');
             $transaction = Yii::$app->db->beginTransaction();
 
             try {
                 if (!$model->save(false)) {
                     throw new ErrorException('Could not save the product');
                 }
-                foreach ($model->refProductCategories as $productCategory) {
-                    $productCategory->delete();
+                foreach ($model->refProductGroupCategories as $refProductGroupCategory) {
+                    $refProductGroupCategory->delete();
                 }
                 if (!empty($model->categoriesBuff)) {
                     foreach ($model->categoriesBuff as $categoryID) {
-                        $productCategoryRefModel = new RefProductCategory();
-                        $productCategoryRefModel->category_id = $categoryID;
-                        $productCategoryRefModel->product_id = $model->id;
-                        if (!$productCategoryRefModel->save()) {
+                        $productGroupCategoryRefModel = new RefProductGroupCategory();
+                        $productGroupCategoryRefModel->category_id = $categoryID;
+                        $productGroupCategoryRefModel->group_id = $model->id;
+                        if (!$productGroupCategoryRefModel->save()) {
                             throw new ErrorException('Could not save categories');
                         }
                     }
                 }
-                foreach ($model->refProductGroups as $productGroup) {
-                    $productGroup->delete();
-                }
-                if (!empty($model->groupsBuff)) {
-                    foreach ($model->groupsBuff as $groupID) {
-                        $productCategoryRefModel = new RefProductGroup();
-                        $productCategoryRefModel->group_id = $groupID;
-                        $productCategoryRefModel->product_id = $model->id;
-                        if (!$productCategoryRefModel->save()) {
-                            throw new ErrorException('Could not save categories');
-                        }
-                    }
-                }
+
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Product has been created');
                 return $this->redirect(['index']);
@@ -115,16 +99,17 @@ class BackendProductController extends BackController
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'Could not save product');
             }
+
+            Yii::$app->session->setFlash('error', 'Could not save ProductGroup');
         }
 
         return $this->render('create', [
             'model' => $model,
-            'categoryList' => $categoryList
         ]);
     }
 
     /**
-     * Updates an existing Product model.
+     * Updates an existing ProductGroup model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -132,62 +117,48 @@ class BackendProductController extends BackController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $categoryList = CategoryProduct::getList();
         $model->categoriesBuff = ArrayHelper::getColumn($model->categories, 'id');
-        $model->groupsBuff = ArrayHelper::getColumn($model->groups, 'id');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->categoriesBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'Product.categoriesBuff');
-            $model->groupsBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'Product.groupsBuff');
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->categoriesBuff = ArrayHelper::getValue(Yii::$app->request->post(), 'ProductGroup.categoriesBuff');
             $transaction = Yii::$app->db->beginTransaction();
 
             try {
                 if (!$model->save(false)) {
                     throw new ErrorException('Could not save the product');
                 }
-                foreach ($model->refProductCategories as $productCategory) {
-                    $productCategory->delete();
+                foreach ($model->refProductGroupCategories as $refProductGroupCategory) {
+                    $refProductGroupCategory->delete();
                 }
                 if (!empty($model->categoriesBuff)) {
                     foreach ($model->categoriesBuff as $categoryID) {
-                        $productCategoryRefModel = new RefProductCategory();
-                        $productCategoryRefModel->category_id = $categoryID;
-                        $productCategoryRefModel->product_id = $model->id;
-                        if (!$productCategoryRefModel->save()) {
+                        $productGroupCategoryRefModel = new RefProductGroupCategory();
+                        $productGroupCategoryRefModel->category_id = $categoryID;
+                        $productGroupCategoryRefModel->group_id = $model->id;
+                        if (!$productGroupCategoryRefModel->save()) {
                             throw new ErrorException('Could not save categories');
                         }
                     }
                 }
-                foreach ($model->refProductGroups as $productGroup) {
-                    $productGroup->delete();
-                }
-                if (!empty($model->groupsBuff)) {
-                    foreach ($model->groupsBuff as $groupID) {
-                        $productGroupRefModel = new RefProductGroup();
-                        $productGroupRefModel->group_id = $groupID;
-                        $productGroupRefModel->product_id = $model->id;
-                        if (!$productGroupRefModel->save()) {
-                            throw new ErrorException('Could not save categories');
-                        }
-                    }
-                }
+
                 $transaction->commit();
-                Yii::$app->session->setFlash('success', 'Product has been updated');
+                Yii::$app->session->setFlash('success', 'Product has been created');
                 return $this->redirect(['index']);
             } catch (\Exception $e) {
                 $transaction->rollBack();
                 Yii::$app->session->setFlash('error', 'Could not save product');
             }
+
+            Yii::$app->session->setFlash('error', 'Could not update ProductGroup');
         }
 
         return $this->render('update', [
             'model' => $model,
-            'categoryList' => $categoryList
         ]);
     }
 
     /**
-     * Deletes an existing Product model.
+     * Deletes an existing ProductGroup model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -200,15 +171,15 @@ class BackendProductController extends BackController
     }
 
     /**
-     * Finds the Product model based on its primary key value.
+     * Finds the ProductGroup model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Product the loaded model
+     * @return ProductGroup the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Product::findOne($id)) !== null) {
+        if (($model = ProductGroup::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
@@ -221,7 +192,7 @@ class BackendProductController extends BackController
             throw new ForbiddenHttpException();
         }
 
-        $models = Product::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
+        $models = ProductGroup::find()->where(['in', 'id', (array)\Yii::$app->request->post('ids')])->all();
 
         foreach ($models as $model) {
             $model->delete();

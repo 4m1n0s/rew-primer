@@ -91,9 +91,14 @@
                                 'active' => $module == 'catalog' && $controller == 'backend-product'
                             ],
                             [
-                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Categories'),
-                                'url' => ['/catalog/backend-category/index'],
-                                'active' => $module == 'catalog' && $controller == 'backend-category',
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Product Groups'),
+                                'url' => ['/catalog/backend-product-group/index'],
+                                'active' => $module == 'catalog' && $controller == 'backend-product-group'
+                            ],
+                            [
+                                'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Group Categories'),
+                                'url' => ['/catalog/backend-category-group/index'],
+                                'active' => $module == 'catalog' && $controller == 'backend-category-group',
                             ],
                         ]
                     ],
