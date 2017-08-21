@@ -14,7 +14,7 @@ $this->title = 'Offer Walls';
 </div>
 <div id="offer-walls-wrap" style="display: none">
     <!--Offer Filter-->
-    <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
+    <ul class="portfolio-filter clearfix" id="portfolio-filter" data-isotope-nav="isotope">
         <li class="ptf-active" data-filter="*">Show All</li>
         <?php foreach ($categories as $category): ?>
             <li data-filter=".<?= \yii\helpers\Inflector::variablize($category['name']) ?>"><?= $category['name'] ?></li>
