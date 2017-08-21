@@ -24,10 +24,10 @@ use yii\helpers\ArrayHelper;
                                 <div class="product product-block" data-pk="<?php echo $product->id ?>" title="Add to Cart">
                                     <div class="product-description clearfix">
                                         <div class="product-price in-usd">
-                                            <ins><?php echo Yii::$app->formatter->asDecimal(Yii::$app->virtualCurrencyExchanger->toUSD($product->price)) ?>($)</ins>
+                                            <ins><?php echo Yii::$app->formatter->asDecimal(Yii::$app->virtualCurrencyExchanger->toUSD($product->price), 0) ?>&nbsp;($)</ins>
                                         </div>
                                         <div class="in-vc">
-                                            <?php echo Yii::$app->formatter->asDecimal($product->price) ?>(bucks)
+                                            <?php echo Yii::$app->formatter->asDecimal($product->price, 0) ?>&nbsp;(bucks)
                                         </div>
                                     </div>
                                 </div>

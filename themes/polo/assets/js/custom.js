@@ -16,7 +16,6 @@ function positionFooter() {
             top: footerTop
         });
     } else {
-        console.log('block');
         $("#footer").css({
             position: "",
             top: ""
