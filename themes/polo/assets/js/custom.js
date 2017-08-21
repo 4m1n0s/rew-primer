@@ -10,11 +10,7 @@ function positionFooter() {
     footerHeight = $footer.height();
     footerTop = ($(window).scrollTop() + $(window).height() - footerHeight);
 
-    console.log($(document.body).height());
-    console.log($(window).height());
-
     if ( ($(document.body).height()) < $(window).height()) {
-        console.log('abs');
         $footer.css({
             position: "absolute",
             top: footerTop
@@ -26,6 +22,8 @@ function positionFooter() {
             top: ""
         });
     }
+
+    $footer.fadeIn(1);
 }
 
 $(window).on("load", function() {

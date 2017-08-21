@@ -1,4 +1,4 @@
-<footer class="text-grey" id="footer">
+<footer class="text-grey" id="footer" style="display: none">
     <div class="footer-content">
         <div class="container">
             <div class="row">
