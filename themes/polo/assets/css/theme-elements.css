@@ -5412,7 +5412,7 @@ section.margin-min {
 .txt-point {
     margin-top: -13px;
     text-align: center;
-    margin-bottom: 10px;    
+    margin-bottom: 10px !important;   
 }
 /* ----------------------------------------------------------------------
 Panels
