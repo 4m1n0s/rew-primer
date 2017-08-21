@@ -457,6 +457,7 @@ ul.icon-list li i {
 	float: none;
 	display: inline-block;
 	vertical-align: top;	
+	min-width: 140px;
 }
 
 .display-price .product {
