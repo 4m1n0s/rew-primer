@@ -6,7 +6,9 @@ use kartik\date\DatePicker;
 
 $this->title = Yii::t('app', 'Completion History');
 ?>
-
+<?php $this->beginBlock('title') ?>
+<?= $this->title ?>
+<?php $this->endBlock() ?>
 <div class="completion-history-list">
     <?php \yii\widgets\Pjax::begin();
     echo \yii\grid\GridView::widget([

@@ -8,7 +8,9 @@ use kartik\date\DatePicker;
 
 $this->title = 'Order history';
 ?>
-
+<?php $this->beginBlock('title') ?>
+<?= $this->title ?>
+<?php $this->endBlock() ?>
 <div class="order-history-list">
     <?= GridView::widget([
             'dataProvider' => $dataProvider,

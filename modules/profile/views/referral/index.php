@@ -7,7 +7,9 @@ use yii\helpers\ArrayHelper;
 
 $this->title = Yii::t('app', 'Referral Program');
 ?>
-
+<?php $this->beginBlock('title') ?>
+<?= $this->title ?>
+<?php $this->endBlock() ?>
 <!-- post content -->
 <div class="post-content">
     <!-- Post item-->

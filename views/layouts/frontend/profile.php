@@ -9,19 +9,18 @@ FrontAsset::register($this);
 <?php $this->beginContent('@app/views/layouts/frontend/main.php') ?>
     <section class="content p-15">
         <div class="container">
+            <?php if (isset($this->blocks['title'])): ?>
             <div class="row">
                 <div class="col-md-9">
                     <div class="text-left">
-                        <h3><?= $this->title; ?></h3>
+                        <h3><?php echo $this->blocks['title'] ?></h3>
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             <div class="row row-container">
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <?= $content ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $this->render('_elements/sidebar'); ?>
                 </div>
             </div>
         </div>
