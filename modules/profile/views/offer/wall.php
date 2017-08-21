@@ -8,14 +8,12 @@ use yii\helpers\Html;
 
 $this->title = 'Offer Walls';
 ?>
-    <div class="loader text-center">
-        <img width="40" src="/images/svg-loaders/bars.svg" alt="">
-        <div class="m-t-100"></div>
-    </div>
-
+<div class="loader text-center">
+    <img width="40" src="/images/svg-loaders/bars.svg" alt="">
+    <div class="m-t-100"></div>
+</div>
 <div id="offer-walls-wrap" class="hide">
     <!--Offer Filter-->
-    <div class="filter-active-title">Show All</div>
     <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
         <li class="ptf-active" data-filter="*">Show All</li>
         <?php foreach ($categories as $category): ?>

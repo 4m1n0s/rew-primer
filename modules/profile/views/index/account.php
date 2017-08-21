@@ -7,6 +7,9 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'My Account');
 ?>
+<?php $this->beginBlock('title') ?>
+<?= $this->title ?>
+<?php $this->endBlock() ?>
 <!-- post content -->
 <div class="post-content">
     <!-- Post item-->

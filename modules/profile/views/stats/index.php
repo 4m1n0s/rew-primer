@@ -6,7 +6,9 @@ use yii\helpers\Html;
 
 $this->title = 'Stats';
 ?>
-
+<?php $this->beginBlock('title') ?>
+<?= $this->title ?>
+<?php $this->endBlock() ?>
 <div class="row">
     <div class="pricing-table">
         <div class="col-md-6 col-sm-12 col-xs-12">
