@@ -10,7 +10,7 @@ function positionFooter() {
     footerHeight = $footer.height();
     footerTop = ($(window).scrollTop() + $(window).height() - footerHeight);
 
-    if ( ($(document.body).height()) < $(window).height()) {
+    if ( ($(document.body).height()) < $(window).height() - footerHeight) {
         $footer.css({
             position: "absolute",
             top: footerTop
