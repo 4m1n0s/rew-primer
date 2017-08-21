@@ -399,3 +399,38 @@ ul.icon-list li i {
 .post-item {
 	border-color: #b7d8c7;
 }
+
+.category-list {
+    height: 210px;
+    position: relative;
+}
+
+.category-list img {
+	bottom: 0;
+	display: block;
+	height: auto;
+	left: 0;
+	margin: auto;
+	max-width: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	max-height: 100%;
+}
+
+.category-content .product-category {
+	font-size: 12px;
+}
+
+.category-content .product-description {
+	min-height: 210px;
+}
+
+.category-content .col-md-4{
+    min-width: 19%;
+    width: 33%;
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+    padding: 0 0.5%;
+}
