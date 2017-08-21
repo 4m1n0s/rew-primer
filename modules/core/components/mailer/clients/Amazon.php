@@ -26,7 +26,7 @@ class Amazon implements MailerInterface
         $request['Source'] = $emailQueue->sender;
         $request['Destination']['ToAddresses'] = [$emailQueue->recipient];
         $request['Message']['Subject']['Data'] = $emailQueue->template->subject;
-        $request['Message']['Body']['Text']['Data'] = $this->compose($emailQueue->template, $emailQueue->params);
+        $request['Message']['Body']['Text']['Data'] = $this->compose($emailQueue->template, Json::decode($emailQueue->params));
 
         try {
             $result = $client->sendEmail($request);
