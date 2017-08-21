@@ -94,6 +94,7 @@ DatePickerAsset::register($this);
 
     <div class="text-left">
         <?php echo Html::submitButton(Yii::$app->globalTexts->getFreePoints(), ['class' => 'btn btn-primary btn-sm btn-block']) ?>
+        <p class="txt-point">(100 points equals $1)</p>
     </div>
 
     <div class="text-left">

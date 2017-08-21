@@ -533,6 +533,7 @@ nav.mega-menu .dropdown-submenu > span.dropdown-menu-title-only:hover {
 nav.mega-menu .dropdown-menu {
     left: auto;
     margin-top: 0px;
+    right: 0;
 }
 nav.mega-menu .dropdown-menu > li {
     display: block
@@ -2667,7 +2668,7 @@ body.device-xs .col-md-3 .flickr-widget img {
     border-right: 1px solid #ccc;
 }
 .footer-content {
-    padding: 60px 0 40px 0;
+    padding: 20px 0 20px 0;
 }
 .footer-content .widget-title {
     font-size: 16px;

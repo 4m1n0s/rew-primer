@@ -5406,6 +5406,14 @@ section {
     overflow: hidden;
 }
 
+section.margin-min {
+   padding: 20px 0;  
+}
+.txt-point {
+    margin-top: -13px;
+    text-align: center;
+    margin-bottom: 10px !important;   
+}
 /* ----------------------------------------------------------------------
 Panels
 -------------------------------------------------------------------------*/
@@ -6703,6 +6711,14 @@ body.device-xxs .portfolio-filter li {
     float: left;
     border-width: 0px;
 }
+
+@media screen and (max-width: 767px){
+    body.device-xs .portfolio-filter li,
+    body.device-xxs .portfolio-filter li {
+       text-align: center;
+    }
+}
+
 .filter-active-title {
     float: right;
     padding: 10px 0;

@@ -16,7 +16,6 @@ FrontAsset::register($this);
     <?= $this->render('_elements/header'); ?>
     <?= $content ?>
     <?= $this->render('_elements/footer'); ?>
-    <a class="gototop gototop-button" href="#"><i class="fa fa-chevron-up"></i></a>
 <?php $this->endBody(); ?>
 </body>
 </html>
