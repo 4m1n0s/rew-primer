@@ -451,3 +451,24 @@ ul.icon-list li i {
 	    margin: 0 6%;
 	}
 }
+
+.display-price {
+	width: auto;
+	float: none;
+	display: inline-block;
+	vertical-align: top;	
+}
+
+.display-price .product {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.display-price .product-price {
+	border-bottom: 1px dashed #ccc;
+	padding-bottom: 4px;
+	margin-bottom: 3px;	
+	float: none;
+	text-align: center;
+	display: block;
+}

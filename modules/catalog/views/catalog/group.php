@@ -20,14 +20,14 @@ use yii\helpers\ArrayHelper;
                 <div class="shop">
                     <div class="row">
                         <?php foreach ($productGroup->products as $product): ?>
-                            <div class="col-md-2 col-display-none clearfix">
+                            <div class="col-md-2 display-price clearfix">
                                 <div class="product product-block" data-pk="<?php echo $product->id ?>">
                                     <div class="product-description clearfix">
                                         <div class="product-price in-usd">
                                             <ins><?php echo Yii::$app->formatter->asDecimal(Yii::$app->virtualCurrencyExchanger->toUSD($product->price)) ?>($)</ins>
                                         </div>
-                                        <div class="product-price in-vc">
-                                            <ins><?php echo Yii::$app->formatter->asDecimal($product->price) ?>(bucks)</ins>
+                                        <div class="in-vc">
+                                            <?php echo Yii::$app->formatter->asDecimal($product->price) ?>(bucks)
                                         </div>
                                     </div>
                                 </div>
