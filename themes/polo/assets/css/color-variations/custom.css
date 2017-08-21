@@ -445,12 +445,12 @@ ul.icon-list li i {
     margin: 10px 0;
 }
 
-@media only screen and (min-width: 767px) {
+@media only screen and (max-width: 767px) {
 	.col-md-4.category-content {
 	    width: 49%;
 	}
 }
-@media only screen and (min-width: 1020px) {
+@media only screen and (max-width: 560px) {
 	.col-md-4.category-content {
 	    width: 87%;
 	    margin: 0 6%;
