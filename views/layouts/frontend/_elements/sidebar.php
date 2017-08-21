@@ -1,4 +1,4 @@
- Sidebar-->
+<!-- Sidebar-->
 <div class="sidebar">
 
     <div class="panel panel-primary">
@@ -25,4 +25,4 @@
     </div>
 
 </div>
-<!-- END: Sidebar
+<!-- END: Sidebar-->
