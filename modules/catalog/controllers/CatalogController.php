@@ -38,8 +38,10 @@ class CatalogController extends FrontController
     {
         $productGroup = ProductGroup::find()
             ->alias('g')
-            ->joinWith(['products p'])
-            ->where(['g.id' => $id, 'p.status' => 1])
+            ->joinWith(['products p' => function($q) {
+                return $q->andWhere(['p.status' => 1]);
+            }])
+            ->where(['g.id' => $id])
             ->one();
 
         if (!$productGroup) {
