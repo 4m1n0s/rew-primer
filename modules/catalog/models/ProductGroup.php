@@ -133,6 +133,13 @@ class ProductGroup extends \yii\db\ActiveRecord
         return new \app\modules\catalog\models\queries\ProductGroupQuery(get_called_class());
     }
 
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        CatalogMeta::deleteAll(['type' => CatalogMeta::TYPE_GROUP, 'entity' => $this->id]);
+    }
+
     /**
      * @return array
      */

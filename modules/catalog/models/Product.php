@@ -168,6 +168,18 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
         return new \app\modules\catalog\models\queries\ProductQuery(get_called_class());
     }
 
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        if ($this->vendor == self::VENDOR_TANGOCARD) {
+            $productsExists = static::find()->where(['sku' => $this->sku])->exists();
+            if (!$productsExists) {
+                CatalogMeta::deleteAll(['type' => $this->type, 'entity' => $this->sku]);
+            }
+        }
+    }
+
     /**
      * @return string
      */
