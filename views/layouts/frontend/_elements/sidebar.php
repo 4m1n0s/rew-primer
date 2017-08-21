@@ -1,7 +1,7 @@
  Sidebar-->
 <div class="sidebar">
 
-<!--     <div class="panel panel-primary">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Panel title</h3>
         </div>
@@ -23,6 +23,6 @@
             </ul>
         </div>
     </div>
- -->
+
 </div>
 <!-- END: Sidebar
