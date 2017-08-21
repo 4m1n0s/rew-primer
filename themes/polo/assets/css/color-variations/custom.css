@@ -401,7 +401,7 @@ ul.icon-list li i {
 }
 
 .category-list {
-    height: 150px;
+    height: 100%;
     position: relative;
     display: block;
 }
@@ -420,11 +420,6 @@ ul.icon-list li i {
 	right: 0;
 	top: 0;
 	max-height: 100%;
-}
-
-.category-content .product-category {
-	font-size: 11px;
-	min-height: 20px;
 }
 
 .category-content .product-description {

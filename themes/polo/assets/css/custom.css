@@ -795,4 +795,8 @@
 
 }
 
+.list-lines .active a {
+  color: #1c9355;
+}
+
 
