@@ -26,7 +26,7 @@ $this->title = 'Offer Walls';
         <div id="isotope" class="isotope"
              data-isotope-item-space="3"
              data-isotope-mode="fitRows"
-             data-isotope-col="4"
+             data-isotope-col="5"
              data-isotope-item=".offer-item"
              style="position: relative; height: 100%; margin-right: 0%;">
             <!-- Offer Items -->
