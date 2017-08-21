@@ -12,7 +12,7 @@ $this->title = 'Offer Walls';
     <img width="40" src="/images/svg-loaders/bars.svg" alt="">
     <div class="m-t-100"></div>
 </div>
-<div id="offer-walls-wrap" class="hide">
+<div id="offer-walls-wrap" style="opacity: 0">
     <!--Offer Filter-->
     <ul class="portfolio-filter" id="portfolio-filter" data-isotope-nav="isotope">
         <li class="ptf-active" data-filter="*">Show All</li>
@@ -51,8 +51,8 @@ $this->title = 'Offer Walls';
 
 <?php
 $js = <<< JS
-$('#offer-walls-wrap').removeClass('hide');
-$('.loader').addClass('hide');
+    $('#offer-walls-wrap').css('opacity', '1');
+    $('.loader').addClass('hide');
 JS;
 
 $this->registerJs($js);

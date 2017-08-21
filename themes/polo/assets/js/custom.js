@@ -8,19 +8,31 @@ function positionFooter() {
         $footer = $("#footer");
 
     footerHeight = $footer.height();
-    footerTop = ($(window).scrollTop() + $(window).height()-footerHeight);
+    footerTop = ($(window).scrollTop() + $(window).height() - footerHeight);
+
+    console.log($(document.body).height());
+    console.log($(window).height());
 
     if ( ($(document.body).height()) < $(window).height()) {
+        console.log('abs');
         $footer.css({
             position: "absolute",
             top: footerTop
+        });
+    } else {
+        console.log('block');
+        $("#footer").css({
+            position: "",
+            top: ""
         });
     }
 }
 
 $(window).on("load", function() {
     positionFooter();
-    $(window)
-        .scroll(positionFooter)
-        .resize(positionFooter)
+    $(window).scroll(positionFooter).resize(positionFooter);
+});
+
+$(document).on('pjax:complete', function() {
+    $(window).trigger('resize');
 });
