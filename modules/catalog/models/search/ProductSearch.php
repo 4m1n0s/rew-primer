@@ -13,6 +13,7 @@ use app\modules\catalog\models\Product;
 class ProductSearch extends Product
 {
     public $category;
+    public $groupsFilter;
 
     public $price_from;
     public $price_to;
@@ -24,7 +25,7 @@ class ProductSearch extends Product
     {
         return [
             [['id', 'status', 'created_at', 'category', 'type', 'vendor'], 'integer'],
-            [['name', 'description', 'sku'], 'safe'],
+            [['name', 'description', 'sku', 'groupsFilter'], 'safe'],
             [['price', 'price_from', 'price_to'], 'number'],
         ];
     }
@@ -46,7 +47,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = Product::find()->joinWith(['groups g'])->groupBy(Product::tableName() . '.id');
 
         // add conditions that should always apply here
 
@@ -75,6 +76,7 @@ class ProductSearch extends Product
             ->andFilterWhere(['like', 'sku', $this->sku])
             ->andFilterWhere(['>=', 'price', $this->price_from])
             ->andFilterWhere(['<=', 'price', $this->price_to])
+            ->andFilterWhere(['like', 'g.name', $this->groupsFilter])
             ->andFilterWhere(['like', 'description', $this->description]);
 
         return $dataProvider;

@@ -58,6 +58,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'sku',
             'name',
             [
+                'attribute' => 'groupsFilter',
+                'label' => 'Product Groups',
+                'value' => function($row) {
+                    $groupNames = [];
+                    foreach ($row->groups as $group) {
+                        $groupNames[] = $group->name;
+                    }
+                    return implode(', ', $groupNames);
+                }
+            ],
+            [
                 'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
                 'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'price_from', 'price_to'),
                 'attribute' => 'price',
