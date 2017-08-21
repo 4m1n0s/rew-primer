@@ -433,7 +433,7 @@ ul.icon-list li i {
 
 .col-md-4.category-content {
     min-width: 19%;
-    width: 33%;
+    width: 32%;
     display: inline-block;
     float: none;
     vertical-align: top;
@@ -443,4 +443,16 @@ ul.icon-list li i {
 .category-content .product {
 
     margin: 10px 0;
+}
+
+@media only screen and (min-width: 767px) {
+	.col-md-4.category-content {
+	    width: 49%;
+	}
+}
+@media only screen and (min-width: 1020px) {
+	.col-md-4.category-content {
+	    width: 87%;
+	    margin: 0 6%;
+	}
 }
