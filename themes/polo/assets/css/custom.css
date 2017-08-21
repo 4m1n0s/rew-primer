@@ -308,7 +308,9 @@
 
 
 
-
+.product-block {
+    cursor: pointer;
+}
 
 /* Icon-box-list */
 .group-icon-box-list-right-slider {

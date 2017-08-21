@@ -3,7 +3,10 @@
 namespace app\modules\catalog\controllers;
 
 use app\modules\catalog\models\CategoryProduct;
+use app\modules\catalog\models\CategoryProductGroup;
 use app\modules\catalog\models\Product;
+use app\modules\catalog\models\ProductGroup;
+use app\modules\catalog\models\search\ProductGroupSearch;
 use app\modules\catalog\models\search\ProductSearch;
 use app\modules\core\components\controllers\FrontController;
 use Yii;
@@ -13,23 +16,38 @@ class CatalogController extends FrontController
 {
     public function actionIndex()
     {
-        $searchModel = new ProductSearch();
-        $productDataProvider = $searchModel->searchCatalog(Yii::$app->request->queryParams);
+        $searchModel = new ProductGroupSearch();
+        $productGroupDataProvider = $searchModel->searchCatalog(Yii::$app->request->queryParams);
         $productsCount = Product::find()->alias('p')->joinWith(['categories'])->inStock()->groupBy('p.id')->count();
-        $categories = CategoryProduct::find()
+        $categories = CategoryProductGroup::find()
             ->alias('c')
-            ->select(['c.id', 'c.name', 'count(pc.product_id) as count'])
-            ->joinWith(['refProductCategories pc'])
-            ->active()
+            ->select(['c.id', 'c.name'])
+            ->andWhere(['active' => 1])
             ->groupBy('c.id')
             ->asArray()
             ->all();
 
         return $this->render('index', [
             'categories' => $categories,
-            'productDataProvider' => $productDataProvider,
+            'productGroupDataProvider' => $productGroupDataProvider,
             'searchModel' => $searchModel,
-            'productsCount' => $productsCount
+        ]);
+    }
+
+    public function actionGroup($id)
+    {
+        $productGroup = ProductGroup::find()
+            ->alias('g')
+            ->joinWith(['products p'])
+            ->where(['g.id' => $id, 'p.status' => 1])
+            ->one();
+
+        if (!$productGroup) {
+            throw new NotFoundHttpException;
+        }
+
+        return $this->render('group', [
+            'productGroup' => $productGroup
         ]);
     }
     

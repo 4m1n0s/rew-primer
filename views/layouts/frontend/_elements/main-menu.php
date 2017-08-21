@@ -42,7 +42,7 @@ use app\modules\user\models\User;
                             'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
                         ],
                         [
-                            'label' => \Yii::t('app', 'Cart') . ' (' . \app\modules\catalog\widgets\CartCount::widget() . ')',
+                            'label' => \Yii::t('app', 'Cart'),
                             'url' => ['/catalog/cart/view'],
                             'visible' => !Yii::$app->getUser()->getIdentity()->getIsPartner(),
 

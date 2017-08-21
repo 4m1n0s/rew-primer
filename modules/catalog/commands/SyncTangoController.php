@@ -80,7 +80,7 @@ class SyncTangoController extends Controller
                             $productModel->vendor = Product::VENDOR_TANGOCARD;
                             $productModel->sku = $product['utid'];
                             $productModel->name = $product['rewardName'];
-                            $productModel->price = $product['faceValue'];
+                            $productModel->price = \Yii::$app->virtualCurrencyExchanger->toVC($product['faceValue']);
                             $productModel->status = ($product['status'] == 'active') ? Product::IN_STOCK : Product::OUT_OF_STOCK;
                             if (!$productModel->save()) {
                                 throw new ErrorException('Could not save ' . Product::class . PHP_EOL . Json::encode($productModel->errors));
@@ -95,7 +95,7 @@ class SyncTangoController extends Controller
                             if ($productModel->status && $product['status'] != 'active') {
                                 $productModel->status = Product::OUT_OF_STOCK;
                             }
-                            $productModel->price = $product['faceValue'];
+                            $productModel->price = \Yii::$app->virtualCurrencyExchanger->toVC($product['faceValue']);
                             if (!$productModel->save()) {
                                 throw new ErrorException('Could not save ' . Product::class . PHP_EOL . Json::encode($productModel->errors));
                             }
@@ -106,12 +106,13 @@ class SyncTangoController extends Controller
                         if ($variablePrices = \Yii::$app->keyStorage->get('catalog.variable_prices')) {
                             $variablePrices = explode(',', $variablePrices);
                         } else {
-                            $variablePrices = [50,100,200,500,1000];
+                            $variablePrices = [100,300,500,700,1000,1500,2000,2500,3000,5000,7500,10000,15000];
                         }
                         $productModels = Product::findAll(['sku' => $product['utid'], 'vendor' => Product::VENDOR_TANGOCARD]);
                         if (empty($productModels)) {
                             foreach ($variablePrices as $price) {
-                                if ($product['minValue'] > $price || $product['maxValue'] < $price) {
+                                if ($product['minValue'] > \Yii::$app->virtualCurrencyExchanger->toUSD($price) ||
+                                    $product['maxValue'] < \Yii::$app->virtualCurrencyExchanger->toUSD($price)) {
                                     continue;
                                 }
                                 $productModel = new Product();
@@ -134,7 +135,8 @@ class SyncTangoController extends Controller
                             }
                         } else {
                             foreach ($productModels as $productModel) {
-                                if ($product['minValue'] > $productModel->price || $product['maxValue'] < $productModel->price) {
+                                if ($product['minValue'] >  \Yii::$app->virtualCurrencyExchanger->toUSD($productModel->price) ||
+                                    $product['maxValue'] <  \Yii::$app->virtualCurrencyExchanger->toUSD($productModel->price)) {
                                     $productModel->status = Product::OUT_OF_STOCK;
                                     $productModel->save();
                                 }
@@ -155,6 +157,7 @@ class SyncTangoController extends Controller
             $transaction->commit();
         } catch (\Exception $e) {
             $transaction->rollBack(); // TODO: Handle errors
+            echo $e->getMessage();
         }
     }
 }

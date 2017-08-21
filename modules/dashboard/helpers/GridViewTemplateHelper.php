@@ -14,10 +14,10 @@ class GridViewTemplateHelper
                 {items} 
             </div>
             <div class=\"row\"> 
-                <div class=\"col-md-5 col-sm-12\">
+                <div class=\"col-md-3 col-sm-12\">
                     <div class=\"dataTables_info\" id=\"sample_1_info\">{summary}</div>
                 </div>
-                <div class=\"col-md-7 col-sm-12\">
+                <div class=\"col-md-9 col-sm-12\">
                     <div class=\"dataTables_paginate paging_bootstrap\">
                         {pager}
                     </div>

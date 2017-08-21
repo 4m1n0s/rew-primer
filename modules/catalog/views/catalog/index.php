@@ -1,10 +1,9 @@
 <?php
 
 /* @var \yii\web\View $this */
-/* @var \app\modules\catalog\models\CategoryProduct[] $categories */
-/* @var \yii\data\ActiveDataProvider $productDataProvider */
-/* @var \app\modules\catalog\models\search\ProductSearch $searchModel */
-/* @var string $productsCount */
+/* @var \app\modules\catalog\models\CategoryProductGroup[] $categories */
+/* @var \yii\data\ActiveDataProvider $productGroupDataProvider */
+/* @var \app\modules\catalog\models\search\ProductGroupSearch $searchModel */
 
 use yii\helpers\Html;
 use yii\widgets\ListView;
@@ -22,9 +21,9 @@ use yii\helpers\ArrayHelper;
                     <form role="form" method="get" class="form-inline" id="order-filter" novalidate="novalidate" data-pjax="">
                         <div class="col-md-8 p-t-20 m-b-20">
                             <div class="input-group">
-                                <input type="text" aria-required="true" name="ProductSearch[name]" class="form-control"
+                                <input type="text" aria-required="true" name="ProductGroupSearch[name]" class="form-control"
                                        placeholder="Search"
-                                       value="<?php echo ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'name'); ?>">
+                                       value="<?php echo ArrayHelper::getValue(Yii::$app->request->get('ProductGroupSearch'), 'name'); ?>">
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-primary" id="name-search">
                                             <i class="fa fa-search"></i>
@@ -34,23 +33,23 @@ use yii\helpers\ArrayHelper;
                         </div>
                         <div class="col-md-4">
                             <div class="order-select">
-                                <h6>Sort by Price</h6>
-                                <?php echo Html::dropDownList('ProductSearch[price]', ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'price'), [
-                                    'price-asc' => 'Low to High',
-                                    'price-desc' => 'High to Low',
-                                ], ['id' => 'price-dropdown']) ?>
+                                <h6>Sort by Name</h6>
+                                <?php echo Html::dropDownList('ProductGroupSearch[name_order]', ArrayHelper::getValue(Yii::$app->request->get('ProductGroupSearch'), 'name_order'), [
+                                    'name-asc' => 'A to Z',
+                                    'name-desc' => 'Z to A',
+                                ], ['id' => 'name-order-dropdown']) ?>
                             </div>
                         </div>
 
-                        <?php echo Html::hiddenInput('ProductSearch[category]', ArrayHelper::getValue(Yii::$app->request->get('ProductSearch'), 'category'), ['id' => 'filter-category'])?>
+                        <?php echo Html::hiddenInput('ProductGroupSearch[category]', ArrayHelper::getValue(Yii::$app->request->get('ProductGroupSearch'), 'category'), ['id' => 'filter-category'])?>
                     </form>
                 </div>
                 <!--Product list-->
                 <div class="shop">
                     <div class="row"></div>
                     <?php echo ListView::widget([
-                        'dataProvider' => $productDataProvider,
-                        'itemView' => '_product-item',
+                        'dataProvider' => $productGroupDataProvider,
+                        'itemView' => '_product-group-item',
                         'layout' => "{summary}\n<div class='row'>{items}</div>\n<nav class='text-center'>{pager}</nav>",
                         'itemOptions' => [
                             'tag' => false,
@@ -69,9 +68,9 @@ use yii\helpers\ArrayHelper;
                     <h4 class="widget-title">Categories</h4>
                     <ul class="list list-lines">
                         <li></li>
-                        <li><a href="javascript: void(0)" class="filter-categories" data-id="0">All</a>&nbsp;<span class="count">(<?php echo $productsCount ?>)</span></li>
+                        <li><a href="javascript: void(0)" class="filter-categories" data-id="0">All</a></li>
                         <?php foreach ($categories as $category): ?>
-                            <li><a href="javascript: void(0)" class="filter-categories" data-id="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a>&nbsp;<span class="count">(<?php echo $category['count'] ?>)</span></li>
+                            <li><a href="javascript: void(0)" class="filter-categories" data-id="<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a></li>
                         <?php endforeach ?>
                     </ul>
                 </div>
@@ -84,7 +83,7 @@ use yii\helpers\ArrayHelper;
 
 <?php
 $js = <<< JS
-$(document).on('change', '#price-dropdown', function(event) {
+$(document).on('change', '#name-order-dropdown', function(event) {
     $('#order-filter').submit();
 })
 $(document).on('click', '#name-search', function(event) {

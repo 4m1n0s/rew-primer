@@ -12,14 +12,17 @@ use app\modules\catalog\models\ProductGroup;
  */
 class ProductGroupSearch extends ProductGroup
 {
+    public $category;
+    public $name_order;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'image', 'description'], 'safe'],
+            [['id', 'status', 'created_at', 'updated_at', 'category'], 'integer'],
+            [['name', 'image', 'description', 'name_order'], 'safe'],
         ];
     }
 
@@ -68,6 +71,42 @@ class ProductGroupSearch extends ProductGroup
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'description', $this->description]);
+
+        return $dataProvider;
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function searchCatalog($params)
+    {
+        $query = ProductGroup::find()->alias('p')->joinWith(['categories c'])->andWhere(['p.status' => 1])->groupBy('id');
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'defaultPageSize' => 21
+            ]
+        ]);
+
+        $this->load($params);
+
+        $query->andFilterWhere(['like', 'p.name', $this->name]);
+
+        if ($this->category > 0) {
+            $query->andFilterWhere(['c.id' => $this->category]);
+        }
+
+        if ($this->name_order == 'name-desc') {
+            $query->orderBy('p.name DESC');
+        } else {
+            $query->orderBy('p.name ASC');
+        }
 
         return $dataProvider;
     }

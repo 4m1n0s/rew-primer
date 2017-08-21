@@ -141,6 +141,14 @@ class ProductGroup extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return string
+     */
+    public function categoryList()
+    {
+        return implode(', ', ArrayHelper::getColumn($this->categories, 'name'));
+    }
+
+    /**
      * @return array
      */
     public static function getList()

@@ -30,6 +30,7 @@ class Yii extends \yii\BaseYii
  * @property app\modules\core\components\TransactionCreator $transactionCreator
  * @property app\modules\core\components\IPNormalizer $ipNormalizer
  * @property app\modules\core\components\mailer\MailContainer $mailContainer
+ * @property app\modules\core\components\VirtualCurrencyExchanger $virtualCurrencyExchanger
  * @property \yii\queue\db\Queue $queue
  */
 abstract class BaseApplication extends yii\base\Application

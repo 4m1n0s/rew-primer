@@ -165,6 +165,9 @@ $config = [
             'channel' => 'default', // Queue channel key
             'mutex' => \yii\mutex\MysqlMutex::class, // Mutex that used to sync queries
         ],
+        'virtualCurrencyExchanger' => [
+            'class' => '\app\modules\core\components\VirtualCurrencyExchanger',
+        ],
     ],
     'params' => $params,
     'modules' => require(__DIR__ . '/modules.php'),

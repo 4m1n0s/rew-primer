@@ -20,6 +20,7 @@ return [
     'invite' => '/user/account/invitation-request',
     'catalog' => '/catalog/catalog/index',
     'catalog/<id>' => '/catalog/catalog/single',
+    'catalog/group/<id>' => '/catalog/catalog/group',
     'cart/<_a>' => '/catalog/cart/<_a>',
 
     'sign-up/<code:[a-zA-Z0-9_-]+>' => 'user/account/sign-up',
