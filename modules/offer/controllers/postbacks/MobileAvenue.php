@@ -16,7 +16,7 @@ class MobileAvenue extends Action
     public function run($access_hash)
     {
         \Yii::info([
-            'message' => 'SAYSOPUBS info',
+            'message' => 'MOBILEAVENUE info',
             'offer_id' => Offer::MOBILEAVENUE
         ], 'offer_postback');
         return 'ok';

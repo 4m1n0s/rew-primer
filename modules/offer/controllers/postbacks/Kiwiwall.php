@@ -38,7 +38,7 @@ class Kiwiwall extends Action
             }
 
             // Get parameters
-            $status = trim($_REQUEST['?status']);   // Unknown leading symbol '?' issue
+            $status = trim($_REQUEST['status']);
             $trans_id = $_REQUEST['trans_id'];
             $sub_id = $_REQUEST['sub_id'];
             $sub_id_2 = $_REQUEST['sub_id_2'];
