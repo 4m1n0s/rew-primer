@@ -401,7 +401,7 @@ ul.icon-list li i {
 }
 
 .category-list {
-    height: 170px;
+    height: 150px;
     position: relative;
     display: block;
 }
@@ -424,17 +424,35 @@ ul.icon-list li i {
 
 .category-content .product-category {
 	font-size: 11px;
+	min-height: 20px;
 }
 
 .category-content .product-description {
-	max-height: 204px;
+	height: 204px;
 }
 
-.category-content .col-md-4 {
+.col-md-4.category-content {
     min-width: 19%;
-    width: 33%;
+    width: 32%;
     display: inline-block;
     float: none;
     vertical-align: top;
     padding: 0 0.5%;
+}
+
+.category-content .product {
+
+    margin: 10px 0;
+}
+
+@media only screen and (max-width: 767px) {
+	.col-md-4.category-content {
+	    width: 49%;
+	}
+}
+@media only screen and (max-width: 560px) {
+	.col-md-4.category-content {
+	    width: 87%;
+	    margin: 0 6%;
+	}
 }
