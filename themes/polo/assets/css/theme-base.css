@@ -533,6 +533,7 @@ nav.mega-menu .dropdown-submenu > span.dropdown-menu-title-only:hover {
 nav.mega-menu .dropdown-menu {
     left: auto;
     margin-top: 0px;
+    right: 0;
 }
 nav.mega-menu .dropdown-menu > li {
     display: block
