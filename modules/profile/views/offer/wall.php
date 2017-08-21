@@ -6,7 +6,6 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Offer Walls';
 ?>
     <div class="loader text-center">
         <img width="40" src="/images/svg-loaders/bars.svg" alt="">
