@@ -63,7 +63,7 @@ $urlMockup = '/images/mockup/';
 </section>
 <!-- END WHAT WE DO -->
 
-<section>
+<section class="margin-min">
     <div class="container">
         <div class="text-center">
             <a class="button btn-primary button-3d effect fill" href="/sign-up"><span>Sign up & get "Bucks" today</span></a>
