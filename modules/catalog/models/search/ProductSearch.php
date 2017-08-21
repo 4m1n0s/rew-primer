@@ -47,7 +47,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find()->joinWith(['groups g'])->groupBy(Product::tableName() . '.id');
+        $query = Product::find()->alias('p')->joinWith(['groups g'])->groupBy('p.id');
 
         // add conditions that should always apply here
 
@@ -65,19 +65,18 @@ class ProductSearch extends Product
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'price' => $this->price,
-            'status' => $this->status,
-            'type' => $this->type,
-            'vendor' => $this->vendor,
+            'p.id' => $this->id,
+            'p.status' => $this->status,
+            'p.type' => $this->type,
+            'p.vendor' => $this->vendor,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'sku', $this->sku])
-            ->andFilterWhere(['>=', 'price', $this->price_from])
-            ->andFilterWhere(['<=', 'price', $this->price_to])
+        $query->andFilterWhere(['like', 'p.name', $this->name])
+            ->andFilterWhere(['like', 'p.sku', $this->sku])
+            ->andFilterWhere(['>=', 'p.price', $this->price_from])
+            ->andFilterWhere(['<=', 'p.price', $this->price_to])
             ->andFilterWhere(['like', 'g.name', $this->groupsFilter])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'p.description', $this->description]);
 
         return $dataProvider;
     }
