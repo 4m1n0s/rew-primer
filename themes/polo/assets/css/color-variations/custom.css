@@ -431,7 +431,7 @@ ul.icon-list li i {
 	height: 204px;
 }
 
-.col-md-4 .category-content {
+.col-md-4.category-content {
     min-width: 19%;
     width: 33%;
     display: inline-block;
