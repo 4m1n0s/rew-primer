@@ -17,6 +17,7 @@ class Amazon implements MailerInterface
     {
         $credentials = new Credentials(\Yii::$app->params['amazon_access_key'], \Yii::$app->params['amazon_secret_key']);
         $client = SesClient::factory(array(
+            'version' => 'latest',
             'credentials' => $credentials,
             'region' => 'us-east-1',
         ));
