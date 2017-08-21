@@ -155,7 +155,7 @@ $config = [
         'mailContainer' => [
             'class' => '\app\modules\core\components\mailer\MailContainer',
             'mailerClient' => function() {
-                return new \app\modules\core\components\mailer\clients\Mandrill();
+                return new \app\modules\core\components\mailer\clients\Amazon();
             }
         ],
         'queue' => [
