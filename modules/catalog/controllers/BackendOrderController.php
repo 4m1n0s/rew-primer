@@ -185,7 +185,7 @@ class BackendOrderController extends BackController
         $model = new Import();
         $model->file = UploadedFile::getInstance($model, 'file');
         $orderIDIndex = 0;
-        $orderNoteIndex = 6;
+        $orderNoteIndex = 7;
 
         if (!$model->validate()) {
             $errors = $model->getErrors('file');
