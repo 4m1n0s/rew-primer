@@ -157,10 +157,10 @@ class Order extends \yii\db\ActiveRecord
     public function getFormattedProducts()
     {
         $productsList = [];
-        foreach ($this->products as $product) {
-            $productsList[] = $product->name . ' (' .
-                Yii::$app->virtualCurrencyExchanger->toUSD($product->getPrice()) .
-                '$, ' . $product->getQuantity() . ')';
+        foreach ($this->refProductOrders as $refProductOrder) {
+            $productsList[] = $refProductOrder->product->name . ' (' .
+                Yii::$app->virtualCurrencyExchanger->toUSD($refProductOrder->product->getPrice()) .
+                '$, ' . $refProductOrder->quantity . ')';
         }
 
         return $productsList;
