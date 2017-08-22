@@ -165,7 +165,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             Yii::$app->mailContainer->addToQueue(
                 $this->email,
                 EmailTemplate::TEMPLATE_USER_BLOCKED, [
-                'username' => $this->username
+                'username' => $this->username,
+                'contact_link' => Url::toRoute(['/contact/index/index'], true)
             ]);
         }
 
