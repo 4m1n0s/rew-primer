@@ -41,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\CheckboxColumn'],
 
-            'id',
+            [
+                'attribute' => 'id',
+                'label' => 'Product #'
+            ],
             [
                 'attribute' => 'vendor',
                 'filter' => Product::getVendorList(),

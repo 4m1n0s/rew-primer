@@ -169,6 +169,7 @@ class BackendOrderController extends BackController
                 'User ID' => 'user_id',
                 'Cost' => 'cost',
                 'Product Names' => 'products:name',
+                'Product Sku' => 'products:sku',
                 'Product IDs' => 'refProductOrders:product_id',
                 'Product Quantities'=> 'refProductOrders:quantity',
                 'Note' => 'note'

@@ -35,7 +35,7 @@ class Ptcwall extends Action
             $transactionID  = trim(\Yii::$app->request->get('tid'));
 
             $allowed_ips = [
-                '199.193.247.113'
+                '138.197.7.220'
             ];
 
             if (!in_array(\Yii::$app->request->getUserIP(), $allowed_ips)) {
@@ -49,36 +49,40 @@ class Ptcwall extends Action
                 throw new ErrorException('Unknown user: ' . $credituser);
             }
 
-            $transactionDB = Yii::$app->db->beginTransaction();
-            try {
+            if ($credited == 1 && $type == 2) {     // CREDIT Transaction, and is rewarding POINTS
 
-                // Init transaction
-                \Yii::$app->transactionCreator->offerIncome(
-                    Transaction::STATUS_COMPLETED,
-                    $rate,
-                    $user,
-                    $ip,
-                    Offer::PTCWALL,
-                    $transactionID,
-                    null,
-                    $name
-                );
+                $transactionDB = Yii::$app->db->beginTransaction();
+                try {
 
-                // Crediting funds to the user
-                $virtualCurrency = new VirtualCurrency($user);
-                $virtualCurrency->crediting($rate);
+                    // Init transaction
+                    \Yii::$app->transactionCreator->offerIncome(
+                        Transaction::STATUS_COMPLETED,
+                        $rate,
+                        $user,
+                        $ip,
+                        Offer::PTCWALL,
+                        $transactionID,
+                        null,
+                        $name
+                    );
 
-                // Referral percents bonus
-                $keyStorage = Yii::$app->keyStorage;
-                $referralBonus = new ReferralBonus($user);
-                $referralBonus->generalPercents = floatval($keyStorage->get('referral_percents'));
-                $referralBonus->addPercents($rate);
+                    // Crediting funds to the user
+                    $virtualCurrency = new VirtualCurrency($user);
+                    $virtualCurrency->crediting($rate);
 
-                $transactionDB->commit();
-            } catch (ErrorException $e) {
-                $transactionDB->rollBack();
-                throw $e;
+                    // Referral percents bonus
+                    $keyStorage = Yii::$app->keyStorage;
+                    $referralBonus = new ReferralBonus($user);
+                    $referralBonus->generalPercents = floatval($keyStorage->get('referral_percents'));
+                    $referralBonus->addPercents($rate);
+
+                    $transactionDB->commit();
+                } catch (ErrorException $e) {
+                    $transactionDB->rollBack();
+                    throw $e;
+                }
             }
+
         } catch (\Exception $e) {
             \Yii::error([
                 'message' => $e->getMessage(),
