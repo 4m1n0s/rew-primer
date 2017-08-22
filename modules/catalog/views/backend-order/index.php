@@ -81,7 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if (!$user) {
                         return null;
                     }
-                    return Html::a($user->name . ' (#' . $user->id . ')', ['/user/index-backend/view', 'id' => $row->user_id], [
+                    return Html::a($user->username . ' (#' . $user->id . ')', ['/user/index-backend/view', 'id' => $row->user_id], [
                         'data-pjax' => 0,
                         'class' => 'view-modal-btn'
                     ]);
