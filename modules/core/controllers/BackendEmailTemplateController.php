@@ -54,13 +54,18 @@ class BackendEmailTemplateController extends BackController
     {
         $model = new EmailTemplate();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('success', 'Template has been saved');
+            } else {
+                Yii::$app->session->setFlash('error', 'Could not save template');
+            }
+            return $this->redirect(['index']);
         }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -73,13 +78,18 @@ class BackendEmailTemplateController extends BackController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->save(false)) {
+                Yii::$app->session->setFlash('success', 'Template has been saved');
+            } else {
+                Yii::$app->session->setFlash('error', 'Could not save template');
+            }
+            return $this->redirect(['index']);
         }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

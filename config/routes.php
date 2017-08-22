@@ -34,7 +34,8 @@ return [
 
     // Backend
     'dashboard/invitation/index' => 'invitation/index-backend/index',
-    'dashboard/email/<_a>' => 'core/email-template/<_a>',
+    'dashboard/email-template/<_a>' => 'core/backend-email-template/<_a>',
+    'dashboard/page-template/<_a>' => 'pages/backend-page/<_a>',
     'dashboard/catalog/order/<_a>' => 'catalog/backend-order/<_a>',
     'dashboard/catalog/product/<_a>' => 'catalog/backend-product/<_a>',
     'dashboard/catalog/category/<_a>' => 'catalog/backend-category/<_a>',

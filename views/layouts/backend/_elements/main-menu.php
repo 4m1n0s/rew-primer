@@ -150,7 +150,7 @@
                             ],
                             [
                                 'label' => '<i class="fa fa-table"></i> ' . Yii::t('app', 'Emails'),
-                                'url' => ['/core/backend-email-template'],
+                                'url' => ['/core/backend-email-template/index'],
                                 'active' => $module == 'core' && $controller == 'backend-email-template'
                             ],
                         ]
