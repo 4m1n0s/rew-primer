@@ -51,7 +51,7 @@ class EmailTemplate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'subject'], 'required'],
             [['content'], 'string'],
             [['name', 'subject'], 'string', 'max' => 64],
         ];
