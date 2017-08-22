@@ -366,7 +366,7 @@ class OfferController extends ProfileController
 
     public function dryverlessads()
     {
-        $offerUrl = 'https://offerwall.dryverlessads.com/#/offers?appId={appId}&subid=&subid2=&subid3=&subid4=&subid5=&uid={userID}&un={username}'; // TODO: Store it somewhere else
+        $offerUrl = 'https://offerwall.dryverlessads.com/#/offers?appId={appId}&subid={userID}&subid2=&subid3=&subid4=&subid5=&uid={userID}&un={username}'; // TODO: Store it somewhere else
         $replace = [
             '{appId}' => '4eda6d55-c67a-4a27-b4fa-9f3ebcd1087b',
             '{userID}' => \Yii::$app->user->identity->id,
@@ -381,7 +381,7 @@ class OfferController extends ProfileController
 
     public function mobileavenue()
     {
-        $offerUrl = 'http://platform.mobileavenue.com/iframe/31/{appID}/?affSub={userID}'; // TODO: Store it somewhere else
+        $offerUrl = 'http://platform.mobileavenue.com/iframe/31/{appID}/?affSub={userID}&aff_sub={userID}'; // TODO: Store it somewhere else
         $replace = [
             '{appID}' => 'kloid53ea292230236541988f5bea665591ab569',
             '{userID}' => \Yii::$app->user->identity->id,
