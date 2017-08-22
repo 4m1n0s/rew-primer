@@ -192,7 +192,10 @@ class IndexBackendController extends BackController
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->update(false) && $model->updateMetaData()) {
+                Yii::$app->session->setFlash('success', 'User has been saved');
                 return $this->redirect(['index']);
+            } else {
+                Yii::$app->session->setFlash('error', 'Could not save user');
             }
         }
 
@@ -215,7 +218,10 @@ class IndexBackendController extends BackController
             $model->password = Password::hash($model->password);
             $model->referral_code = (empty($model->referral_code)) ? Yii::$app->security->generateRandomString(rand(8, 12)) : $model->referral_code;
             if ($model->save(false) && $model->updateMetaData()) {
+                Yii::$app->session->setFlash('success', 'User has been saved');
                 return $this->redirect(['index']);
+            } else {
+                Yii::$app->session->setFlash('error', 'Could not save user');
             }
         }
 

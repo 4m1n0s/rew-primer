@@ -142,7 +142,7 @@ class BackUsersForm extends User
         if ($this->getScenario() == self::SIGNUP_AFFILIATE_SCENARIO || $this->getScenario() == self::EDIT_AFFILIATE_SCENARIO) {
             UserMeta::updateUserMeta($this->id, 'referral_percents', $this->referral_percents);
             UserMeta::updateUserMeta($this->id, 'referral_register_value', $this->referral_register_value);
-            return true;
         }
+        return true;
     }
 }

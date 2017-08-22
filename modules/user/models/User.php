@@ -2,6 +2,7 @@
 
 namespace app\modules\user\models;
 
+use app\modules\core\models\EmailTemplate;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -144,6 +145,31 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             $this->password = $this->newPassword;
         }
         return parent::beforeValidate();
+    }
+
+    public function beforeSave($insert)
+    {
+        // Notify user about account approval
+        if (($this->getOldAttribute('status') == self::STATUS_BLACKLIST || $this->getOldAttribute('status') == self::STATUS_BLOCKED)
+            && $this->status == self::STATUS_APPROVED) {
+            Yii::$app->mailContainer->addToQueue(
+                $this->email,
+                EmailTemplate::TEMPLATE_USER_UNBLOCKED, [
+                'username' => $this->username
+            ]);
+        }
+
+        // Notify user about account blocked
+        if ($this->getOldAttribute('status') == self::STATUS_APPROVED
+            && ($this->status == self::STATUS_BLOCKED || $this->status == self::STATUS_BLACKLIST)) {
+            Yii::$app->mailContainer->addToQueue(
+                $this->email,
+                EmailTemplate::TEMPLATE_USER_BLOCKED, [
+                'username' => $this->username
+            ]);
+        }
+
+        return parent::beforeSave($insert);
     }
 
     public function getQueueMail()

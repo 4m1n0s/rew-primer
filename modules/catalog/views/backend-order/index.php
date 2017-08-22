@@ -91,6 +91,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
                 'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'cost_from', 'cost_to'),
                 'attribute' => 'cost',
+                'label' => 'Cost ("bucks")'
             ],
             [
                 'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::dateRange($searchModel, 'cr_date_from', 'cr_date_to'),

@@ -6,11 +6,14 @@ use app\modules\catalog\models\Order;
 use app\modules\catalog\models\RefProductOrder;
 use app\modules\core\components\controllers\FrontController;
 use app\modules\core\components\VirtualCurrency;
+use app\modules\core\components\VirtualCurrencyExchanger;
+use app\modules\core\models\EmailTemplate;
 use app\modules\core\models\Transaction;
 use app\modules\user\models\User;
 use Yii;
 use yii\base\ErrorException;
 use yii\base\InvalidValueException;
+use yii\helpers\ArrayHelper;
 
 class OrderController extends FrontController
 {
@@ -63,6 +66,15 @@ class OrderController extends FrontController
             $virtualCurrency->redemptionMinLimit = $keyStorage->get('redeem.minLimit');
             $virtualCurrency->redemptionResetHours = $keyStorage->get('redeem.reset');
             $virtualCurrency->debiting($cartTotalCost);
+
+            // Notify user of new order
+            Yii::$app->mailContainer->addToQueue(
+                $currentUser->email,
+                EmailTemplate::TEMPLATE_ORDER_NEW, [
+                'username' => $currentUser->username,
+                'order_id' => $order->id,
+                'order_products' => implode(', ', $order->getFormattedProducts())
+            ]);
 
             $transaction->commit();
             Yii::$app->cart->removeAll();

@@ -25,11 +25,14 @@ use app\modules\catalog\models\Product;
 
         <?= $form->field($model, 'vendor')->dropDownList(Product::getVendorList()) ?>
 
-        <?= $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'sku')->textInput(['maxlength' => true])
+            ->label($model->getAttributeLabel('sku') . ' <i class="fa fa-question-circle" title="Unique or related product identifier" aria-hidden="true"></i>') ?>
 
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true])
+            ->label($model->getAttributeLabel('name') . ' <i class="fa fa-question-circle" title="Used for email notifications" aria-hidden="true"></i>') ?>
 
-        <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'price')->textInput(['maxlength' => true])
+            ->label($model->getAttributeLabel('price') . ' ("bucks")') ?>
 
         <?= $form->field($model, 'status')->dropDownList(Product::getStatusList()) ?>
 

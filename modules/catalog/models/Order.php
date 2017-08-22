@@ -2,6 +2,7 @@
 
 namespace app\modules\catalog\models;
 
+use app\modules\core\models\EmailTemplate;
 use app\modules\user\models\User;
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -123,6 +124,48 @@ class Order extends \yii\db\ActiveRecord
         return new \app\modules\catalog\models\queries\OrderQuery(get_called_class());
     }
 
+    public function beforeSave($insert)
+    {
+        // Notify user about order canceling
+        if ($this->getOldAttribute('status') != self::STATUS_CANCELLED && $this->status == self::STATUS_CANCELLED) {
+            $user = $this->user;
+            Yii::$app->mailContainer->addToQueue(
+                $user->email,
+                EmailTemplate::TEMPLATE_ORDER_DECLINED, [
+                'username' => $user->username,
+                'order_products' => implode(', ', $this->getFormattedProducts()),
+                'order_id' => $this->id
+            ]);
+        }
+
+        // Notify user about order completed
+        if ($this->getOldAttribute('status') != self::STATUS_COMPLETED && $this->status == self::STATUS_COMPLETED) {
+            $user = $this->user;
+            Yii::$app->mailContainer->addToQueue(
+                $user->email,
+                EmailTemplate::TEMPLATE_ORDER_APPROVED, [
+                'username' => $user->username,
+                'order_products' => implode(', ', $this->getFormattedProducts()),
+                'order_id' => $this->id,
+                'note' => $this->note
+            ]);
+        }
+
+        return parent::beforeSave($insert);
+    }
+
+    public function getFormattedProducts()
+    {
+        $productsList = [];
+        foreach ($this->products as $product) {
+            $productsList[] = $product->name . ' (' .
+                Yii::$app->virtualCurrencyExchanger->toUSD($product->getPrice()) .
+                '$, ' . $product->getQuantity() . ')';
+        }
+
+        return $productsList;
+    }
+
     /**
      * Get status list
      * @return array
@@ -196,9 +239,10 @@ class Order extends \yii\db\ActiveRecord
     {
         $html = '<ul>';
         foreach ($this->refProductOrders as $refProductOrder) {
-            $html .= '<li>' . Html::a($refProductOrder->product->name . ' (' . $refProductOrder->quantity . ')', [
+            $html .= '<li>' . Html::a($refProductOrder->product->name , [
                     '/catalog/backend-product/update', 'id' => $refProductOrder->product->id
-                ]) . '</li>';
+                ]) . ' (unit: ' . $refProductOrder->product->price .
+                ', ' . 'qty: ' . $refProductOrder->quantity . ')' . '</li>';
         }
         $html .= '<ul>';
         return $html;

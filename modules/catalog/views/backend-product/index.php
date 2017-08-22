@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
                 'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'price_from', 'price_to'),
                 'attribute' => 'price',
-                'label' => 'Price (bucks)'
+                'label' => 'Price ("bucks")'
             ],
             [
                 'attribute' => 'status',

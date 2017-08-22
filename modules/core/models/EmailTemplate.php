@@ -30,6 +30,13 @@ class EmailTemplate extends \yii\db\ActiveRecord
 
     const TEMPLATE_REGISTER_REFERRAL_BONUS = 7;
 
+    const TEMPLATE_USER_BLOCKED = 8;
+    const TEMPLATE_USER_UNBLOCKED = 9;
+
+    const TEMPLATE_ORDER_NEW = 10;
+    const TEMPLATE_ORDER_DECLINED = 11;
+    const TEMPLATE_ORDER_APPROVED = 12;
+
     /**
      * @inheritdoc
      */
