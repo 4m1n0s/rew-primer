@@ -132,14 +132,15 @@ class TransactionSearch extends Transaction
         $dataProvider->setSort([
             'attributes' => [
                 'referral_username' => [
-                    'asc' => ['id' => SORT_ASC],
-                    'desc' => ['id' => SORT_DESC],
+                    'asc' => ['username' => SORT_ASC],
+                    'desc' => ['username' => SORT_DESC],
                 ],
                 'total_amount' => [
                     'asc' => ['total_amount' => SORT_ASC],
                     'desc' => ['total_amount' => SORT_DESC],
                 ],
             ],
+            'defaultOrder' => ['referral_username' => SORT_DESC]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
