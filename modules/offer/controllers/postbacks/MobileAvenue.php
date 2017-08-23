@@ -23,7 +23,7 @@ class MobileAvenue extends Action
     {
         try {
 
-            $userID         = \Yii::$app->request->get('subid');
+            $userID         = \Yii::$app->request->get('aff_sub');
             $amount         = \Yii::$app->request->get('aff_sub4');
             $leadID         = \Yii::$app->request->get('transaction_id');
             $campaignID     = \Yii::$app->request->get('offer_id');
