@@ -48,7 +48,6 @@ composer.phar
 /config/test-db.php
 /config/mailer.php
 /config/auth-clients.php
-/config/source-maxmind/
 
 # uploads dirs
 /web/uploads/

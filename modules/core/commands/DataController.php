@@ -2,9 +2,9 @@
 
 namespace app\modules\core\commands;
 
+use app\modules\core\models\EmailQueue;
+use app\modules\core\models\EmailTemplate;
 use app\modules\core\models\GeoCountry;
-use app\modules\offer\models\Category;
-use app\modules\offer\models\CategoryOffer;
 use app\modules\offer\models\Offer;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
@@ -13,15 +13,15 @@ use yii\console\Controller;
  * Class PopulateDataController
  * @package app\modules\core\commands
  */
-class PopulateDataController extends Controller
+class DataController extends Controller
 {
     /**
      * @throws InvalidConfigException
      * @throws \yii\db\Exception
      */
-    public function actionGeoCities()
+    public function actionGeo()
     {
-        $csv = \Yii::getAlias('@app') . '/config/source-maxmind/GeoLite2-Country-Locations-en.csv';
+        $csv = \Yii::getAlias('@app') . '/data/GeoLite2-Country-Locations-en.csv';
 
         if (($handle = fopen($csv, "r")) !== FALSE) {
             $signature = fgetcsv($handle, null, ",");
@@ -45,7 +45,7 @@ class PopulateDataController extends Controller
                 'country_name',
             ];
 
-            \Yii::$app->db->createCommand()->truncateTable(GeoCountry::tableName())->execute();
+            GeoCountry::deleteAll();
 
             while (($data = fgetcsv($handle, null, ",")) !== FALSE) {
 
@@ -98,71 +98,22 @@ class PopulateDataController extends Controller
         ])->execute();
     }
 
-    public function actionMockCategories()
+    public function actionTemplates()
     {
-        Category::deleteAll();
-        CategoryOffer::deleteAll();
-
-        \Yii::$app->db->createCommand()->batchInsert(Category::tableName(), ['id', 'active', 'name'], [
-            [1, 1, 'Category 1'],
-            [2, 1, 'Category 2'],
-            [3, 1, 'Category 3'],
-            [4, 1, 'Category 4'],
-            [5, 1, 'Category 5'],
-        ])->execute();
-
-        \Yii::$app->db->createCommand()->batchInsert(CategoryOffer::tableName(), ['category_id', 'offer_id'], [
-            [1, 10],
-            [3, 10],
-            [4, 10],
-
-            [2, 11],
-            [4, 11],
-            [5, 11],
-
-            [1, 12],
-            [2, 12],
-            [5, 12],
-
-            [1, 13],
-            [2, 13],
-            [5, 13],
-
-            [1, 14],
-            [3, 14],
-            [4, 14],
-
-            [2, 15],
-            [3, 15],
-            [5, 15],
-
-            [2, 16],
-            [4, 16],
-            [5, 16],
-
-            [1, 17],
-            [2, 17],
-            [3, 17],
-
-            [3, 18],
-            [4, 18],
-            [5, 18],
-
-            [1, 19],
-            [3, 19],
-            [5, 19],
-
-            [1, 20],
-            [2, 20],
-            [4, 20],
-
-            [3, 21],
-            [4, 21],
-            [5, 21],
-
-            [2, 22],
-            [3, 22],
-            [5, 22],
+        EmailQueue::deleteAll();
+        EmailTemplate::deleteAll();
+        \Yii::$app->db->createCommand()->batchInsert(EmailTemplate::tableName(), ['id', 'name', 'content', 'subject'], [
+            [EmailTemplate::TEMPLATE_INVITATION_REQUEST_RECEIVED, 'invitation_request_received', '', 'Invite Request Received'],
+            [EmailTemplate::TEMPLATE_INVITATION_REQUEST_APPROVED, 'invitation_request_approved', '', 'Invite Request Approved'],
+            [EmailTemplate::TEMPLATE_REGISTER_CONFIRMATION, 'signup_confirmation', '', 'Email Confirmation'],
+            [EmailTemplate::TEMPLATE_USER_PASSWORD_RECOVERY, 'password_recovery', '', 'Password Recovery'],
+            [EmailTemplate::TEMPLATE_REGISTER_REFERRAL_BONUS, 'new_referral_signed_up', '', 'Referral Bonus'],
+            [EmailTemplate::TEMPLATE_USER_BLOCKED, 'user_blocked', '', 'Your account has been blocked'],
+            [EmailTemplate::TEMPLATE_USER_UNBLOCKED, 'user_unblocked', '', 'Your account has been unblocked'],
+            [EmailTemplate::TEMPLATE_ORDER_NEW, 'new_order_confirmation', '', 'Order Request Created'],
+            [EmailTemplate::TEMPLATE_ORDER_DECLINED, 'new_order_declined', '', 'Order declined'],
+            [EmailTemplate::TEMPLATE_ORDER_APPROVED, 'new_order_approved', '', 'Order approved'],
+            [EmailTemplate::TEMPLATE_CONTACT_US, 'contact_reply', '', 'Contact Reply'],
         ])->execute();
     }
 }
