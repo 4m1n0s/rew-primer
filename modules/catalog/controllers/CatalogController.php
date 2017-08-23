@@ -18,7 +18,6 @@ class CatalogController extends FrontController
     {
         $searchModel = new ProductGroupSearch();
         $productGroupDataProvider = $searchModel->searchCatalog(Yii::$app->request->queryParams);
-        $productsCount = Product::find()->alias('p')->joinWith(['categories'])->inStock()->groupBy('p.id')->count();
         $categories = CategoryProductGroup::find()
             ->alias('c')
             ->select(['c.id', 'c.name'])
@@ -50,19 +49,6 @@ class CatalogController extends FrontController
 
         return $this->render('group', [
             'productGroup' => $productGroup
-        ]);
-    }
-    
-    public function actionSingle($id)
-    {
-        $product = Product::find()->alias('p')->where(['p.id' => $id])->joinWith(['categories'])->inStock()->one();
-
-        if (!$product) {
-            throw new NotFoundHttpException;
-        }
-
-        return $this->render('single', [
-            'product' => $product
         ]);
     }
 }

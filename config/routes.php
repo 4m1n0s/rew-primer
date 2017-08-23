@@ -19,7 +19,6 @@ return [
     'terms' => 'site/terms',
     'invite' => '/user/account/invitation-request',
     'catalog' => '/catalog/catalog/index',
-    'catalog/<id>' => '/catalog/catalog/single',
     'catalog/group/<id>' => '/catalog/catalog/group',
     'cart/<_a>' => '/catalog/cart/<_a>',
 

@@ -9,7 +9,9 @@ use yii\web\AssetBundle;
  */
 class FrontAsset extends AssetBundle {
 
-    public $sourcePath = '@app/themes/polo/assets';
+//    public $sourcePath = '@app/themes/polo/assets';
+    public $basePath = '@webroot/polo/assets';
+    public $baseUrl = '@web/polo/assets';
 
     public $css = [
         // Bootstrap Core CSS

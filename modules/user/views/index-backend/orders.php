@@ -65,10 +65,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'contentOptions' => ['class' => 'product-list'],
                 'value' => function($model) {
-                    $ret = \yii\helpers\ArrayHelper::map($model->products, 'id', 'name');
                     $output = Html::beginTag('ol');
-                    foreach ($ret as $key => $item) {
-                        $output .= Html::tag('li', Html::a(Html::encode($item), ['/catalog/catalog/single', 'id' => $key], ['target' => '_blank']));
+                    foreach ($model->refProductOrders as $item) {
+                        $output .= Html::tag('li', Html::a(Html::encode($item->product->name) . ' (' . $item->quantity . ')',
+                            ['/catalog/backend-product/view', 'id' => $item->product->id], [
+                            'data-pjax' => 0,
+                            'class' => 'view-modal-btn'
+                        ]));
                     }
                     return $output .= Html::endTag('ol');
                 },

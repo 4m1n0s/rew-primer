@@ -41,7 +41,7 @@ use yii\helpers\Html;
 
                             <td class="cart-product-thumbnail">
                                 <div class="cart-product-thumbnail-name">
-                                    <?php echo Html::a(Html::encode($position->name), ['/catalog/catalog/single', 'id' => $position->id]) ?>
+                                    <?php echo Html::encode($position->name) ?>
                                 </div>
                             </td>
 

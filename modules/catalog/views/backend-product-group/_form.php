@@ -24,11 +24,9 @@ use app\modules\dashboard\helpers\FormTemplateHelper;
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-
         <?= $form->field($model, 'status')->dropDownList([1 => 'Yes', 0 => 'No']) ?>
 
-        <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'description')->textarea(['rows' => 12]) ?>
 
         <h3 class="form-section"><?= Yii::t('user', 'Additionally'); ?></h3>
         <?= $form->field($model, 'categoriesBuff')->dropDownList(\app\modules\catalog\models\CategoryProductGroup::getList(), ['id' => 'category-product-group-select', 'multiple' => 'multiple'])->label('Categories') ?>

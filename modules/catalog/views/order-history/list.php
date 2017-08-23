@@ -30,12 +30,18 @@ $this->title = 'Order history';
                         $ret = \yii\helpers\ArrayHelper::map($model->products, 'id', 'name');
                         $output = Html::beginTag('ul');
                         foreach ($ret as $key => $item) {
-                            $output .= Html::tag('li', Html::a(Html::encode($item), ['/catalog/catalog/single', 'id' => $key], ['target' => '_blank']));
+                            $output .= Html::tag('li', Html::encode($item));
                         }
                         return $output .= Html::endTag('ul');
                     },
                     'headerOptions' => [
-                        'style' => 'min-width: 150px; width: 150px'
+                        'style' => 'min-width: 250px; width: 250px'
+                    ]
+                ],
+                [
+                    'attribute' => 'cost',
+                    'headerOptions' => [
+                        'style' => 'min-width: 90px; width: 90px'
                     ]
                 ],
                 [
@@ -45,13 +51,7 @@ $this->title = 'Order history';
                         return $model->getStatus();
                     },
                     'headerOptions' => [
-                        'style' => 'min-width: 110px;'
-                    ]
-                ],
-                [
-                    'attribute' => 'cost',
-                    'headerOptions' => [
-                        'style' => 'min-width: 90px; width: 90px'
+                        'style' => 'min-width: 110px; width: 110px'
                     ]
                 ],
                 [
@@ -66,7 +66,7 @@ $this->title = 'Order history';
                             'autoclose' => true
                         ]
                     ]),
-                    'headerOptions' => ['style' => 'min-width: 200px;'],
+                    'headerOptions' => ['style' => 'min-width: 200px; width: 300px'],
                     'attribute' => 'create_date',
                     'format' => 'datetime',
                     'label' => 'Date',

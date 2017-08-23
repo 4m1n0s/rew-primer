@@ -54,7 +54,7 @@ GridView::widget([
         [
             'filter' => \app\modules\dashboard\helpers\GridViewTemplateHelper::textRange($searchModel, 'virtual_currency_from', 'virtual_currency_to'),
             'headerOptions' => ['style' => 'width: 120px;min-width: 120px;'],
-            'label' => 'Balance',
+            'label' => 'Balance ("bucks")',
             'attribute' => 'virtual_currency',
         ],
         [

@@ -66,5 +66,8 @@ class BackController extends Controller
             'pageSize' => Yii::$app->request->get('per-page', 20),
             'pageSizeLimit' => [1, 500]
         ]);
+        Yii::$container->set('yii\data\Sort', [
+            'defaultOrder' => ['id' => SORT_DESC]
+        ]);
     }
 }
