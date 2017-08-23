@@ -67,7 +67,7 @@ class MobileAvenue extends Action
         } catch (\Exception $e) {
             \Yii::error([
                 'message' => $e->getMessage(),
-                'offer_id' => Offer::DRYVERLESSADS
+                'offer_id' => Offer::MOBILEAVENUE
             ], 'offer_postback');
         }
 
