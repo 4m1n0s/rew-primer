@@ -44,31 +44,6 @@ class IndexBackendController extends BackController
                     'options' => ['placeholder' => 'Email'],
                     'rules' => [['required'], ['email']]
                 ],
-                'site_key' => [
-                    'label' => 'reCaptcha Site Key',
-                    'type' => FormModel::TYPE_TEXTINPUT,
-                    'options' => ['placeholder' => 'reCaptcha Site Key'],
-                ],
-                'secret_key' => [
-                    'label' => 'reCaptcha Secret Key',
-                    'type' => FormModel::TYPE_TEXTINPUT,
-                    'options' => ['placeholder' => 'reCaptcha Secret Key'],
-                ],
-                'header_scripts' => [
-                    'label' => 'Header Scripts',
-                    'type' => FormModel::TYPE_TEXTAREA,
-                    'options' => ['placeholder' => 'Header Scripts'],
-                ],
-                'footer_scripts' => [
-                    'label' => 'Footer Scripts',
-                    'type' => FormModel::TYPE_TEXTAREA,
-                    'options' => ['placeholder' => 'Footer Scripts'],
-                ],
-                'mandrill_api_key' => [
-                    'label' => 'Mandrill API Key',
-                    'type' => FormModel::TYPE_TEXTINPUT,
-                    'options' => ['placeholder' => 'Mandrill API Key'],
-                ],
                 'referral_percents' => [
                     'label' => 'Referral Percents',
                     'type' => FormModel::TYPE_TEXTINPUT,

@@ -22,6 +22,16 @@ use yii\helpers\Html;
                 <ul class="nav navbar-nav pull-right">
 
                     <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                        <a href="<?php echo \yii\helpers\Url::toRoute(['/offer/backend-log-postback/index']) ?>"
+                           class="dropdown-toggle"
+                           title="Postback Errors">
+                            <i class="fa fa-exclamation-triangle"></i>
+                            <span class="badge badge-danger"><?php echo \app\modules\catalog\widgets\LogPostbackCount::widget() ?></span>
+                        </a>
+                        <ul class="dropdown-menu"></ul>
+                    </li>
+
+                    <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                         <a href="<?php echo \yii\helpers\Url::toRoute(['/catalog/backend-order/index']) ?>"
                            class="dropdown-toggle"
                            title="New Orders">
